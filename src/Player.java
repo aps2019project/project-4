@@ -14,6 +14,11 @@ public class Player {
     private int mana;
 
     public Player(String name, Deck mainDeck) {
+
+    }
+
+    public Player (){
+
     }
 
     public Deck getDeck() {

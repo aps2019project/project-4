@@ -3,8 +3,9 @@ import java.util.regex.Pattern;
 
 public class CommandLine {
     public enum Menu {
-        MAIN, BATTLE, SHOP , COLLECTION;
-        Menu(){
+        MAIN, BATTLE, SHOP, COLLECTION;
+
+        Menu() {
         }
     }
 
@@ -31,8 +32,8 @@ public class CommandLine {
         return menu;
     }
 
-    public static void changeMenu(String menuName){
-        switch (menuName.toLowerCase()){
+    public static void changeMenu(String menuName) {
+        switch (menuName.toLowerCase()) {
             case "main":
                 menu = Menu.MAIN;
                 return;
@@ -47,15 +48,15 @@ public class CommandLine {
         }
     }
 
-    public static void showMainMenu(){
+    public static void showMainMenu() {
 
     }
 
-    public static void showShopMenu(){
+    public static void showShopMenu() {
 
     }
 
-    public static void showCollectionMenu(){
+    public static void showCollectionMenu() {
 
     }
 }

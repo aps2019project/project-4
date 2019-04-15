@@ -2,9 +2,10 @@ import java.sql.Time;
 
 public class Match {
 
-    private enum  StateOfGame {
+    private enum StateOfGame {
         WIN, LOSS, DRAW;
-        StateOfGame(){
+
+        StateOfGame() {
         }
     }
 
