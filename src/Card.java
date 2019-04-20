@@ -3,6 +3,4 @@ public abstract class Card {
     private String name;
     private int requiredManas;
     private int price;
-
-
 }
