@@ -1,5 +1,9 @@
 public class Enums {
     public enum ActivationTypes{
-        ONATTACK, COMBO, ONDEFEND, ONSPAWN, PASSIVE, ONDEATH
+        ON_ATTACK, COMBO, ON_DEFEND, ON_SPAWN, PASSIVE, ON_DEATH
+    }
+
+    public enum GameMode{
+        SINGLE_PLAYER, MULTI_PLAYER, STORY, CUSTOM_GAME
     }
 }
