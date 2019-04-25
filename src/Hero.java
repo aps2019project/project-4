@@ -3,6 +3,7 @@ public class Hero extends Minion {
 
     public Hero(String name, int price, int hp, int ap, int mp, int startRange, int endRange, int coolDown){
         super(name, price, hp, ap, mp, startRange, endRange);
+        this.coolDown = coolDown;
     }
 
 }

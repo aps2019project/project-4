@@ -1,4 +1,5 @@
 public class View {
-    public void showMyMinions(){
+    public void showMyMinions(Player player) {
+
     }
 }

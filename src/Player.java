@@ -3,21 +3,24 @@ import java.util.HashMap;
 public class Player {
     private String name;
     private Deck selectedDeck;
-    private HashMap<Card, String> hand;
+    private HashMap<String, Card> hand;
     private int numOfFlags;
     private int numOfTurnsHeldFlag;
     private Card nextCard;
     private Card selectedCard;
     private Item selectedItem;
-    private HashMap<Item, String> collectableItems;
-    private HashMap<Card, String> graveYard;
+    private HashMap<String, Item> collectableItems;
+    private HashMap<String, Card> graveYard;
     private int mana;
 
     public Player(String name, Deck mainDeck) {
+        Constants instance = Constants.getInstance();
+        this.name = name;
+        this.selectedDeck = mainDeck;
 
     }
 
-    public Player (){
+    public Player() {
 
     }
 
@@ -31,6 +34,10 @@ public class Player {
     public void changeMana(int mana) {
     }
 
+    public int getMana() {
+        return mana;
+    }
+
     public void replaceCard(Card cardInHand) {
     }
 
@@ -38,15 +45,7 @@ public class Player {
     }
 
     public void moveSelectedCard(int x, int y) {
-    }
 
-    public void attack(String opponentCardId) {
-    }
-
-    public void counterAttack(String opponentCardId) {
-    }
-
-    public void attackCombo(String opponentCardId, String... myCardIds) {
     }
 
     public void showHand() {
