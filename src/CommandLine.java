@@ -3,21 +3,42 @@ import java.util.regex.Pattern;
 
 public class CommandLine {
     public enum Menu {
-        MAIN, BATTLE, SHOP, COLLECTION;
+        ACCOUNT, MAIN, BATTLE, SHOP, COLLECTION;
 
         Menu() {
         }
     }
 
     private String command;
-    private static Menu menu = Menu.MAIN;
-    private static ArrayList<Pattern> patternsOfMainMeun = new ArrayList<>();
+    private static Menu menu = Menu.ACCOUNT;
+    private final static ArrayList<Pattern> patternsOfAccountMenu = new ArrayList<>();
+    private static ArrayList<Pattern> patternsOfMainMenu = new ArrayList<>();
     private static ArrayList<Pattern> patternsOfCollectionMenu = new ArrayList<>();
-    private static ArrayList<Pattern> patternsOfShopMeun = new ArrayList<>();
-    private static ArrayList<Pattern> patternsOfBattleMeun = new ArrayList<>();
+    private static ArrayList<Pattern> patternsOfShopMenu = new ArrayList<>();
+    private static ArrayList<Pattern> patternsOfBattleMenu = new ArrayList<>();
 
-    public CommandLine(String cli) {
-        this.command = cli;
+    public static void setPatterns() {
+        patternsOfAccountMenu.add(Pattern.compile("create account ([a-zA-Z0-9]+)"));
+        patternsOfAccountMenu.add(Pattern.compile("login ([a-zA-Z0-9]+)"));
+        patternsOfAccountMenu.add(Pattern.compile("show leaderboard"));
+        patternsOfAccountMenu.add(Pattern.compile("save"));
+        patternsOfAccountMenu.add(Pattern.compile("help"));
+        patternsOfAccountMenu.add(Pattern.compile("exit"));
+        patternsOfMainMenu.add(Pattern.compile("enter (Collection | Shop | Battle | Exit | Help)"));
+        patternsOfMainMenu.add(Pattern.compile("logout"));
+        patternsOfMainMenu.add(Pattern.compile("exit"));
+        patternsOfMainMenu.add(Pattern.compile("battle"));
+        patternsOfMainMenu.add(Pattern.compile("help"));
+        patternsOfCollectionMenu.add(Pattern.compile("exit"));
+        patternsOfCollectionMenu.add(Pattern.compile("show"));
+        patternsOfCollectionMenu.add(Pattern.compile("search ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("save"));
+        patternsOfCollectionMenu.add(Pattern.compile("create deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("delete deck ([a-zA-Z0-9]+)"));
+
+    }
+
+    public CommandLine() {
     }
 
     public String getCommand() {
@@ -28,6 +49,10 @@ public class CommandLine {
 
     }
 
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
     public static Menu getMenu() {
         return menu;
     }
@@ -36,15 +61,14 @@ public class CommandLine {
         switch (menuName.toLowerCase()) {
             case "main":
                 menu = Menu.MAIN;
-                return;
             case "battle":
                 menu = Menu.BATTLE;
-                return;
             case "shop":
                 menu = Menu.SHOP;
-                return;
             case "collection":
                 menu = Menu.COLLECTION;
+            case "account":
+                menu = Menu.ACCOUNT;
         }
     }
 

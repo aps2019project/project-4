@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class Account {
@@ -22,6 +23,7 @@ public class Account {
         this.matchHistory = new ArrayList<>();
         this.collection = null;
     }
+
     public String getName() {
         return this.name;
     }
@@ -66,35 +68,59 @@ public class Account {
 
     }
 
-    public static void createAccount(String userName){
-        if (Account.getAccounts().containsKey(userName)){
+    public static void createAccount(String userName) {
+        if (Account.getAccounts().containsKey(userName)) {
             System.out.println("The with this name exists!\n");
             return;
         }
         String password = Main.scanner.nextLine();
-        Account.getAccounts().put(userName , new Account(userName , password));
+        Account.getAccounts().put(userName, new Account(userName, password));
         System.out.println("The account with name " + userName + " created!\n");
     }
 
-    public static void login (String userName){
+    public static void login(String userName) {
         if (currentAccount != null) {
             return;
         }
-        if (!accounts.containsKey(userName)){
+        if (!accounts.containsKey(userName)) {
             System.out.println("User name is invalid");
             return;
         }
         System.out.println("Inter Password");
         String password = Main.scanner.nextLine();
-        if (!accounts.get(userName).getPassword().equals(password)){
+        if (!accounts.get(userName).getPassword().equals(password)) {
             System.out.println("Invalid password");
             return;
         }
         setCurrentAccount(accounts.get(userName));
+        CommandLine.changeMenu("Main");
     }
 
-    public Account searchAccount(String name) {
-        return accounts.get(name);
+    public int getNumOfWins(){
+        int numOfWin = 0;
+        for (Match match : matchHistory)
+            if (match.isWin())
+                numOfWin ++;
+        return numOfWin;
+    }
+
+    public int getNumOfLosses(){
+        int numOfWin = 0;
+        for (Match match : matchHistory)
+            if (!match.isWin())
+                numOfWin ++;
+        return numOfWin;
+    }
+
+    public static void logOut() {
+        if (CommandLine.getMenu() == CommandLine.Menu.MAIN){
+            currentAccount = null;
+            CommandLine.changeMenu("account");
+        }
+    }
+
+    public static void showHelp() {
+
     }
 
     public void changeMoney(int change) {
@@ -104,5 +130,12 @@ public class Account {
     public void showMatchHistory() {
         this.getMatchHistory().forEach(match -> System.out.println(match.toString()));
     }
+}
 
+class AccountComparator implements Comparator<Account> {
+    public int compare (Account a1 , Account a2){
+        if (a1.getNumOfWins() != a2.getNumOfWins())
+            return Integer.compare(a1.getNumOfWins() , a1.getNumOfWins());
+        return a1.getName().compareTo(a2.getName());
+    }
 }
