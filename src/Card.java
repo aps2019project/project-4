@@ -1,6 +1,6 @@
 public abstract class Card {
-    private String id;
-    private String name;
-    private int requiredManas;
-    private int price;
+    protected String id;
+    protected String name;
+    protected int requiredManas;
+    protected int price;
 }
