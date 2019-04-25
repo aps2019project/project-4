@@ -1,15 +1,20 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class controller {
-    public enum Menu {
-        ACCOUNT, MAIN, BATTLE, SHOP, COLLECTION
+class InvalidCommandException extends Exception {
+    @Override
+    public String getMessage() {
+        return "invalid Command";
     }
+}
+
+public class controller {
 
     private static String command;
     private static Scanner scanner;
-    private static Menu menu;
+    private static Enums.Menus menu;
     private static Boolean isEndedGame;
     private final static ArrayList<Pattern> patternsOfAccountMenu = new ArrayList<>();
     private final static ArrayList<Pattern> patternsOfMainMenu = new ArrayList<>();
@@ -24,7 +29,7 @@ public class controller {
         patternsOfAccountMenu.add(Pattern.compile("save"));
         patternsOfAccountMenu.add(Pattern.compile("help"));
         patternsOfAccountMenu.add(Pattern.compile("exit"));
-        patternsOfMainMenu.add(Pattern.compile("enter (Collection | Shop | Battle | Exit | Help)"));
+        patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle|Exit|Help)"));
         patternsOfMainMenu.add(Pattern.compile("logout"));
         patternsOfMainMenu.add(Pattern.compile("exit"));
         patternsOfMainMenu.add(Pattern.compile("battle"));
@@ -35,10 +40,12 @@ public class controller {
         patternsOfCollectionMenu.add(Pattern.compile("save"));
         patternsOfCollectionMenu.add(Pattern.compile("create deck ([a-zA-Z0-9]+)"));
         patternsOfCollectionMenu.add(Pattern.compile("delete deck ([a-zA-Z0-9]+)"));
+        patternsOfShopMenu.add(Pattern.compile("xxx"));
+        patternsOfBattleMenu.add(Pattern.compile("xxx"));
     }
 
-    public static ArrayList<Pattern> getPattern(){
-        switch (getMenu()){
+    public static ArrayList<Pattern> getPatterns() {
+        switch (getMenu()) {
             case MAIN:
                 return patternsOfMainMenu;
             case SHOP:
@@ -50,37 +57,41 @@ public class controller {
             case COLLECTION:
                 return patternsOfCollectionMenu;
             default:
-                return null;
+                return patternsOfAccountMenu;
         }
     }
 
     public static void setMenu(String menuName) {
         switch (menuName.toLowerCase()) {
             case "main":
-                setMenu(Menu.MAIN);
+                setMenu(Enums.Menus.MAIN);
             case "battle":
-                setMenu(Menu.BATTLE);
+                setMenu(Enums.Menus.BATTLE);
             case "shop":
-                setMenu(Menu.SHOP);
+                setMenu(Enums.Menus.SHOP);
             case "collection":
-                setMenu(Menu.COLLECTION);
+                setMenu(Enums.Menus.COLLECTION);
             case "account":
-                setMenu(Menu.ACCOUNT);
+                setMenu(Enums.Menus.ACCOUNT);
         }
     }
 
     public static void start() {
         setStartGame();
-        setMenu(Menu.ACCOUNT);
-        scanner = new Scanner(System.in);
+        setMenu(Enums.Menus.ACCOUNT);
         setPatterns();
-        while (isEndedGame()) {
+        setScanner();
+        while (!isEndedGame()) {
             setCommand();
             doCommand();
         }
     }
 
-    public static void setCommand(){
+    public static void setScanner() {
+        scanner = new Scanner(System.in);
+    }
+
+    public static void setCommand() {
         command = scanner.nextLine();
     }
 
@@ -88,23 +99,37 @@ public class controller {
         return command;
     }
 
-    public static Pattern checkCommand() {
-
+    public static int getIndexCommand() throws InvalidCommandException {
+        int i = 0;
+        for (Pattern pattern : getPatterns()) {
+            Matcher matcher = pattern.matcher(getCommand().trim());
+            if (matcher.find())
+                return i;
+            i++;
+        }
+        throw new InvalidCommandException();
     }
 
     public static void doCommand() {
+        try {
+            int index = controller.getIndexCommand();
+            for (Pattern pattern1 : getPatterns()) {
 
+            }
+        } catch (InvalidCommandException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public static Scanner getScanner(){
+    public static Scanner getScanner() {
         return scanner;
     }
 
-    public static Menu getMenu() {
+    public static Enums.Menus getMenu() {
         return menu;
     }
 
-    public static void setMenu(Menu menu) {
+    public static void setMenu(Enums.Menus menu) {
         controller.menu = menu;
     }
 

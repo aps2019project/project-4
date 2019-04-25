@@ -6,4 +6,9 @@ public class Enums {
     public enum GameMode{
         SINGLE_PLAYER, MULTI_PLAYER, STORY, CUSTOM_GAME
     }
+
+    public enum Menus {
+        ACCOUNT, MAIN, BATTLE, SHOP, COLLECTION
+    }
+
 }
