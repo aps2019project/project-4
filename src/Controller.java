@@ -4,13 +4,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class InvalidCommandException extends Exception {
-    @Override
-    public String getMessage() {
-        return "invalid Command";
-    }
-}
-
 public class Controller {
 
     private static String command;

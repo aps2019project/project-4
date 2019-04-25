@@ -73,23 +73,26 @@ public class Account {
             System.out.println("The with this name exists!\n");
             return;
         }
+
         String password = Controller.getScanner().nextLine();
         Account.getAccounts().put(userName, new Account(userName, password));
         System.out.println("The account with name " + userName + " created!\n");
     }
 
     public static void login(String userName) {
-        if (currentAccount != null) {
-            return;
-        }
-        if (!accounts.containsKey(userName)) {
-            System.out.println("User name is invalid");
-            return;
-        }
-        System.out.println("Inter Password");
-        String password = Controller.getScanner().nextLine();
-        if (!accounts.get(userName).getPassword().equals(password)) {
-            System.out.println("Invalid password");
+        try {
+            if (!accounts.containsKey(userName))
+                throw new InvalidUserNameException();
+            System.out.println("Inter Password");
+            String password = Controller.getScanner().nextLine();
+            if (!accounts.get(userName).getPassword().equals(password))
+                throw new InvalidPasswordException();
+
+        } catch (InvalidUserNameException e){
+            e.getMessage();
+        } catch (InvalidPasswordException e){
+            e.getMessage();
+        } catch (NullPointerException e){
             return;
         }
         setCurrentAccount(accounts.get(userName));

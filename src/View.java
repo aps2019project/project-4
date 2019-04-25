@@ -1,3 +1,24 @@
+class InvalidUserNameException extends Exception{
+    @Override
+    public String getMessage() {
+        return "User name is invalid";
+    }
+}
+
+class InvalidPasswordException extends Exception{
+    @Override
+    public String getMessage() {
+        return "invalid Command";
+    }
+}
+
+class InvalidCommandException extends Exception {
+    @Override
+    public String getMessage() {
+        return "invalid Command";
+    }
+}
+
 public class View {
 
     public static void showHelp(){
@@ -14,6 +35,11 @@ public class View {
 
         }
     }
+
+    public static void successfulAccountCreationMessage(){
+        //toDo Copy Print Message to inja
+    }
+
 
 
 }
