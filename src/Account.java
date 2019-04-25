@@ -73,7 +73,7 @@ public class Account {
             System.out.println("The with this name exists!\n");
             return;
         }
-        String password = controller.getScanner().nextLine();
+        String password = Controller.getScanner().nextLine();
         Account.getAccounts().put(userName, new Account(userName, password));
         System.out.println("The account with name " + userName + " created!\n");
     }
@@ -87,13 +87,13 @@ public class Account {
             return;
         }
         System.out.println("Inter Password");
-        String password = controller.getScanner().nextLine();
+        String password = Controller.getScanner().nextLine();
         if (!accounts.get(userName).getPassword().equals(password)) {
             System.out.println("Invalid password");
             return;
         }
         setCurrentAccount(accounts.get(userName));
-        controller.setMenu(Enums.Menus.MAIN);
+        Controller.setMenu(Enums.Menus.MAIN);
     }
 
     public int getNumOfWins(){
@@ -113,9 +113,9 @@ public class Account {
     }
 
     public static void logOut() {
-        if (controller.getMenu() == Enums.Menus.MAIN){
+        if (Controller.getMenu() == Enums.Menus.MAIN){
             currentAccount = null;
-            controller.setMenu(Enums.Menus.ACCOUNT);
+            Controller.setMenu(Enums.Menus.ACCOUNT);
         }
     }
 

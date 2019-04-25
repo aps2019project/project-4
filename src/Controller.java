@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -10,7 +11,7 @@ class InvalidCommandException extends Exception {
     }
 }
 
-public class controller {
+public class Controller {
 
     private static String command;
     private static Scanner scanner;
@@ -112,13 +113,70 @@ public class controller {
 
     public static void doCommand() {
         try {
-            int index = controller.getIndexCommand();
-            for (Pattern pattern1 : getPatterns()) {
-
+            int index = Controller.getIndexCommand();
+            switch (getMenu()){
+                case MAIN:
+                    doMainMenuCommand(index);
+                case ACCOUNT:
+                    doAccountMenuCommand(index);
+                case BATTLE:
+                    doBattleMenuCommand(index);
+                case SHOP:
+                    doShopMenuCommand(index);
+                case COLLECTION:
+                    doCollectionMenuCommand(index);
             }
         } catch (InvalidCommandException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static void doMainMenuCommand(int index) {
+        Pattern pattern = getPatterns().get(index);
+        Matcher matcher = pattern.matcher(getCommand().trim());
+        matcher.find();
+
+    }
+
+    public static void doAccountMenuCommand(int index) {
+        Pattern pattern = getPatterns().get(index);
+        Matcher matcher = pattern.matcher(getCommand().trim());
+        matcher.find();
+        switch (index){
+            case 0:
+                Account.createAccount(matcher.group(1));
+            case 1:
+                Account.login(matcher.group(1));
+            case 2:
+                Account.showLeaderBoard();
+            case 3:
+                //toDo write save command
+            case 4:
+                View.showHelp();
+            case 5:
+                Controller.setEndGame();
+        }
+    }
+
+    public static void doBattleMenuCommand(int index) {
+        Pattern pattern = getPatterns().get(index);
+        Matcher matcher = pattern.matcher(getCommand().trim());
+        matcher.find();
+
+    }
+
+    public static void doCollectionMenuCommand(int index) {
+        Pattern pattern = getPatterns().get(index);
+        Matcher matcher = pattern.matcher(getCommand().trim());
+        matcher.find();
+
+    }
+
+    public static void doShopMenuCommand(int index) {
+        Pattern pattern = getPatterns().get(index);
+        Matcher matcher = pattern.matcher(getCommand().trim());
+        matcher.find();
+
     }
 
     public static Scanner getScanner() {
@@ -130,7 +188,7 @@ public class controller {
     }
 
     public static void setMenu(Enums.Menus menu) {
-        controller.menu = menu;
+        Controller.menu = menu;
     }
 
     public static Boolean isEndedGame() {
@@ -138,11 +196,11 @@ public class controller {
     }
 
     public static void setEndGame() {
-        controller.isEndedGame = true;
+        Controller.isEndedGame = true;
     }
 
     public static void setStartGame() {
-        controller.isEndedGame = false;
+        Controller.isEndedGame = false;
     }
 
     public static void showMainMenu() {
