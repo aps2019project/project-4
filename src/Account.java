@@ -93,7 +93,7 @@ public class Account {
             return;
         }
         setCurrentAccount(accounts.get(userName));
-        CommandLine.changeMenu("Main");
+        controller.changeMenu("Main");
     }
 
     public int getNumOfWins(){
@@ -113,9 +113,9 @@ public class Account {
     }
 
     public static void logOut() {
-        if (CommandLine.getMenu() == CommandLine.Menu.MAIN){
+        if (controller.getMenu() == controller.Menu.MAIN){
             currentAccount = null;
-            CommandLine.changeMenu("account");
+            controller.changeMenu("account");
         }
     }
 
