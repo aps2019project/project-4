@@ -23,6 +23,10 @@ public class Cell {
         return minion;
     }
 
+    public void setMinion(Minion minion) {
+        this.minion = minion;
+    }
+
     public int getDistance(int x, int y){
         return Math.abs(x - this.x) + Math.abs(y - this.y);
     }
