@@ -74,6 +74,8 @@ public class View {
 
     public static void showMenu(){
         switch (Controller.getMenu()){
+            case ACCOUNT:
+                showAccountMenu();
             case BATTLE:
                 showBattleMenu();
                 break;
@@ -89,8 +91,12 @@ public class View {
         }
     }
 
+    private static void showAccountMenu(){
+        System.out.print("1.Create Account\n2.Login\n3.Show Leaderboard\n4.Save\n5.Help\n");
+    }
+
     private static void showMainMenu() {
-        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Exit\n5.Help\n");
+        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit\n6.Help\n");
     }
 
     private static void showShopMenu() {
@@ -105,16 +111,16 @@ public class View {
 
     }
 
-    public static void successfulAccountCreationMessage(String userName) {
+    public static void showSuccessfulAccountCreationMessage(String userName) {
         System.out.println("The account with name " + userName + " created!");
     }
 
-    public static void enterPasswordMessage() {
+    public static void showEnterPasswordMessage() {
         System.out.println("Enter Password");
     }
 
     public static void showConfirmationLogoutMessage(){
-        System.out.println("Are you sure to logout?");
+        System.out.println("Are you sure to logout?[Y/N]");
     }
 
 }

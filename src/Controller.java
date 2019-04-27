@@ -79,6 +79,7 @@ public class Controller {
         setMenu(Enums.Menus.ACCOUNT);
         setPatterns();
         setScanner();
+        View.showMenu();
         while (!isEndedGame()) {
             setCommand();
             doCommand();
@@ -147,6 +148,13 @@ public class Controller {
                 break;
             case 1:
                 Account.logOut();
+                break;
+            case 2:
+                Controller.setEndGame();
+                break;
+            case 3:
+                View.showHelp();
+                break;
         }
     }
 
@@ -212,6 +220,13 @@ public class Controller {
 
     public static Enums.Menus getMenu() {
         return menu;
+    }
+
+    public static Boolean getYesOrNo(){
+        String yOrN = Controller.getNextLine();
+        if (yOrN.equals("Y"))
+            return true;
+        return false;
     }
 
     public static void setMenu(Enums.Menus menu) {

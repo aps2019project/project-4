@@ -61,17 +61,17 @@ public class Account {
     public static void createAccount(String userName) throws DuplicateAccountException {
         if (Account.getAccounts().containsKey(userName))
             throw new DuplicateAccountException(userName);
-        View.enterPasswordMessage();
+        View.showEnterPasswordMessage();
         String password = Controller.getScanner().nextLine();
         Account.getAccounts().put(userName, new Account(userName, password));
-        View.successfulAccountCreationMessage(userName);
+        View.showSuccessfulAccountCreationMessage(userName);
     }
 
     public static void login(String userName) throws InvalidPasswordException, InvalidUserNameException {
         try {
             if (!accounts.containsKey(userName))
                 throw new InvalidUserNameException();
-            View.enterPasswordMessage();
+            View.showEnterPasswordMessage();
             String password = Controller.getNextLine();
             if (!accounts.get(userName).getPassword().equals(password))
                 throw new InvalidPasswordException();
@@ -102,9 +102,11 @@ public class Account {
     public static void logOut() {
         if (Controller.getMenu() == Enums.Menus.MAIN) {
             View.showConfirmationLogoutMessage();
-            currentAccount = null;
-            Controller.setMenu(Enums.Menus.ACCOUNT);
-
+            if (Controller.getYesOrNo()) {
+                currentAccount = null;
+                Controller.setMenu(Enums.Menus.ACCOUNT);
+                View.showMenu();
+            }
         }
     }
 
@@ -117,7 +119,7 @@ public class Account {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "UserName: " + this.getName() + " - Wins : " + this.getNumOfWins() + "\n";
     }
 }
