@@ -55,12 +55,13 @@ public class Account {
     public static void showLeaderBoard() {
         ArrayList<Account> accounts = new ArrayList<>(getAccounts().values());
         accounts.sort(new AccountComparator());
-
+        accounts.forEach(account -> System.out.println(account.toString()));
     }
 
     public static void createAccount(String userName) throws DuplicateAccountException {
         if (Account.getAccounts().containsKey(userName))
             throw new DuplicateAccountException(userName);
+        View.enterPasswordMessage();
         String password = Controller.getScanner().nextLine();
         Account.getAccounts().put(userName, new Account(userName, password));
         View.successfulAccountCreationMessage(userName);
@@ -110,6 +111,11 @@ public class Account {
 
     public void showMatchHistory() {
         this.getMatchHistory().forEach(match -> System.out.println(match.toString()));
+    }
+
+    @Override
+    public String toString(){
+        return "UserName: " + this.getName() + " - Wins : " + this.getNumOfWins() + "\n";
     }
 }
 

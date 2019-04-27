@@ -170,13 +170,12 @@ public class Controller {
                     Controller.setEndGame();
                     break;
             }
+        } catch (InvalidUserNameException e) {
+            System.out.println(e.getMessage());
         } catch (DuplicateAccountException e) {
             System.out.println(e.getMessage());
-        } catch (InvalidUserNameException e) {
-            e.getMessage();
         } catch (InvalidPasswordException e) {
-            e.getMessage();
-
+            System.out.println(e.getMessage());
         }
     }
 
