@@ -59,14 +59,19 @@ public class Controller {
         switch (menuName.toLowerCase()) {
             case "main":
                 setMenu(Enums.Menus.MAIN);
+                break;
             case "battle":
                 setMenu(Enums.Menus.BATTLE);
+                break;
             case "shop":
                 setMenu(Enums.Menus.SHOP);
+                break;
             case "collection":
                 setMenu(Enums.Menus.COLLECTION);
+                break;
             case "account":
                 setMenu(Enums.Menus.ACCOUNT);
+                break;
         }
     }
 
@@ -110,14 +115,19 @@ public class Controller {
             switch (getMenu()){
                 case MAIN:
                     doMainMenuCommand(index);
+                    break;
                 case ACCOUNT:
                     doAccountMenuCommand(index);
+                    break;
                 case BATTLE:
                     doBattleMenuCommand(index);
+                    break;
                 case SHOP:
                     doShopMenuCommand(index);
+                    break;
                 case COLLECTION:
                     doCollectionMenuCommand(index);
+                    break;
             }
         } catch (InvalidCommandException e) {
             System.out.println(e.getMessage());
@@ -138,16 +148,22 @@ public class Controller {
         switch (index){
             case 0:
                 Account.createAccount(matcher.group(1));
+                break;
             case 1:
                 Account.login(matcher.group(1));
+                break;
             case 2:
                 Account.showLeaderBoard();
+                break;
             case 3:
                 //toDo write save command
+                break;
             case 4:
                 View.showHelp();
+                break;
             case 5:
                 Controller.setEndGame();
+                break;
         }
     }
 
