@@ -1,29 +1,37 @@
-class InvalidUserNameException extends Exception{
-    @Override
-    public String getMessage() {
-        return "User name is invalid";
+class InvalidUserNameException extends Exception {
+    public InvalidUserNameException() {
+        super("User name is invalid");
     }
 }
 
-class InvalidPasswordException extends Exception{
-    @Override
-    public String getMessage() {
-        return "invalid Command";
+class InvalidPasswordException extends Exception {
+    public InvalidPasswordException() {
+        super("invalid Password");
     }
+
+}
+
+class DuplicateAccountException extends Exception {
+    public DuplicateAccountException(String userName) {
+        super("The with name" + userName + "exists!");
+    }
+
 }
 
 class InvalidCommandException extends Exception {
-    @Override
-    public String getMessage() {
+    public InvalidCommandException() {
+        super("invalid Command");
+    }
+
+    public void showMessage() {
+        this.getMessage();
         View.showHelp();
-        return "invalid Command";
     }
 }
 
 public class View {
-
-    public static void showHelp(){
-        switch (Controller.getMenu()){
+    public static void showHelp() {
+        switch (Controller.getMenu()) {
             case ACCOUNT:
                 System.out.println("create account [user name] : Create a new account with name [user name]");
                 System.out.println("login [user name] : Login in account with name [user name] after getting password if password is correct");
@@ -41,10 +49,12 @@ public class View {
         }
     }
 
-    public static void successfulAccountCreationMessage(){
-        //toDo Copy Print Message to inja
+    public static void successfulAccountCreationMessage(String userName) {
+        System.out.println("The account with name " + userName + " created!\n");
     }
 
-
+    public static void enterPasswordMessage() {
+        System.out.println("Inter Password");
+    }
 
 }

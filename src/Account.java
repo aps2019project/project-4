@@ -8,20 +8,16 @@ public class Account {
     private static Account currentAccount = null;
     private String name;
     private String password;
-    private int money;
-    private ArrayList<Deck> decks;
-    private Deck selectedDeck;
+    private int Drack;
     private ArrayList<Match> matchHistory;
     private Collection collection;
 
     public Account(String name, String password) {
         this.name = name;
         this.password = password;
-        this.money = 0;
-        this.decks = new ArrayList<>();
-        this.selectedDeck = null;
+        this.Drack = 0;
         this.matchHistory = new ArrayList<>();
-        this.collection = null;
+        this.collection = new Collection();
     }
 
     public String getName() {
@@ -32,20 +28,12 @@ public class Account {
         return this.password;
     }
 
-    public int getMoney() {
-        return this.money;
+    public int getDrack() {
+        return this.Drack;
     }
 
     public ArrayList<Match> getMatchHistory() {
         return matchHistory;
-    }
-
-    public ArrayList<Deck> getDecks() {
-        return decks;
-    }
-
-    public Deck getSelectedDeck() {
-        return selectedDeck;
     }
 
     public Collection getCollection() {
@@ -65,69 +53,59 @@ public class Account {
     }
 
     public static void showLeaderBoard() {
+        ArrayList<Account> accounts = new ArrayList<>(getAccounts().values());
+        accounts.sort(new AccountComparator());
 
     }
 
-    public static void createAccount(String userName) {
-        if (Account.getAccounts().containsKey(userName)) {
-            System.out.println("The with this name exists!\n");
-            return;
-        }
-
+    public static void createAccount(String userName) throws DuplicateAccountException {
+        if (Account.getAccounts().containsKey(userName))
+            throw new DuplicateAccountException(userName);
         String password = Controller.getScanner().nextLine();
         Account.getAccounts().put(userName, new Account(userName, password));
-        System.out.println("The account with name " + userName + " created!\n");
+        View.successfulAccountCreationMessage(userName);
     }
 
-    public static void login(String userName) {
+    public static void login(String userName) throws InvalidPasswordException, InvalidUserNameException {
         try {
             if (!accounts.containsKey(userName))
                 throw new InvalidUserNameException();
-            System.out.println("Inter Password");
-            String password = Controller.getScanner().nextLine();
+            View.enterPasswordMessage();
+            String password = Controller.getNextLine();
             if (!accounts.get(userName).getPassword().equals(password))
                 throw new InvalidPasswordException();
-
-        } catch (InvalidUserNameException e){
-            e.getMessage();
-        } catch (InvalidPasswordException e){
-            e.getMessage();
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return;
         }
         setCurrentAccount(accounts.get(userName));
         Controller.setMenu(Enums.Menus.MAIN);
     }
 
-    public int getNumOfWins(){
+    public int getNumOfWins() {
         int numOfWin = 0;
         for (Match match : matchHistory)
             if (match.isWin())
-                numOfWin ++;
+                numOfWin++;
         return numOfWin;
     }
 
-    public int getNumOfLosses(){
+    public int getNumOfLosses() {
         int numOfWin = 0;
         for (Match match : matchHistory)
             if (!match.isWin())
-                numOfWin ++;
+                numOfWin++;
         return numOfWin;
     }
 
     public static void logOut() {
-        if (Controller.getMenu() == Enums.Menus.MAIN){
+        if (Controller.getMenu() == Enums.Menus.MAIN) {
             currentAccount = null;
             Controller.setMenu(Enums.Menus.ACCOUNT);
         }
     }
 
-    public static void showHelp() {
-
-    }
-
     public void changeMoney(int change) {
-        this.money += change;
+        this.Drack += change;
     }
 
     public void showMatchHistory() {
@@ -136,9 +114,9 @@ public class Account {
 }
 
 class AccountComparator implements Comparator<Account> {
-    public int compare (Account a1 , Account a2){
+    public int compare(Account a1, Account a2) {
         if (a1.getNumOfWins() != a2.getNumOfWins())
-            return Integer.compare(a1.getNumOfWins() , a1.getNumOfWins());
+            return Integer.compare(a1.getNumOfWins(), a1.getNumOfWins());
         return a1.getName().compareTo(a2.getName());
     }
 }

@@ -109,10 +109,14 @@ public class Controller {
         throw new InvalidCommandException();
     }
 
+    public static String getNextLine() {
+        return Controller.getScanner().nextLine();
+    }
+
     public static void doCommand() {
         try {
             int index = Controller.getIndexCommand();
-            switch (getMenu()){
+            switch (getMenu()) {
                 case MAIN:
                     doMainMenuCommand(index);
                     break;
@@ -130,7 +134,7 @@ public class Controller {
                     break;
             }
         } catch (InvalidCommandException e) {
-            System.out.println(e.getMessage());
+            e.showMessage();
         }
     }
 
@@ -145,25 +149,34 @@ public class Controller {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
-        switch (index){
-            case 0:
-                Account.createAccount(matcher.group(1));
-                break;
-            case 1:
-                Account.login(matcher.group(1));
-                break;
-            case 2:
-                Account.showLeaderBoard();
-                break;
-            case 3:
-                //toDo write save command
-                break;
-            case 4:
-                View.showHelp();
-                break;
-            case 5:
-                Controller.setEndGame();
-                break;
+        try {
+            switch (index) {
+                case 0:
+                    Account.createAccount(matcher.group(1));
+                    break;
+                case 1:
+                    Account.login(matcher.group(1));
+                    break;
+                case 2:
+                    Account.showLeaderBoard();
+                    break;
+                case 3:
+                    //toDo write save command
+                    break;
+                case 4:
+                    View.showHelp();
+                    break;
+                case 5:
+                    Controller.setEndGame();
+                    break;
+            }
+        } catch (DuplicateAccountException e) {
+            System.out.println(e.getMessage());
+        } catch (InvalidUserNameException e) {
+            e.getMessage();
+        } catch (InvalidPasswordException e) {
+            e.getMessage();
+
         }
     }
 
