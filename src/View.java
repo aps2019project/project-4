@@ -31,20 +31,78 @@ public class View {
     public static void showHelp() {
         switch (Controller.getMenu()) {
             case ACCOUNT:
-                System.out.println("create account [user name] : Create a new account with name user name");
-                System.out.println("login [user name] : Login in account with name user name after getting password if password is correct");
-                System.out.println("show leaderboard: Sort users by their wins and losses and show them");
-                System.out.println("save: Save changes");
-                System.out.println("help: Show Helps");
+                showAccountMenuHelp();
+                break;
             case MAIN:
-
+                showMainMenuHelp();
+                break;
             case COLLECTION:
-
+                showCollectionMenuHelp();
+                break;
             case SHOP:
-
+                showShopMenuHelp();
+                break;
             case BATTLE:
-
+                showBattleMenuHelp();
+                break;
         }
+    }
+
+    private static void showAccountMenuHelp() {
+        System.out.println("create account [user name] : Create a new account with name user name");
+        System.out.println("login [user name] : Login in account with name user name after getting password if password is correct");
+        System.out.println("show leaderboard: Sort users by their wins and losses and show them");
+        System.out.println("save: Save changes");
+        System.out.println("help: Show Helps");
+    }
+
+    private static void showMainMenuHelp(){
+
+    }
+
+    private static void showCollectionMenuHelp(){
+
+    }
+
+    private static void showShopMenuHelp(){
+
+    }
+
+    private static void showBattleMenuHelp(){
+
+    }
+
+    public static void showMenu(){
+        switch (Controller.getMenu()){
+            case BATTLE:
+                showBattleMenu();
+                break;
+            case SHOP:
+                showShopMenu();
+                break;
+            case COLLECTION:
+                showCollectionMenu();
+                break;
+            case MAIN:
+                showMainMenu();
+                break;
+        }
+    }
+
+    private static void showMainMenu() {
+        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Exit\n5.Help\n");
+    }
+
+    private static void showShopMenu() {
+
+    }
+
+    private static void showCollectionMenu() {
+
+    }
+
+    private static void showBattleMenu() {
+
     }
 
     public static void successfulAccountCreationMessage(String userName) {
@@ -53,6 +111,10 @@ public class View {
 
     public static void enterPasswordMessage() {
         System.out.println("Enter Password");
+    }
+
+    public static void showConfirmationLogoutMessage(){
+        System.out.println("Are you sure to logout?");
     }
 
 }

@@ -23,10 +23,9 @@ public class Controller {
         patternsOfAccountMenu.add(Pattern.compile("save"));
         patternsOfAccountMenu.add(Pattern.compile("help"));
         patternsOfAccountMenu.add(Pattern.compile("exit"));
-        patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle|Exit|Help)"));
+        patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle)"));
         patternsOfMainMenu.add(Pattern.compile("logout"));
         patternsOfMainMenu.add(Pattern.compile("exit"));
-        patternsOfMainMenu.add(Pattern.compile("battle"));
         patternsOfMainMenu.add(Pattern.compile("help"));
         patternsOfCollectionMenu.add(Pattern.compile("exit"));
         patternsOfCollectionMenu.add(Pattern.compile("show"));
@@ -142,8 +141,15 @@ public class Controller {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
-
+        switch (index) {
+            case 0:
+                Controller.setMenu(matcher.group(1));
+                break;
+            case 1:
+                Account.logOut();
+        }
     }
+
 
     public static void doAccountMenuCommand(int index) {
         Pattern pattern = getPatterns().get(index);
@@ -222,18 +228,6 @@ public class Controller {
 
     public static void setStartGame() {
         Controller.isEndedGame = false;
-    }
-
-    public static void showMainMenu() {
-
-    }
-
-    public static void showShopMenu() {
-
-    }
-
-    public static void showCollectionMenu() {
-
     }
 }
 

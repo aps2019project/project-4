@@ -80,6 +80,7 @@ public class Account {
         }
         setCurrentAccount(accounts.get(userName));
         Controller.setMenu(Enums.Menus.MAIN);
+        View.showMenu();
     }
 
     public int getNumOfWins() {
@@ -100,8 +101,10 @@ public class Account {
 
     public static void logOut() {
         if (Controller.getMenu() == Enums.Menus.MAIN) {
+            View.showConfirmationLogoutMessage();
             currentAccount = null;
             Controller.setMenu(Enums.Menus.ACCOUNT);
+
         }
     }
 
