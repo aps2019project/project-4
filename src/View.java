@@ -1,10 +1,13 @@
 class InvalidUserNameException extends Exception {
+
     public InvalidUserNameException() {
         super("User name is invalid");
     }
+
 }
 
 class InvalidPasswordException extends Exception {
+
     public InvalidPasswordException() {
         super("invalid Password");
     }
@@ -12,6 +15,7 @@ class InvalidPasswordException extends Exception {
 }
 
 class DuplicateAccountException extends Exception {
+
     public DuplicateAccountException(String userName) {
         super("The with name" + userName + "exists!");
     }
@@ -19,6 +23,7 @@ class DuplicateAccountException extends Exception {
 }
 
 class InvalidCommandException extends Exception {
+
     public InvalidCommandException() {
         super("invalid Command");
     }
