@@ -22,17 +22,26 @@ public class Controller {
         patternsOfAccountMenu.add(Pattern.compile("show leaderboard"));
         patternsOfAccountMenu.add(Pattern.compile("save"));
         patternsOfAccountMenu.add(Pattern.compile("help"));
-        patternsOfAccountMenu.add(Pattern.compile("exit"));
+        patternsOfAccountMenu.add(Pattern.compile("exit game"));
         patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle)"));
         patternsOfMainMenu.add(Pattern.compile("logout"));
-        patternsOfMainMenu.add(Pattern.compile("exit"));
+        patternsOfMainMenu.add(Pattern.compile("exit game"));
         patternsOfMainMenu.add(Pattern.compile("help"));
-        patternsOfCollectionMenu.add(Pattern.compile("exit"));
+        patternsOfCollectionMenu.add(Pattern.compile("back"));
         patternsOfCollectionMenu.add(Pattern.compile("show"));
         patternsOfCollectionMenu.add(Pattern.compile("search ([a-zA-Z0-9]+)"));
         patternsOfCollectionMenu.add(Pattern.compile("save"));
         patternsOfCollectionMenu.add(Pattern.compile("create deck ([a-zA-Z0-9]+)"));
         patternsOfCollectionMenu.add(Pattern.compile("delete deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("add ([a-zA-Z0-9]+) to deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("remove ([a-zA-Z0-9]+) from deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("validate deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("select deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("show all decks"));
+        patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("help"));
+        patternsOfCollectionMenu.add(Pattern.compile("logout"));
+        patternsOfCollectionMenu.add(Pattern.compile("exit game"));
         patternsOfShopMenu.add(Pattern.compile("xxx"));
         patternsOfBattleMenu.add(Pattern.compile("xxx"));
     }
@@ -175,7 +184,7 @@ public class Controller {
                     Account.showLeaderBoard();
                     break;
                 case 3:
-                    //toDo write save command
+                    Account.saveChanges();
                     break;
                 case 4:
                     View.showHelp();
@@ -222,7 +231,7 @@ public class Controller {
         return menu;
     }
 
-    public static Boolean getYesOrNo(){
+    public static Boolean getYesOrNo() {
         String yOrN = Controller.getNextLine();
         if (yOrN.equals("Y"))
             return true;
@@ -238,7 +247,10 @@ public class Controller {
     }
 
     public static void setEndGame() {
-        Controller.isEndedGame = true;
+        View.showConfirmationExitMessage();
+        if (Controller.getYesOrNo()) {
+            Controller.isEndedGame = true;
+        }
     }
 
     public static void setStartGame() {

@@ -1,3 +1,4 @@
+import java.awt.image.VolatileImage;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -55,7 +56,7 @@ public class Account {
     public static void showLeaderBoard() {
         ArrayList<Account> accounts = new ArrayList<>(getAccounts().values());
         accounts.sort(new AccountComparator());
-        accounts.forEach(account -> System.out.println(account.toString()));
+        View.showAccounts(accounts);
     }
 
     public static void createAccount(String userName) throws DuplicateAccountException {
@@ -110,6 +111,10 @@ public class Account {
         }
     }
 
+    public static void saveChanges(){
+        //Todo write save system
+    }
+
     public void changeMoney(int change) {
         this.Drack += change;
     }
@@ -120,7 +125,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "UserName: " + this.getName() + " - Wins : " + this.getNumOfWins() + "\n";
+        return "UserName: " + this.getName() + " - Wins : " + this.getNumOfWins();
     }
 }
 
