@@ -211,7 +211,51 @@ public class Controller {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
-
+        try {
+            switch (index){
+                case 0:
+                    Controller.setMenu(Enums.Menus.MAIN);
+                    break;
+                case 1:
+                    //ToDO show all things
+                    break;
+                case 2:
+                    //ToDo search card and items
+                    break;
+                case 3:
+                    Account.saveChanges();
+                    break;
+                case 4:
+                    //ToDO create deck
+                    break;
+                case 5:
+                    //ToDO delete deck
+                    break;
+                case 6:
+                    //ToDO add Card
+                    break;
+                case 7:
+                    //ToDO remove card or item from deck
+                    break;
+                case 8:
+                    //TODO validate deck
+                    break;
+                case 9:
+                    //TODO select deck
+                    break;
+                case 10:
+                    //TODO show all decks
+                    break;
+                case 11:
+                    //TODO show a deck
+                    break;
+                case 12:
+                    View.showHelp();
+                    break;
+            }
+        } catch (Exception e){
+            //ToDO write exceptions
+        }
     }
 
     public static void doShopMenuCommand(int index) {
