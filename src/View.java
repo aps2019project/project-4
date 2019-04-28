@@ -171,14 +171,45 @@ public class View {
         }
     }
 
-    public static void showDeck(Deck deck) {
-        //todo write showDeck
+    public static void showAllDecks() {
+        if (Account.getCurrentAccount().getSelectedDeck() != null)
+            System.out.println("1 : " + Account.getCurrentAccount().getSelectedDeck().getName() + " :");
+        View.showDeck(Account.getCurrentAccount().getSelectedDeck());
+        int index = 2;
+        for (Deck deck : Account.getCurrentAccount().getCollection().getDecks().values()) {
+            if (deck != Account.getCurrentAccount().getSelectedDeck()) {
+                System.out.println(index + " : " + deck.getName() + " :");
+                View.showDeck(deck);
+            }
+        }
     }
 
-    public static void showDeck(String deckName) throws DeckNotAvailabilityException{
+    public static void showDeck(Deck deck) {
+
+    }
+
+    public static void showDeck(String deckName) throws DeckNotAvailabilityException {
         if (!Account.getCurrentAccount().getCollection().getDecks().containsKey(deckName))
             throw new DeckNotAvailabilityException(deckName);
         showDeck(Account.getCurrentAccount().getCollection().getDecks().get(deckName));
+    }
+
+
+
+    public static void showItem(Item item) {
+
+    }
+
+    public static void showHero(Hero hero) {
+
+    }
+
+    public static void showMinion(Minion minion) {
+
+    }
+
+    public static void showSpell(Spell spell) {
+
     }
 
 }
