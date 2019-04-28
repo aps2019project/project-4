@@ -18,6 +18,12 @@ class DuplicateAccountException extends Exception {
     }
 }
 
+class DeckAvailabilityException extends Exception {
+    public DeckAvailabilityException(String deckName){
+        super("The Deck with name " + deckName + " is available");
+    }
+}
+
 class InvalidCommandException extends Exception {
     public InvalidCommandException() {
         super("Invalid Command");
@@ -59,14 +65,14 @@ public class View {
         System.out.println("exit game: Exit from game");
     }
 
-    private static void showMainMenuHelp(){
+    private static void showMainMenuHelp() {
         System.out.println("enter Collection|Shop|Battle : Enter in menus");
         System.out.println("logout: Log out from account");
         System.out.println("exit game: Exit from game");
         System.out.println("help: to show help");
     }
 
-    private static void showCollectionMenuHelp(){
+    private static void showCollectionMenuHelp() {
         System.out.println("back: Back to main menu");
         System.out.println("show: Show all cards and items in collection and their cost");
         System.out.println("search [card name|item name]: Show card or item with special name if exists");
@@ -82,16 +88,16 @@ public class View {
         System.out.println("help: Show help");
     }
 
-    private static void showShopMenuHelp(){
+    private static void showShopMenuHelp() {
 
     }
 
-    private static void showBattleMenuHelp(){
+    private static void showBattleMenuHelp() {
 
     }
 
-    public static void showMenu(){
-        switch (Controller.getMenu()){
+    public static void showMenu() {
+        switch (Controller.getMenu()) {
             case ACCOUNT:
                 showAccountMenu();
                 break;
@@ -107,11 +113,11 @@ public class View {
         }
     }
 
-    public static void showAccounts(ArrayList<Account> accounts){
+    public static void showAccounts(ArrayList<Account> accounts) {
         accounts.forEach(account -> System.out.println(account.toString()));
     }
 
-    private static void showAccountMenu(){
+    private static void showAccountMenu() {
         System.out.print("1.Create Account\n2.Login\n3.Show Leaderboard\n4.Save\n5.Help\n6.Exit game\n");
     }
 
@@ -135,16 +141,16 @@ public class View {
         System.out.println("Enter Password");
     }
 
-    public static void showConfirmationLogoutMessage(){
+    public static void showConfirmationLogoutMessage() {
         System.out.println("Are you sure to logout?[Y/N]");
     }
 
-    public static void showConfirmationExitMessage(){
+    public static void showConfirmationExitMessage() {
         System.out.println("Are you sure to exit?[Y/N]");
     }
 
-    public static void showValidateDeckMessage(Boolean isValid , String deckName){
-        if (isValid){
+    public static void showValidateDeckMessage(Boolean isValid, String deckName) {
+        if (isValid) {
             System.out.println("The " + deckName + " deck is valid!");
         } else {
             System.out.println("The " + deckName + " deck is not valid!!");

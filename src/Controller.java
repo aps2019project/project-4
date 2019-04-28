@@ -246,7 +246,7 @@ public class Controller {
                     Account.saveChanges();
                     break;
                 case 4:
-                    //ToDO create deck
+                    Account.getCurrentAccount().getCollection().addDeck(matcher.group(1));
                     break;
                 case 5:
                     //ToDO delete deck
@@ -273,8 +273,8 @@ public class Controller {
                     View.showHelp();
                     break;
             }
-        } catch (Exception e) {
-            //ToDO write exceptions
+        } catch (DeckAvailabilityException e) {
+            System.out.println(e.getMessage());
         }
     }
 
