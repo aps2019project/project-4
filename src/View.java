@@ -24,6 +24,12 @@ class DeckAvailabilityException extends Exception {
     }
 }
 
+class DeckNotAvailabilityException extends Exception {
+    public DeckNotAvailabilityException(String deckName){
+        super("The Deck with name " + deckName + " is not available");
+    }
+}
+
 class InvalidCommandException extends Exception {
     public InvalidCommandException() {
         super("Invalid Command");

@@ -27,6 +27,12 @@ public class Collection {
         this.getFreeCards().remove(cardID);
     }
 
+    public void removeDeck(String deckName) throws DeckNotAvailabilityException {
+        if (!(this.getDecks().containsKey(deckName)))
+            throw new DeckNotAvailabilityException(deckName);
+        //todo
+    }
+
     public void addDeck(String deckName) throws DeckAvailabilityException {
         if (this.getDecks().containsKey(deckName))
             throw new DeckAvailabilityException(deckName);

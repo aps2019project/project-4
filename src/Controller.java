@@ -211,11 +211,7 @@ public class Controller {
                     Controller.setEndGame();
                     break;
             }
-        } catch (InvalidUserNameException e) {
-            System.out.println(e.getMessage());
-        } catch (DuplicateAccountException e) {
-            System.out.println(e.getMessage());
-        } catch (InvalidPasswordException e) {
+        } catch (InvalidUserNameException | DuplicateAccountException | InvalidPasswordException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -258,7 +254,7 @@ public class Controller {
                     //ToDO remove card or item from deck
                     break;
                 case 8:
-                    View.showValidateDeckMessage(Account.getCurrentAccount().getCollection().getDecks().get(matcher.group(1)).validateDeck() , matcher.group(1));
+                    View.showValidateDeckMessage(Account.getCurrentAccount().getCollection().getDecks().get(matcher.group(1)).validateDeck(), matcher.group(1));
                     break;
                 case 9:
                     //TODO select deck
