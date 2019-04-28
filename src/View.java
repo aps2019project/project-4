@@ -185,7 +185,11 @@ public class View {
     }
 
     public static void showDeck(Deck deck) {
-
+        System.out.println("Hero:");
+        if (deck.isHaveHero())
+            System.out.println("1: " + deck.getHero().toString());
+        System.out.println("Item: ");
+        //todo write showDeck
     }
 
     public static void showDeck(String deckName) throws DeckNotAvailabilityException {
@@ -193,21 +197,4 @@ public class View {
             throw new DeckNotAvailabilityException(deckName);
         showDeck(Account.getCurrentAccount().getCollection().getDecks().get(deckName));
     }
-
-    public static void showItem(Item item) {
-
-    }
-
-    public static void showHero(Hero hero) {
-
-    }
-
-    public static void showMinion(Minion minion) {
-
-    }
-
-    public static void showSpell(Spell spell) {
-
-    }
-
 }

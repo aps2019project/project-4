@@ -8,7 +8,7 @@ public class Hero extends Minion {
 
     @Override
     public String toString (){
-
+        return "Name: " + this.getName() + " - AP : " + this.getAP() + " - HP : " + this.getHP() + " - Class : " + "??" ; //toDO complete
     }
 
 }

@@ -27,7 +27,7 @@ public class Deck {
         this.getCards().put(card.getName(), card);
     }
 
-    private int getNumOfOtherHeroCards() {
+    public int getNumOfOtherHeroCards() {
         int i = 0;
         for (Card card : this.getCards().values()) {
             if (!(card instanceof Hero)) {
@@ -37,13 +37,22 @@ public class Deck {
         return i;
     }
 
-    private boolean isHaveHero() {
+    public boolean isHaveHero() {
         for (Card card : this.getCards().values()) {
             if (card instanceof Hero) {
                 return true;
             }
         }
         return false;
+    }
+
+    public Hero getHero(){
+        for (Card card : this.getCards().values()) {
+            if (card instanceof Hero) {
+                return  (Hero) card;
+            }
+        }
+        return null;
     }
 
     public boolean validateDeck(){

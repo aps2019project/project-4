@@ -27,6 +27,14 @@ public class Minion extends Card {
         this.endRange = endRange;
     }
 
+    public int getHP() {
+        return healthPoint;
+    }
+
+    public int getAP() {
+        return attackPoint;
+    }
+
     public void lockMovement() {
         this.hasMovedThisTurn = true;
     }
@@ -119,4 +127,6 @@ public class Minion extends Card {
         }
         return false;
     }
+
+    //todo write toString
 }

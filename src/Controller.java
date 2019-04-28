@@ -1,4 +1,5 @@
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -23,10 +24,12 @@ public class Controller {
         patternsOfAccountMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
         patternsOfAccountMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
         patternsOfAccountMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
+
         patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle)", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("logout", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
+
         patternsOfCollectionMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("search ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
@@ -41,6 +44,9 @@ public class Controller {
         patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
+        patternsOfShopMenu.add(Pattern.compile("exit" , Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile(""));
+        //todo add shop menu
 
         patternsOfBattleMenu.add(Pattern.compile("Game info", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show my minions", Pattern.CASE_INSENSITIVE));
