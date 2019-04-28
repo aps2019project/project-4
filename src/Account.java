@@ -76,7 +76,7 @@ public class Account {
 
         String password = Controller.getScanner().nextLine();
         Account.getAccounts().put(userName, new Account(userName, password));
-        System.out.println("The account with name " + userName + " created!\n");
+        System.out.println("The account with name " + userName + " created!");
     }
 
     public static void login(String userName) {

@@ -17,25 +17,46 @@ public class Controller {
     private final static ArrayList<Pattern> patternsOfBattleMenu = new ArrayList<>();
 
     public static void setPatterns() {
-        patternsOfAccountMenu.add(Pattern.compile("create account ([a-zA-Z0-9]+)"));
-        patternsOfAccountMenu.add(Pattern.compile("login ([a-zA-Z0-9]+)"));
-        patternsOfAccountMenu.add(Pattern.compile("show leaderboard"));
-        patternsOfAccountMenu.add(Pattern.compile("save"));
-        patternsOfAccountMenu.add(Pattern.compile("help"));
-        patternsOfAccountMenu.add(Pattern.compile("exit"));
-        patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle|Exit|Help)"));
-        patternsOfMainMenu.add(Pattern.compile("logout"));
-        patternsOfMainMenu.add(Pattern.compile("exit"));
-        patternsOfMainMenu.add(Pattern.compile("battle"));
-        patternsOfMainMenu.add(Pattern.compile("help"));
-        patternsOfCollectionMenu.add(Pattern.compile("exit"));
-        patternsOfCollectionMenu.add(Pattern.compile("show"));
-        patternsOfCollectionMenu.add(Pattern.compile("search ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("save"));
-        patternsOfCollectionMenu.add(Pattern.compile("create deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("delete deck ([a-zA-Z0-9]+)"));
+        patternsOfAccountMenu.add(Pattern.compile("create account ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfAccountMenu.add(Pattern.compile("login ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfAccountMenu.add(Pattern.compile("show leaderboard", Pattern.CASE_INSENSITIVE));
+        patternsOfAccountMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
+        patternsOfAccountMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
+        patternsOfAccountMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
+        patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle|Exit|Help)", Pattern.CASE_INSENSITIVE));
+        patternsOfMainMenu.add(Pattern.compile("logout", Pattern.CASE_INSENSITIVE));
+        patternsOfMainMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
+        patternsOfMainMenu.add(Pattern.compile("battle", Pattern.CASE_INSENSITIVE));
+        patternsOfMainMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("search ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("create deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("delete deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("xxx"));
-        patternsOfBattleMenu.add(Pattern.compile("xxx"));
+
+
+        patternsOfBattleMenu.add(Pattern.compile("Game info", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Show my minions", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Show opponent minions", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Show card info (\\w+)", Pattern.CASE_INSENSITIVE));
+        //use select for both cards and collectable items
+        patternsOfBattleMenu.add(Pattern.compile("Select (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Move to \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Attack (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Attack combo (\\w+) ([\\w\\s]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Use special power \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Show hand", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Insert (\\w+) in \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("End turn", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Show collectables", Pattern.CASE_INSENSITIVE));
+        //use show info for both collectable items and grave yard menu
+        patternsOfBattleMenu.add(Pattern.compile("Show info", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Use location \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Show next card", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Enter graveyard", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
     }
 
     public static ArrayList<Pattern> getPatterns() {
@@ -59,12 +80,16 @@ public class Controller {
         switch (menuName.toLowerCase()) {
             case "main":
                 setMenu(Enums.Menus.MAIN);
+                break;
             case "battle":
                 setMenu(Enums.Menus.BATTLE);
+                break;
             case "shop":
                 setMenu(Enums.Menus.SHOP);
+                break;
             case "collection":
                 setMenu(Enums.Menus.COLLECTION);
+                break;
             case "account":
                 setMenu(Enums.Menus.ACCOUNT);
         }
@@ -107,7 +132,7 @@ public class Controller {
     public static void doCommand() {
         try {
             int index = Controller.getIndexCommand();
-            switch (getMenu()){
+            switch (getMenu()) {
                 case MAIN:
                     doMainMenuCommand(index);
                 case ACCOUNT:
@@ -135,19 +160,25 @@ public class Controller {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
-        switch (index){
+        switch (index) {
             case 0:
+                System.out.println("matched with createAccount");
                 Account.createAccount(matcher.group(1));
+                break;
             case 1:
                 Account.login(matcher.group(1));
+                break;
             case 2:
                 Account.showLeaderBoard();
+                break;
             case 3:
                 //toDo write save command
             case 4:
                 View.showHelp();
+                break;
             case 5:
                 Controller.setEndGame();
+                break;
         }
     }
 
