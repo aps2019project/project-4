@@ -143,4 +143,12 @@ public class View {
         System.out.println("Are you sure to exit?[Y/N]");
     }
 
+    public static void showValidateDeckMessage(Boolean isValid , String deckName){
+        if (isValid){
+            System.out.println("The " + deckName + " deck is valid!");
+        } else {
+            System.out.println("The " + deckName + " deck is not valid!!");
+        }
+    }
+
 }

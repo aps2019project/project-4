@@ -36,8 +36,8 @@ public class Controller {
         patternsOfCollectionMenu.add(Pattern.compile("add ([a-zA-Z0-9]+) to deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("remove ([a-zA-Z0-9]+) from deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("validate deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("select deck ([a-zA-Z0-9]+)" , Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("show all decks"  , Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("select deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("show all decks", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
@@ -258,7 +258,7 @@ public class Controller {
                     //ToDO remove card or item from deck
                     break;
                 case 8:
-                    //TODO validate deck
+                    View.showValidateDeckMessage(Account.getCurrentAccount().getCollection().getDecks().get(matcher.group(1)).validateDeck() , matcher.group(1));
                     break;
                 case 9:
                     //TODO select deck
