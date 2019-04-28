@@ -23,10 +23,9 @@ public class Controller {
         patternsOfAccountMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
         patternsOfAccountMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
         patternsOfAccountMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
-        patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle|Exit|Help)", Pattern.CASE_INSENSITIVE));
+        patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle)", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("logout", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
-        patternsOfMainMenu.add(Pattern.compile("battle", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
@@ -34,13 +33,13 @@ public class Controller {
         patternsOfCollectionMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("create deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("delete deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("add ([a-zA-Z0-9]+) to deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("remove ([a-zA-Z0-9]+) from deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("validate deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("select deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("show all decks"));
-        patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("help"));
+        patternsOfCollectionMenu.add(Pattern.compile("add ([a-zA-Z0-9]+) to deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("remove ([a-zA-Z0-9]+) from deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("validate deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("select deck ([a-zA-Z0-9]+)" , Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("show all decks"  , Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
 
         patternsOfBattleMenu.add(Pattern.compile("Game info", Pattern.CASE_INSENSITIVE));
@@ -320,16 +319,5 @@ public class Controller {
         Controller.isEndedGame = false;
     }
 
-    public static void showMainMenu() {
-
-    }
-
-    public static void showShopMenu() {
-
-    }
-
-    public static void showCollectionMenu() {
-
-    }
 }
 

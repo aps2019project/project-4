@@ -94,6 +94,7 @@ public class View {
         switch (Controller.getMenu()){
             case ACCOUNT:
                 showAccountMenu();
+                break;
             case BATTLE:
                 showBattleMenu();
                 break;
@@ -107,7 +108,7 @@ public class View {
     }
 
     public static void showAccounts(ArrayList<Account> accounts){
-
+        accounts.forEach(account -> System.out.println(account.toString()));
     }
 
     private static void showAccountMenu(){
