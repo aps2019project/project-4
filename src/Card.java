@@ -35,4 +35,5 @@ public abstract class Card {
     public void setPrice(int price) {
         this.price = price;
     }
+
 }

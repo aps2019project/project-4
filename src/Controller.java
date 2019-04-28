@@ -260,8 +260,13 @@ public class Controller {
                     Account.getCurrentAccount().selectDeck(matcher.group(1));
                     break;
                 case 10:
-                    Account.getCurrentAccount().getCollection().getDecks().values().forEach(deck -> View.showDeck(deck));
-                    break;
+                    if (Account.getCurrentAccount().getSelectedDeck() != null)
+                        View.showDeck(Account.getCurrentAccount().getSelectedDeck());
+                    for (Deck deck : Account.getCurrentAccount().getCollection().getDecks().values()){
+                        if (deck != Account.getCurrentAccount().getSelectedDeck())
+                            View.showDeck(deck);
+                    }
+                        break;
                 case 11:
                     View.showDeck(matcher.group(1));
                     break;

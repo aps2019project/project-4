@@ -30,7 +30,8 @@ public class Collection {
     public void removeDeck(String deckName) throws DeckNotAvailabilityException {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
-        //TODO remove deck
+        this.getDecks().get(deckName).getCards().values().forEach(card -> this.getFreeCards().put(card.getName(), card));
+        this.getDecks().get(deckName).getCards().values().forEach(card -> this.getDecks().get(deckName).getCards().remove(card.getName()));
     }
 
     public void addDeck(String deckName) throws DeckAvailabilityException {
