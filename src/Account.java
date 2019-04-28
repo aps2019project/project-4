@@ -1,4 +1,3 @@
-import java.awt.image.VolatileImage;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -12,6 +11,7 @@ public class Account {
     private int Drack;
     private ArrayList<Match> matchHistory;
     private Collection collection;
+    private Deck selectedDeck;
 
     public Account(String name, String password) {
         this.name = name;
@@ -19,6 +19,7 @@ public class Account {
         this.Drack = 0;
         this.matchHistory = new ArrayList<>();
         this.collection = new Collection();
+        this.selectedDeck = null;
     }
 
     public String getName() {
@@ -49,8 +50,16 @@ public class Account {
         return currentAccount;
     }
 
+    public Deck getSelectedDeck() {
+        return selectedDeck;
+    }
+
     public static void setCurrentAccount(Account currentAccount) {
         Account.currentAccount = currentAccount;
+    }
+
+    public void setSelectedDeck(Deck deck){
+        this.selectedDeck = deck;
     }
 
     public static void showLeaderBoard() {

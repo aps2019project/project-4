@@ -40,8 +40,6 @@ public class Controller {
         patternsOfCollectionMenu.add(Pattern.compile("show all decks"));
         patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)"));
         patternsOfCollectionMenu.add(Pattern.compile("help"));
-        patternsOfCollectionMenu.add(Pattern.compile("logout"));
-        patternsOfCollectionMenu.add(Pattern.compile("exit game"));
         patternsOfShopMenu.add(Pattern.compile("xxx"));
         patternsOfBattleMenu.add(Pattern.compile("xxx"));
     }
