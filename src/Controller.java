@@ -245,7 +245,7 @@ public class Controller {
                     Account.getCurrentAccount().getCollection().addDeck(matcher.group(1));
                     break;
                 case 5:
-                    //ToDO delete deck
+                    Account.getCurrentAccount().getCollection().removeDeck(matcher.group(1));
                     break;
                 case 6:
                     //ToDO add Card
@@ -254,16 +254,16 @@ public class Controller {
                     //ToDO remove card or item from deck
                     break;
                 case 8:
-                    View.showValidateDeckMessage(Account.getCurrentAccount().getCollection().getDecks().get(matcher.group(1)).validateDeck(), matcher.group(1));
+                    View.showValidateDeckMessage(matcher.group(1));
                     break;
                 case 9:
                     Account.getCurrentAccount().selectDeck(matcher.group(1));
                     break;
                 case 10:
-                    //TODO show all decks
+                    Account.getCurrentAccount().getCollection().getDecks().values().forEach(deck -> View.showDeck(deck));
                     break;
                 case 11:
-                    //TODO show a deck
+                    View.showDeck(matcher.group(1));
                     break;
                 case 12:
                     View.showHelp();

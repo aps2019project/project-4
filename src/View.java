@@ -161,16 +161,24 @@ public class View {
         System.out.println("Are you sure to exit?[Y/N]");
     }
 
-    public static void showValidateDeckMessage(Boolean isValid, String deckName) {
-        if (isValid) {
+    public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {
+        if (!Account.getCurrentAccount().getCollection().getDecks().containsKey(deckName))
+            throw new DeckNotAvailabilityException(deckName);
+        if (Account.getCurrentAccount().getCollection().getDecks().get(deckName).validateDeck()) {
             System.out.println("The " + deckName + " deck is valid!");
         } else {
             System.out.println("The " + deckName + " deck is not valid!!");
         }
     }
 
-    public static void showDeck (Deck deck){
+    public static void showDeck(Deck deck) {
         //todo write showDeck
+    }
+
+    public static void showDeck(String deckName) throws DeckNotAvailabilityException{
+        if (!Account.getCurrentAccount().getCollection().getDecks().containsKey(deckName))
+            throw new DeckNotAvailabilityException(deckName);
+        showDeck(Account.getCurrentAccount().getCollection().getDecks().get(deckName));
     }
 
 }
