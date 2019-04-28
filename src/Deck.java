@@ -3,7 +3,7 @@ import java.util.HashMap;
 public class Deck {
     private String name;
     private HashMap<String, Card> cards;
-    private UsabelItem item;
+    private UsableItem item;
 
     public Deck(String name) {
         this.name = name;
@@ -19,7 +19,7 @@ public class Deck {
         return cards;
     }
 
-    public void setItem(UsabelItem item) {
+    public void setItem(UsableItem item) {
         this.item = item;
     }
 

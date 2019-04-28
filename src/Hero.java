@@ -6,4 +6,9 @@ public class Hero extends Minion {
         this.coolDown = coolDown;
     }
 
+    @Override
+    public String toString (){
+
+    }
+
 }

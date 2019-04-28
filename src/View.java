@@ -194,8 +194,6 @@ public class View {
         showDeck(Account.getCurrentAccount().getCollection().getDecks().get(deckName));
     }
 
-
-
     public static void showItem(Item item) {
 
     }
