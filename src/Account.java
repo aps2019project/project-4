@@ -58,7 +58,7 @@ public class Account {
         Account.currentAccount = currentAccount;
     }
 
-    public void setSelectedDeck(Deck deck){
+    public void setSelectedDeck(Deck deck) {
         this.selectedDeck = deck;
     }
 
@@ -120,7 +120,7 @@ public class Account {
         }
     }
 
-    public static void saveChanges(){
+    public static void saveChanges() {
         //Todo write save system
     }
 

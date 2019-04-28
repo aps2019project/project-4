@@ -212,7 +212,7 @@ public class Controller {
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
         try {
-            switch (index){
+            switch (index) {
                 case 0:
                     Controller.setMenu(Enums.Menus.MAIN);
                     break;
@@ -253,7 +253,7 @@ public class Controller {
                     View.showHelp();
                     break;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             //ToDO write exceptions
         }
     }
