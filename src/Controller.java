@@ -257,7 +257,7 @@ public class Controller {
                     View.showValidateDeckMessage(Account.getCurrentAccount().getCollection().getDecks().get(matcher.group(1)).validateDeck(), matcher.group(1));
                     break;
                 case 9:
-                    //TODO select deck
+                    Account.getCurrentAccount().selectDeck(matcher.group(1));
                     break;
                 case 10:
                     //TODO show all decks
@@ -269,7 +269,7 @@ public class Controller {
                     View.showHelp();
                     break;
             }
-        } catch (DeckAvailabilityException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

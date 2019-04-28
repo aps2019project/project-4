@@ -37,8 +37,6 @@ public class Deck {
         return i;
     }
 
-
-
     private boolean isHaveHero() {
         for (Card card : this.getCards().values()) {
             if (card instanceof Hero) {

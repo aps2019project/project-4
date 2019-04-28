@@ -19,14 +19,20 @@ class DuplicateAccountException extends Exception {
 }
 
 class DeckAvailabilityException extends Exception {
-    public DeckAvailabilityException(String deckName){
-        super("The Deck with name " + deckName + " is available");
+    public DeckAvailabilityException(String deckName) {
+        super("The deck with name " + deckName + " is available");
     }
 }
 
 class DeckNotAvailabilityException extends Exception {
-    public DeckNotAvailabilityException(String deckName){
-        super("The Deck with name " + deckName + " is not available");
+    public DeckNotAvailabilityException(String deckName) {
+        super("The deck with name " + deckName + " is not available");
+    }
+}
+
+class NotValidDeckException extends Exception {
+    public NotValidDeckException(String deckName) {
+        super("The deck with name " + deckName + " is not valid!");
     }
 }
 
@@ -161,6 +167,10 @@ public class View {
         } else {
             System.out.println("The " + deckName + " deck is not valid!!");
         }
+    }
+
+    public static void showDeck (Deck deck){
+        //todo write showDeck
     }
 
 }
