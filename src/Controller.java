@@ -28,13 +28,19 @@ public class Controller {
         patternsOfMainMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("battle", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("search ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("create deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("delete deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfShopMenu.add(Pattern.compile("xxx"));
+        patternsOfCollectionMenu.add(Pattern.compile("add ([a-zA-Z0-9]+) to deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("remove ([a-zA-Z0-9]+) from deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("validate deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("select deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("show all decks"));
+        patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)"));
+        patternsOfCollectionMenu.add(Pattern.compile("help"));
 
 
         patternsOfBattleMenu.add(Pattern.compile("Game info", Pattern.CASE_INSENSITIVE));
@@ -92,6 +98,7 @@ public class Controller {
                 break;
             case "account":
                 setMenu(Enums.Menus.ACCOUNT);
+                break;
         }
     }
 
@@ -100,6 +107,7 @@ public class Controller {
         setMenu(Enums.Menus.ACCOUNT);
         setPatterns();
         setScanner();
+        View.showMenu();
         while (!isEndedGame()) {
             setCommand();
             doCommand();
@@ -129,23 +137,32 @@ public class Controller {
         throw new InvalidCommandException();
     }
 
+    public static String getNextLine() {
+        return Controller.getScanner().nextLine();
+    }
+
     public static void doCommand() {
         try {
             int index = Controller.getIndexCommand();
             switch (getMenu()) {
                 case MAIN:
                     doMainMenuCommand(index);
+                    break;
                 case ACCOUNT:
                     doAccountMenuCommand(index);
+                    break;
                 case BATTLE:
                     doBattleMenuCommand(index);
+                    break;
                 case SHOP:
                     doShopMenuCommand(index);
+                    break;
                 case COLLECTION:
                     doCollectionMenuCommand(index);
+                    break;
             }
         } catch (InvalidCommandException e) {
-            System.out.println(e.getMessage());
+            e.showMessage();
         }
     }
 
@@ -153,32 +170,54 @@ public class Controller {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
-
+        switch (index) {
+            case 0:
+                Controller.setMenu(matcher.group(1));
+                break;
+            case 1:
+                Account.logOut();
+                break;
+            case 2:
+                Controller.setEndGame();
+                break;
+            case 3:
+                View.showHelp();
+                break;
+        }
     }
+
 
     public static void doAccountMenuCommand(int index) {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
-        switch (index) {
-            case 0:
-                System.out.println("matched with createAccount");
-                Account.createAccount(matcher.group(1));
-                break;
-            case 1:
-                Account.login(matcher.group(1));
-                break;
-            case 2:
-                Account.showLeaderBoard();
-                break;
-            case 3:
-                //toDo write save command
-            case 4:
-                View.showHelp();
-                break;
-            case 5:
-                Controller.setEndGame();
-                break;
+        try {
+            switch (index) {
+                case 0:
+                    Account.createAccount(matcher.group(1));
+                    break;
+                case 1:
+                    Account.login(matcher.group(1));
+                    break;
+                case 2:
+                    Account.showLeaderBoard();
+                    break;
+                case 3:
+                    Account.saveChanges();
+                    break;
+                case 4:
+                    View.showHelp();
+                    break;
+                case 5:
+                    Controller.setEndGame();
+                    break;
+            }
+        } catch (InvalidUserNameException e) {
+            System.out.println(e.getMessage());
+        } catch (DuplicateAccountException e) {
+            System.out.println(e.getMessage());
+        } catch (InvalidPasswordException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -193,7 +232,51 @@ public class Controller {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
-
+        try {
+            switch (index) {
+                case 0:
+                    Controller.setMenu(Enums.Menus.MAIN);
+                    break;
+                case 1:
+                    //ToDO show all things
+                    break;
+                case 2:
+                    //ToDo search card and items
+                    break;
+                case 3:
+                    Account.saveChanges();
+                    break;
+                case 4:
+                    //ToDO create deck
+                    break;
+                case 5:
+                    //ToDO delete deck
+                    break;
+                case 6:
+                    //ToDO add Card
+                    break;
+                case 7:
+                    //ToDO remove card or item from deck
+                    break;
+                case 8:
+                    //TODO validate deck
+                    break;
+                case 9:
+                    //TODO select deck
+                    break;
+                case 10:
+                    //TODO show all decks
+                    break;
+                case 11:
+                    //TODO show a deck
+                    break;
+                case 12:
+                    View.showHelp();
+                    break;
+            }
+        } catch (Exception e) {
+            //ToDO write exceptions
+        }
     }
 
     public static void doShopMenuCommand(int index) {
@@ -211,6 +294,13 @@ public class Controller {
         return menu;
     }
 
+    public static Boolean getYesOrNo() {
+        String yOrN = Controller.getNextLine();
+        if (yOrN.equals("Y"))
+            return true;
+        return false;
+    }
+
     public static void setMenu(Enums.Menus menu) {
         Controller.menu = menu;
     }
@@ -220,7 +310,10 @@ public class Controller {
     }
 
     public static void setEndGame() {
-        Controller.isEndedGame = true;
+        View.showConfirmationExitMessage();
+        if (Controller.getYesOrNo()) {
+            Controller.isEndedGame = true;
+        }
     }
 
     public static void setStartGame() {

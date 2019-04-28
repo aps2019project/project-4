@@ -51,11 +51,11 @@ public class Minion extends Card {
 
     public void moveTo(int x, int y) {
         Cell cell = gameBoard.getCell(x, y);
-        if (this.hasMovedThisTurn){
+        if (this.hasMovedThisTurn) {
             System.out.printf("This card with id: %s has moved this turn\n", this.id);
             return;
         }
-        if (this.isStuned){
+        if (this.isStuned) {
             System.out.printf("This card with id: %s is stuned\n", this.id);
             return;
         }
