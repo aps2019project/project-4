@@ -18,7 +18,7 @@ public class Minion extends Card {
     private ArrayList<Buff> negativeBuffs;
     private String classOfMinion;
 
-    public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange , String classOfMinion) {
+    public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange, String classOfMinion) {
         this.name = name;
         this.price = price;
         this.healthPoint = hp;
@@ -138,5 +138,18 @@ public class Minion extends Card {
         return false;
     }
 
-    //todo write toString
+    @Override
+    public String toString() {
+        return "Type : Minion - Name : " + this.getName() + " - " +
+                "Class : " + this.getSpecialPower().getName() + " - " +
+                "AP : " + this.getAP() + " - " +
+                "HP : " + this.getHP() + " - " +
+                "MP : " + this.getRequiredManas() + " - " +
+                "Special power: " + this.getSpecialPower().getDesc();
+    }
+
+    public String toStringWithPrice(){
+        return this.toString() + " - " +
+                "Sell Cost : " + this.getPrice();
+    }
 }

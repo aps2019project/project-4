@@ -11,6 +11,10 @@ public class Deck {
         this.item = null;
     }
 
+    public UsableItem getItem() {
+        return item;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,16 +50,16 @@ public class Deck {
         return false;
     }
 
-    public Hero getHero(){
+    public Hero getHero() {
         for (Card card : this.getCards().values()) {
             if (card instanceof Hero) {
-                return  (Hero) card;
+                return (Hero) card;
             }
         }
         return null;
     }
 
-    public boolean validateDeck(){
+    public boolean validateDeck() {
         if (this.isHaveHero() & this.getNumOfOtherHeroCards() == 20)
             return true;
         return false;

@@ -187,9 +187,20 @@ public class View {
     public static void showDeck(Deck deck) {
         System.out.println("Hero:");
         if (deck.isHaveHero())
-            System.out.println("1: " + deck.getHero().toString());
+            System.out.println("1: " + deck.getHero());
         System.out.println("Item: ");
-        //todo write showDeck
+        if (deck.getItem() != null){
+            System.out.println("1: " + deck.getItem());
+        }
+        System.out.println("Cards: ");
+        if (deck.getCards() != null){
+            int index = 1;
+            for (Card card : deck.getCards().values()){
+                if (!(card instanceof Hero))
+                System.out.println(index + " : " + card);
+                index++;
+            }
+        }
     }
 
     public static void showDeck(String deckName) throws DeckNotAvailabilityException {

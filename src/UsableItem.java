@@ -21,7 +21,10 @@ public class UsableItem {
     @Override
     public String toString() {
         return "Name : " + this.getName() + " - " +
-                "Desc: " + this.getDescription() + " - " +
-                "Sell Cost : " + this.getPrice();
+                "Desc: " + this.getDescription();
+    }
+
+    public String toStringWithPrice(){
+        return this.toString() + " - " + "Sell Cost : " + this.getPrice();
     }
 }

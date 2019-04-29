@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class Hero extends Minion {
     private int coolDown;
 
@@ -8,13 +6,22 @@ public class Hero extends Minion {
         this.coolDown = coolDown;
     }
 
+    public int getCoolDown() {
+        return coolDown;
+    }
+
     @Override
     public String toString() {
         return "Name: " + this.getName() + " - " +
                 "AP : " + this.getAP() + " - " + "HP : " + this.getHP() + " - " +
                 "Class : " + this.getClassOfMinion() + " - " +
-                "Special power: " + this.getSpecialPower().getDesc() + " - " +
+                "Special power: " + this.getSpecialPower().getDesc();
+    }
+
+    public String toStringWithPrice(){
+        return this.toString() + " - " +
                 "Sell Cost : " + this.getPrice();
     }
+
 
 }
