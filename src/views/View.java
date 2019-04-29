@@ -4,7 +4,10 @@ import controller.Controller;
 import model.*;
 import views.Exceptions.*;
 
+import java.io.CharArrayReader;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class View {
     public static void showHelp() {
@@ -128,6 +131,16 @@ public class View {
         } else {
             System.out.println("The " + deckName + " deck is not valid!!");
         }
+    }
+
+    public static void showAllCards(){
+        System.out.println("Heros:");
+        Account.getCurrentAccount().getCollection().getHeros().forEach((s, hero) -> System.out.println(hero.infoForDeckWithPrice()));
+        System.out.println("Items:");
+        Account.getCurrentAccount().getCollection().getUsableItems().forEach((s, item) -> System.out.println((item.infoWithPrice())));
+        System.out.println("Cards:");
+        Account.getCurrentAccount().getCollection().getNonHeroCards().forEach((s, card) -> System.out.println(card.infoForDeckWithPrice()));
+
     }
 
     public static void showAllDecks() {

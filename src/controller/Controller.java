@@ -243,7 +243,8 @@ public class Controller {
                     Controller.setMenu(Enums.Menus.MAIN);
                     break;
                 case 1:
-
+                    View.showAllCards();
+                    //Account.getCurrentAccount().getCollection().getAllCards()
                     break;
                 case 2:
                     //ToDo search card and items
