@@ -4,10 +4,7 @@ import controller.Controller;
 import model.*;
 import views.Exceptions.*;
 
-import java.io.CharArrayReader;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class View {
     public static void showHelp() {
@@ -40,7 +37,7 @@ public class View {
     }
 
     private static void showMainMenuHelp() {
-        System.out.println("enter model.Collection|model.Shop|model.Battle : Enter in menus");
+        System.out.println("enter Collection|Shop|Battle : Enter in menus");
         System.out.println("logout: Log out from account");
         System.out.println("exit game: Exit from game");
         System.out.println("help: to show help");
@@ -92,11 +89,11 @@ public class View {
     }
 
     private static void showAccountMenu() {
-        System.out.print("1.Create model.Account\n2.Login\n3.Show Leaderboard\n4.Save\n5.Help\n6.Exit game\n");
+        System.out.print("1.Create Account\n2.Login\n3.Show Leaderboard\n4.Save\n5.Help\n6.Exit game\n");
     }
 
     private static void showMainMenu() {
-        System.out.print("1.model.Collection\n2.model.Shop\n3.model.Battle\n4.Logout\n5.Exit game\n6.Help\n");
+        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n");
     }
 
     private static void showShopMenu() {
@@ -133,7 +130,27 @@ public class View {
         }
     }
 
-    public static void showAllCards(){
+    public static void showNameOfMenu() {
+        switch (Controller.getMenu()) {
+            case ACCOUNT:
+                System.out.print("AccountMenu>>");
+                break;
+            case MAIN:
+                System.out.print("MainMenu>>");
+                break;
+            case COLLECTION:
+                System.out.print("CollectionMenu");
+                break;
+            case SHOP:
+                System.out.print("ShopMenu");
+                break;
+            case BATTLE:
+                System.out.println("BattleMenu");
+                break;
+        }
+    }
+
+    public static void showAllCards() {
         System.out.println("Heros:");
         Account.getCurrentAccount().getCollection().getHeros().forEach((s, hero) -> System.out.println(hero.infoForDeckWithPrice()));
         System.out.println("Items:");

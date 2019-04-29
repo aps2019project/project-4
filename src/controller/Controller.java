@@ -50,7 +50,7 @@ public class Controller {
 
         patternsOfShopMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile(""));
-        //todo add shop menu
+        //TODO add shop menu
 
         patternsOfBattleMenu.add(Pattern.compile("Game info", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show my minions", Pattern.CASE_INSENSITIVE));
@@ -118,6 +118,7 @@ public class Controller {
         setScanner();
         View.showMenu();
         while (!isEndedGame()) {
+            View.showNameOfMenu();
             setCommand();
             doCommand();
         }
@@ -244,7 +245,6 @@ public class Controller {
                     break;
                 case 1:
                     View.showAllCards();
-                    //Account.getCurrentAccount().getCollection().getAllCards()
                     break;
                 case 2:
                     //ToDo search card and items
@@ -259,10 +259,10 @@ public class Controller {
                     Account.getCurrentAccount().getCollection().removeDeck(matcher.group(1));
                     break;
                 case 6:
-                    //ToDO add model.Card
+                    //TODO add Card
                     break;
                 case 7:
-                    //ToDO remove card or item from deck
+                    //TODO remove card or item from deck
                     break;
                 case 8:
                     View.showValidateDeckMessage(matcher.group(1));
