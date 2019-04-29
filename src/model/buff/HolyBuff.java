@@ -1,4 +1,4 @@
 package model.buff;
 
-public class HolyBuff extends PositiveBuff {
+public class HolyBuff extends Buff {
 }

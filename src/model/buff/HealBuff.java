@@ -1,4 +1,4 @@
 package model.buff;
 
-public class HealBuff extends PositiveBuff {
+public class HealBuff extends Buff {
 }

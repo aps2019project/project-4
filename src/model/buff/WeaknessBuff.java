@@ -1,6 +1,6 @@
 package model.buff;
 
-public class WeaknessBuff extends NegativeBuff {
+public class WeaknessBuff extends Buff {
     private int healthReduction;
     private int attackPointReduction;
 

@@ -76,8 +76,7 @@ public class Minion extends Card {
         this.lockAttack();
     }
 
-    public void moveTo(int x, int y) {
-        Cell cell = gameBoard.getCell(x, y);
+    public void moveTo(Cell cell) {
         if (this.hasMovedThisTurn) {
             System.out.printf("This card with id: %s has moved this turn\n", this.id);
             return;
@@ -87,15 +86,10 @@ public class Minion extends Card {
             return;
         }
         if (cell.getMinion() != null ||
-                cellPlace.getDistance(this.cellPlace.getX(), this.cellPlace.getY()) > endRange ||
-                cellPlace.getDistance(this.cellPlace.getX(), this.cellPlace.getY()) < startRange) {
+                cellPlace.getDistance(cell.getX(), cell.getY()) > endRange ||
+                cellPlace.getDistance(cell.getX(), cell.getY()) < startRange) {
             System.out.println("Invalid target");
             return;
-        }
-        if (!this.isMinionsBetween(x, y)) {
-            this.cellPlace.setMinion(null);
-            this.cellPlace = cell;
-            this.lockMovement();
         }
     }
 
@@ -152,9 +146,9 @@ public class Minion extends Card {
         StringBuilder result = new StringBuilder()
                 .append("model.Minion:\n")
                 .append("Name: ").append(name).append("\n")
-                .append("HP: ").append(healthPoint).append("AP: ").append(attackPoint)
+                .append("HP: ").append(healthPoint + " ").append("AP: ").append(attackPoint + " ")
                 .append("MP: ").append(requiredManas).append("\n")
-                .append("Range: ").append(type);
+                .append("Range: ").append(type).append(" ");
         if (type != Enums.SoldierType.MELEE) {
             result.append(endRange - startRange)
                     .append("\n");

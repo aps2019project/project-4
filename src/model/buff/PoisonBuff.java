@@ -1,6 +1,6 @@
 package model.buff;
 
-public class PoisonBuff extends NegativeBuff {
+public class PoisonBuff extends Buff {
     private int healthReduction;
 
     public PoisonBuff(int healthReduction){}

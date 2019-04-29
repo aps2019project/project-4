@@ -1,14 +1,16 @@
 package model.buff;
 
+import model.Cell;
+import model.Enums;
+
 public class Buff {
     private int changeHp;
     private int changeAp;
     private int numberOfTurns;
     private int delay;
     private boolean isDisarmer;
-    private String targetType;
-    private int[] x;
-    private int[] y;
+    private boolean isPositive;
+    private Cell cell;
 
     public int getChangeAp() {
         return changeAp;
@@ -26,12 +28,8 @@ public class Buff {
         return numberOfTurns;
     }
 
-    public int[] getX() {
-        return x;
-    }
-
-    public int[] getY() {
-        return y;
+    public Cell getCell() {
+        return cell;
     }
 
     public void nutralize(){

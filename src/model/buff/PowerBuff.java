@@ -1,6 +1,6 @@
 package model.buff;
 
-public class PowerBuff extends PositiveBuff {
+public class PowerBuff extends Buff {
     private int extraHealth;
     private int extraAttackPoint;
 

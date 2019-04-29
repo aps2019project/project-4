@@ -17,4 +17,12 @@ public class Enums {
         MELEE, RANGED, HYBRID
     }
 
+    public enum FriendEnemy{
+        Friend, ENEMY, BOTH
+    }
+
+    public enum WhichCellsType{
+        MONO_CELL, SQUARE, COLUMN, ROW, ALL
+    }
+
 }

@@ -1,4 +1,4 @@
 package model.buff;
 
-public class DisarmBuff extends NegativeBuff {
+public class DisarmBuff extends Buff {
 }

@@ -1,6 +1,15 @@
 package model;
 
+import javafx.scene.control.Cell;
+
+import java.util.ArrayList;
+
 public class Spell extends Card {
+
+
+    private Enums.FriendEnemy target;
+    private Enums.WhichCellsType cellsType;
+    private ArrayList<Cell> cells = new ArrayList<>();
 
     @Override
     public StringBuilder info() {
