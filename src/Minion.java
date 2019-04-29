@@ -5,6 +5,7 @@ public class Minion extends Card {
     private int attackPoint;
     private int startRange;
     private int endRange;
+    private Enums.SoldierType type;
     private String description;
     private boolean hasAttackedThisTurn;
     private boolean hasMovedThisTurn;
@@ -19,15 +20,21 @@ public class Minion extends Card {
     private ArrayList<Buff> negativeBuffs;
     private String classOfMinion;
 
-    public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange , String classOfMinion) {
+    public Minion(String name, int price, int mp, int hp, int ap, int startRange, int endRange , String classOfMinion) {
         this.name = name;
         this.price = price;
+        this.requiredManas = mp;
         this.healthPoint = hp;
         this.attackPoint = ap;
-        this.requiredManas = mp;
         this.startRange = startRange;
         this.endRange = endRange;
         this.classOfMinion = classOfMinion;
+        if (startRange == 1 && endRange == 1)
+            type = Enums.SoldierType.MELEE;
+        if (startRange > 1)
+            type = Enums.SoldierType.RANGED;
+        if (startRange == 1 && endRange > 1)
+            type = Enums.SoldierType.HYBRID;
     }
 
     public int getHP() {
