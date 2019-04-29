@@ -243,7 +243,7 @@ public class Controller {
                     Controller.setMenu(Enums.Menus.MAIN);
                     break;
                 case 1:
-                    //ToDO show all things
+
                     break;
                 case 2:
                     //ToDo search card and items
