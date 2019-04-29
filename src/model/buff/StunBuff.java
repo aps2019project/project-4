@@ -1,4 +1,4 @@
-package model;
+package model.buff;
 
 public class StunBuff extends NegativeBuff {
     public StunBuff(){}

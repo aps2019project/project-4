@@ -1,5 +1,7 @@
 package model;
 
+import model.buff.Buff;
+
 import java.util.ArrayList;
 
 public class Cell {

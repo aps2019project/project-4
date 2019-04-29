@@ -145,10 +145,10 @@ public class View {
     }
 
     public static void showDeck(Deck deck) {
-        System.out.println("modelHero:");
+        System.out.println("Hero:");
         if (deck.isHaveHero())
             System.out.println("1: " + deck.getHero().infoForDeck());
-        System.out.println("modelItem: ");
+        System.out.println("Item: ");
         if (deck.getItem() != null) {
             System.out.println("1: " + deck.getItem().info());
         }

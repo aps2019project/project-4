@@ -1,4 +1,4 @@
-package model;
+package model.buff;
 
 public class PowerBuff extends PositiveBuff {
     private int extraHealth;

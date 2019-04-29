@@ -1,4 +1,4 @@
-package model;
+package model.buff;
 
 public class WeaknessBuff extends NegativeBuff {
     private int healthReduction;
