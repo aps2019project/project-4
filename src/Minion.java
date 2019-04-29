@@ -18,7 +18,7 @@ public class Minion extends Card {
     private ArrayList<Buff> positiveBuffs;
     private ArrayList<Buff> negativeBuffs;
 
-    public Minion(String name, int price, int mp, int hp, int ap, int startRange, int endRange , String classOfMinion) {
+    public Minion(String name, int price, int mp, int hp, int ap, int startRange, int endRange) {
         this.name = name;
         this.price = price;
         this.requiredManas = mp;
