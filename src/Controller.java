@@ -1,6 +1,7 @@
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,7 +45,7 @@ public class Controller {
         patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
-        patternsOfShopMenu.add(Pattern.compile("exit" , Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile(""));
         //todo add shop menu
 

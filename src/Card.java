@@ -3,6 +3,7 @@ public abstract class Card {
     protected String name;
     protected int requiredManas;
     protected int price;
+    protected String desc;
 
     public String getId() {
         return id;
@@ -18,6 +19,10 @@ public abstract class Card {
 
     public int getPrice() {
         return price;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 
     public void setId(String id) {
@@ -36,4 +41,7 @@ public abstract class Card {
         this.price = price;
     }
 
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 }
