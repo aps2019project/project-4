@@ -145,33 +145,36 @@ public class Minion extends Card {
 
     @Override
     public StringBuilder info() {
-        StringBuilder result = new StringBuilder();
-        result.append("Minion:\n");
-        result.append("Name: ").append(name).append("\n");
-        result.append("HP: ").append(healthPoint).append("AP: ").append(attackPoint).append("MP: ").append(requiredManas).append("\n");
-        result.append("Range: ").append(type);
+        StringBuilder result = new StringBuilder()
+                .append("Minion:\n")
+                .append("Name: ").append(name).append("\n")
+                .append("HP: ").append(healthPoint).append("AP: ").append(attackPoint)
+                .append("MP: ").append(requiredManas).append("\n")
+                .append("Range: ").append(type);
         if (type != Enums.SoldierType.MELEE) {
-            result.append(endRange - startRange);
-            result.append("\n");
+            result.append(endRange - startRange)
+                    .append("\n");
         }
-        result.append("Combo Ability: ").append(specialPowerActivationType).append("\n");
-        result.append("Cost: ").append(price).append("\n");
-        result.append("Description: ").append(desc).append("\n");
+        result.append("Combo Ability: ").append(specialPowerActivationType).append("\n")
+                .append("Cost: ").append(price).append("\n")
+                .append("Description: ").append(desc).append("\n");
         return result;
     }
 
     @Override
-    public StringBuilder infoForDeck(){
-        StringBuilder result = new StringBuilder();
-
+    public StringBuilder infoForDeck() {
+        StringBuilder result = new StringBuilder()
+                .append("Type : Minion - Name : ").append(this.getName()).append(" - Class : ")
+                .append(this.getSpecialPower().getName()).append(" - AP : ").append(this.getAP())
+                .append(" - HP : ").append(this.getHP())
+                .append(" - MP : ").append(this.getRequiredManas())
+                .append(" -Special power: ").append(this.getSpecialPower().getDesc());
         return result;
     }
 
     @Override
-    public StringBuilder infoForDeckWithPrice(){
-        StringBuilder result = new StringBuilder();
-
-        return result;
+    public StringBuilder infoForDeckWithPrice() {
+        return this.infoForDeck().append(" - Sell Cost : ").append(this.getPrice());
     }
 
 }

@@ -13,11 +13,11 @@ public class Hero extends Minion {
 
     @Override
     public StringBuilder info() {
-        StringBuilder result = new StringBuilder();
-        result.append("Hero:\n");
-        result.append("Name: ").append(name).append("\n");
-        result.append("Cost: ").append(price).append("\n");
-        result.append("Description: ").append(desc).append("\n");
+        StringBuilder result = new StringBuilder()
+                .append("Hero:\n")
+                .append("Name: ").append(name).append("\n")
+                .append("Cost: ").append(price).append("\n")
+                .append("Description: ").append(desc).append("\n");
         return result;
     }
 
