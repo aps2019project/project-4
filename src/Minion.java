@@ -5,6 +5,7 @@ public class Minion extends Card {
     private int attackPoint;
     private int startRange;
     private int endRange;
+    private String description;
     private boolean hasAttackedThisTurn;
     private boolean hasMovedThisTurn;
     private boolean isDisarmed;
@@ -72,6 +73,26 @@ public class Minion extends Card {
         }
     }
 
+    @Override
+    public void showInfo() {
+        StringBuilder result = new StringBuilder();
+        result.append("Name: " + name + "\n");
+        result.append("HP: " + healthPoint + "AP: " + attackPoint + "MP: " + requiredManas + "\n");
+        result.append("Range: ");
+        if (startRange == 1 && endRange == 1)
+            result.append("Melee\n");
+        else if(startRange > 1)
+            result.append("Ranged " + (endRange - 1) + "\n");
+        else
+            result.append("Hybrid\n");
+        result.append("Combo Ability: ");
+        if (specialPowerActivationType == Enums.ActivationTypes.COMBO)
+            result.append("Combo");
+        else
+            result.append("Not Combo");
+        result.append("Cost: " + price + "\n");
+        result.append("Description: " + description + "\n");
+    }
     public void changeHp(int number) {
         this.healthPoint += number;
     }
