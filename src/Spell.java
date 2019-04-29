@@ -17,12 +17,14 @@ public class Spell extends Card {
     @Override
     public StringBuilder infoForDeck(){
         StringBuilder result = new StringBuilder();
+
         return result;
     }
 
     @Override
     public StringBuilder infoForDeckWithPrice(){
         StringBuilder result = new StringBuilder();
+
         return result;
     }
 }

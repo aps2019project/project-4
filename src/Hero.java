@@ -22,17 +22,16 @@ public class Hero extends Minion {
     }
 
     @Override
-    public StringBuilder infoForDeck(){
+    public StringBuilder infoForDeck() {
         StringBuilder result = new StringBuilder();
         result.append("Name: ").append(this.getName()).append(" - AP : ").append(this.getAP())
-              .append(" - HP : ").append(this.getHP()).append(" - Class : ").append(this.getType())
-              .append(" - Special power: ").append(this.getSpecialPower().getDesc());
+                .append(" - HP : ").append(this.getHP()).append(" - Class : ").append(this.getType())
+                .append(" - Special power: ").append(this.getSpecialPower().getDesc());
         return result;
     }
 
     @Override
-    public StringBuilder infoForDeckWithPrice(){
-        StringBuilder result = new StringBuilder();
-        return result;
+    public StringBuilder infoForDeckWithPrice() {
+        return this.infoForDeck().append(" - Sell Cost: ").append(this.getPrice());
     }
 }
