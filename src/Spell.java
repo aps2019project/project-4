@@ -1,4 +1,3 @@
-
 import com.google.gson.Gson;
 
 public class Spell extends Card {
@@ -17,14 +16,13 @@ public class Spell extends Card {
     @Override
     public StringBuilder infoForDeck(){
         StringBuilder result = new StringBuilder();
-
+        result.append("Type : Spell - Name : ").append(this.getName()).append(" - MP : ").append(this.getRequiredManas())
+              .append(" - Desc : ").append(this.getDesc());
         return result;
     }
 
     @Override
     public StringBuilder infoForDeckWithPrice(){
-        StringBuilder result = new StringBuilder();
-
-        return result;
+        return this.infoForDeck().append(" - Sell Cost : ").append(this.getPrice());
     }
 }
