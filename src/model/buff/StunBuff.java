@@ -1,7 +1,10 @@
 package model.buff;
 
 public class StunBuff extends Buff {
-    public StunBuff(){}
-    public StunBuff(int numberOfTurns){}
-    public StunBuff(int numberOfTurns, int numberOfTurnsLater){}
+    public StunBuff(int numberOfTurns, int delay){
+        this.isPositive = false;
+        this.isStunner = true;
+        this.numberOfTurns = numberOfTurns;
+        this.delay = delay;
+    }
 }

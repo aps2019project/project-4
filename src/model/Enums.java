@@ -25,4 +25,8 @@ public class Enums {
         MONO_CELL, SQUARE, COLUMN, ROW, ALL
     }
 
+    public enum OnCellOrSoldier{
+        CEll, SOLDIER
+    }
+
 }

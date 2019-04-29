@@ -14,7 +14,8 @@ public class Minion extends Card {
     private boolean hasMovedThisTurn;
     private boolean isDisarmed;
     private boolean isStuned;
-    private boolean numberOfTurnsOfDisarm;
+    private int numberOfTurnsOfDisarm;
+    private int numberOfTurnsOfStun;
     private GameBoard gameBoard;
     private Cell cellPlace;
     private Spell specialPower;

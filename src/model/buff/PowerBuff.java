@@ -1,10 +1,11 @@
 package model.buff;
 
 public class PowerBuff extends Buff {
-    private int extraHealth;
-    private int extraAttackPoint;
-
-    public PowerBuff(int extraHealth, int extraAttackPoint){}
-    public PowerBuff(int extraHealth, int extraAttackPoint, int numberOfTurns){}
-    public PowerBuff(int extraHealth, int extraAttackPoint, int numberOfTurns, int numberOfTurnsLater){}
+    public PowerBuff(int changeHp, int changeAp, int numberOfTurns, int delay) {
+        this.isPositive = true;
+        this.changeHp += changeHp;
+        this.changeAp += changeAp;
+        this.numberOfTurns = numberOfTurns;
+        this.delay = delay;
+    }
 }
