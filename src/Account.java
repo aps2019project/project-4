@@ -152,3 +152,18 @@ class AccountComparator implements Comparator<Account> {
         return a1.getName().compareTo(a2.getName());
     }
 }
+
+//    @Override
+//    public String toString() {
+//        return "Type : Minion - Name : " + this.getName() + " - " +
+//                "Class : " + this.getSpecialPower().getName() + " - " +
+//                "AP : " + this.getAP() + " - " +
+//                "HP : " + this.getHP() + " - " +
+//                "MP : " + this.getRequiredManas() + " - " +
+//                "Special power: " + this.getSpecialPower().getDesc();
+//    }
+//
+//    public String toStringWithPrice(){
+//        return this.toString() + " - " +
+//                "Sell Cost : " + this.getPrice();
+//    }

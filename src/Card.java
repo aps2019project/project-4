@@ -44,4 +44,6 @@ public abstract class Card {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    public abstract StringBuilder info();
 }

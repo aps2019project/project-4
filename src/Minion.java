@@ -5,6 +5,7 @@ public class Minion extends Card {
     private int attackPoint;
     private int startRange;
     private int endRange;
+    private Enums.SoldierType type;
     private boolean hasAttackedThisTurn;
     private boolean hasMovedThisTurn;
     private boolean isDisarmed;
@@ -16,17 +17,21 @@ public class Minion extends Card {
     private Enums.ActivationTypes specialPowerActivationType;
     private ArrayList<Buff> positiveBuffs;
     private ArrayList<Buff> negativeBuffs;
-    private String classOfMinion;
 
     public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange, String classOfMinion) {
         this.name = name;
         this.price = price;
+        this.requiredManas = mp;
         this.healthPoint = hp;
         this.attackPoint = ap;
-        this.requiredManas = mp;
         this.startRange = startRange;
         this.endRange = endRange;
-        this.classOfMinion = classOfMinion;
+        if (startRange == 1 && endRange == 1)
+            type = Enums.SoldierType.MELEE;
+        if (startRange > 1)
+            type = Enums.SoldierType.RANGED;
+        if (startRange == 1 && endRange > 1)
+            type = Enums.SoldierType.HYBRID;
     }
 
     public int getHP() {
@@ -37,8 +42,8 @@ public class Minion extends Card {
         return attackPoint;
     }
 
-    public String getClassOfMinion() {
-        return classOfMinion;
+    public Enums.SoldierType getType() {
+        return type;
     }
 
     public Spell getSpecialPower() {
@@ -139,17 +144,20 @@ public class Minion extends Card {
     }
 
     @Override
-    public String toString() {
-        return "Type : Minion - Name : " + this.getName() + " - " +
-                "Class : " + this.getSpecialPower().getName() + " - " +
-                "AP : " + this.getAP() + " - " +
-                "HP : " + this.getHP() + " - " +
-                "MP : " + this.getRequiredManas() + " - " +
-                "Special power: " + this.getSpecialPower().getDesc();
-    }
-
-    public String toStringWithPrice(){
-        return this.toString() + " - " +
-                "Sell Cost : " + this.getPrice();
+    public StringBuilder info() {
+        StringBuilder result = new StringBuilder();
+        result.append("Name: ").append(name).append("\n");
+        result.append("HP: " + healthPoint + "AP: " + attackPoint + "MP: " + requiredManas + "\n");
+        result.append("Range: ").append(type);
+        if (type != Enums.SoldierType.MELEE){
+            result.append(endRange - startRange);
+            result.append("\n");
+        }
+        result.append("Combo Ability: ").append(specialPowerActivationType).append("\n");
+        result.append("Cost: ").append(price).append("\n");
+        result.append("Description: ").append(desc).append("\n");
+        return result;
     }
 }
+
+

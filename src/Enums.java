@@ -11,4 +11,8 @@ public class Enums {
         ACCOUNT, MAIN, BATTLE, SHOP, COLLECTION
     }
 
+    public enum SoldierType {
+        MELEE, RANGED, HYBRID
+    }
+
 }
