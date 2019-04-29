@@ -17,8 +17,9 @@ public class Minion extends Card {
     private Enums.ActivationTypes specialPowerActivationType;
     private ArrayList<Buff> positiveBuffs;
     private ArrayList<Buff> negativeBuffs;
+    private String classOfMinion;
 
-    public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange) {
+    public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange , String classOfMinion) {
         this.name = name;
         this.price = price;
         this.healthPoint = hp;
@@ -26,6 +27,23 @@ public class Minion extends Card {
         this.requiredManas = mp;
         this.startRange = startRange;
         this.endRange = endRange;
+        this.classOfMinion = classOfMinion;
+    }
+
+    public int getHP() {
+        return healthPoint;
+    }
+
+    public int getAP() {
+        return attackPoint;
+    }
+
+    public String getClassOfMinion() {
+        return classOfMinion;
+    }
+
+    public Spell getSpecialPower() {
+        return specialPower;
     }
 
     public void lockMovement() {
@@ -37,7 +55,7 @@ public class Minion extends Card {
     }
 
     public void attack(Minion minion) {
-        if (this.isStuned == true || this.hasAttackedThisTurn) {
+        if (this.isStuned || this.hasAttackedThisTurn) {
             System.out.printf("Card with id: %s can't attack\n", this.id);
             return;
         }
@@ -140,4 +158,6 @@ public class Minion extends Card {
         }
         return false;
     }
+
+    //todo write toString
 }

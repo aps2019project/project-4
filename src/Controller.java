@@ -1,5 +1,7 @@
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,25 +25,29 @@ public class Controller {
         patternsOfAccountMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
         patternsOfAccountMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
         patternsOfAccountMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
-        patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle|Exit|Help)", Pattern.CASE_INSENSITIVE));
+
+        patternsOfMainMenu.add(Pattern.compile("enter (Collection|Shop|Battle)", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("logout", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
-        patternsOfMainMenu.add(Pattern.compile("battle", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
+
         patternsOfCollectionMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("search ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("create deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("delete deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("add ([a-zA-Z0-9]+) to deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("remove ([a-zA-Z0-9]+) from deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("validate deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("select deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("show all decks"));
-        patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)"));
-        patternsOfCollectionMenu.add(Pattern.compile("help"));
+        patternsOfCollectionMenu.add(Pattern.compile("add ([a-zA-Z0-9]+) to deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("remove ([a-zA-Z0-9]+) from deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("validate deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("select deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("show all decks", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
+        patternsOfShopMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile(""));
+        //todo add shop menu
 
         patternsOfBattleMenu.add(Pattern.compile("Game info", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show my minions", Pattern.CASE_INSENSITIVE));
@@ -212,11 +218,7 @@ public class Controller {
                     Controller.setEndGame();
                     break;
             }
-        } catch (InvalidUserNameException e) {
-            System.out.println(e.getMessage());
-        } catch (DuplicateAccountException e) {
-            System.out.println(e.getMessage());
-        } catch (InvalidPasswordException e) {
+        } catch (InvalidUserNameException | DuplicateAccountException | InvalidPasswordException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -247,10 +249,10 @@ public class Controller {
                     Account.saveChanges();
                     break;
                 case 4:
-                    //ToDO create deck
+                    Account.getCurrentAccount().getCollection().addDeck(matcher.group(1));
                     break;
                 case 5:
-                    //ToDO delete deck
+                    Account.getCurrentAccount().getCollection().removeDeck(matcher.group(1));
                     break;
                 case 6:
                     //ToDO add Card
@@ -259,23 +261,23 @@ public class Controller {
                     //ToDO remove card or item from deck
                     break;
                 case 8:
-                    //TODO validate deck
+                    View.showValidateDeckMessage(matcher.group(1));
                     break;
                 case 9:
-                    //TODO select deck
+                    Account.getCurrentAccount().selectDeck(matcher.group(1));
                     break;
                 case 10:
-                    //TODO show all decks
+                    View.showAllDecks();
                     break;
                 case 11:
-                    //TODO show a deck
+                    View.showDeck(matcher.group(1));
                     break;
                 case 12:
                     View.showHelp();
                     break;
             }
         } catch (Exception e) {
-            //ToDO write exceptions
+            System.out.println(e.getMessage());
         }
     }
 
@@ -320,16 +322,5 @@ public class Controller {
         Controller.isEndedGame = false;
     }
 
-    public static void showMainMenu() {
-
-    }
-
-    public static void showShopMenu() {
-
-    }
-
-    public static void showCollectionMenu() {
-
-    }
 }
 

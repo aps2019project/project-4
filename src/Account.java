@@ -120,6 +120,13 @@ public class Account {
         }
     }
 
+    public void selectDeck(String deckName) throws DeckNotAvailabilityException, NotValidDeckException {
+        if (!this.getCollection().getDecks().containsKey(deckName))
+            throw new DeckNotAvailabilityException(deckName);
+        if (!this.getCollection().getDecks().get(deckName).validateDeck()) throw new NotValidDeckException(deckName);
+        this.setSelectedDeck(this.getCollection().getDecks().get(deckName));
+    }
+
     public static void saveChanges() {
         //Todo write save system
     }

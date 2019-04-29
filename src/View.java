@@ -18,6 +18,24 @@ class DuplicateAccountException extends Exception {
     }
 }
 
+class DeckAvailabilityException extends Exception {
+    public DeckAvailabilityException(String deckName) {
+        super("The deck with name " + deckName + " is available");
+    }
+}
+
+class DeckNotAvailabilityException extends Exception {
+    public DeckNotAvailabilityException(String deckName) {
+        super("The deck with name " + deckName + " is not available");
+    }
+}
+
+class NotValidDeckException extends Exception {
+    public NotValidDeckException(String deckName) {
+        super("The deck with name " + deckName + " is not valid!");
+    }
+}
+
 class InvalidCommandException extends Exception {
     public InvalidCommandException() {
         super("Invalid Command");
@@ -59,14 +77,14 @@ public class View {
         System.out.println("exit game: Exit from game");
     }
 
-    private static void showMainMenuHelp(){
+    private static void showMainMenuHelp() {
         System.out.println("enter Collection|Shop|Battle : Enter in menus");
         System.out.println("logout: Log out from account");
         System.out.println("exit game: Exit from game");
         System.out.println("help: to show help");
     }
 
-    private static void showCollectionMenuHelp(){
+    private static void showCollectionMenuHelp() {
         System.out.println("back: Back to main menu");
         System.out.println("show: Show all cards and items in collection and their cost");
         System.out.println("search [card name|item name]: Show card or item with special name if exists");
@@ -82,18 +100,19 @@ public class View {
         System.out.println("help: Show help");
     }
 
-    private static void showShopMenuHelp(){
+    private static void showShopMenuHelp() {
 
     }
 
-    private static void showBattleMenuHelp(){
+    private static void showBattleMenuHelp() {
 
     }
 
-    public static void showMenu(){
-        switch (Controller.getMenu()){
+    public static void showMenu() {
+        switch (Controller.getMenu()) {
             case ACCOUNT:
                 showAccountMenu();
+                break;
             case BATTLE:
                 showBattleMenu();
                 break;
@@ -106,11 +125,11 @@ public class View {
         }
     }
 
-    public static void showAccounts(ArrayList<Account> accounts){
-
+    public static void showAccounts(ArrayList<Account> accounts) {
+        accounts.forEach(account -> System.out.println(account.toString()));
     }
 
-    private static void showAccountMenu(){
+    private static void showAccountMenu() {
         System.out.print("1.Create Account\n2.Login\n3.Show Leaderboard\n4.Save\n5.Help\n6.Exit game\n");
     }
 
@@ -134,12 +153,48 @@ public class View {
         System.out.println("Enter Password");
     }
 
-    public static void showConfirmationLogoutMessage(){
+    public static void showConfirmationLogoutMessage() {
         System.out.println("Are you sure to logout?[Y/N]");
     }
 
-    public static void showConfirmationExitMessage(){
+    public static void showConfirmationExitMessage() {
         System.out.println("Are you sure to exit?[Y/N]");
     }
 
+    public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {
+        if (!Account.getCurrentAccount().getCollection().getDecks().containsKey(deckName))
+            throw new DeckNotAvailabilityException(deckName);
+        if (Account.getCurrentAccount().getCollection().getDecks().get(deckName).validateDeck()) {
+            System.out.println("The " + deckName + " deck is valid!");
+        } else {
+            System.out.println("The " + deckName + " deck is not valid!!");
+        }
+    }
+
+    public static void showAllDecks() {
+        if (Account.getCurrentAccount().getSelectedDeck() != null)
+            System.out.println("1 : " + Account.getCurrentAccount().getSelectedDeck().getName() + " :");
+        View.showDeck(Account.getCurrentAccount().getSelectedDeck());
+        int index = 2;
+        for (Deck deck : Account.getCurrentAccount().getCollection().getDecks().values()) {
+            if (deck != Account.getCurrentAccount().getSelectedDeck()) {
+                System.out.println(index + " : " + deck.getName() + " :");
+                View.showDeck(deck);
+            }
+        }
+    }
+
+    public static void showDeck(Deck deck) {
+        System.out.println("Hero:");
+        if (deck.isHaveHero())
+            System.out.println("1: " + deck.getHero().toString());
+        System.out.println("Item: ");
+        //todo write showDeck
+    }
+
+    public static void showDeck(String deckName) throws DeckNotAvailabilityException {
+        if (!Account.getCurrentAccount().getCollection().getDecks().containsKey(deckName))
+            throw new DeckNotAvailabilityException(deckName);
+        showDeck(Account.getCurrentAccount().getCollection().getDecks().get(deckName));
+    }
 }
