@@ -172,9 +172,10 @@ public class View {
     }
 
     public static void showAllDecks() {
-        if (Account.getCurrentAccount().getSelectedDeck() != null)
+        if (Account.getCurrentAccount().getSelectedDeck() != null) {
             System.out.println("1 : " + Account.getCurrentAccount().getSelectedDeck().getName() + " :");
-        View.showDeck(Account.getCurrentAccount().getSelectedDeck());
+            View.showDeck(Account.getCurrentAccount().getSelectedDeck());
+        }
         int index = 2;
         for (Deck deck : Account.getCurrentAccount().getCollection().getDecks().values()) {
             if (deck != Account.getCurrentAccount().getSelectedDeck()) {
@@ -187,17 +188,17 @@ public class View {
     public static void showDeck(Deck deck) {
         System.out.println("Hero:");
         if (deck.isHaveHero())
-            System.out.println("1: " + deck.getHero());
+            System.out.println("1: " + deck.getHero().infoForDeck());
         System.out.println("Item: ");
-        if (deck.getItem() != null){
-            System.out.println("1: " + deck.getItem());
+        if (deck.getItem() != null) {
+            System.out.println("1: " + deck.getItem().info());
         }
         System.out.println("Cards: ");
-        if (deck.getCards() != null){
+        if (deck.getCards() != null) {
             int index = 1;
-            for (Card card : deck.getCards().values()){
+            for (Card card : deck.getCards().values()) {
                 if (!(card instanceof Hero))
-                System.out.println(index + " : " + card);
+                    System.out.println(index + " : " + card.infoForDeck());
                 index++;
             }
         }

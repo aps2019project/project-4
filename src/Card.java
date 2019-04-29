@@ -25,25 +25,9 @@ public abstract class Card {
         return desc;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setRequiredManas(int requiredManas) {
-        this.requiredManas = requiredManas;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public abstract StringBuilder info();
+
+    public abstract StringBuilder infoForDeck();
+
+    public abstract StringBuilder infoForDeckWithPrice();
 }

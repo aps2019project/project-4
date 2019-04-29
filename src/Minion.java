@@ -18,7 +18,7 @@ public class Minion extends Card {
     private ArrayList<Buff> positiveBuffs;
     private ArrayList<Buff> negativeBuffs;
 
-    public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange, String classOfMinion) {
+    public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange) {
         this.name = name;
         this.price = price;
         this.requiredManas = mp;
@@ -146,10 +146,11 @@ public class Minion extends Card {
     @Override
     public StringBuilder info() {
         StringBuilder result = new StringBuilder();
+        result.append("Minion:\n");
         result.append("Name: ").append(name).append("\n");
-        result.append("HP: " + healthPoint + "AP: " + attackPoint + "MP: " + requiredManas + "\n");
+        result.append("HP: ").append(healthPoint).append("AP: ").append(attackPoint).append("MP: ").append(requiredManas).append("\n");
         result.append("Range: ").append(type);
-        if (type != Enums.SoldierType.MELEE){
+        if (type != Enums.SoldierType.MELEE) {
             result.append(endRange - startRange);
             result.append("\n");
         }
@@ -158,6 +159,19 @@ public class Minion extends Card {
         result.append("Description: ").append(desc).append("\n");
         return result;
     }
+
+    @Override
+    public StringBuilder infoForDeck(){
+        StringBuilder result = new StringBuilder();
+        return result;
+    }
+
+    @Override
+    public StringBuilder infoForDeckWithPrice(){
+        StringBuilder result = new StringBuilder();
+        return result;
+    }
+
 }
 
 

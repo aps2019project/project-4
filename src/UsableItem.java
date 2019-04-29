@@ -18,13 +18,11 @@ public class UsableItem {
         return description;
     }
 
-    @Override
-    public String toString() {
-        return "Name : " + this.getName() + " - " +
-                "Desc: " + this.getDescription();
+    public StringBuilder info() {
+        return new StringBuilder("Name : ").append(this.getName()).append(" - Desc: ").append(this.getDescription());
     }
 
-    public String toStringWithPrice(){
-        return this.toString() + " - " + "Sell Cost : " + this.getPrice();
+    public StringBuilder infoWithPrice() {
+        return this.info().append(" - Sell Cost : ").append(this.getPrice());
     }
 }
