@@ -45,5 +45,5 @@ public abstract class Card {
         this.desc = desc;
     }
 
-    public abstract void showInfo();
+    public abstract StringBuilder info();
 }

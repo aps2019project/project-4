@@ -9,12 +9,12 @@ public class Hero extends Minion {
     }
 
     @Override
-    public String toString() {
-        return "Name: " + this.getName() + " - " +
-                "AP : " + this.getAP() + " - " + "HP : " + this.getHP() + " - " +
-                "Class : " + this.getClassOfMinion() + " - " +
-                "Special power: " + this.getSpecialPower().getDesc() + " - " +
-                "Sell Cost : " + this.getPrice();
+    public StringBuilder info() {
+        StringBuilder result = new StringBuilder();
+        result.append("Name: ").append(name).append("\n");
+        result.append("Cost: ").append(price).append("\n");
+        result.append("Description: ").append(desc).append("\n");
+        return result;
     }
 
 }

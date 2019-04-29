@@ -6,7 +6,6 @@ public class Minion extends Card {
     private int startRange;
     private int endRange;
     private Enums.SoldierType type;
-    private String description;
     private boolean hasAttackedThisTurn;
     private boolean hasMovedThisTurn;
     private boolean isDisarmed;
@@ -18,7 +17,6 @@ public class Minion extends Card {
     private Enums.ActivationTypes specialPowerActivationType;
     private ArrayList<Buff> positiveBuffs;
     private ArrayList<Buff> negativeBuffs;
-    private String classOfMinion;
 
     public Minion(String name, int price, int mp, int hp, int ap, int startRange, int endRange , String classOfMinion) {
         this.name = name;
@@ -28,7 +26,6 @@ public class Minion extends Card {
         this.attackPoint = ap;
         this.startRange = startRange;
         this.endRange = endRange;
-        this.classOfMinion = classOfMinion;
         if (startRange == 1 && endRange == 1)
             type = Enums.SoldierType.MELEE;
         if (startRange > 1)
@@ -45,8 +42,8 @@ public class Minion extends Card {
         return attackPoint;
     }
 
-    public String getClassOfMinion() {
-        return classOfMinion;
+    public Enums.SoldierType getType() {
+        return type;
     }
 
     public Spell getSpecialPower() {
@@ -99,24 +96,19 @@ public class Minion extends Card {
     }
 
     @Override
-    public void showInfo() {
+    public StringBuilder info() {
         StringBuilder result = new StringBuilder();
-        result.append("Name: " + name + "\n");
+        result.append("Name: ").append(name).append("\n");
         result.append("HP: " + healthPoint + "AP: " + attackPoint + "MP: " + requiredManas + "\n");
-        result.append("Range: ");
-        if (startRange == 1 && endRange == 1)
-            result.append("Melee\n");
-        else if(startRange > 1)
-            result.append("Ranged " + (endRange - 1) + "\n");
-        else
-            result.append("Hybrid\n");
-        result.append("Combo Ability: ");
-        if (specialPowerActivationType == Enums.ActivationTypes.COMBO)
-            result.append("Combo");
-        else
-            result.append("Not Combo");
-        result.append("Cost: " + price + "\n");
-        result.append("Description: " + description + "\n");
+        result.append("Range: ").append(type);
+        if (type != Enums.SoldierType.MELEE){
+            result.append(endRange - startRange);
+            result.append("\n");
+        }
+        result.append("Combo Ability: ").append(specialPowerActivationType).append("\n");
+        result.append("Cost: ").append(price).append("\n");
+        result.append("Description: ").append(desc).append("\n");
+        return result;
     }
     public void changeHp(int number) {
         this.healthPoint += number;
