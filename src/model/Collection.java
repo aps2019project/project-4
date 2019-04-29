@@ -27,6 +27,13 @@ public class Collection {
         return usableItems;
     }
 
+    public HashMap<String , Card> getAllCard(){
+        HashMap <String , Card> allCards = new HashMap<>();
+        this.getDecks().values().forEach(deck -> allCards.putAll(deck.getCards()));
+        allCards.putAll(this.getFreeCards());
+        return allCards;
+    }
+
     public void removeCard(String cardID) {
         this.getFreeCards().remove(cardID);
     }
