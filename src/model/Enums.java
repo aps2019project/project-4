@@ -17,7 +17,7 @@ public class Enums {
         MELEE, RANGED, HYBRID
     }
 
-    public enum FriendEnemy{
+    public enum FriendOrEnemy{
         Friend, ENEMY, BOTH
     }
 

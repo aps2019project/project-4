@@ -1,6 +1,7 @@
 package model;
 
 import model.buff.Buff;
+import views.View;
 
 import java.util.ArrayList;
 
@@ -65,7 +66,7 @@ public class Minion extends Card {
 
     public void attack(Minion minion) {
         if (this.isStuned || this.hasAttackedThisTurn) {
-            System.out.printf("model.Card with id: %s can't attack\n", this.id);
+            System.out.printf("Card with id: %s can't attack\n", this.id);
             return;
         }
         if (cellPlace.getDistance(minion.cellPlace.getX(), minion.cellPlace.getY()) > endRange ||
@@ -79,20 +80,22 @@ public class Minion extends Card {
 
     public void moveTo(Cell cell) {
         if (this.hasMovedThisTurn) {
-            System.out.printf("This card with id: %s has moved this turn\n", this.id);
+            View.showCardHasMovedMessage(this.id);
             return;
         }
         if (this.isStuned) {
-            System.out.printf("This card with id: %s is stuned\n", this.id);
+            View.showStunnedCardMessage(this.id);
             return;
         }
         if (cell.getMinion() != null ||
                 cellPlace.getDistance(cell.getX(), cell.getY()) > endRange ||
                 cellPlace.getDistance(cell.getX(), cell.getY()) < startRange) {
-            System.out.println("Invalid target");
+            View.showInvalidTargetMessage();
             return;
         }
     }
+
+
 
     public void changeHp(int number) {
         this.healthPoint += number;
@@ -107,7 +110,7 @@ public class Minion extends Card {
             if (this.cellPlace.getY() > y) {
                 for (int i = y; i < cellPlace.getY(); i++) {
                     if (this.gameBoard.getCell(x, i).getMinion() != null) {
-                        System.out.println("Invalid target");
+                        View.showInvalidTargetMessage();
                         return true;
                     }
                 }
@@ -115,7 +118,7 @@ public class Minion extends Card {
             if (this.cellPlace.getY() < y) {
                 for (int i = y; i < cellPlace.getY(); i--) {
                     if (this.gameBoard.getCell(x, i).getMinion() != null) {
-                        System.out.println("Invalid target");
+                        View.showInvalidTargetMessage();
                         return true;
                     }
                 }
@@ -125,7 +128,7 @@ public class Minion extends Card {
             if (this.cellPlace.getX() > x) {
                 for (int i = x; i < cellPlace.getX(); i++) {
                     if (this.gameBoard.getCell(i, y).getMinion() != null) {
-                        System.out.println("Invalid target");
+                        View.showInvalidTargetMessage();
                         return true;
                     }
                 }
@@ -133,7 +136,7 @@ public class Minion extends Card {
             if (this.cellPlace.getX() < x) {
                 for (int i = x; i < cellPlace.getX(); i--) {
                     if (this.gameBoard.getCell(i, y).getMinion() != null) {
-                        System.out.println("Invalid target");
+                        View.showInvalidTargetMessage();
                         return true;
                     }
                 }
@@ -143,9 +146,15 @@ public class Minion extends Card {
     }
 
     @Override
+    public void insert(Cell cell){
+        if (cell.getMinion() != null)
+            View.showInvalidTargetMessage();
+    }
+
+    @Override
     public StringBuilder info() {
         StringBuilder result = new StringBuilder()
-                .append("model.Minion:\n")
+                .append("Minion:\n")
                 .append("Name: ").append(name).append("\n")
                 .append("HP: ").append(healthPoint + " ").append("AP: ").append(attackPoint + " ")
                 .append("MP: ").append(requiredManas).append("\n")

@@ -32,4 +32,6 @@ public abstract class Card {
     public abstract StringBuilder infoForDeck();
 
     public abstract StringBuilder infoForDeckWithPrice();
+
+    public abstract void insert(Cell cell);
 }
