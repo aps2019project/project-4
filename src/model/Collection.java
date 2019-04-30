@@ -50,7 +50,7 @@ public class Collection {
     public void removeCard(String thingID , String deckName) throws DeckNotAvailabilityException{
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
-        //TODO remove Card
+
     }
 
     public ArrayList<Card> searchCard(String string) {

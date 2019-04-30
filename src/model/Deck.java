@@ -1,5 +1,7 @@
 package model;
 
+import views.Exceptions.*;
+
 import java.util.HashMap;
 
 public class Deck {
@@ -34,6 +36,25 @@ public class Deck {
         this.getCards().put(card.getName(), card);
         //TODO add ID
         //this is wrong
+    }
+
+    public void removeCard(String cardID) throws IDNotAvailableInDeckException {
+        if (this.getCards().remove(cardID) == null) {
+            throw new IDNotAvailableInDeckException(cardID, this.getName());
+        }
+    }
+
+    public void sellCard(String cardName) {
+        for (int i = 0; i < this.getCards().size(); i++) {
+            if (this.getCards().get(i).getName().equals(cardName)){
+                this.getCards().remove(this.getCards().get(i).getId());
+                i--;
+            }
+        }
+    }
+
+    public void removeItem(String itemID) throws IDNotAvailableInDeckException , NullPointerException{
+        //if (this.getItem().get )
     }
 
     public int getNumOfOtherHeroCards() {

@@ -39,6 +39,13 @@ public class Exceptions {
         }
     }
 
+    public static class IDNotAvailableInDeckException extends Exception {
+        public IDNotAvailableInDeckException(String id , String deckName){
+            super("No thing with ID " + id  + " in deck " + deckName + " found!");
+        }
+    }
+
+
     public static class NotValidDeckException extends Exception {
         public NotValidDeckException(String deckName) {
             super("The deck with name " + deckName + " is not valid!");
