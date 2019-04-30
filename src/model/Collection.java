@@ -47,8 +47,10 @@ public class Collection {
         return usableItems;
     }
 
-    public void removeCard(String cardID) {
-        this.getAllCards().remove(cardID);
+    public void removeCard(String thingID , String deckName) throws DeckNotAvailabilityException{
+        if (!(this.getDecks().containsKey(deckName)))
+            throw new DeckNotAvailabilityException(deckName);
+        //TODO remove Card
     }
 
     public ArrayList<Card> searchCard(String string) {

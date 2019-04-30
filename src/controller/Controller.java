@@ -262,7 +262,7 @@ public class Controller {
                     //TODO add Card
                     break;
                 case 7:
-                    //TODO remove card or item from deck
+                    Account.getCurrentAccount().getCollection().removeCard(matcher.group(1), matcher.group(2));
                     break;
                 case 8:
                     View.showValidateDeckMessage(matcher.group(1));

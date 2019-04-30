@@ -160,13 +160,13 @@ public class View {
                 System.out.print("MainMenu>>");
                 break;
             case COLLECTION:
-                System.out.print("CollectionMenu");
+                System.out.print("CollectionMenu>>");
                 break;
             case SHOP:
-                System.out.print("ShopMenu");
+                System.out.print("ShopMenu>>");
                 break;
             case BATTLE:
-                System.out.println("BattleMenu");
+                System.out.println("BattleMenu>>");
                 break;
         }
     }
@@ -195,11 +195,10 @@ public class View {
         }
     }
 
-    public static void showSearchResults(String string){
+    public static void showSearchResults(String string) throws CardAndItemNotAvailabilityException{
         if (Account.getCurrentAccount().getCollection().searchCard(string).size() == 0 &
                 Account.getCurrentAccount().getCollection().searchItem(string).size() == 0){
-            System.out.println("No Card or Item found!");
-            return;
+            throw new CardAndItemNotAvailabilityException();
         }
         View.showCards(Account.getCurrentAccount().getCollection().searchCard(string));
         View.showItems(Account.getCurrentAccount().getCollection().searchItem(string));

@@ -1,5 +1,7 @@
 package views;
 
+import model.Card;
+
 public class Exceptions {
     public static class InvalidUserNameException extends Exception {
         public InvalidUserNameException() {
@@ -28,6 +30,12 @@ public class Exceptions {
     public static class DeckNotAvailabilityException extends Exception {
         public DeckNotAvailabilityException(String deckName) {
             super("The deck with name " + deckName + " is not available");
+        }
+    }
+
+    public static class  CardAndItemNotAvailabilityException extends Exception{
+        public CardAndItemNotAvailabilityException(){
+            super("No Card or Item found!");
         }
     }
 
