@@ -26,7 +26,8 @@ public class Enums {
     }
 
     public enum OnCellOrSoldier{
-        CEll, SOLDIER
+        CEll, SOLDIER;
     }
 
 }
+

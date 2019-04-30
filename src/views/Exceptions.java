@@ -51,7 +51,7 @@ public class Exceptions {
         }
 
         public void showMessage() {
-            System.out.println(super.getMessage());
+            System.err.println(super.getMessage());
             View.showHelp();
         }
     }

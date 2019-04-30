@@ -21,7 +21,7 @@ public class Main {
 //        Card minion = new Minion("persianSwordman", 400, 2, 6, 4, 2, 7);
 //        String string = gson.toJson(minion);
 //        System.out.println(string.replaceAll("  ", ""));
-        //Controller.start();
+        Controller.start();
         String string = gson.toJson(spell);
         System.out.println(string);
     }
