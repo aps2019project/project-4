@@ -65,13 +65,17 @@ public class Minion extends Card {
     }
 
     public void attack(Minion minion) {
-        if (this.isStuned || this.hasAttackedThisTurn) {
-            System.out.printf("Card with id: %s can't attack\n", this.id);
+        if (this.isStuned){
+            View.showStunnedCardMessage(this.id);
+            return;
+        }
+            if(this.hasAttackedThisTurn) {
+            View.showHasAttackedMessage(this.id);
             return;
         }
         if (cellPlace.getDistance(minion.cellPlace.getX(), minion.cellPlace.getY()) > endRange ||
                 cellPlace.getDistance(minion.cellPlace.getX(), minion.cellPlace.getY()) < startRange) {
-            System.out.println("Opponent minion or hero is unavailable for attack");
+            View.showOutOfDistanceMessage();
             return;
         }
         minion.changeHp(-this.attackPoint);
@@ -147,8 +151,13 @@ public class Minion extends Card {
 
     @Override
     public void insert(Cell cell){
-        if (cell.getMinion() != null)
+        if (cell.getMinion() != null) {
             View.showInvalidTargetMessage();
+            return;
+        }
+        cell.setMinion(this);
+        this.cellPlace = cell;
+        View.showInsertedMinionMessage(this.name, this.id, cell.getX(), cell.getY());
     }
 
     @Override

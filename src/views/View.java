@@ -128,6 +128,15 @@ public class View {
         System.out.printf("This card with id: %s has moved this turn\n", string);
     }
 
+    public static void showOutOfDistanceMessage() {
+        System.out.println("Opponent minion or hero is unavailable for attack");
+    }
+    public static void showHasAttackedMessage(String string){
+        System.out.printf("This card with id: %s has attacked this turn\n", string);
+    }
+    public static void showInsertedMinionMessage(String name, String id, int x, int y){
+        System.out.printf("%s with id: %s inserted in (%d, %d)\n", name, id, x, y);
+    }
     public static void showInvalidTargetMessage() {
         System.out.println("Invalid target");
     }
