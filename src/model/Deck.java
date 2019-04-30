@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class Deck {
     private String name;
     private HashMap<String, Card> cards;
+    //String is ID
     private UsableItem item;
 
     public Deck(String name) {
@@ -31,6 +32,7 @@ public class Deck {
 
     public void addCard(Card card) {
         this.getCards().put(card.getName(), card);
+        //TODO add ID
     }
 
     public int getNumOfOtherHeroCards() {

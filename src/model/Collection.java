@@ -2,12 +2,14 @@ package model;
 
 import views.Exceptions.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Collection {
     private HashMap<String, Deck> decks;
     private HashMap<String, Card> allCards;
     private HashMap<String, UsableItem> usableItems;
+    //String is name of card and items
 
     public Collection() {
         this.decks = new HashMap<>();
@@ -23,23 +25,21 @@ public class Collection {
         return allCards;
     }
 
-    public HashMap<String , Hero> getHeros(){
+    public HashMap<String, Hero> getHeros() {
         HashMap<String, Hero> heros = new HashMap<>();
-        for(Card card: getAllCards().values()){
-            if (card instanceof Hero){
-                heros.put(card.getName() , (Hero) card);
+        for (Card card : getAllCards().values()) {
+            if (card instanceof Hero) {
+                heros.put(card.getName(), (Hero) card);
             }
         }
         return heros;
     }
 
-    public HashMap<String, Card> getNonHeroCards(){
+    public HashMap<String, Card> getNonHeroCards() {
         HashMap<String, Card> cardHashMap = new HashMap<>();
-        for(Card card: getAllCards().values()){
-            if (!(card instanceof Hero)){
-                cardHashMap.put(card.getName() , card);
-            }
-        }
+        this.getAllCards().forEach((s, card) -> {
+            if (!(card instanceof Hero)) cardHashMap.put(card.getName(), card);
+        });
         return cardHashMap;
     }
 
@@ -49,6 +49,16 @@ public class Collection {
 
     public void removeCard(String cardID) {
         this.getAllCards().remove(cardID);
+    }
+
+    public ArrayList<Card> searchCard(String string) {
+        ArrayList<Card> cards = new ArrayList<>();
+        this.getAllCards().forEach((s, card) -> {
+            if (s.contains(string)){
+                cards.add(card);
+            }
+        });
+        return cards;
     }
 
     public void removeDeck(String deckName) throws DeckNotAvailabilityException {
