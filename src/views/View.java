@@ -195,6 +195,16 @@ public class View {
         }
     }
 
+    public static void showSearchResults(String string){
+        if (Account.getCurrentAccount().getCollection().searchCard(string).size() == 0 &
+                Account.getCurrentAccount().getCollection().searchItem(string).size() == 0){
+            System.out.println("No Card or Item found!");
+            return;
+        }
+        View.showCards(Account.getCurrentAccount().getCollection().searchCard(string));
+        View.showItems(Account.getCurrentAccount().getCollection().searchItem(string));
+    }
+
     public static void showCards(ArrayList<Card> cards) {
         int i = 0;
         for (Card card : cards){

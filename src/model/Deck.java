@@ -33,6 +33,7 @@ public class Deck {
     public void addCard(Card card) {
         this.getCards().put(card.getName(), card);
         //TODO add ID
+        //this is wrong
     }
 
     public int getNumOfOtherHeroCards() {

@@ -247,8 +247,7 @@ public class Controller {
                     View.showAllCards();
                     break;
                 case 2:
-                    View.showCards(Account.getCurrentAccount().getCollection().searchCard(matcher.group(1)));
-                    View.showItems(Account.getCurrentAccount().getCollection().searchItem(matcher.group(1)));
+                    View.showSearchResults(matcher.group(1));
                     break;
                 case 3:
                     Account.saveChanges();
