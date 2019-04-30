@@ -186,6 +186,22 @@ public class View {
         }
     }
 
+    public static void showCards(ArrayList<Card> cards) {
+        int i = 0;
+        for (Card card : cards){
+            i++;
+            System.out.println(i + ": " + card.infoForDeckWithPrice());
+        }
+    }
+
+    public static void showItems(ArrayList<UsableItem> items){
+        int i=0;
+        for (UsableItem item : items){
+            i++;
+            System.out.println(i + ": " + item.infoWithPrice());
+        }
+    }
+
     public static void showDeck(Deck deck) {
         System.out.println("Hero:");
         if (deck.isHaveHero())

@@ -61,6 +61,16 @@ public class Collection {
         return cards;
     }
 
+    public ArrayList<UsableItem> searchItem(String string){
+        ArrayList<UsableItem> usableItems = new ArrayList<>();
+        this.getUsableItems().forEach((s, usableItem) -> {
+            if (s.contains(string)){
+                usableItems.add(usableItem);
+            }
+        });
+        return usableItems;
+    }
+
     public void removeDeck(String deckName) throws DeckNotAvailabilityException {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
