@@ -120,6 +120,18 @@ public class View {
         System.out.println("Are you sure to exit?[Y/N]");
     }
 
+    public static void showStunnedCardMessage(String string) {
+        System.out.printf("This card with id: %s is stuned\n", string);
+    }
+
+    public static void showCardHasMovedMessage(String string) {
+        System.out.printf("This card with id: %s has moved this turn\n", string);
+    }
+
+    public static void showInvalidTargetMessage() {
+        System.out.println("Invalid target");
+    }
+
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {
         if (!Account.getCurrentAccount().getCollection().getDecks().containsKey(deckName))
             throw new DeckNotAvailabilityException(deckName);
