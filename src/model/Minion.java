@@ -151,8 +151,13 @@ public class Minion extends Card {
 
     @Override
     public void insert(Cell cell){
-        if (cell.getMinion() != null)
+        if (cell.getMinion() != null) {
             View.showInvalidTargetMessage();
+            return;
+        }
+        cell.setMinion(this);
+        this.cellPlace = cell;
+        View.showInsertedMinionMessage(this.name, this.id, cell.getX(), cell.getY());
     }
 
     @Override

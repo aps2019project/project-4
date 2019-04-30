@@ -134,6 +134,9 @@ public class View {
     public static void showHasAttackedMessage(String string){
         System.out.printf("This card with id: %s has attacked this turn\n", string);
     }
+    public static void showInsertedMinionMessage(String name, String id, int x, int y){
+        System.out.printf("%s with id: %s inserted in (%d, %d)\n", name, id, x, y);
+    }
     public static void showInvalidTargetMessage() {
         System.out.println("Invalid target");
     }

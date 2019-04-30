@@ -28,6 +28,10 @@ public class Spell extends Card {
     }
 
     @Override
+    public void insert(Cell cell){
+
+    }
+    @Override
     public StringBuilder info() {
         StringBuilder result = new StringBuilder()
                 .append("Spell:\n")
