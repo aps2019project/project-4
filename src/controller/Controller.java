@@ -174,6 +174,8 @@ public class Controller {
             }
         } catch (InvalidCommandException e) {
             e.showMessage();
+        } catch (NullPointerException e) {
+            //ignore
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
