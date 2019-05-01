@@ -38,8 +38,9 @@ public class Deck {
         //this is wrong
     }
 
-    public void removeThingWithID(String id) throws IDNotAvailableInDeckException, NullPointerException {
-        if (this.removeCard(id) & this.removeItem(id))
+    public void removeThingWithID(String id , Boolean throwError) throws IDNotAvailableInDeckException, NullPointerException {
+        boolean isNotRemoval = this.removeCard(id) & this.removeItem(id);
+        if (isNotRemoval & throwError)
             throw new IDNotAvailableInDeckException(id, this.getName());
     }
 
@@ -53,21 +54,6 @@ public class Deck {
 
     public boolean removeCard(String cardID) {
         return (this.getCards().remove(cardID) == null);
-    }
-
-    public void sellCard(String cardName) {
-        for (int i = 0; i < this.getCards().size(); i++) {
-            if (this.getCards().get(i).getName().equals(cardName)) {
-                this.getCards().remove(this.getCards().get(i).getId());
-                i--;
-            }
-        }
-    }
-
-    public void sellItem(String itemName) throws NullPointerException {
-        if (this.getItem().getName().equals(itemName)) {
-            this.setItem(null);
-        }
     }
 
     public int getNumOfOtherHeroCards() {

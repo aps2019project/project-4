@@ -67,12 +67,12 @@ public class Collection {
                 break;
             case ITEM:
                 if (this.getDecks().get(deckName).getItem() != null)
-                    throw new ItemAvailableInDeckException(thingName , deckName);
+                    throw new ItemAvailableInDeckException(thingName, deckName);
                 this.getDecks().get(deckName).setItem(this.getUsableItems().get(thingName));
                 break;
             case NONHERO:
                 if (this.getDecks().get(deckName).getCards().get(thingName) != null)
-                    throw new CardAvailableInDeckException(thingName , deckName);
+                    throw new CardAvailableInDeckException(thingName, deckName);
                 //th
                 break;
         }
@@ -90,10 +90,21 @@ public class Collection {
         return usableItems;
     }
 
+
+    public void sellCard(String cardID) throws Exception {
+        for (Deck deck : this.getDecks().values())
+            deck.removeThingWithID(cardID , false);
+    }
+
+    public void sellItem(String itemID) throws Exception {
+        for (Deck deck : this.getDecks().values())
+            deck.removeThingWithID(itemID , false);
+    }
+
     public void removeCard(String thingID, String deckName) throws DeckNotAvailabilityException, IDNotAvailableInDeckException {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
-        this.getDecks().get(deckName).removeThingWithID(thingID);
+        this.getDecks().get(deckName).removeThingWithID(thingID , true);
     }
 
     public ArrayList<Card> searchCard(String string) {
