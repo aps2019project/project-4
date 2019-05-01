@@ -35,6 +35,20 @@ public class Collection {
         return heros;
     }
 
+    public boolean isHaveSpecialHero(String heroName) {
+        Card card = this.getAllCards().get(heroName);
+        return card instanceof Hero;
+    }
+
+    public boolean isHaveSpecialCardNonHero(String cardName) {
+        Card card = this.getAllCards().get(cardName);
+        return !(card instanceof Hero);
+    }
+
+    public boolean isHaveSpecialItem(String itemName) {
+        return this.getUsableItems().get(itemName) != null;
+    }
+
     public HashMap<String, Card> getNonHeroCards() {
         HashMap<String, Card> cardHashMap = new HashMap<>();
         this.getAllCards().forEach((s, card) -> {
@@ -47,18 +61,30 @@ public class Collection {
         return usableItems;
     }
 
-    public void removeCard(String cardID) {
-        this.getAllCards().remove(cardID);
+    public void removeCard(String thingID, String deckName) throws DeckNotAvailabilityException, IDNotAvailableInDeckException {
+        if (!(this.getDecks().containsKey(deckName)))
+            throw new DeckNotAvailabilityException(deckName);
+        this.getDecks().get(deckName).removeThingWithID(thingID);
     }
 
     public ArrayList<Card> searchCard(String string) {
         ArrayList<Card> cards = new ArrayList<>();
         this.getAllCards().forEach((s, card) -> {
-            if (s.contains(string)){
+            if (s.contains(string)) {
                 cards.add(card);
             }
         });
         return cards;
+    }
+
+    public ArrayList<UsableItem> searchItem(String string) {
+        ArrayList<UsableItem> usableItems = new ArrayList<>();
+        this.getUsableItems().forEach((s, usableItem) -> {
+            if (s.contains(string)) {
+                usableItems.add(usableItem);
+            }
+        });
+        return usableItems;
     }
 
     public void removeDeck(String deckName) throws DeckNotAvailabilityException {
@@ -72,4 +98,5 @@ public class Collection {
             throw new DeckAvailabilityException(deckName);
         this.getDecks().put(deckName, new Deck(deckName));
     }
+
 }

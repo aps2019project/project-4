@@ -4,6 +4,7 @@ import model.Account;
 import model.Enums;
 import views.View;
 import views.Exceptions.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -173,7 +174,12 @@ public class Controller {
             }
         } catch (InvalidCommandException e) {
             e.showMessage();
+        } catch (NullPointerException e) {
+            //ignore
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
+
     }
 
     public static void doMainMenuCommand(int index) {
@@ -197,95 +203,87 @@ public class Controller {
     }
 
 
-    public static void doAccountMenuCommand(int index) {
+    public static void doAccountMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
-        try {
-            switch (index) {
-                case 0:
-                    Account.createAccount(matcher.group(1));
-                    break;
-                case 1:
-                    Account.login(matcher.group(1));
-                    break;
-                case 2:
-                    Account.showLeaderBoard();
-                    break;
-                case 3:
-                    Account.saveChanges();
-                    break;
-                case 4:
-                    View.showHelp();
-                    break;
-                case 5:
-                    Controller.setEndGame();
-                    break;
-            }
-        } catch (InvalidUserNameException | DuplicateAccountException | InvalidPasswordException e) {
-            System.out.println(e.getMessage());
+        switch (index) {
+            case 0:
+                Account.createAccount(matcher.group(1));
+                break;
+            case 1:
+                Account.login(matcher.group(1));
+                break;
+            case 2:
+                Account.showLeaderBoard();
+                break;
+            case 3:
+                Account.saveChanges();
+                break;
+            case 4:
+                View.showHelp();
+                break;
+            case 5:
+                Controller.setEndGame();
+                break;
         }
     }
 
-    public static void doBattleMenuCommand(int index) {
+    public static void doBattleMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
 
     }
 
-    public static void doCollectionMenuCommand(int index) {
+    public static void doCollectionMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();
-        try {
-            switch (index) {
-                case 0:
-                    Controller.setMenu(Enums.Menus.MAIN);
-                    break;
-                case 1:
-                    View.showAllCards();
-                    break;
-                case 2:
-                    //ToDo search card and items
-                    break;
-                case 3:
-                    Account.saveChanges();
-                    break;
-                case 4:
-                    Account.getCurrentAccount().getCollection().addDeck(matcher.group(1));
-                    break;
-                case 5:
-                    Account.getCurrentAccount().getCollection().removeDeck(matcher.group(1));
-                    break;
-                case 6:
-                    //TODO add Card
-                    break;
-                case 7:
-                    //TODO remove card or item from deck
-                    break;
-                case 8:
-                    View.showValidateDeckMessage(matcher.group(1));
-                    break;
-                case 9:
-                    Account.getCurrentAccount().selectDeck(matcher.group(1));
-                    break;
-                case 10:
-                    View.showAllDecks();
-                    break;
-                case 11:
-                    View.showDeck(matcher.group(1));
-                    break;
-                case 12:
-                    View.showHelp();
-                    break;
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        switch (index) {
+            case 0:
+                Controller.setMenu(Enums.Menus.MAIN);
+                break;
+            case 1:
+                View.showAllCards();
+                break;
+            case 2:
+                View.showSearchResults(matcher.group(1));
+                break;
+            case 3:
+                Account.saveChanges();
+                break;
+            case 4:
+                Account.getCurrentAccount().getCollection().addDeck(matcher.group(1));
+                break;
+            case 5:
+                Account.getCurrentAccount().getCollection().removeDeck(matcher.group(1));
+                break;
+            case 6:
+                //TODO add Card
+                break;
+            case 7:
+                Account.getCurrentAccount().getCollection().removeCard(matcher.group(1), matcher.group(2));
+                break;
+            case 8:
+                View.showValidateDeckMessage(matcher.group(1));
+                break;
+            case 9:
+                Account.getCurrentAccount().selectDeck(matcher.group(1));
+                break;
+            case 10:
+                View.showAllDecks();
+                break;
+            case 11:
+                View.showDeck(matcher.group(1));
+                break;
+            case 12:
+                View.showHelp();
+                break;
         }
     }
 
-    public static void doShopMenuCommand(int index) {
+    public static void doShopMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.find();

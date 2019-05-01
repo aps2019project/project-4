@@ -160,13 +160,13 @@ public class View {
                 System.out.print("MainMenu>>");
                 break;
             case COLLECTION:
-                System.out.print("CollectionMenu");
+                System.out.print("CollectionMenu>>");
                 break;
             case SHOP:
-                System.out.print("ShopMenu");
+                System.out.print("ShopMenu>>");
                 break;
             case BATTLE:
-                System.out.println("BattleMenu");
+                System.out.println("BattleMenu>>");
                 break;
         }
     }
@@ -192,6 +192,31 @@ public class View {
                 System.out.println(index + " : " + deck.getName() + " :");
                 View.showDeck(deck);
             }
+        }
+    }
+
+    public static void showSearchResults(String string) throws CardAndItemNotAvailabilityException{
+        if (Account.getCurrentAccount().getCollection().searchCard(string).size() == 0 &
+                Account.getCurrentAccount().getCollection().searchItem(string).size() == 0){
+            throw new CardAndItemNotAvailabilityException();
+        }
+        View.showCards(Account.getCurrentAccount().getCollection().searchCard(string));
+        View.showItems(Account.getCurrentAccount().getCollection().searchItem(string));
+    }
+
+    public static void showCards(ArrayList<Card> cards) {
+        int i = 0;
+        for (Card card : cards){
+            i++;
+            System.out.println(i + ": " + card.infoForDeckWithPrice());
+        }
+    }
+
+    public static void showItems(ArrayList<UsableItem> items){
+        int i=0;
+        for (UsableItem item : items){
+            i++;
+            System.out.println(i + ": " + item.infoWithPrice());
         }
     }
 

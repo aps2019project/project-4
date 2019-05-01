@@ -4,6 +4,7 @@ public class UsableItem {
     private int price;
     private String name;
     private String description;
+    private String id;
 
     public UsableItem(String name, int price) {
     }
@@ -18,6 +19,14 @@ public class UsableItem {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public StringBuilder info() {

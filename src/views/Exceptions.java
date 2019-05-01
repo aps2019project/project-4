@@ -1,5 +1,7 @@
 package views;
 
+import model.Card;
+
 public class Exceptions {
     public static class InvalidUserNameException extends Exception {
         public InvalidUserNameException() {
@@ -31,6 +33,19 @@ public class Exceptions {
         }
     }
 
+    public static class  CardAndItemNotAvailabilityException extends Exception{
+        public CardAndItemNotAvailabilityException(){
+            super("No Card or Item found!");
+        }
+    }
+
+    public static class IDNotAvailableInDeckException extends Exception {
+        public IDNotAvailableInDeckException(String id , String deckName){
+            super("No thing with ID " + id  + " in deck " + deckName + " found!");
+        }
+    }
+
+
     public static class NotValidDeckException extends Exception {
         public NotValidDeckException(String deckName) {
             super("The deck with name " + deckName + " is not valid!");
@@ -43,7 +58,7 @@ public class Exceptions {
         }
 
         public void showMessage() {
-            System.out.println(super.getMessage());
+            System.err.println(super.getMessage());
             View.showHelp();
         }
     }
