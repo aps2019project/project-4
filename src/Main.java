@@ -8,12 +8,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Spell spell = new Spell("", "GodStrength", 4, 450,
-                Enums.FriendOrEnemy.ENEMY_HERO, Enums.WhichCellsType.MONO_CELL, Enums.BuffNutralizer.NONE, 0);
-        Buff disarm = new DisarmBuff(-1, 0);
-        Buff power = new PowerBuff(0, 4, -1 , 0);
+        Spell spell = new Spell("", "Dispel", 0, 2100,
+                Enums.FriendOrEnemy.BOTH, Enums.WhichCellsType.MONO_CELL, Enums.BuffNutralizer.BOTH, 0);
+        Buff disarm = new DisarmBuff(1, 0);
+        Buff power = new PowerBuff(0, 4, 3 , 0);
+        Buff poisonBuff = new PoisonBuff(1, 4, 1, 0);
+        Buff fireBuff = new FireBuff(2, 1, 0);
         //spell.addBuff(disarm);
-        spell.addBuff(power);
+        //spell.addBuff(power);
+        //spell.addBuff(fireBuff);
+        //spell.addBuff(poisonBuff);
+
 
 
         GsonBuilder builder = new GsonBuilder();

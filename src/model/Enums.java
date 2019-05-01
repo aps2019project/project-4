@@ -18,7 +18,7 @@ public class Enums {
     }
 
     public enum FriendOrEnemy{
-        Friend, ENEMY, BOTH, ENEMY_HERO
+        Friend, ENEMY, BOTH, ENEMY_HERO, FRIEND_HERO
     }
 
     public enum WhichCellsType{
@@ -30,7 +30,7 @@ public class Enums {
     }
 
     public enum BuffNutralizer{
-        POSITIVE, NEGATIVE, NONE
+        POSITIVE, NEGATIVE, BOTH, NONE
     }
 
 }

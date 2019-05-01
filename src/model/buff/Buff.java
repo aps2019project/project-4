@@ -5,6 +5,7 @@ import model.Enums;
 import model.Minion;
 
 public class Buff {
+    protected int numberOfTurnsOnTarget;
     protected int changeHp;
     protected int apShield;
     protected int changeAp;
@@ -37,6 +38,14 @@ public class Buff {
 
     public Cell getCell() {
         return cell;
+    }
+
+    public int getNumberOfTurnsOnTarget() {
+        return numberOfTurnsOnTarget;
+    }
+
+    public void setNumberOfTurnsOnTarget(int numberOfTurnsOnTarget) {
+        this.numberOfTurnsOnTarget = numberOfTurnsOnTarget;
     }
 
     public void nutralize(){
