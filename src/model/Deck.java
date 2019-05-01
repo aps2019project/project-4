@@ -39,25 +39,20 @@ public class Deck {
     }
 
     public void removeThingWithID(String id) throws IDNotAvailableInDeckException, NullPointerException {
-        if (this.removeCard(id) == -1 & this.removeItem(id) == -1) {
+        if (this.removeCard(id) & this.removeItem(id))
             throw new IDNotAvailableInDeckException(id, this.getName());
-        }
     }
 
-    public int removeItem(String itemID) throws NullPointerException {
-        if (this.getItem().getId().equals(itemID)) {
-            this.getItem().setId("");
-        } else {
-            return -1;
-        }
-        return 0;
+    public boolean removeItem(String itemID) throws NullPointerException {
+        if (this.getItem().getId().equals(itemID))
+            this.setItem(null);
+        else
+            return true;
+        return false;
     }
 
-    public int removeCard(String cardID) {
-        if (this.getCards().remove(cardID) == null) {
-            return -1;
-        }
-        return 0;
+    public boolean removeCard(String cardID) {
+        return (this.getCards().remove(cardID) == null);
     }
 
     public void sellCard(String cardName) {
@@ -69,8 +64,8 @@ public class Deck {
         }
     }
 
-    public void sellItem(String itemName) throws NullPointerException{
-        if (this.getItem().getName().equals(itemName)){
+    public void sellItem(String itemName) throws NullPointerException {
+        if (this.getItem().getName().equals(itemName)) {
             this.setItem(null);
         }
     }

@@ -9,7 +9,7 @@ public class Collection {
     private HashMap<String, Deck> decks;
     private HashMap<String, Card> allCards;
     private HashMap<String, UsableItem> usableItems;
-    //String is name of card and items
+    //String is id of card and items
 
     public Collection() {
         this.decks = new HashMap<>();
