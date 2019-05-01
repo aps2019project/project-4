@@ -4,6 +4,7 @@ public class Battle {
     private Player player1;
     private Player player2;
     private Player whoseTurn;
+    private Player whoseNext;
     private Player winner;
     private int seconds;
     private GameBoard gameBoard;

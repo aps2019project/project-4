@@ -9,18 +9,20 @@ public class Spell extends Card {
     private Enums.FriendOrEnemy target;
     private Enums.WhichCellsType cellsType;
     private int lengthOfSideOfSquare;
+    private Enums.BuffNutralizer buffNutralizer;
     private ArrayList<Buff> buffs = new ArrayList<>();
     private ArrayList<Cell> cells = new ArrayList<>();
 
     public Spell(String id, String name, int requiredManas,
-                 int price, Enums.FriendOrEnemy target,
-                 Enums.WhichCellsType cellsType, int lengthOfSideOfSquare) {
+                 int price, Enums.FriendOrEnemy target, Enums.WhichCellsType cellsType,
+                 Enums.BuffNutralizer buffNutralizer, int lengthOfSideOfSquare) {
         this.id = id;
         this.name = name;
         this.requiredManas = requiredManas;
         this.price = price;
         this.target = target;
         this.cellsType = cellsType;
+        this.buffNutralizer = buffNutralizer;
         this.lengthOfSideOfSquare = lengthOfSideOfSquare;
     }
     public void addBuff(Buff buff){
