@@ -1,6 +1,7 @@
 package model;
 
 import views.Exceptions.*;
+import views.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +74,7 @@ public class Collection {
             case NONHERO:
                 if (this.getDecks().get(deckName).getCards().get(thingName) != null)
                     throw new CardAvailableInDeckException(thingName, deckName);
-                //th
+                //
                 break;
         }
     }
@@ -90,27 +91,23 @@ public class Collection {
         return usableItems;
     }
 
-
-    public void sellCard(String cardID) throws Exception {
+    //For sell Command
+    public void removeThingFromAllDecks(String thingID) throws Exception {
         for (Deck deck : this.getDecks().values())
-            deck.removeThingWithID(cardID , false);
-    }
-
-    public void sellItem(String itemID) throws Exception {
-        for (Deck deck : this.getDecks().values())
-            deck.removeThingWithID(itemID , false);
+            deck.removeThingWithID(thingID , false);
     }
 
     public void removeCard(String thingID, String deckName) throws DeckNotAvailabilityException, IDNotAvailableInDeckException {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
         this.getDecks().get(deckName).removeThingWithID(thingID , true);
+        View.showRemovalCardMessage(thingID , deckName);
     }
 
     public ArrayList<Card> searchCard(String string) {
         ArrayList<Card> cards = new ArrayList<>();
         this.getAllCards().forEach((s, card) -> {
-            if (s.contains(string)) {
+            if (card.getName().contains(string)) {
                 cards.add(card);
             }
         });
@@ -120,7 +117,7 @@ public class Collection {
     public ArrayList<UsableItem> searchItem(String string) {
         ArrayList<UsableItem> usableItems = new ArrayList<>();
         this.getUsableItems().forEach((s, usableItem) -> {
-            if (s.contains(string)) {
+            if (usableItem.getName().contains(string)) {
                 usableItems.add(usableItem);
             }
         });
@@ -131,12 +128,14 @@ public class Collection {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
         this.getDecks().remove(deckName);
+        View.showRemovalDeckMessage(deckName);
     }
 
     public void addDeck(String deckName) throws DeckAvailabilityException {
         if (this.getDecks().containsKey(deckName))
             throw new DeckAvailabilityException(deckName);
         this.getDecks().put(deckName, new Deck(deckName));
+        View.showAddDeckMessage(deckName);
     }
 
 }

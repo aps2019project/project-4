@@ -131,6 +131,7 @@ public class Account {
             throw new DeckNotAvailabilityException(deckName);
         if (!this.getCollection().getDecks().get(deckName).validateDeck()) throw new NotValidDeckException(deckName);
         this.setSelectedDeck(this.getCollection().getDecks().get(deckName));
+        View.showSelectionDeckMessage(deckName);
     }
 
     public static void saveChanges() {
