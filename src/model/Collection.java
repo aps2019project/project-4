@@ -49,6 +49,30 @@ public class Collection {
         return this.getUsableItems().get(itemName) != null;
     }
 
+    public Enums.TypeOfThing typeOfThing (String thingName) throws CardNotAvailableInCollectionException{
+        if (isHaveSpecialHero(thingName)) return Enums.TypeOfThing.HERO;
+        if (isHaveSpecialItem(thingName)) return Enums.TypeOfThing.ITEM;
+        if (isHaveSpecialCardNonHero(thingName)) return Enums.TypeOfThing.NONHERO;
+        throw new CardNotAvailableInCollectionException(thingName);
+    }
+
+    public void addThingToDeck(String thingName , String deckName) throws DeckNotAvailabilityException , CardNotAvailableInCollectionException{
+        if (this.getDecks().get(deckName) == null)
+            throw new DeckNotAvailabilityException(deckName);
+        switch (typeOfThing(thingName)){
+            case HERO:
+
+                break;
+            case ITEM:
+
+                break;
+
+            case NONHERO:
+
+                break;
+        }
+    }
+
     public HashMap<String, Card> getNonHeroCards() {
         HashMap<String, Card> cardHashMap = new HashMap<>();
         this.getAllCards().forEach((s, card) -> {

@@ -52,6 +52,12 @@ public class Exceptions {
         }
     }
 
+    public static class CardNotAvailableInCollectionException extends Exception {
+        public CardNotAvailableInCollectionException(String thingName){
+            super("No thing with name " + thingName + "found!");
+        }
+    }
+
     public static class InvalidCommandException extends Exception {
         public InvalidCommandException() {
             super("Invalid Command");

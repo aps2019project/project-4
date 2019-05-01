@@ -18,7 +18,7 @@ public class Enums {
     }
 
     public enum FriendOrEnemy{
-        Friend, ENEMY, BOTH
+        FRIEND, ENEMY, BOTH
     }
 
     public enum WhichCellsType{
@@ -26,7 +26,11 @@ public class Enums {
     }
 
     public enum OnCellOrSoldier{
-        CEll, SOLDIER;
+        CEll, SOLDIER
+    }
+
+    public enum TypeOfThing{
+        HERO , NONHERO , ITEM
     }
 
 }
