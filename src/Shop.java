@@ -4,5 +4,5 @@ public class Shop {
     HashMap<String, Card> cards;
     HashMap<String, Item> items;
 
-    
+
 }
