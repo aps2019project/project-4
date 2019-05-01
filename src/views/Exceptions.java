@@ -33,15 +33,15 @@ public class Exceptions {
         }
     }
 
-    public static class  CardAndItemNotAvailabilityException extends Exception{
-        public CardAndItemNotAvailabilityException(){
+    public static class CardAndItemNotAvailabilityException extends Exception {
+        public CardAndItemNotAvailabilityException() {
             super("No Card or Item found!");
         }
     }
 
     public static class IDNotAvailableInDeckException extends Exception {
-        public IDNotAvailableInDeckException(String id , String deckName){
-            super("No thing with ID " + id  + " in deck " + deckName + " found!");
+        public IDNotAvailableInDeckException(String id, String deckName) {
+            super("No thing with ID " + id + " in deck " + deckName + " found!");
         }
     }
 
@@ -49,6 +49,30 @@ public class Exceptions {
     public static class NotValidDeckException extends Exception {
         public NotValidDeckException(String deckName) {
             super("The deck with name " + deckName + " is not valid!");
+        }
+    }
+
+    public static class ThingNotAvailableInCollectionException extends Exception {
+        public ThingNotAvailableInCollectionException(String thingName) {
+            super("No thing with name " + thingName + "found!");
+        }
+    }
+
+    public static class HeroAvailableInDeckException extends Exception {
+        public HeroAvailableInDeckException(String deckName) {
+            super("The " + deckName + " has hero!");
+        }
+    }
+
+    public static class CardAvailableInDeckException extends Exception {
+        public CardAvailableInDeckException(String cardName, String deckName) {
+            super("Card with name " + cardName + " is Available in deck " + deckName + "!");
+        }
+    }
+
+    public static class ItemAvailableInDeckException extends Exception {
+        public ItemAvailableInDeckException(String itemName , String deckName){
+            super("Item with name " + itemName + " is Available in deck " + deckName + "!");
         }
     }
 

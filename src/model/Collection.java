@@ -9,7 +9,7 @@ public class Collection {
     private HashMap<String, Deck> decks;
     private HashMap<String, Card> allCards;
     private HashMap<String, UsableItem> usableItems;
-    //String is name of card and items
+    //String is id of card and items
 
     public Collection() {
         this.decks = new HashMap<>();
@@ -47,6 +47,35 @@ public class Collection {
 
     public boolean isHaveSpecialItem(String itemName) {
         return this.getUsableItems().get(itemName) != null;
+    }
+
+    public Enums.TypeOfThing typeOfThing(String thingName) throws ThingNotAvailableInCollectionException {
+        if (isHaveSpecialHero(thingName)) return Enums.TypeOfThing.HERO;
+        if (isHaveSpecialItem(thingName)) return Enums.TypeOfThing.ITEM;
+        if (isHaveSpecialCardNonHero(thingName)) return Enums.TypeOfThing.NONHERO;
+        throw new ThingNotAvailableInCollectionException(thingName);
+    }
+
+    public void addThingToDeck(String thingName, String deckName) throws Exception {
+        if (this.getDecks().get(deckName) == null)
+            throw new DeckNotAvailabilityException(deckName);
+        switch (typeOfThing(thingName)) {
+            case HERO:
+                if (this.getDecks().get(deckName).isHaveHero())
+                    throw new HeroAvailableInDeckException(deckName);
+                this.getDecks().get(thingName).addCard(this.getAllCards().get(thingName));
+                break;
+            case ITEM:
+                if (this.getDecks().get(deckName).getItem() != null)
+                    throw new ItemAvailableInDeckException(thingName , deckName);
+                this.getDecks().get(deckName).setItem(this.getUsableItems().get(thingName));
+                break;
+            case NONHERO:
+                if (this.getDecks().get(deckName).getCards().get(thingName) != null)
+                    throw new CardAvailableInDeckException(thingName , deckName);
+                //th
+                break;
+        }
     }
 
     public HashMap<String, Card> getNonHeroCards() {

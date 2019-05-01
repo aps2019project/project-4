@@ -26,7 +26,11 @@ public class Enums {
     }
 
     public enum OnCellOrSoldier{
-        CEll, SOLDIER;
+        CEll, SOLDIER
+    }
+
+    public enum TypeOfThing{
+        HERO , NONHERO , ITEM
     }
 
     public enum BuffNutralizer{

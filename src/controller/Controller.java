@@ -260,7 +260,7 @@ public class Controller {
                 Account.getCurrentAccount().getCollection().removeDeck(matcher.group(1));
                 break;
             case 6:
-                //TODO add Card
+                Account.getCurrentAccount().getCollection().addThingToDeck(matcher.group(1) , matcher.group(2));
                 break;
             case 7:
                 Account.getCurrentAccount().getCollection().removeCard(matcher.group(1), matcher.group(2));
