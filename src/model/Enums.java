@@ -18,11 +18,11 @@ public class Enums {
     }
 
     public enum FriendOrEnemy{
-        Friend, ENEMY, BOTH, ENEMY_HERO, FRIEND_HERO
+        Friend, ENEMY, BOTH, ENEMY_HERO, FRIEND_HERO, FRIEND_MINION, ENEMY_MINION
     }
 
     public enum WhichCellsType{
-        MONO_CELL, SQUARE, COLUMN, ROW, ALL
+        MONO_CELL, SQUARE, COLUMN, ROW, ALL, RANDOM_MINION_AROUND_HERO
     }
 
     public enum OnCellOrSoldier{
