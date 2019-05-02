@@ -131,14 +131,47 @@ public class View {
     public static void showOutOfDistanceMessage() {
         System.out.println("Opponent minion or hero is unavailable for attack");
     }
-    public static void showHasAttackedMessage(String string){
+
+    public static void showHasAttackedMessage(String string) {
         System.out.printf("This card with id: %s has attacked this turn\n", string);
     }
-    public static void showInsertedMinionMessage(String name, String id, int x, int y){
+
+    public static void showInsertedMinionMessage(String name, String id, int x, int y) {
         System.out.printf("%s with id: %s inserted in (%d, %d)\n", name, id, x, y);
     }
+
+    public static void showSelectionDeckMessage(String deckName) {
+        System.out.println("The deck " + deckName + "selected!");
+    }
+
     public static void showInvalidTargetMessage() {
-        System.out.println("Invalid target");
+        System.err.println("Invalid target");
+    }
+
+    public static void showAddDeckMessage(String deckName) {
+        System.out.println("The deck with name " + deckName + " created successfully!");
+    }
+
+    public static void showRemovalDeckMessage(String deckName) {
+        System.out.println("The " + deckName + " deck removed successfully!");
+    }
+
+    public static void showRemovalCardMessage(String thingID, String deckName) {
+        System.out.println("The " + thingID + " from deck" + deckName + " removed successfully!");
+    }
+
+    public static void showAddThingToDeckMessage(String thingID, String deckName) throws Exception{
+        switch (Account.getCurrentAccount().getCollection().typeOfThing(thingID)) {
+            case HERO:
+                System.out.println("The hero " + thingID + " added to deck " + deckName + "!");
+                break;
+            case ITEM:
+                System.out.println("The item " + thingID + " added to deck " + deckName + "!");
+                break;
+            case NONHERO:
+                System.out.println("The card " + thingID + " added to deck " + deckName + "!");
+                break;
+        }
     }
 
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {
@@ -195,9 +228,9 @@ public class View {
         }
     }
 
-    public static void showSearchResults(String string) throws CardAndItemNotAvailabilityException{
+    public static void showSearchResults(String string) throws CardAndItemNotAvailabilityException {
         if (Account.getCurrentAccount().getCollection().searchCard(string).size() == 0 &
-                Account.getCurrentAccount().getCollection().searchItem(string).size() == 0){
+                Account.getCurrentAccount().getCollection().searchItem(string).size() == 0) {
             throw new CardAndItemNotAvailabilityException();
         }
         View.showCards(Account.getCurrentAccount().getCollection().searchCard(string));
@@ -206,15 +239,15 @@ public class View {
 
     public static void showCards(ArrayList<Card> cards) {
         int i = 0;
-        for (Card card : cards){
+        for (Card card : cards) {
             i++;
             System.out.println(i + ": " + card.infoForDeckWithPrice());
         }
     }
 
-    public static void showItems(ArrayList<UsableItem> items){
-        int i=0;
-        for (UsableItem item : items){
+    public static void showItems(ArrayList<UsableItem> items) {
+        int i = 0;
+        for (UsableItem item : items) {
             i++;
             System.out.println(i + ": " + item.infoWithPrice());
         }

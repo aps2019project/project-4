@@ -49,7 +49,7 @@ public class Controller {
         patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
-        patternsOfShopMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile(""));
         //TODO add shop menu
 
@@ -185,7 +185,7 @@ public class Controller {
     public static void doMainMenuCommand(int index) {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
-        matcher.find();
+        matcher.matches();
         switch (index) {
             case 0:
                 Controller.setMenu(matcher.group(1));
@@ -206,7 +206,7 @@ public class Controller {
     public static void doAccountMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
-        matcher.find();
+        matcher.matches();
         switch (index) {
             case 0:
                 Account.createAccount(matcher.group(1));
@@ -232,14 +232,14 @@ public class Controller {
     public static void doBattleMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
-        matcher.find();
+        matcher.matches();
 
     }
 
     public static void doCollectionMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
-        matcher.find();
+        matcher.matches();
         switch (index) {
             case 0:
                 Controller.setMenu(Enums.Menus.MAIN);
@@ -286,7 +286,7 @@ public class Controller {
     public static void doShopMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
-        matcher.find();
+        matcher.matches();
 
     }
 
@@ -300,9 +300,7 @@ public class Controller {
 
     public static Boolean getYesOrNo() {
         String yOrN = Controller.getNextLine();
-        if (yOrN.equals("Y"))
-            return true;
-        return false;
+        return  (yOrN.equals("Y"));
     }
 
     public static void setMenu(Enums.Menus menu) {

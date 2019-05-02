@@ -1,6 +1,7 @@
 package model;
 
 import views.Exceptions.*;
+import views.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,45 +36,51 @@ public class Collection {
         return heros;
     }
 
-    public boolean isHaveSpecialHero(String heroName) {
-        Card card = this.getAllCards().get(heroName);
+    public boolean isHaveSpecialHero(String heroID) {
+        Card card = this.getAllCards().get(heroID);
         return card instanceof Hero;
     }
 
-    public boolean isHaveSpecialCardNonHero(String cardName) {
-        Card card = this.getAllCards().get(cardName);
+    public boolean isHaveSpecialCardNonHero(String cardID) {
+        Card card = this.getAllCards().get(cardID);
         return !(card instanceof Hero);
     }
 
-    public boolean isHaveSpecialItem(String itemName) {
-        return this.getUsableItems().get(itemName) != null;
+    public boolean isHaveSpecialItem(String itemID) {
+        return this.getUsableItems().get(itemID) != null;
     }
 
-    public Enums.TypeOfThing typeOfThing(String thingName) throws ThingNotAvailableInCollectionException {
-        if (isHaveSpecialHero(thingName)) return Enums.TypeOfThing.HERO;
-        if (isHaveSpecialItem(thingName)) return Enums.TypeOfThing.ITEM;
-        if (isHaveSpecialCardNonHero(thingName)) return Enums.TypeOfThing.NONHERO;
-        throw new ThingNotAvailableInCollectionException(thingName);
+    public Enums.TypeOfThing typeOfThing(String thingID) throws ThingNotAvailableInCollectionException {
+        if (isHaveSpecialHero(thingID)) return Enums.TypeOfThing.HERO;
+        if (isHaveSpecialItem(thingID)) return Enums.TypeOfThing.ITEM;
+        if (isHaveSpecialCardNonHero(thingID)) return Enums.TypeOfThing.NONHERO;
+        throw new ThingNotAvailableInCollectionException(thingID);
     }
 
-    public void addThingToDeck(String thingName, String deckName) throws Exception {
+    public void addThingToDeck(String thingID, String deckName) throws Exception {
         if (this.getDecks().get(deckName) == null)
             throw new DeckNotAvailabilityException(deckName);
-        switch (typeOfThing(thingName)) {
+        if (this.getDecks().get(deckName).getCards().size() == 20)
+            throw new DeckFullException(deckName);
+        Enums.TypeOfThing typeOfThing = typeOfThing(thingID);
+        switch (typeOfThing) {
             case HERO:
                 if (this.getDecks().get(deckName).isHaveHero())
                     throw new HeroAvailableInDeckException(deckName);
-                this.getDecks().get(thingName).addCard(this.getAllCards().get(thingName));
+                this.getDecks().get(deckName).addCard(this.getAllCards().get(thingID));
+                View.showAddThingToDeckMessage(thingID , deckName);
                 break;
             case ITEM:
                 if (this.getDecks().get(deckName).getItem() != null)
-                    throw new ItemAvailableInDeckException(thingName , deckName);
-                this.getDecks().get(deckName).setItem(this.getUsableItems().get(thingName));
+                    throw new ItemAvailableInDeckException(thingID, deckName);
+                this.getDecks().get(deckName).setItem(this.getUsableItems().get(thingID));
+                View.showAddThingToDeckMessage(thingID , deckName);
                 break;
             case NONHERO:
-                if (this.getDecks().get(deckName).getCards().get(thingName) != null)
-                    throw new CardAvailableInDeckException(thingName , deckName);
-                //th
+                if (this.getDecks().get(deckName).getCards().get(thingID) != null)
+                    throw new CardAvailableInDeckException(thingID, deckName);
+                this.getDecks().get(deckName).addCard(this.getAllCards().get(thingID));
+                View.showAddThingToDeckMessage(thingID , deckName);
                 break;
         }
     }
@@ -90,16 +97,23 @@ public class Collection {
         return usableItems;
     }
 
+    //For sell Command
+    public void removeThingFromAllDecks(String thingID) throws Exception {
+        for (Deck deck : this.getDecks().values())
+            deck.removeThingWithID(thingID , false);
+    }
+
     public void removeCard(String thingID, String deckName) throws DeckNotAvailabilityException, IDNotAvailableInDeckException {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
-        this.getDecks().get(deckName).removeThingWithID(thingID);
+        this.getDecks().get(deckName).removeThingWithID(thingID , true);
+        View.showRemovalCardMessage(thingID , deckName);
     }
 
     public ArrayList<Card> searchCard(String string) {
         ArrayList<Card> cards = new ArrayList<>();
         this.getAllCards().forEach((s, card) -> {
-            if (s.contains(string)) {
+            if (card.getName().contains(string)) {
                 cards.add(card);
             }
         });
@@ -109,7 +123,7 @@ public class Collection {
     public ArrayList<UsableItem> searchItem(String string) {
         ArrayList<UsableItem> usableItems = new ArrayList<>();
         this.getUsableItems().forEach((s, usableItem) -> {
-            if (s.contains(string)) {
+            if (usableItem.getName().contains(string)) {
                 usableItems.add(usableItem);
             }
         });
@@ -120,12 +134,14 @@ public class Collection {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
         this.getDecks().remove(deckName);
+        View.showRemovalDeckMessage(deckName);
     }
 
     public void addDeck(String deckName) throws DeckAvailabilityException {
         if (this.getDecks().containsKey(deckName))
             throw new DeckAvailabilityException(deckName);
         this.getDecks().put(deckName, new Deck(deckName));
+        View.showAddDeckMessage(deckName);
     }
 
 }
