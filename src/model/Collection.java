@@ -36,45 +36,51 @@ public class Collection {
         return heros;
     }
 
-    public boolean isHaveSpecialHero(String heroName) {
-        Card card = this.getAllCards().get(heroName);
+    public boolean isHaveSpecialHero(String heroID) {
+        Card card = this.getAllCards().get(heroID);
         return card instanceof Hero;
     }
 
-    public boolean isHaveSpecialCardNonHero(String cardName) {
-        Card card = this.getAllCards().get(cardName);
+    public boolean isHaveSpecialCardNonHero(String cardID) {
+        Card card = this.getAllCards().get(cardID);
         return !(card instanceof Hero);
     }
 
-    public boolean isHaveSpecialItem(String itemName) {
-        return this.getUsableItems().get(itemName) != null;
+    public boolean isHaveSpecialItem(String itemID) {
+        return this.getUsableItems().get(itemID) != null;
     }
 
-    public Enums.TypeOfThing typeOfThing(String thingName) throws ThingNotAvailableInCollectionException {
-        if (isHaveSpecialHero(thingName)) return Enums.TypeOfThing.HERO;
-        if (isHaveSpecialItem(thingName)) return Enums.TypeOfThing.ITEM;
-        if (isHaveSpecialCardNonHero(thingName)) return Enums.TypeOfThing.NONHERO;
-        throw new ThingNotAvailableInCollectionException(thingName);
+    public Enums.TypeOfThing typeOfThing(String thingID) throws ThingNotAvailableInCollectionException {
+        if (isHaveSpecialHero(thingID)) return Enums.TypeOfThing.HERO;
+        if (isHaveSpecialItem(thingID)) return Enums.TypeOfThing.ITEM;
+        if (isHaveSpecialCardNonHero(thingID)) return Enums.TypeOfThing.NONHERO;
+        throw new ThingNotAvailableInCollectionException(thingID);
     }
 
-    public void addThingToDeck(String thingName, String deckName) throws Exception {
+    public void addThingToDeck(String thingID, String deckName) throws Exception {
         if (this.getDecks().get(deckName) == null)
             throw new DeckNotAvailabilityException(deckName);
-        switch (typeOfThing(thingName)) {
+        if (this.getDecks().get(deckName).getCards().size() == 20)
+            throw new DeckFullException(deckName);
+        Enums.TypeOfThing typeOfThing = typeOfThing(thingID);
+        switch (typeOfThing) {
             case HERO:
                 if (this.getDecks().get(deckName).isHaveHero())
                     throw new HeroAvailableInDeckException(deckName);
-                this.getDecks().get(thingName).addCard(this.getAllCards().get(thingName));
+                this.getDecks().get(deckName).addCard(this.getAllCards().get(thingID));
+                View.showAddThingToDeckMessage(thingID , deckName);
                 break;
             case ITEM:
                 if (this.getDecks().get(deckName).getItem() != null)
-                    throw new ItemAvailableInDeckException(thingName, deckName);
-                this.getDecks().get(deckName).setItem(this.getUsableItems().get(thingName));
+                    throw new ItemAvailableInDeckException(thingID, deckName);
+                this.getDecks().get(deckName).setItem(this.getUsableItems().get(thingID));
+                View.showAddThingToDeckMessage(thingID , deckName);
                 break;
             case NONHERO:
-                if (this.getDecks().get(deckName).getCards().get(thingName) != null)
-                    throw new CardAvailableInDeckException(thingName, deckName);
-                //
+                if (this.getDecks().get(deckName).getCards().get(thingID) != null)
+                    throw new CardAvailableInDeckException(thingID, deckName);
+                this.getDecks().get(deckName).addCard(this.getAllCards().get(thingID));
+                View.showAddThingToDeckMessage(thingID , deckName);
                 break;
         }
     }

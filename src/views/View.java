@@ -149,17 +149,30 @@ public class View {
     }
 
     public static void showAddDeckMessage(String deckName) {
-        System.out.println("The deck with name " + deckName + "created successfully!");
+        System.out.println("The deck with name " + deckName + " created successfully!");
     }
 
     public static void showRemovalDeckMessage(String deckName) {
-        System.out.println("The " + deckName + "deck removed successfully!");
+        System.out.println("The " + deckName + " deck removed successfully!");
     }
 
     public static void showRemovalCardMessage(String thingID, String deckName) {
-        System.out.println("The " + thingID + "from deck" + deckName + "removed successfully!");
+        System.out.println("The " + thingID + " from deck" + deckName + " removed successfully!");
     }
 
+    public static void showAddThingToDeckMessage(String thingID, String deckName) throws Exception{
+        switch (Account.getCurrentAccount().getCollection().typeOfThing(thingID)) {
+            case HERO:
+                System.out.println("The hero " + thingID + " added to deck " + deckName + "!");
+                break;
+            case ITEM:
+                System.out.println("The item " + thingID + " added to deck " + deckName + "!");
+                break;
+            case NONHERO:
+                System.out.println("The card " + thingID + " added to deck " + deckName + "!");
+                break;
+        }
+    }
 
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {
         if (!Account.getCurrentAccount().getCollection().getDecks().containsKey(deckName))

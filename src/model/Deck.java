@@ -33,12 +33,10 @@ public class Deck {
     }
 
     public void addCard(Card card) {
-        this.getCards().put(card.getName(), card);
-        //TODO add ID
-        //this is wrong
+        this.getCards().put(card.getId(), card);
     }
 
-    public void removeThingWithID(String id , Boolean throwError) throws IDNotAvailableInDeckException, NullPointerException {
+    public void removeThingWithID(String id, Boolean throwError) throws IDNotAvailableInDeckException, NullPointerException {
         boolean isNotRemoval = this.removeCard(id) & this.removeItem(id);
         if (isNotRemoval & throwError)
             throw new IDNotAvailableInDeckException(id, this.getName());
@@ -58,29 +56,20 @@ public class Deck {
 
     public int getNumOfOtherHeroCards() {
         int i = 0;
-        for (Card card : this.getCards().values()) {
-            if (!(card instanceof Hero)) {
+        for (Card card : this.getCards().values())
+            if (!(card instanceof Hero))
                 i++;
-            }
-        }
         return i;
     }
 
     public boolean isHaveHero() {
-        for (Card card : this.getCards().values()) {
-            if (card instanceof Hero) {
-                return true;
-            }
-        }
-        return false;
+        return this.getHero() != null;
     }
 
     public Hero getHero() {
-        for (Card card : this.getCards().values()) {
-            if (card instanceof Hero) {
+        for (Card card : this.getCards().values())
+            if (card instanceof Hero)
                 return (Hero) card;
-            }
-        }
         return null;
     }
 

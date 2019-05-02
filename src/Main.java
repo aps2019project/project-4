@@ -7,7 +7,7 @@ import model.buff.*;
 public class Main {
 
     public static void main(String[] args) {
-
+        Controller.start();
         Spell spell = new Spell("", "Dispel", 0, 2100,
                 Enums.FriendOrEnemy.BOTH, Enums.WhichCellsType.MONO_CELL, Enums.BuffNutralizer.BOTH, 0);
         Buff disarm = new DisarmBuff(1, 0);
