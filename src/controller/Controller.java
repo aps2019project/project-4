@@ -141,7 +141,7 @@ public class Controller {
         int i = 0;
         for (Pattern pattern : getPatterns()) {
             Matcher matcher = pattern.matcher(getCommand().trim());
-            if (matcher.find())
+            if (matcher.matches())
                 return i;
             i++;
         }
@@ -175,7 +175,7 @@ public class Controller {
         } catch (InvalidCommandException e) {
             e.showMessage();
         } catch (NullPointerException e) {
-            //ignore
+            System.err.println("ddd");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -246,9 +246,11 @@ public class Controller {
                 break;
             case 1:
                 View.showAllCards();
+                System.out.println("show all cards");
                 break;
             case 2:
                 View.showSearchResults(matcher.group(1));
+                System.out.println("show search cards");
                 break;
             case 3:
                 Account.saveChanges();
@@ -261,6 +263,7 @@ public class Controller {
                 break;
             case 6:
                 Account.getCurrentAccount().getCollection().addThingToDeck(matcher.group(1) , matcher.group(2));
+                System.out.println("add thing");
                 break;
             case 7:
                 Account.getCurrentAccount().getCollection().removeCard(matcher.group(1), matcher.group(2));
@@ -273,9 +276,11 @@ public class Controller {
                 break;
             case 10:
                 View.showAllDecks();
+                System.out.println("show all decks");
                 break;
             case 11:
                 View.showDeck(matcher.group(1));
+                System.out.println("show a deck");
                 break;
             case 12:
                 View.showHelp();
