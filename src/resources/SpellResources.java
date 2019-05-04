@@ -4,107 +4,109 @@ import java.util.HashMap;
 
 public class SpellResources {
 
-    private static HashMap<String, String> spellResource;
+    private static HashMap<String, String> spellResource = new HashMap<>();
 
-    public static void setSpellResource(){
-
+    public static HashMap<String, String> getSpellResource() {
+        return spellResource;
     }
 
-    String totalDisarm = "{\n" +
-            "\"cellOrSoldier\": \"SOLDIER\",\n" +
-            "\"target\": \"ENEMY\",\n" +
-            "\"cellsType\": \"MONO_CELL\",\n" +
-            "\"lengthOfSideOfSquare\": 0,\n" +
-            "\"buffNutralizer\": \"NONE\",\n" +
-            "\"buffs\": [\n" +
-            "{\n" +
-            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
-            "\"numberOfTurnsOnTarget\": 0,\n" +
-            "\"changeHp\": 0,\n" +
-            "\"apShield\": 0,\n" +
-            "\"changeAp\": 0,\n" +
-            "\"numberOfTurns\": -1,\n" +
-            "\"delay\": 0,\n" +
-            "\"isDisarmer\": true,\n" +
-            "\"isStunner\": false,\n" +
-            "\"isPositive\": false,\n" +
-            "\"isActive\": false\n" +
-            "}\n" +
-            "],\n" +
-            "\"cells\": [],\n" +
-            "\"id\": \"\",\n" +
-            "\"name\": \"TotalDisarm\",\n" +
-            "\"requiredManas\": 0,\n" +
-            "\"price\": 1000\n" +
-            "}";
-    String AreaDispell = "{\n" +
-            "\"cellOrSoldier\": \"SOLDIER\",\n" +
-            "\"target\": \"BOTH\",\n" +
-            "\"cellsType\": \"SQUARE\",\n" +
-            "\"lengthOfSideOfSquare\": 2,\n" +
-            "\"buffNutralizer\": \"BOTH\",\n" +
-            "\"buffs\": [],\n" +
-            "\"cells\": [],\n" +
-            "\"id\": \"\",\n" +
-            "\"name\": \"AreaDispel\",\n" +
-            "\"requiredManas\": 2,\n" +
-            "\"price\": 1500\n" +
-            "}";
-
-    String Empower = "{\n" +
-            "\"cellOrSoldier\": \"SOLDIER\",\n" +
-            "\"target\": \"FRIEND\",\n" +
-            "\"cellsType\": \"MONO_CELL\",\n" +
-            "\"lengthOfSideOfSquare\": 0,\n" +
-            "\"buffNutralizer\": \"NONE\",\n" +
-            "\"buffs\": [\n" +
-            "{\n" +
-            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
-            "\"numberOfTurnsOnTarget\": 0,\n" +
-            "\"changeHp\": 0,\n" +
-            "\"apShield\": 0,\n" +
-            "\"changeAp\": 2,\n" +
-            "\"numberOfTurns\": -1,\n" +
-            "\"delay\": 0,\n" +
-            "\"isDisarmer\": false,\n" +
-            "\"isStunner\": false,\n" +
-            "\"isPositive\": true,\n" +
-            "\"isActive\": false\n" +
-            "}\n" +
-            "],\n" +
-            "\"cells\": [],\n" +
-            "\"id\": \"\",\n" +
-            "\"name\": \"Empower\",\n" +
-            "\"requiredManas\": 1,\n" +
-            "\"price\": 250\n" +
-            "}";
-    String FireBall = "{\n" +
-            "\"cellOrSoldier\": \"SOLDIER\",\n" +
-            "\"target\": \"ENEMY\",\n" +
-            "\"cellsType\": \"MONO_CELL\",\n" +
-            "\"lengthOfSideOfSquare\": 0,\n" +
-            "\"buffNutralizer\": \"NONE\",\n" +
-            "\"buffs\": [\n" +
-            "{\n" +
-            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
-            "\"numberOfTurnsOnTarget\": 0,\n" +
-            "\"changeHp\": -4,\n" +
-            "\"apShield\": 0,\n" +
-            "\"changeAp\": 0,\n" +
-            "\"numberOfTurns\": 1,\n" +
-            "\"delay\": 0,\n" +
-            "\"isDisarmer\": false,\n" +
-            "\"isStunner\": false,\n" +
-            "\"isPositive\": false,\n" +
-            "\"isActive\": false\n" +
-            "}\n" +
-            "],\n" +
-            "\"cells\": [],\n" +
-            "\"id\": \"\",\n" +
-            "\"name\": \"FireBall\",\n" +
-            "\"requiredManas\": 1,\n" +
-            "\"price\": 400\n" +
-            "}";
+    public static void setSpellResource(){
+        getSpellResource().put("total disarm" , "{\n" +
+                "\"cellOrSoldier\": \"SOLDIER\",\n" +
+                "\"target\": \"ENEMY\",\n" +
+                "\"cellsType\": \"MONO_CELL\",\n" +
+                "\"lengthOfSideOfSquare\": 0,\n" +
+                "\"buffNutralizer\": \"NONE\",\n" +
+                "\"buffs\": [\n" +
+                "{\n" +
+                "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+                "\"numberOfTurnsOnTarget\": 0,\n" +
+                "\"changeHp\": 0,\n" +
+                "\"apShield\": 0,\n" +
+                "\"changeAp\": 0,\n" +
+                "\"numberOfTurns\": -1,\n" +
+                "\"delay\": 0,\n" +
+                "\"isDisarmer\": true,\n" +
+                "\"isStunner\": false,\n" +
+                "\"isPositive\": false,\n" +
+                "\"isActive\": false\n" +
+                "}\n" +
+                "],\n" +
+                "\"cells\": [],\n" +
+                "\"id\": \"\",\n" +
+                "\"name\": \"TotalDisarm\",\n" +
+                "\"requiredManas\": 0,\n" +
+                "\"price\": 1000\n" +
+                "}");
+        getSpellResource().put("area dispell" ,  "{\n" +
+                "\"cellOrSoldier\": \"SOLDIER\",\n" +
+                "\"target\": \"BOTH\",\n" +
+                "\"cellsType\": \"SQUARE\",\n" +
+                "\"lengthOfSideOfSquare\": 2,\n" +
+                "\"buffNutralizer\": \"BOTH\",\n" +
+                "\"buffs\": [],\n" +
+                "\"cells\": [],\n" +
+                "\"id\": \"\",\n" +
+                "\"name\": \"AreaDispel\",\n" +
+                "\"requiredManas\": 2,\n" +
+                "\"price\": 1500\n" +
+                "}");
+        getSpellResource().put("empower" ,  "{\n" +
+                "\"cellOrSoldier\": \"SOLDIER\",\n" +
+                "\"target\": \"FRIEND\",\n" +
+                "\"cellsType\": \"MONO_CELL\",\n" +
+                "\"lengthOfSideOfSquare\": 0,\n" +
+                "\"buffNutralizer\": \"NONE\",\n" +
+                "\"buffs\": [\n" +
+                "{\n" +
+                "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+                "\"numberOfTurnsOnTarget\": 0,\n" +
+                "\"changeHp\": 0,\n" +
+                "\"apShield\": 0,\n" +
+                "\"changeAp\": 2,\n" +
+                "\"numberOfTurns\": -1,\n" +
+                "\"delay\": 0,\n" +
+                "\"isDisarmer\": false,\n" +
+                "\"isStunner\": false,\n" +
+                "\"isPositive\": true,\n" +
+                "\"isActive\": false\n" +
+                "}\n" +
+                "],\n" +
+                "\"cells\": [],\n" +
+                "\"id\": \"\",\n" +
+                "\"name\": \"Empower\",\n" +
+                "\"requiredManas\": 1,\n" +
+                "\"price\": 250\n" +
+                "}");
+        getSpellResource().put("fireball" , "{\n" +
+                "\"cellOrSoldier\": \"SOLDIER\",\n" +
+                "\"target\": \"ENEMY\",\n" +
+                "\"cellsType\": \"MONO_CELL\",\n" +
+                "\"lengthOfSideOfSquare\": 0,\n" +
+                "\"buffNutralizer\": \"NONE\",\n" +
+                "\"buffs\": [\n" +
+                "{\n" +
+                "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+                "\"numberOfTurnsOnTarget\": 0,\n" +
+                "\"changeHp\": -4,\n" +
+                "\"apShield\": 0,\n" +
+                "\"changeAp\": 0,\n" +
+                "\"numberOfTurns\": 1,\n" +
+                "\"delay\": 0,\n" +
+                "\"isDisarmer\": false,\n" +
+                "\"isStunner\": false,\n" +
+                "\"isPositive\": false,\n" +
+                "\"isActive\": false\n" +
+                "}\n" +
+                "],\n" +
+                "\"cells\": [],\n" +
+                "\"id\": \"\",\n" +
+                "\"name\": \"FireBall\",\n" +
+                "\"requiredManas\": 1,\n" +
+                "\"price\": 400\n" +
+                "}");
+        //todo add other spells
+    }
 
     String GodStrength = "{\n" +
             "\"cellOrSoldier\": \"SOLDIER\",\n" +

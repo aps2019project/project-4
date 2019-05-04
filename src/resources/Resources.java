@@ -12,7 +12,6 @@ public class Resources {
     }
 
     public Card getSpeceficCard(String cardName) {
-        //todo write method
-        return null;
+        //if (ItemResources.getItemResource())
     }
 }
