@@ -30,6 +30,10 @@ public class Spell extends Card {
         buffs.add(buff);
     }
 
+    public ArrayList<Buff> getBuffs() {
+        return buffs;
+    }
+
     @Override
     public void insert(Cell cell){
 

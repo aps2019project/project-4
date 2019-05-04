@@ -14,7 +14,7 @@ public class Buff {
     protected boolean isDisarmer;
     protected boolean isStunner;
     protected boolean isPositive;
-    protected Enums.OnCellOrSoldier cellOrSoldier;
+    protected Enums.OnCellOrSoldier onCellOrSoldier;
     protected Minion minion;
     protected Cell cell;
     protected boolean isActive;
@@ -50,5 +50,9 @@ public class Buff {
 
     public void nutralize(){
 
+    }
+
+    public Enums.OnCellOrSoldier getCellOrSoldier() {
+        return onCellOrSoldier;
     }
 }
