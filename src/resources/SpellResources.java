@@ -1,8 +1,14 @@
-package resourses;
+package resources;
+
+import java.util.HashMap;
 
 public class SpellResources {
 
+    private static HashMap<String, String> spellResource;
 
+    public static void setSpellResource(){
+
+    }
 
     String totalDisarm = "{\n" +
             "\"cellOrSoldier\": \"SOLDIER\",\n" +

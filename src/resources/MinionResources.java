@@ -1,8 +1,15 @@
-package resourses;
+package resources;
 
-import com.google.gson.GsonBuilder;
+import java.util.HashMap;
 
 public class MinionResources {
+
+    private static HashMap<String, String> minionResource;
+
+    public static void setMinionResource(){
+
+    }
+
     private String persianArcher = "{\n" +
             "\"healthPoint\": 2,\n" +
             "\"attackPoint\": 6,\n" +

@@ -2,7 +2,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.*;
 import model.buff.*;
-import resourses.SpellResources;
+import resources.SpellResources;
 
 public class Main {
 
