@@ -4,6 +4,7 @@ import model.Account;
 import model.Enums;
 import views.View;
 import views.Exceptions.*;
+import resources.Resources;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -122,6 +123,7 @@ public class Controller {
         setMenu(Enums.Menus.ACCOUNT);
         setPatterns();
         setScanner();
+        Resources.setResources();
         View.showMenu();
         while (!isEndedGame()) {
             View.showNameOfMenu();
