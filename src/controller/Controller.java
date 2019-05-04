@@ -23,8 +23,8 @@ public class Controller {
     private final static ArrayList<Pattern> patternsOfBattleMenu = new ArrayList<>();
 
     public static void setPatterns() {
-        patternsOfAccountMenu.add(Pattern.compile("create account ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfAccountMenu.add(Pattern.compile("login ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfAccountMenu.add(Pattern.compile("create account (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfAccountMenu.add(Pattern.compile("login (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfAccountMenu.add(Pattern.compile("show leaderboard", Pattern.CASE_INSENSITIVE));
         patternsOfAccountMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
         patternsOfAccountMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
@@ -37,21 +37,26 @@ public class Controller {
 
         patternsOfCollectionMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("search ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("search (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("create deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("delete deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("add ([a-zA-Z0-9]+) to deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("remove ([a-zA-Z0-9]+) from deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("validate deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("select deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("create deck (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("delete deck (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("add (\\w+) to deck (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("remove (\\w+) from deck (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("validate deck (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("select deck (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show all decks", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("show deck ([a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("show deck (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
         patternsOfShopMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
-        patternsOfShopMenu.add(Pattern.compile(""));
-        //TODO add shop menu
+        patternsOfShopMenu.add(Pattern.compile("show collection", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("search (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("search collection (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("buy (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("sell (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
         patternsOfBattleMenu.add(Pattern.compile("Game info", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show my minions", Pattern.CASE_INSENSITIVE));
@@ -260,7 +265,7 @@ public class Controller {
                 Account.getCurrentAccount().getCollection().removeDeck(matcher.group(1));
                 break;
             case 6:
-                Account.getCurrentAccount().getCollection().addThingToDeck(matcher.group(1) , matcher.group(2));
+                Account.getCurrentAccount().getCollection().addThingToDeck(matcher.group(1), matcher.group(2));
                 break;
             case 7:
                 Account.getCurrentAccount().getCollection().removeCard(matcher.group(1), matcher.group(2));
@@ -287,7 +292,6 @@ public class Controller {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.matches();
-
     }
 
     public static Scanner getScanner() {
@@ -300,7 +304,7 @@ public class Controller {
 
     public static Boolean getYesOrNo() {
         String yOrN = Controller.getNextLine();
-        return  (yOrN.equals("Y"));
+        return (yOrN.equals("Y"));
     }
 
     public static void setMenu(Enums.Menus menu) {
