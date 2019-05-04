@@ -70,7 +70,11 @@ public class Account {
 
     public static void showLeaderBoard() {
         ArrayList<Account> accounts = new ArrayList<>(getAccounts().values());
-        accounts.sort(new AccountComparator());
+        accounts.sort(((a1, a2) -> {
+            if (a1.getNumOfWins() != a2.getNumOfWins())
+                return Integer.compare(a1.getNumOfWins(), a1.getNumOfWins());
+            return a1.getName().compareTo(a2.getName());
+        }));
         View.showAccounts(accounts);
     }
 
@@ -150,12 +154,5 @@ public class Account {
     public String toString() {
         return "UserName: " + this.getName() + " - Wins : " + this.getNumOfWins();
     }
-}
 
-class AccountComparator implements Comparator<Account> {
-    public int compare(Account a1, Account a2) {
-        if (a1.getNumOfWins() != a2.getNumOfWins())
-            return Integer.compare(a1.getNumOfWins(), a1.getNumOfWins());
-        return a1.getName().compareTo(a2.getName());
-    }
 }
