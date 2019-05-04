@@ -10,6 +10,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -50,6 +51,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -76,6 +78,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": -4,\n" +
             "\"apShield\": 0,\n" +
@@ -103,6 +106,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -129,6 +133,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"CELL\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": -2,\n" +
             "\"apShield\": 0,\n" +
@@ -155,6 +160,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": -8,\n" +
             "\"apShield\": 0,\n" +
@@ -181,6 +187,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"CELL\",\n" +
             "\"numberOfTurnsOnTarget\": 3,\n" +
             "\"changeHp\": -1,\n" +
             "\"apShield\": 0,\n" +
@@ -207,6 +214,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -219,6 +227,7 @@ public class SpellResources {
             "\"isActive\": false\n" +
             "},\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -245,6 +254,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -271,6 +281,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 4,\n" +
             "\"changeHp\": -1,\n" +
             "\"apShield\": 0,\n" +
@@ -310,6 +321,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 1,\n" +
             "\"changeHp\": -6,\n" +
             "\"apShield\": 0,\n" +
@@ -322,6 +334,7 @@ public class SpellResources {
             "\"isActive\": false\n" +
             "},\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 2,\n" +
@@ -348,6 +361,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -374,6 +388,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -400,6 +415,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": -6,\n" +
             "\"apShield\": 0,\n" +
@@ -426,6 +442,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": -1,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -452,6 +469,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
@@ -490,6 +508,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": -2147483647,\n" +
             "\"apShield\": 0,\n" +
@@ -508,7 +527,7 @@ public class SpellResources {
             "\"requiredManas\": 9,\n" +
             "\"price\": 1750\n" +
             "}";
-    String Shock = "{\n" +
+    public String Shock = "{\n" +
             "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
@@ -516,6 +535,7 @@ public class SpellResources {
             "\"buffNutralizer\": \"NONE\",\n" +
             "\"buffs\": [\n" +
             "{\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
             "\"numberOfTurnsOnTarget\": 0,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
