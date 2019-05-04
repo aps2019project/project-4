@@ -292,6 +292,32 @@ public class Controller {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.matches();
+        switch (index){
+            case 0:
+                Controller.setMenu(Enums.Menus.MAIN);
+                break;
+            case 1:
+                View.showAllCards();
+                break;
+            case 2:
+                //todo search in shop
+                break;
+            case 3:
+                View.showSearchResults(matcher.group(1));
+                break;
+            case 4:
+                //todo buy thing
+                break;
+            case 5:
+                //todo sell thing
+                break;
+            case 6:
+                //todo show shop
+                break;
+            case 7:
+                //todo show help
+                break;
+        }
     }
 
     public static Scanner getScanner() {
