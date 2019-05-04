@@ -215,16 +215,18 @@ public class View {
     }
 
     public static void showAllDecks() {
+        int index = 1;
         if (Account.getCurrentAccount().getSelectedDeck() != null) {
-            System.out.println("1 : " + Account.getCurrentAccount().getSelectedDeck().getName() + " :");
+            System.out.println(index + " : " + Account.getCurrentAccount().getSelectedDeck().getName() + " :");
             View.showDeck(Account.getCurrentAccount().getSelectedDeck());
+            index = 2;
         }
-        int index = 2;
         for (Deck deck : Account.getCurrentAccount().getCollection().getDecks().values()) {
             if (deck != Account.getCurrentAccount().getSelectedDeck()) {
                 System.out.println(index + " : " + deck.getName() + " :");
                 View.showDeck(deck);
             }
+            index++;
         }
     }
 

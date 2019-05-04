@@ -141,7 +141,7 @@ public class Controller {
         int i = 0;
         for (Pattern pattern : getPatterns()) {
             Matcher matcher = pattern.matcher(getCommand().trim());
-            if (matcher.find())
+            if (matcher.matches())
                 return i;
             i++;
         }
@@ -175,7 +175,7 @@ public class Controller {
         } catch (InvalidCommandException e) {
             e.showMessage();
         } catch (NullPointerException e) {
-            //ignore
+            System.err.println("ddd");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
