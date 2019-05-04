@@ -1,6 +1,8 @@
-package model.buff;
+package resourses;
 
 public class SpellResources {
+
+
 
     String totalDisarm = "{\n" +
             "\"cellOrSoldier\": \"SOLDIER\",\n" +
