@@ -60,7 +60,13 @@ public class View {
     }
 
     private static void showShopMenuHelp() {
-
+        System.out.println("back: Back to main menu");
+        System.out.println("show collection: Show all cards and items in collection and their cost");
+        System.out.println("search collection [card name|item name]: Show card or item with special name if exists");
+        System.out.println("buy [card name|item name]: buy a card or item");
+        System.out.println("sell [card id | item id] : sell a card or item");
+        System.out.println("show: show all card and items of shop");
+        System.out.println("help: show help");
     }
 
     private static void showBattleMenuHelp() {
@@ -71,12 +77,6 @@ public class View {
         switch (Controller.getMenu()) {
             case ACCOUNT:
                 showAccountMenu();
-                break;
-            case BATTLE:
-                showBattleMenu();
-                break;
-            case SHOP:
-                showShopMenu();
                 break;
             case MAIN:
                 showMainMenu();
@@ -94,14 +94,6 @@ public class View {
 
     private static void showMainMenu() {
         System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n");
-    }
-
-    private static void showShopMenu() {
-
-    }
-
-    private static void showBattleMenu() {
-
     }
 
     public static void showSuccessfulAccountCreationMessage(String userName) {

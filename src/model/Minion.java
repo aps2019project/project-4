@@ -181,8 +181,10 @@ public class Minion extends Card {
     @Override
     public StringBuilder infoForDeck() {
         StringBuilder result = new StringBuilder()
-                .append("Type : Minion - Name : ").append(this.getName()).append(" - Class : ")
-                .append(this.getSpecialPower().getName()).append(" - AP : ").append(this.getAP())
+                .append("Type : Minion - Name : ").append(this.getName())
+                .append(" - Class : ").append(this.getSpecialPower().getName())
+                .append(" - ID : ").append(this.getId())
+                .append(" - AP : ").append(this.getAP())
                 .append(" - HP : ").append(this.getHP())
                 .append(" - MP : ").append(this.getRequiredManas())
                 .append(" -Special power: ").append(this.getSpecialPower().getDesc());

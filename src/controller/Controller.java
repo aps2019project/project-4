@@ -315,7 +315,7 @@ public class Controller {
                 //todo show shop
                 break;
             case 7:
-                //todo show help
+                View.showHelp();
                 break;
         }
     }

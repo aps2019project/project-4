@@ -53,6 +53,7 @@ public class Spell extends Card {
     public StringBuilder infoForDeck() {
         StringBuilder result = new StringBuilder();
         result.append("Type : Spell - Name : ").append(this.getName())
+                .append(" - ID : ").append(this.getId())
                 .append(" - MP : ").append(this.getRequiredManas())
                 .append(" - Desc : ").append(this.getDesc());
         return result;
