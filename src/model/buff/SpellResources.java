@@ -3,6 +3,7 @@ package model.buff;
 public class SpellResources {
 
     String totalDisarm = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -28,6 +29,7 @@ public class SpellResources {
             "\"price\": 1000\n" +
             "}";
     String AreaDispell = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"BOTH\",\n" +
             "\"cellsType\": \"SQUARE\",\n" +
             "\"lengthOfSideOfSquare\": 2,\n" +
@@ -41,6 +43,7 @@ public class SpellResources {
             "}";
 
     String Empower = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"FRIEND\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -66,6 +69,7 @@ public class SpellResources {
             "\"price\": 250\n" +
             "}";
     String FireBall = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -92,6 +96,7 @@ public class SpellResources {
             "}";
 
     String GodStrength = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"FRIEND_HERO\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -117,6 +122,7 @@ public class SpellResources {
             "\"price\": 450\n" +
             "}";
     String HellFire = "{\n" +
+            "\"cellOrSoldier\": \"CELL\",\n" +
             "\"target\": \"BOTH\",\n" +
             "\"cellsType\": \"SQUARE\",\n" +
             "\"lengthOfSideOfSquare\": 2,\n" +
@@ -142,6 +148,7 @@ public class SpellResources {
             "\"price\": 600\n" +
             "}";
     String LightningBolt = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY_HERO\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -167,6 +174,7 @@ public class SpellResources {
             "\"price\": 1250\n" +
             "}";
     String PoisonLake = "{\n" +
+            "\"cellOrSoldier\": \"CELL\",\n" +
             "\"target\": \"BOTH\",\n" +
             "\"cellsType\": \"SQUARE\",\n" +
             "\"lengthOfSideOfSquare\": 3,\n" +
@@ -192,6 +200,7 @@ public class SpellResources {
             "\"price\": 900\n" +
             "}";
     String Madness = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"Friend\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -229,6 +238,7 @@ public class SpellResources {
             "\"price\": 650\n" +
             "}";
     String AllDisarm = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY\",\n" +
             "\"cellsType\": \"ALL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -254,6 +264,7 @@ public class SpellResources {
             "\"price\": 2000\n" +
             "}";
     String AllPoison = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY\",\n" +
             "\"cellsType\": \"ALL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -279,6 +290,7 @@ public class SpellResources {
             "\"price\": 1500\n" +
             "}";
     String Dispel = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"BOTH\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -291,6 +303,7 @@ public class SpellResources {
             "\"price\": 2100\n" +
             "}";
     String HealthWithProfit = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"Friend\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -328,6 +341,7 @@ public class SpellResources {
             "\"price\": 2250\n" +
             "}";
     String  PowerUp = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"Friend\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -353,6 +367,7 @@ public class SpellResources {
             "\"price\": 2500\n" +
             "}";
     String AllPower = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"Friend\",\n" +
             "\"cellsType\": \"ALL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -378,6 +393,7 @@ public class SpellResources {
             "\"price\": 2000\n" +
             "}";
     String AllAttack = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY\",\n" +
             "\"cellsType\": \"COLUMN\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -403,6 +419,7 @@ public class SpellResources {
             "\"price\": 1500\n" +
             "}";
     String Weakening = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -428,6 +445,7 @@ public class SpellResources {
             "\"price\": 1000\n" +
             "}";
     String Sacrifice = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"FRIEND_MINION\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -465,6 +483,7 @@ public class SpellResources {
             "\"price\": 1600\n" +
             "}";
     String KingsGuard = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY_MINION\",\n" +
             "\"cellsType\": \"RANDOM_MINION_AROUND_HERO\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +
@@ -490,6 +509,7 @@ public class SpellResources {
             "\"price\": 1750\n" +
             "}";
     String Shock = "{\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
             "\"target\": \"ENEMY\",\n" +
             "\"cellsType\": \"MONO_CELL\",\n" +
             "\"lengthOfSideOfSquare\": 0,\n" +

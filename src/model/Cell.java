@@ -3,6 +3,7 @@ package model;
 import model.buff.Buff;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cell {
     private int x;
@@ -33,5 +34,12 @@ public class Cell {
 
     public int getDistance(int x, int y){
         return Math.abs(x - this.x) + Math.abs(y - this.y);
+    }
+    public void addBuff(Buff buff){
+        buffs.add(buff);
+    }
+
+    public ArrayList<Buff> getBuffs() {
+        return buffs;
     }
 }
