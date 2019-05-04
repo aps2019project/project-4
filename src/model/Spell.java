@@ -5,7 +5,7 @@ import model.buff.Buff;
 import java.util.ArrayList;
 
 public class Spell extends Card {
-
+    private Enums.OnCellOrSoldier cellOrSoldier;
     private Enums.FriendOrEnemy target;
     private Enums.WhichCellsType cellsType;
     private int lengthOfSideOfSquare;
@@ -13,13 +13,14 @@ public class Spell extends Card {
     private ArrayList<Buff> buffs = new ArrayList<>();
     private ArrayList<Cell> cells = new ArrayList<>();
 
-    public Spell(String id, String name, int requiredManas,
-                 int price, Enums.FriendOrEnemy target, Enums.WhichCellsType cellsType,
+    public Spell(String id, String name, int requiredManas, int price,
+                 Enums.OnCellOrSoldier cellOrSoldier, Enums.FriendOrEnemy target, Enums.WhichCellsType cellsType,
                  Enums.BuffNutralizer buffNutralizer, int lengthOfSideOfSquare) {
         this.id = id;
         this.name = name;
         this.requiredManas = requiredManas;
         this.price = price;
+        this.cellOrSoldier = cellOrSoldier;
         this.target = target;
         this.cellsType = cellsType;
         this.buffNutralizer = buffNutralizer;

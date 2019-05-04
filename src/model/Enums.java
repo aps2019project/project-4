@@ -28,6 +28,7 @@ public class Enums {
     public enum OnCellOrSoldier{
         CEll, SOLDIER
     }
+    //todo add OnCellOrSoldier to buffs of spells
 
     public enum TypeOfThing{
         HERO , NONHERO , ITEM
