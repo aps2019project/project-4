@@ -407,11 +407,163 @@ public class MinionResources {
             "\"requiredManas\": 4,\n" +
             "\"price\": 700\n" +
             "}";
-    String transoxanianMaceman = "";
-    String transoxanianPrince = "";
-    String blackDevil = "";
-    String stonemanGiant = "";
-    String eagle = "";
+    String transoxanianMaceman = "{\n" +
+            "\"healthPoint\": 3,\n" +
+            "\"attackPoint\": 10,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"NONE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"transoxanian maceman\",\n" +
+            "\"requiredManas\": 2,\n" +
+            "\"price\": 450\n" +
+            "}";
+    String transoxanianPrince = "{\n" +
+            "\"healthPoint\": 6,\n" +
+            "\"attackPoint\": 10,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"COMBO\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"transoxanian prince\",\n" +
+            "\"requiredManas\": 6,\n" +
+            "\"price\": 800\n" +
+            "}";
+    String blackDevil = "{\n" +
+            "\"healthPoint\": 14,\n" +
+            "\"attackPoint\": 10,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 7,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"HYBRID\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"NONE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"black devil\",\n" +
+            "\"requiredManas\": 9,\n" +
+            "\"price\": 300\n" +
+            "}";
+    String stonemanGiant = "{\n" +
+            "\"healthPoint\": 12,\n" +
+            "\"attackPoint\": 12,\n" +
+            "\"startRange\": 2,\n" +
+            "\"endRange\": 7,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"RANGED\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"NONE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"stoneman giant\",\n" +
+            "\"requiredManas\": 9,\n" +
+            "\"price\": 300\n" +
+            "}";
+    String eagle = "{\n" +
+            "\"healthPoint\": 1,\n" +
+            "\"attackPoint\": 2,\n" +
+            "\"startRange\": 2,\n" +
+            "\"endRange\": 3,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"RANGED\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY\",\n" +
+            "\"cellsType\": \"MONO_CELL\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"NONE\",\n" +
+            "\"buffs\": [\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 0,\n" +
+            "\"changeHp\": 10,\n" +
+            "\"apShield\": 0,\n" +
+            "\"changeAp\": 0,\n" +
+            "\"numberOfTurns\": 1,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": false,\n" +
+            "\"isPositive\": true,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "}\n" +
+            "],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"eagle spell\",\n" +
+            "\"requiredManas\": 2,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"PASSIVE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"eagle\",\n" +
+            "\"requiredManas\": 2,\n" +
+            "\"price\": 200\n" +
+            "}";
     String swineriderDevil = "";
     String monoeyedGiant = "";
     String poisonousSnake = "";
