@@ -1026,7 +1026,7 @@ public class MinionResources {
             "],\n" +
             "\"cells\": [],\n" +
             "\"id\": \"\",\n" +
-            "\"name\": \"wolf spell\",\n" +
+            "\"name\": \"witch spell\",\n" +
             "\"requiredManas\": 4,\n" +
             "\"price\": 0\n" +
             "},\n" +
@@ -1039,11 +1039,203 @@ public class MinionResources {
             "\"requiredManas\": 4,\n" +
             "\"price\": 550\n" +
             "}";
-    String grandWitch = "";
-    String genii = "";
-    String wildSwine = "";
-    String elder = "";
-    String geeve = "";
+    String grandWitch = "{\n" +
+            "\"healthPoint\": 6,\n" +
+            "\"attackPoint\": 6,\n" +
+            "\"startRange\": 2,\n" +
+            "\"endRange\": 5,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"RANGED\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY\",\n" +
+            "\"cellsType\": \"ALL_MINIONS_AROUND_AND_ITSELF\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"NONE\",\n" +
+            "\"buffs\": [\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 0,\n" +
+            "\"changeHp\": 0,\n" +
+            "\"apShield\": 0,\n" +
+            "\"changeAp\": 2,\n" +
+            "\"numberOfTurns\": 1,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": false,\n" +
+            "\"isPositive\": true,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "},\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 0,\n" +
+            "\"changeHp\": 0,\n" +
+            "\"apShield\": 1,\n" +
+            "\"changeAp\": 0,\n" +
+            "\"numberOfTurns\": 2147483647,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": false,\n" +
+            "\"isPositive\": true,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "}\n" +
+            "],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"grand witch spell\",\n" +
+            "\"requiredManas\": 6,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"PASSIVE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"grand witch\",\n" +
+            "\"requiredManas\": 6,\n" +
+            "\"price\": 550\n" +
+            "}";
+    String genii = "{\n" +
+            "\"healthPoint\": 10,\n" +
+            "\"attackPoint\": 4,\n" +
+            "\"startRange\": 2,\n" +
+            "\"endRange\": 4,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"RANGED\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY\",\n" +
+            "\"cellsType\": \"ALL\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"NONE\",\n" +
+            "\"buffs\": [\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 0,\n" +
+            "\"changeHp\": 0,\n" +
+            "\"apShield\": 0,\n" +
+            "\"changeAp\": 1,\n" +
+            "\"numberOfTurns\": 1,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": false,\n" +
+            "\"isPositive\": true,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "}\n" +
+            "],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"genii spell\",\n" +
+            "\"requiredManas\": 5,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"PASSIVE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"genii\",\n" +
+            "\"requiredManas\": 5,\n" +
+            "\"price\": 500\n" +
+            "}";
+    String wildSwine = "{\n" +
+            "\"healthPoint\": 10,\n" +
+            "\"attackPoint\": 14,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": true,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"ON_DEFEND\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"wild swine\",\n" +
+            "\"requiredManas\": 6,\n" +
+            "\"price\": 500\n" +
+            "}";
+    String elder = "{\n" +
+            "\"healthPoint\": 20,\n" +
+            "\"attackPoint\": 12,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": true,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"ON_DEFEND\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"elder\",\n" +
+            "\"requiredManas\": 8,\n" +
+            "\"price\": 400\n" +
+            "}";
+    String geeve = "{\n" +
+            "\"healthPoint\": 5,\n" +
+            "\"attackPoint\": 7,\n" +
+            "\"startRange\": 2,\n" +
+            "\"endRange\": 5,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": true,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"RANGED\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"ON_DEFEND\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"geeve\",\n" +
+            "\"requiredManas\": 4,\n" +
+            "\"price\": 450\n" +
+            "}";
     String bahman = "";
     String ashkboos = "";
     String iraj = "";
