@@ -2,6 +2,7 @@ package views;
 
 import controller.Controller;
 import model.*;
+import resources.Resources;
 import views.Exceptions.*;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class View {
         System.out.println("logout: Log out from account");
         System.out.println("exit game: Exit from game");
         System.out.println("help: to show help");
+        System.out.println("money: show amount of your money");
     }
 
     private static void showCollectionMenuHelp() {
@@ -93,11 +95,15 @@ public class View {
     }
 
     private static void showMainMenu() {
-        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n");
+        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n7.Money\n");
     }
 
     public static void showSuccessfulAccountCreationMessage(String userName) {
         System.out.println("The account with name " + userName + " created!");
+    }
+
+    public static void showMoney() {
+        System.out.println("Your money is " + Account.getCurrentAccount().getDrack() + " Dracks.");
     }
 
     public static void showEnterPasswordMessage() {
@@ -152,7 +158,7 @@ public class View {
         System.out.println("The " + thingID + " from deck" + deckName + " removed successfully!");
     }
 
-    public static void showAddThingToDeckMessage(String thingID, String deckName) throws Exception{
+    public static void showAddThingToDeckMessage(String thingID, String deckName) throws Exception {
         switch (Account.getCurrentAccount().getCollection().typeOfThing(thingID)) {
             case HERO:
                 System.out.println("The hero " + thingID + " added to deck " + deckName + "!");
@@ -196,14 +202,37 @@ public class View {
         }
     }
 
-    public static void showAllCards() {
+    public static void showAllCardsInCollection() {
         System.out.println("Heros:");
         Account.getCurrentAccount().getCollection().getHeros().forEach((s, hero) -> System.out.println(hero.infoForDeckWithPrice()));
         System.out.println("Items:");
         Account.getCurrentAccount().getCollection().getUsableItems().forEach((s, item) -> System.out.println((item.infoWithPrice())));
         System.out.println("Cards:");
         Account.getCurrentAccount().getCollection().getNonHeroCards().forEach((s, card) -> System.out.println(card.infoForDeckWithPrice()));
+    }
 
+    public static void showBuyThingMessage(Object object) {
+        if (object instanceof UsableItem)
+            System.out.println("The item " + ((UsableItem) object).getName() + " bought successful");
+        if (object instanceof Card)
+            System.out.println("The card " + ((Card) object).getName() + " bought successful");
+    }
+
+    public static void showShop() {
+        int i = 0;
+        System.out.println("Heros:");
+        for (Hero hero : Resources.getAllHero())
+            System.out.println("         " + ++i + "- " + hero.infoForShop());
+        i = 0;
+        System.out.println("Cards:");
+        for (Minion minion : Resources.getAllMinions())
+            System.out.println("         " +  ++i + "- " + minion.infoForShop());
+        for (Spell spell : Resources.getAllSpells())
+            System.out.println("         " +  ++i + "- " + spell.infoForShop());
+        System.out.println("Items:");
+        i = 0;
+        for (UsableItem item : Resources.getAllItems())
+            System.out.println("         " +  ++i + "- " + item.infoForShop());
     }
 
     public static void showAllDecks() {
@@ -222,13 +251,22 @@ public class View {
         }
     }
 
-    public static void showSearchResults(String string) throws CardAndItemNotAvailabilityException {
+    public static void showSearchResultsInCollection(String string) throws CardAndItemNotAvailabilityException {
         if (Account.getCurrentAccount().getCollection().searchCard(string).size() == 0 &
                 Account.getCurrentAccount().getCollection().searchItem(string).size() == 0) {
             throw new CardAndItemNotAvailabilityException();
         }
         View.showCards(Account.getCurrentAccount().getCollection().searchCard(string));
         View.showItems(Account.getCurrentAccount().getCollection().searchItem(string));
+    }
+
+    public static void showSearchResultsInShop(String string) throws CardAndItemNotAvailabilityException {
+        if (Shop.searchCard(string).size() == 0 &
+                Shop.searchItem(string).size() == 0) {
+            throw new CardAndItemNotAvailabilityException();
+        }
+        View.showCardsInShop(Shop.searchCard(string));
+        View.showItemsInShop(Shop.searchItem(string));
     }
 
     public static void showCards(ArrayList<Card> cards) {
@@ -244,6 +282,22 @@ public class View {
         for (UsableItem item : items) {
             i++;
             System.out.println(i + ": " + item.infoWithPrice());
+        }
+    }
+
+    public static void showCardsInShop(ArrayList<Card> cards) {
+        int i = 0;
+        for (Card card : cards) {
+            i++;
+            System.out.println(i + ": " + card.infoForShop());
+        }
+    }
+
+    public static void showItemsInShop(ArrayList<UsableItem> items) {
+        int i = 0;
+        for (UsableItem item : items) {
+            i++;
+            System.out.println(i + ": " + item.infoForShop());
         }
     }
 

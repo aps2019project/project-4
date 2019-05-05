@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Spell;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SpellResources {
@@ -26,8 +27,15 @@ public class SpellResources {
         return getSpellResource().get(spellName);
     }
 
+    public static ArrayList<Spell> getAllSpells(){
+        ArrayList <Spell> spells = new ArrayList<>();
+        getSpellResource().forEach((name , gson) -> spells.add(getSpecificSpell(name)));
+        return spells;
+    }
+
+
     public static void setSpellResource() {
-        getSpellResource().put("total disarm", "{\n" +
+        getSpellResource().put("TotalDisarm", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -54,7 +62,7 @@ public class SpellResources {
                 "\"requiredManas\": 0,\n" +
                 "\"price\": 1000\n" +
                 "}");
-        getSpellResource().put("area dispel", "{\n" +
+        getSpellResource().put("AreaDispel", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"BOTH\",\n" +
                 "\"cellsType\": \"SQUARE\",\n" +
@@ -67,7 +75,7 @@ public class SpellResources {
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 1500\n" +
                 "}");
-        getSpellResource().put("empower", "{\n" +
+        getSpellResource().put("Empower", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"FRIEND\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -94,7 +102,7 @@ public class SpellResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 250\n" +
                 "}");
-        getSpellResource().put("fireball", "{\n" +
+        getSpellResource().put("FireBall", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -157,7 +165,7 @@ public class SpellResources {
                 "\"buffs\": [\n" +
                 "{\n" +
                 "\"onCellOrSoldier\": \"CELL\",\n" +
-                "\"numberOfTurnsOnTarget\": 1,\n" +
+                "\"numberOfTurnsOnTarget\": 0,\n" +
                 "\"changeHp\": -2,\n" +
                 "\"apShield\": 0,\n" +
                 "\"changeAp\": 0,\n" +

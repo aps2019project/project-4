@@ -27,11 +27,17 @@ public abstract class Card {
         return desc;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public abstract StringBuilder info();
 
     public abstract StringBuilder infoForDeck();
 
     public abstract StringBuilder infoForDeckWithPrice();
+
+    public abstract StringBuilder infoForShop();
 
     public abstract void insert(Cell cell);
 }

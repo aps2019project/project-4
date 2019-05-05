@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Minion;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MinionResources {
@@ -26,6 +27,12 @@ public class MinionResources {
         return getMinionResource().get(minionName);
     }
 
+    public static ArrayList<Minion> getAllMinions(){
+        ArrayList <Minion> minions = new ArrayList<>();
+        getMinionResource().forEach((name , gson) -> minions.add(getSpecificMinion(name)));
+        return minions;
+    }
+
     public static void setMinionResource() {
         getMinionResource().put("persianArcher", "{\n" +
                 "\"healthPoint\": 2,\n" +
@@ -37,12 +44,12 @@ public class MinionResources {
                 "\"hasMovedThisTurn\": false,\n" +
                 "\"isDisarmed\": false,\n" +
                 "\"isStuned\": false,\n" +
-                "\"numberOfTurnsOfDisarm\": false,\n" +
+                "\"numberOfTurnsOfDisarm\": 0,\n" +
                 "\"name\": \"persianArcher\",\n" +
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 300\n" +
                 "}");
-        getMinionResource().put("persianSwordman", "");
+        //getMinionResource().put("persianSwordman", "");
         //todo add other minion Gsons
     }
 

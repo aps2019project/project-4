@@ -215,7 +215,8 @@ public class Minion extends Card {
         StringBuilder result = new StringBuilder()
                 .append("Minion:\n")
                 .append("Name: ").append(name).append("\n")
-                .append("HP: ").append(healthPoint + " ").append("AP: ").append(attackPoint + " ")
+                .append("HP: ").append(healthPoint + " ")
+                .append("AP: ").append(attackPoint + " ")
                 .append("MP: ").append(requiredManas).append("\n")
                 .append("Range: ").append(type).append(" ");
         if (type != Enums.SoldierType.MELEE) {
@@ -232,18 +233,24 @@ public class Minion extends Card {
     public StringBuilder infoForDeck() {
         StringBuilder result = new StringBuilder()
                 .append("Type : Minion - Name : ").append(this.getName())
-                .append(" - Class : ").append(this.getSpecialPower().getName())
+                .append(" - Class : ").append(this.getType().toString().toLowerCase())
                 .append(" - ID : ").append(this.getId())
                 .append(" - AP : ").append(this.getAP())
                 .append(" - HP : ").append(this.getHP())
-                .append(" - MP : ").append(this.getRequiredManas())
-                .append(" -Special power: ").append(this.getSpecialPower().getDesc());
+                .append(" - MP : ").append(this.getRequiredManas());
+        if (this.getSpecialPower() != null)
+                result.append(" -Special power: ").append(this.getSpecialPower().getDesc());
         return result;
     }
 
     @Override
     public StringBuilder infoForDeckWithPrice() {
         return this.infoForDeck().append(" - Sell Cost : ").append(this.getPrice());
+    }
+
+    @Override
+    public StringBuilder infoForShop(){
+        return this.infoForDeck().append(" - Buy Cost : ").append(this.getPrice());
     }
 
     public ArrayList<Buff> getPositiveBuffs() {

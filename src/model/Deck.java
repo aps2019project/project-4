@@ -36,10 +36,10 @@ public class Deck {
         this.getCards().put(card.getId(), card);
     }
 
-    public void removeThingWithID(String id, Boolean throwError) throws IDNotAvailableInDeckException, NullPointerException {
+    public void removeThingWithID(String id, Boolean throwError) throws IDNotAvailableException, NullPointerException {
         boolean isNotRemoval = this.removeCard(id) & this.removeItem(id);
         if (isNotRemoval & throwError)
-            throw new IDNotAvailableInDeckException(id, this.getName());
+            throw new IDNotAvailableException(id, this.getName());
     }
 
     public boolean removeItem(String itemID) throws NullPointerException {

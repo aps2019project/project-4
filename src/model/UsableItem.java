@@ -38,4 +38,8 @@ public class UsableItem {
     public StringBuilder infoWithPrice() {
         return this.info().append(" - Sell Cost : ").append(this.getPrice());
     }
+
+    public StringBuilder infoForShop() {
+        return this.info().append(" - Buy Cost : ").append(this.getPrice());
+    }
 }
