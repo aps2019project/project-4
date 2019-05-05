@@ -47,14 +47,6 @@ public class Minion extends Card {
             type = Enums.SoldierType.HYBRID;
     }
 
-    public int getHP() {
-        return healthPoint;
-    }
-
-    public int getAP() {
-        return attackPoint;
-    }
-
     public Enums.SoldierType getType() {
         return type;
     }
@@ -235,11 +227,11 @@ public class Minion extends Card {
                 .append("Type : Minion - Name : ").append(this.getName())
                 .append(" - Class : ").append(this.getType().toString().toLowerCase())
                 .append(" - ID : ").append(this.getId())
-                .append(" - AP : ").append(this.getAP())
-                .append(" - HP : ").append(this.getHP())
+                .append(" - AP : ").append(this.getHealthPoint())
+                .append(" - HP : ").append(this.getHealthPoint())
                 .append(" - MP : ").append(this.getRequiredManas());
         if (this.getSpecialPower() != null)
-                result.append(" -Special power: ").append(this.getSpecialPower().getDesc());
+            result.append(" -Special power: ").append(this.getSpecialPower().getDesc());
         return result;
     }
 
@@ -249,7 +241,7 @@ public class Minion extends Card {
     }
 
     @Override
-    public StringBuilder infoForShop(){
+    public StringBuilder infoForShop() {
         return this.infoForDeck().append(" - Buy Cost : ").append(this.getPrice());
     }
 
@@ -282,9 +274,9 @@ public class Minion extends Card {
                 this.isStunned = true;
                 int numberOfTurnsOfStun = buff.getNumberOfTurns();
                 Iterator<Buff> iter = new ArrayList<Buff>().iterator();
-                while(iter.hasNext()){
+                while (iter.hasNext()) {
                     Buff b = iter.next();
-                    if (b.isStunner()){
+                    if (b.isStunner()) {
                         if (b.getNumberOfTurns() < numberOfTurnsOfStun)
                             negativeBuffs.remove(b);
                         else
@@ -305,11 +297,12 @@ public class Minion extends Card {
         }
         return null;
     }
-    public void catchFlag(){
+
+    public void catchFlag() {
         this.hasFlag = true;
     }
 
-    public void withdrawFlag(){
+    public void withdrawFlag() {
         this.hasFlag = false;
         this.cellPlace.addFlag();
     }

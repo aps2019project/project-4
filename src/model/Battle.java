@@ -24,8 +24,8 @@ public class Battle {
     public StringBuilder gameInfo() {
         StringBuilder stringBuilder = new StringBuilder();
         if (gameMode == Enums.GameMode.MULTI_PLAYER) {
-            stringBuilder.append("player 1's hero health: ").append(player1.getDeck().getHero().getHP()).append("\n");
-            stringBuilder.append("player 2's hero health: ").append(player2.getDeck().getHero().getHP()).append("\n");
+            stringBuilder.append("player 1's hero health: ").append(player1.getDeck().getHero().getHealthPoint()).append("\n");
+            stringBuilder.append("player 2's hero health: ").append(player2.getDeck().getHero().getHealthPoint()).append("\n");
         }
         if (gameMode == Enums.GameMode.MONO_FLAG) {
             Minion m1 = player1.getDeck().whoHasFlag();
@@ -66,11 +66,24 @@ public class Battle {
                             .append(((Minion) card).getCellPlace().getY()).append("\n");
                 }
             }
-            for (int i = 0; i < 5; i++){
-                for (int j = 0; j < 9; j++){
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
                     if (gameBoard.getCell(i, j).getIsFlag())
                         stringBuilder.append("cell with coordinates ").append(i).append(" ").append(j).append(" has flag");
                 }
+            }
+        }
+        return stringBuilder;
+    }
+
+    public StringBuilder showMyMinions() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Card card : whoseTurn.getDeck().getCards().values()) {
+            if (!(card instanceof Spell)) {
+                Minion m = (Minion) card;
+                stringBuilder.append(card.getId() + ": ").append(card.getName() + ", health: ").append(m.getHealthPoint());
+                stringBuilder.append(", location: (").append(m.getCellPlace().getX()).append(", ").append(m.getCellPlace().getY()).append("), ");
+                stringBuilder.append("power: ").append(m.getAttackPoint()).append("\n");
             }
         }
         return stringBuilder;
