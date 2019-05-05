@@ -27,6 +27,10 @@ public abstract class Card {
         return desc;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public abstract StringBuilder info();
 
     public abstract StringBuilder infoForDeck();

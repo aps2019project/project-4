@@ -45,12 +45,17 @@ public class Shop {
         }
     }
 
-    public static void buyItem(UsableItem item) {
-
+    public static void buyItem(UsableItem item) throws Exception{
+        if (Account.getCurrentAccount().getCollection().getUsableItems().size() == 3)
+            throw new ThreeItemException();
+        Account.getCurrentAccount().changeMoney(-item.getPrice());
+        item.setId(Account.getCurrentAccount().getCollection().idGenerator(item));
+        Account.getCurrentAccount().getCollection().addItem(item);
     }
 
     public static void buyCard(Card card) {
         Account.getCurrentAccount().changeMoney(-card.getPrice());
-        //Account.getCurrentAccount().getCollection();
+        card.setId(Account.getCurrentAccount().getCollection().idGenerator(card));
+        Account.getCurrentAccount().getCollection().addCard(card);
     }
 }

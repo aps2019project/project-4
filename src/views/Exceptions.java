@@ -47,6 +47,12 @@ public class Exceptions {
         }
     }
 
+    public static class ThreeItemException extends Exception {
+        public ThreeItemException(){
+            super("You Have 3 Items!");
+        }
+    }
+
     public static class IDNotAvailableInDeckException extends Exception {
         public IDNotAvailableInDeckException(String id, String deckName) {
             super("No thing with ID " + id + " in deck " + deckName + " found!");
