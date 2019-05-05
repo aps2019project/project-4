@@ -54,11 +54,12 @@ public class Controller {
 
         patternsOfShopMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("show collection", Pattern.CASE_INSENSITIVE));
-        patternsOfShopMenu.add(Pattern.compile("search (\\w+ ?\\w*)", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("search collection (\\w+ ?\\w*)", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("search (\\w+ ?\\w*)", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("buy (\\w+ ?\\w*)", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("sell (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("money" , Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
         patternsOfBattleMenu.add(Pattern.compile("Game info", Pattern.CASE_INSENSITIVE));
@@ -304,10 +305,10 @@ public class Controller {
                 View.showAllCardsInCollection();
                 break;
             case 2:
-                View.showSearchResultsInShop(matcher.group(1));
+                View.showSearchResultsInCollection(matcher.group(1));
                 break;
             case 3:
-                View.showSearchResultsInCollection(matcher.group(1));
+                View.showSearchResultsInShop(matcher.group(1));
                 break;
             case 4:
                 Shop.buyThing(matcher.group(1));
@@ -319,6 +320,9 @@ public class Controller {
                 View.showShop();
                 break;
             case 7:
+                View.showMoney();
+                break;
+            case 8:
                 View.showHelp();
                 break;
         }

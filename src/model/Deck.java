@@ -43,6 +43,7 @@ public class Deck {
     }
 
     public boolean removeItem(String itemID) throws NullPointerException {
+        if (this.getItem() == null) return false;
         if (this.getItem().getId().equals(itemID))
             this.setItem(null);
         else
@@ -78,10 +79,11 @@ public class Deck {
             return true;
         return false;
     }
-    public Minion whoHasFlag(){
+
+    public Minion whoHasFlag() {
         for (Card card : cards.values())
             if (card instanceof Minion && ((Minion) card).isHasFlag())
-                return (Minion)card;
+                return (Minion) card;
         return null;
     }
 }

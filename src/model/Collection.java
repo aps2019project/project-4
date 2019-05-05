@@ -10,7 +10,6 @@ public class Collection {
     private HashMap<String, Deck> decks;
     private HashMap<String, Card> allCards;
     private HashMap<String, UsableItem> usableItems;
-    //String is id of card and items
 
     public Collection() {
         this.decks = new HashMap<>();
@@ -19,16 +18,16 @@ public class Collection {
     }
 
     public void addCard(Card card) {
-        this.getAllCards().put(this.idGenerator(card), card);
+        this.getAllCards().put(card.getId(), card);
     }
 
     public void addItem(UsableItem item) {
-        this.getUsableItems().put(this.idGenerator(item), item);
+        this.getUsableItems().put(item.getId(), item);
     }
 
     public int numOfCard(String cardName) {
         int i = 0;
-        for (Card card: this.getAllCards().values()){
+        for (Card card : this.getAllCards().values()) {
             if (card.getName().equals(cardName))
                 i++;
         }
@@ -37,7 +36,7 @@ public class Collection {
 
     public int numOfItem(String itemName) {
         int i = 0;
-        for (UsableItem usableItem: this.getUsableItems().values()){
+        for (UsableItem usableItem : this.getUsableItems().values()) {
             if (usableItem.getName().equals(itemName))
                 i++;
         }
@@ -45,11 +44,11 @@ public class Collection {
     }
 
     public String idGenerator(UsableItem item) {
-        return Account.getCurrentAccount().getName() + "_" + item.getName() + "_" + this.numOfItem(item.getName());
+        return Account.getCurrentAccount().getName() + "_" + item.getName() + "_" + (this.numOfItem(item.getName()) + 1);
     }
 
     public String idGenerator(Card card) {
-        return Account.getCurrentAccount().getName() + "_" + card.getName() + "_" + this.numOfCard(card.getName());
+        return Account.getCurrentAccount().getName() + "_" + card.getName() + "_" + (this.numOfCard(card.getName()) + 1);
     }
 
     public HashMap<String, Deck> getDecks() {
@@ -64,7 +63,7 @@ public class Collection {
         HashMap<String, Hero> heros = new HashMap<>();
         for (Card card : getAllCards().values()) {
             if (card instanceof Hero) {
-                heros.put(card.getName(), (Hero) card);
+                heros.put(card.getId(), (Hero) card);
             }
         }
         return heros;
@@ -122,7 +121,7 @@ public class Collection {
     public HashMap<String, Card> getNonHeroCards() {
         HashMap<String, Card> cardHashMap = new HashMap<>();
         this.getAllCards().forEach((s, card) -> {
-            if (!(card instanceof Hero)) cardHashMap.put(card.getName(), card);
+            if (!(card instanceof Hero)) cardHashMap.put(card.getId(), card);
         });
         return cardHashMap;
     }
