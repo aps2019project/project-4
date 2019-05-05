@@ -222,7 +222,7 @@ public class View {
         }
     }
 
-    public static void showSearchResults(String string) throws CardAndItemNotAvailabilityException {
+    public static void showSearchResultsInCollection(String string) throws CardAndItemNotAvailabilityException {
         if (Account.getCurrentAccount().getCollection().searchCard(string).size() == 0 &
                 Account.getCurrentAccount().getCollection().searchItem(string).size() == 0) {
             throw new CardAndItemNotAvailabilityException();

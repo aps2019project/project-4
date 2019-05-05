@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Hero;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class HeroResources {
@@ -24,6 +25,12 @@ public class HeroResources {
 
     private static String getSpecificHeroGson(String heroName) {
         return getHeroResource().get(heroName);
+    }
+
+    public static ArrayList<Hero> getAllHeros(){
+        ArrayList <Hero> heroes = new ArrayList<>();
+        getHeroResource().forEach((name , gson) -> heroes.add(getSpecificHero(name)));
+        return heroes;
     }
 
     public static void setHeroResource() {

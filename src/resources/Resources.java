@@ -1,7 +1,8 @@
 package resources;
 
-import model.Card;
-import model.UsableItem;
+import model.*;
+
+import java.util.ArrayList;
 
 public class Resources {
 
@@ -12,7 +13,7 @@ public class Resources {
         ItemResources.setItemResource();
     }
 
-    public Card getSpeceficCard(String cardName) {
+    public static Card getSpeceficCard(String cardName) {
         if (HeroResources.getSpecificHero(cardName) != null)
             return HeroResources.getSpecificHero(cardName);
         if (SpellResources.getSpecificSpell(cardName) != null)
@@ -22,7 +23,30 @@ public class Resources {
         return null;
     }
 
-    public UsableItem getSpeceficItem(String itemName) {
+    public static UsableItem getSpeceficItem(String itemName) {
         return ItemResources.getSpecificItem(itemName);
+    }
+
+    public static ArrayList<UsableItem> getAllItems(){
+        return ItemResources.getAllItems();
+    }
+
+    public static ArrayList<Hero> getAllHero(){
+        return HeroResources.getAllHeros();
+    }
+
+    public static ArrayList<Minion> getAllMinions(){
+        return MinionResources.getAllMinions();
+    }
+
+    public static ArrayList<Spell> getAllSpells(){
+        return SpellResources.getAllSpells();
+    }
+
+    public static ArrayList<Card> getAllCards(){
+        ArrayList<Card> cards = new ArrayList<>(getAllSpells());
+        cards.addAll(getAllHero());
+        cards.addAll(getAllMinions());
+        return cards;
     }
 }

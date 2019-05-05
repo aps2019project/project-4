@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Spell;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SpellResources {
@@ -25,6 +26,13 @@ public class SpellResources {
     private static String getSpecificSpellGson(String spellName) {
         return getSpellResource().get(spellName);
     }
+
+    public static ArrayList<Spell> getAllSpells(){
+        ArrayList <Spell> spells = new ArrayList<>();
+        getSpellResource().forEach((name , gson) -> spells.add(getSpecificSpell(name)));
+        return spells;
+    }
+
 
     public static void setSpellResource() {
         getSpellResource().put("total disarm", "{\n" +

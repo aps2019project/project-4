@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.UsableItem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ItemResources {
@@ -25,6 +26,13 @@ public class ItemResources {
     private static String getSpecificItemGson(String itemName) {
         return getItemResource().get(itemName);
     }
+
+    public static ArrayList<UsableItem> getAllItems(){
+        ArrayList <UsableItem> minions = new ArrayList<>();
+        getItemResource().forEach((name , gson) -> minions.add(getSpecificItem(name)));
+        return minions;
+    }
+
 
     public static void setItemResource() {
         //todo add usableItems

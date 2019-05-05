@@ -255,7 +255,7 @@ public class Controller {
                 View.showAllCards();
                 break;
             case 2:
-                View.showSearchResults(matcher.group(1));
+                View.showSearchResultsInCollection(matcher.group(1));
                 break;
             case 3:
                 Account.saveChanges();
@@ -302,10 +302,10 @@ public class Controller {
                 View.showAllCards();
                 break;
             case 2:
-                //todo search in shop
+                View.showSearchResultsInShop(matcher.group(1));
                 break;
             case 3:
-                View.showSearchResults(matcher.group(1));
+                View.showSearchResultsInCollection(matcher.group(1));
                 break;
             case 4:
                 //todo buy thing

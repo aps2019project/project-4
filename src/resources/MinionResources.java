@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Minion;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MinionResources {
@@ -24,6 +25,12 @@ public class MinionResources {
 
     private static String getSpecificMinionGson(String minionName) {
         return getMinionResource().get(minionName);
+    }
+
+    public static ArrayList<Minion> getAllMinions(){
+        ArrayList <Minion> minions = new ArrayList<>();
+        getMinionResource().forEach((name , gson) -> minions.add(getSpecificMinion(name)));
+        return minions;
     }
 
     public static void setMinionResource() {
