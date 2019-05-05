@@ -121,7 +121,11 @@ public class View {
     }
 
     public static void showStunnedCardMessage(String string) {
-        System.out.printf("This card with id: %s is stuned\n", string);
+        System.err.printf("This card with id: %s is stuned\n", string);
+    }
+
+    public static void showMinionsBetweenMessage(){
+        System.err.println("Cannot move to the selected cell, minions in the path");
     }
 
     public static void showSellThingMessage(String id) {
@@ -129,7 +133,7 @@ public class View {
     }
 
     public static void showCardHasMovedMessage(String string) {
-        System.out.printf("This card with id: %s has moved this turn\n", string);
+        System.err.printf("This card with id: %s has moved this turn\n", string);
     }
 
     public static void showOutOfDistanceMessage() {
@@ -150,6 +154,10 @@ public class View {
 
     public static void showInvalidTargetMessage() {
         System.err.println("Invalid target");
+    }
+
+    public static void showSpellsCanNotMoveMessage(){
+        System.err.println("Spells can not move, select a minion");
     }
 
     public static void showAddDeckMessage(String deckName) {

@@ -3,8 +3,12 @@ package model;
 public class Hero extends Minion {
     private int coolDown;
 
-    public Hero(String name, int price, int hp, int ap, int mp, int startRange, int endRange, int coolDown) {
-        super(name, price, hp, ap, mp, startRange, endRange);
+    public Hero(String id, String name, int price, int hp, int ap, int mp, int startRange, int endRange,
+                int coolDown, boolean isAntiHolyBuff, boolean isAntiDisarm,
+                boolean isAntiPoison, boolean isImmortal, boolean isApSuperior,
+                Enums.ActivationTypes specialPowerActivationType) {
+        super(id, name, price, mp, hp, ap, startRange, endRange, isAntiHolyBuff,
+                isAntiDisarm, isAntiPoison, isImmortal, isApSuperior, specialPowerActivationType);
         this.coolDown = coolDown;
     }
 
