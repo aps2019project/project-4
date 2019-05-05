@@ -3,11 +3,11 @@ package model.buff;
 import model.Enums;
 
 public class DisarmBuff extends Buff {
-    public DisarmBuff(int numberOfTurns, int delay, Enums.OnCellOrSoldier onCellOrSoldier){
+    public DisarmBuff(int numberOfTurns, int delay){
         this.isPositive = false;
         this.isDisarmer = true;
         this.numberOfTurns = numberOfTurns;
         this.delay = delay;
-        this.onCellOrSoldier = onCellOrSoldier;
+        this.onCellOrSoldier = Enums.OnCellOrSoldier.SOLDIER;
     }
 }

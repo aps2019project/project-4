@@ -51,7 +51,7 @@ public class Buff {
 
     }
 
-    public void stickBuff(Cell cell){
+    public void stickBuffTo(Cell cell){
         if (onCellOrSoldier == Enums.OnCellOrSoldier.SOLDIER){
             if (isPositive == true)
                 cell.getMinion().getPositiveBuffs().add(this);
@@ -89,5 +89,9 @@ public class Buff {
 
     public boolean isActive() {
         return isActive;
+    }
+
+    public void setNumberOfTurns(int numberOfTurns) {
+        this.numberOfTurns = numberOfTurns;
     }
 }

@@ -42,4 +42,12 @@ public class Cell {
     public ArrayList<Buff> getBuffs() {
         return buffs;
     }
+
+    public void applyBuff(Buff buff){
+
+    }
+
+    public void addFlag() {
+        isFlag = true;
+    }
 }

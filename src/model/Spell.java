@@ -36,7 +36,8 @@ public class Spell extends Card {
 
     @Override
     public void insert(Cell cell){
-
+        for (Buff buff : this.buffs)
+            buff.stickBuffTo(cell);
     }
     @Override
     public StringBuilder info() {
