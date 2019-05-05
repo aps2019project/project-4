@@ -4,6 +4,7 @@ import model.buff.Buff;
 import views.View;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Minion extends Card {
     private int healthPoint;
@@ -14,7 +15,7 @@ public class Minion extends Card {
     private boolean hasAttackedThisTurn;
     private boolean hasMovedThisTurn;
     private boolean isDisarmed;
-    private boolean isStuned;
+    private boolean isStunned;
     private int numberOfTurnsOfDisarm;
     private int numberOfTurnsOfStun;
     private GameBoard gameBoard;
@@ -65,11 +66,11 @@ public class Minion extends Card {
     }
 
     public void attack(Minion minion) {
-        if (this.isStuned){
+        if (this.isStunned) {
             View.showStunnedCardMessage(this.id);
             return;
         }
-            if(this.hasAttackedThisTurn) {
+        if (this.hasAttackedThisTurn) {
             View.showHasAttackedMessage(this.id);
             return;
         }
@@ -87,7 +88,7 @@ public class Minion extends Card {
             View.showCardHasMovedMessage(this.id);
             return;
         }
-        if (this.isStuned) {
+        if (this.isStunned) {
             View.showStunnedCardMessage(this.id);
             return;
         }
@@ -98,7 +99,6 @@ public class Minion extends Card {
             return;
         }
     }
-
 
 
     public void changeHp(int number) {
@@ -150,7 +150,7 @@ public class Minion extends Card {
     }
 
     @Override
-    public void insert(Cell cell){
+    public void insert(Cell cell) {
         if (cell.getMinion() != null) {
             View.showInvalidTargetMessage();
             return;
@@ -194,6 +194,58 @@ public class Minion extends Card {
         return this.infoForDeck().append(" - Sell Cost : ").append(this.getPrice());
     }
 
+    public ArrayList<Buff> getPositiveBuffs() {
+        return positiveBuffs;
+    }
+
+    public ArrayList<Buff> getNegativeBuffs() {
+        return negativeBuffs;
+    }
+
+    public void applyBuff(Buff buff) {
+        if (buff.getDelay() == 0) {
+            if (buff.isDisarmer()) {
+                int numberOfTurnsOfDisarm = buff.getNumberOfTurns();
+                this.isDisarmed = true;
+                Iterator<Buff> iter = new ArrayList<Buff>().iterator();
+                while (iter.hasNext()) {
+                    Buff b = iter.next();
+                    if (b.isDisarmer()) {
+                        if (b.getNumberOfTurns() < numberOfTurnsOfDisarm)
+                            negativeBuffs.remove(b);
+                        else
+                            numberOfTurnsOfDisarm = b.getNumberOfTurns();
+                    }
+                }
+                this.numberOfTurnsOfDisarm = numberOfTurnsOfDisarm;
+            }
+            if (buff.isStunner()) {
+                this.isStunned = true;
+                int numberOfTurnsOfStun = buff.getNumberOfTurns();
+                Iterator<Buff> iter = new ArrayList<Buff>().iterator();
+                while(iter.hasNext()){
+                    Buff b = iter.next();
+                    if (b.isStunner()){
+                        if (b.getNumberOfTurns() < numberOfTurnsOfStun)
+                            negativeBuffs.remove(b);
+                        else
+                            numberOfTurnsOfStun = b.getNumberOfTurns();
+                    }
+                }
+            }
+            this.healthPoint += buff.getChangeHp();
+            this.attackPoint += buff.getChangeAp();
+        }
+    }
+
+    public Buff hasDisarmedBefore() {
+        for (Buff buff : negativeBuffs) {
+            if (buff.isDisarmer()) {
+                return buff;
+            }
+        }
+        return null;
+    }
 }
 
 

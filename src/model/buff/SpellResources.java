@@ -15,7 +15,7 @@ public class SpellResources {
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
             "\"changeAp\": 0,\n" +
-            "\"numberOfTurns\": -1,\n" +
+            "\"numberOfTurns\": 2147483647,\n" +
             "\"delay\": 0,\n" +
             "\"isDisarmer\": true,\n" +
             "\"isStunner\": false,\n" +
@@ -56,7 +56,7 @@ public class SpellResources {
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
             "\"changeAp\": 2,\n" +
-            "\"numberOfTurns\": -1,\n" +
+            "\"numberOfTurns\": 2147483647,\n" +
             "\"delay\": 0,\n" +
             "\"isDisarmer\": false,\n" +
             "\"isStunner\": false,\n" +
@@ -111,7 +111,7 @@ public class SpellResources {
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
             "\"changeAp\": 4,\n" +
-            "\"numberOfTurns\": -1,\n" +
+            "\"numberOfTurns\": 2147483647,\n" +
             "\"delay\": 0,\n" +
             "\"isDisarmer\": false,\n" +
             "\"isStunner\": false,\n" +
@@ -366,7 +366,7 @@ public class SpellResources {
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
             "\"changeAp\": 6,\n" +
-            "\"numberOfTurns\": -1,\n" +
+            "\"numberOfTurns\": 2147483647,\n" +
             "\"delay\": 0,\n" +
             "\"isDisarmer\": false,\n" +
             "\"isStunner\": false,\n" +
@@ -393,7 +393,7 @@ public class SpellResources {
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
             "\"changeAp\": 2,\n" +
-            "\"numberOfTurns\": -1,\n" +
+            "\"numberOfTurns\": 2147483647,\n" +
             "\"delay\": 0,\n" +
             "\"isDisarmer\": false,\n" +
             "\"isStunner\": false,\n" +
@@ -443,11 +443,11 @@ public class SpellResources {
             "\"buffs\": [\n" +
             "{\n" +
             "\"onCellOrSoldier\": \"SOLDIER\",\n" +
-            "\"numberOfTurnsOnTarget\": -1,\n" +
+            "\"numberOfTurnsOnTarget\": 2147483647,\n" +
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
             "\"changeAp\": -4,\n" +
-            "\"numberOfTurns\": -1,\n" +
+            "\"numberOfTurns\": 2147483647,\n" +
             "\"delay\": 0,\n" +
             "\"isDisarmer\": false,\n" +
             "\"isStunner\": false,\n" +
@@ -474,7 +474,7 @@ public class SpellResources {
             "\"changeHp\": 0,\n" +
             "\"apShield\": 0,\n" +
             "\"changeAp\": 8,\n" +
-            "\"numberOfTurns\": -1,\n" +
+            "\"numberOfTurns\": 2147483647,\n" +
             "\"delay\": 0,\n" +
             "\"isDisarmer\": false,\n" +
             "\"isStunner\": false,\n" +

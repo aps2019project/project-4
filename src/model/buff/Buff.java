@@ -19,7 +19,6 @@ public class Buff {
     protected Cell cell;
     protected boolean isActive;
 
-
     public int getChangeAp() {
         return changeAp;
     }
@@ -52,7 +51,43 @@ public class Buff {
 
     }
 
-    public Enums.OnCellOrSoldier getCellOrSoldier() {
+    public void stickBuff(Cell cell){
+        if (onCellOrSoldier == Enums.OnCellOrSoldier.SOLDIER){
+            if (isPositive == true)
+                cell.getMinion().getPositiveBuffs().add(this);
+            else
+                cell.getMinion().getPositiveBuffs().add(this);
+        }
+        else{
+            cell.addBuff(this);
+        }
+    }
+
+    public int getApShield() {
+        return apShield;
+    }
+
+    public boolean isDisarmer() {
+        return isDisarmer;
+    }
+
+    public boolean isStunner() {
+        return isStunner;
+    }
+
+    public boolean isPositive() {
+        return isPositive;
+    }
+
+    public Enums.OnCellOrSoldier getOnCellOrSoldier() {
         return onCellOrSoldier;
+    }
+
+    public Minion getMinion() {
+        return minion;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 }
