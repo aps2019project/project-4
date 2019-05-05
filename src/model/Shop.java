@@ -2,6 +2,7 @@ package model;
 
 import resources.Resources;
 import views.Exceptions.*;
+import views.View;
 
 import java.util.ArrayList;
 
@@ -51,12 +52,14 @@ public class Shop {
         Account.getCurrentAccount().changeMoney(-item.getPrice());
         item.setId(Account.getCurrentAccount().getCollection().idGenerator(item));
         Account.getCurrentAccount().getCollection().addItem(item);
+        View.showBuyThingMessage(item);
     }
 
     public static void buyCard(Card card) {
         Account.getCurrentAccount().changeMoney(-card.getPrice());
         card.setId(Account.getCurrentAccount().getCollection().idGenerator(card));
         Account.getCurrentAccount().getCollection().addCard(card);
+        View.showBuyThingMessage(card);
     }
 
     public static void sellThing(String thingID) throws Exception{

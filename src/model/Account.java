@@ -21,7 +21,7 @@ public class Account {
     public Account(String name, String password) {
         this.name = name;
         this.password = password;
-        this.drack = 0;
+        this.drack = 15000;
         this.matchHistory = new ArrayList<>();
         this.collection = new Collection();
         this.selectedDeck = null;

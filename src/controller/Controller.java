@@ -36,10 +36,11 @@ public class Controller {
         patternsOfMainMenu.add(Pattern.compile("logout", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
+        patternsOfMainMenu.add(Pattern.compile("money" , Pattern.CASE_INSENSITIVE));
 
         patternsOfCollectionMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
-        patternsOfCollectionMenu.add(Pattern.compile("search (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfCollectionMenu.add(Pattern.compile("search ((\\w+ ?\\w*))", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("save", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("create deck (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("delete deck (\\w+)", Pattern.CASE_INSENSITIVE));
@@ -53,9 +54,9 @@ public class Controller {
 
         patternsOfShopMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("show collection", Pattern.CASE_INSENSITIVE));
-        patternsOfShopMenu.add(Pattern.compile("search (\\w+)", Pattern.CASE_INSENSITIVE));
-        patternsOfShopMenu.add(Pattern.compile("search collection (\\w+)", Pattern.CASE_INSENSITIVE));
-        patternsOfShopMenu.add(Pattern.compile("buy (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("search (\\w+ ?\\w*)", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("search collection (\\w+ ?\\w*)", Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("buy (\\w+ ?\\w*)", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("sell (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
@@ -182,8 +183,6 @@ public class Controller {
             }
         } catch (InvalidCommandException e) {
             e.showMessage();
-        } catch (NullPointerException e) {
-            System.err.println("ddd");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -207,6 +206,8 @@ public class Controller {
             case 3:
                 View.showHelp();
                 break;
+            case 4:
+                View.showMoney();
         }
     }
 

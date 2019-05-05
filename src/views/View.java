@@ -42,6 +42,7 @@ public class View {
         System.out.println("logout: Log out from account");
         System.out.println("exit game: Exit from game");
         System.out.println("help: to show help");
+        System.out.println("money: show amount of your money");
     }
 
     private static void showCollectionMenuHelp() {
@@ -94,11 +95,15 @@ public class View {
     }
 
     private static void showMainMenu() {
-        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n");
+        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n7.Money\n");
     }
 
     public static void showSuccessfulAccountCreationMessage(String userName) {
         System.out.println("The account with name " + userName + " created!");
+    }
+
+    public static void showMoney() {
+        System.out.println("Your money is " + Account.getCurrentAccount().getDrack() + " Dracks.");
     }
 
     public static void showEnterPasswordMessage() {
@@ -206,15 +211,28 @@ public class View {
         Account.getCurrentAccount().getCollection().getNonHeroCards().forEach((s, card) -> System.out.println(card.infoForDeckWithPrice()));
     }
 
+    public static void showBuyThingMessage(Object object) {
+        if (object instanceof UsableItem)
+            System.out.println("The item " + ((UsableItem) object).getName() + " bought successful");
+        if (object instanceof Card)
+            System.out.println("The card " + ((Card) object).getName() + " bought successful");
+    }
+
     public static void showShop() {
+        int i = 0;
         System.out.println("Heros:");
-        Resources.getAllHero().forEach(hero -> System.out.println(hero.infoForShop()));
-        System.out.println("Minions:");
-        Resources.getAllMinions().forEach(minion -> System.out.println(minion.infoForShop()));
-        System.out.println("Spells:");
-        Resources.getAllSpells().forEach(spell -> System.out.println(spell.infoForShop()));
+        for (Hero hero : Resources.getAllHero())
+            System.out.println("         " + ++i + "- " + hero.infoForShop());
+        i = 0;
+        System.out.println("Cards:");
+        for (Minion minion : Resources.getAllMinions())
+            System.out.println("         " +  ++i + "- " + minion.infoForShop());
+        for (Spell spell : Resources.getAllSpells())
+            System.out.println("         " +  ++i + "- " + spell.infoForShop());
         System.out.println("Items:");
-        Resources.getAllItems().forEach(item -> System.out.println(item.infoForShop()));
+        i = 0;
+        for (UsableItem item : Resources.getAllItems())
+            System.out.println("         " +  ++i + "- " + item.infoForShop());
     }
 
     public static void showAllDecks() {

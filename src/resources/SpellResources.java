@@ -35,7 +35,7 @@ public class SpellResources {
 
 
     public static void setSpellResource() {
-        getSpellResource().put("total disarm", "{\n" +
+        getSpellResource().put("TotalDisarm", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -62,7 +62,7 @@ public class SpellResources {
                 "\"requiredManas\": 0,\n" +
                 "\"price\": 1000\n" +
                 "}");
-        getSpellResource().put("area dispell", "{\n" +
+        getSpellResource().put("AreaDispel", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"BOTH\",\n" +
                 "\"cellsType\": \"SQUARE\",\n" +
@@ -75,7 +75,7 @@ public class SpellResources {
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 1500\n" +
                 "}");
-        getSpellResource().put("empower", "{\n" +
+        getSpellResource().put("Empower", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"FRIEND\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -102,7 +102,7 @@ public class SpellResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 250\n" +
                 "}");
-        getSpellResource().put("fireball", "{\n" +
+        getSpellResource().put("FireBall", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +

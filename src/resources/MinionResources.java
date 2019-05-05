@@ -44,12 +44,12 @@ public class MinionResources {
                 "\"hasMovedThisTurn\": false,\n" +
                 "\"isDisarmed\": false,\n" +
                 "\"isStuned\": false,\n" +
-                "\"numberOfTurnsOfDisarm\": false,\n" +
+                "\"numberOfTurnsOfDisarm\": 0,\n" +
                 "\"name\": \"persianArcher\",\n" +
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 300\n" +
                 "}");
-        getMinionResource().put("persianSwordman", "");
+        //getMinionResource().put("persianSwordman", "");
         //todo add other minion Gsons
     }
 
