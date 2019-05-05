@@ -124,7 +124,7 @@ public class View {
         System.out.printf("This card with id: %s is stuned\n", string);
     }
 
-    public static void showSellThingMessage(String id){
+    public static void showSellThingMessage(String id) {
         System.out.println("The " + id + " sold successfully!");
     }
 
@@ -161,7 +161,7 @@ public class View {
     }
 
     public static void showRemovalCardMessage(String thingID, String deckName) {
-        System.out.println("The " + thingID + " from deck" + deckName + " removed successfully!");
+        System.out.println("The " + thingID + " from deck " + deckName + " removed successfully!");
     }
 
     public static void showAddThingToDeckMessage(String thingID, String deckName) throws Exception {
@@ -310,17 +310,17 @@ public class View {
     public static void showDeck(Deck deck) {
         System.out.println("Hero:");
         if (deck.isHaveHero())
-            System.out.println("1: " + deck.getHero().infoForDeck());
+            System.out.println("        " + "1: " + deck.getHero().infoForDeck());
         System.out.println("Item: ");
         if (deck.getItem() != null) {
-            System.out.println("1: " + deck.getItem().info());
+            System.out.println("        " + "1: " + deck.getItem().info());
         }
         System.out.println("Cards: ");
         if (deck.getCards() != null) {
             int index = 1;
             for (Card card : deck.getCards().values()) {
                 if (!(card instanceof Hero))
-                    System.out.println(index + " : " + card.infoForDeck());
+                    System.out.println("        " + index + " : " + card.infoForDeck());
                 index++;
             }
         }

@@ -39,6 +39,7 @@ public class Battle {
                         append(m2.getCellPlace().getX()).append(" and ").append(m2.getCellPlace().getY()).
                         append("has flag\n");
         }
+        return new StringBuilder();
 
     }
 }
