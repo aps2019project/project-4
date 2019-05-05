@@ -2,6 +2,7 @@ package views;
 
 import controller.Controller;
 import model.*;
+import resources.Resources;
 import views.Exceptions.*;
 
 import java.util.ArrayList;
@@ -196,14 +197,24 @@ public class View {
         }
     }
 
-    public static void showAllCards() {
+    public static void showAllCardsInCollection() {
         System.out.println("Heros:");
         Account.getCurrentAccount().getCollection().getHeros().forEach((s, hero) -> System.out.println(hero.infoForDeckWithPrice()));
         System.out.println("Items:");
         Account.getCurrentAccount().getCollection().getUsableItems().forEach((s, item) -> System.out.println((item.infoWithPrice())));
         System.out.println("Cards:");
         Account.getCurrentAccount().getCollection().getNonHeroCards().forEach((s, card) -> System.out.println(card.infoForDeckWithPrice()));
+    }
 
+    public static void showShop() {
+        System.out.println("Heros:");
+        Resources.getAllHero().forEach(hero -> System.out.println(hero.infoForShop()));
+        System.out.println("Minions:");
+        Resources.getAllMinions().forEach(minion -> System.out.println(minion.infoForShop()));
+        System.out.println("Spells:");
+        Resources.getAllSpells().forEach(spell -> System.out.println(spell.infoForShop()));
+        System.out.println("Items:");
+        Resources.getAllItems().forEach(item -> System.out.println(item.infoForShop()));
     }
 
     public static void showAllDecks() {

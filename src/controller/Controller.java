@@ -252,7 +252,7 @@ public class Controller {
                 Controller.setMenu(Enums.Menus.MAIN);
                 break;
             case 1:
-                View.showAllCards();
+                View.showAllCardsInCollection();
                 break;
             case 2:
                 View.showSearchResultsInCollection(matcher.group(1));
@@ -299,7 +299,7 @@ public class Controller {
                 Controller.setMenu(Enums.Menus.MAIN);
                 break;
             case 1:
-                View.showAllCards();
+                View.showAllCardsInCollection();
                 break;
             case 2:
                 View.showSearchResultsInShop(matcher.group(1));
@@ -314,7 +314,7 @@ public class Controller {
                 //todo sell thing
                 break;
             case 6:
-                //todo show shop
+                View.showShop();
                 break;
             case 7:
                 View.showHelp();
