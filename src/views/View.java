@@ -152,7 +152,7 @@ public class View {
         System.out.println("The " + thingID + " from deck" + deckName + " removed successfully!");
     }
 
-    public static void showAddThingToDeckMessage(String thingID, String deckName) throws Exception{
+    public static void showAddThingToDeckMessage(String thingID, String deckName) throws Exception {
         switch (Account.getCurrentAccount().getCollection().typeOfThing(thingID)) {
             case HERO:
                 System.out.println("The hero " + thingID + " added to deck " + deckName + "!");
@@ -231,6 +231,15 @@ public class View {
         View.showItems(Account.getCurrentAccount().getCollection().searchItem(string));
     }
 
+    public static void showSearchResultsInShop(String string) throws CardAndItemNotAvailabilityException {
+        if (Shop.searchCard(string).size() == 0 &
+                Shop.searchItem(string).size() == 0) {
+            throw new CardAndItemNotAvailabilityException();
+        }
+        View.showCardsInShop(Shop.searchCard(string));
+        View.showItemsInShop(Shop.searchItem(string));
+    }
+
     public static void showCards(ArrayList<Card> cards) {
         int i = 0;
         for (Card card : cards) {
@@ -244,6 +253,22 @@ public class View {
         for (UsableItem item : items) {
             i++;
             System.out.println(i + ": " + item.infoWithPrice());
+        }
+    }
+
+    public static void showCardsInShop(ArrayList<Card> cards) {
+        int i = 0;
+        for (Card card : cards) {
+            i++;
+            System.out.println(i + ": " + card.infoForShop());
+        }
+    }
+
+    public static void showItemsInShop(ArrayList<UsableItem> items) {
+        int i = 0;
+        for (UsableItem item : items) {
+            i++;
+            System.out.println(i + ": " + item.infoForShop());
         }
     }
 

@@ -63,4 +63,9 @@ public class Spell extends Card {
     public StringBuilder infoForDeckWithPrice() {
         return this.infoForDeck().append(" - Sell Cost : ").append(this.getPrice());
     }
+
+    @Override
+    public StringBuilder infoForShop(){
+        return this.infoForDeck().append(" - Buy Cost : ").append(this.getPrice());
+    }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Shop {
 
-    public ArrayList<Card> searchCard(String string) {
+    public static ArrayList<Card> searchCard(String string) {
         ArrayList<Card> cards = new ArrayList<>();
         Resources.getAllCards().forEach(card -> {
             if (card.getName().contains(string)) {
@@ -16,7 +16,7 @@ public class Shop {
         return cards;
     }
 
-    public ArrayList<UsableItem> searchItem(String string) {
+    public static ArrayList<UsableItem> searchItem(String string) {
         ArrayList<UsableItem> usableItems = new ArrayList<>();
         Resources.getAllItems().forEach(usableItem -> {
             if (usableItem.getName().contains(string)) {

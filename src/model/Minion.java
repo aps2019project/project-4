@@ -196,6 +196,11 @@ public class Minion extends Card {
         return this.infoForDeck().append(" - Sell Cost : ").append(this.getPrice());
     }
 
+    @Override
+    public StringBuilder infoForShop(){
+        return this.infoForDeck().append(" - Buy Cost : ").append(this.getPrice());
+    }
+
     public ArrayList<Buff> getPositiveBuffs() {
         return positiveBuffs;
     }
