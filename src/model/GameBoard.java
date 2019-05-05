@@ -8,4 +8,12 @@ public class GameBoard {
             return cells[x][y];
         return null;
     }
+    public Cell withFlagCell(){
+        for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 9; j++)
+                if (cells[i][j].getIsFlag())
+                    return cells[i][j];
+        return null;
+        }
+    }
 }
