@@ -2,6 +2,7 @@ package controller;
 
 import model.Account;
 import model.Enums;
+import model.Shop;
 import views.View;
 import views.Exceptions.*;
 import resources.Resources;
@@ -308,7 +309,7 @@ public class Controller {
                 View.showSearchResultsInCollection(matcher.group(1));
                 break;
             case 4:
-                //todo buy thing
+                Shop.buyThing(matcher.group(1));
                 break;
             case 5:
                 //todo sell thing

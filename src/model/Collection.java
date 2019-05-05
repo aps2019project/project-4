@@ -18,6 +18,40 @@ public class Collection {
         this.usableItems = new HashMap<>();
     }
 
+    public void addCard(Card card) {
+        this.getAllCards().put(this.idGenerator(card), card);
+    }
+
+    public void addItem(UsableItem item) {
+        this.getUsableItems().put(this.idGenerator(item), item);
+    }
+
+    public int numOfCard(String cardName) {
+        int i = 0;
+        for (Card card: this.getAllCards().values()){
+            if (card.getName().equals(cardName))
+                i++;
+        }
+        return i;
+    }
+
+    public int numOfItem(String itemName) {
+        int i = 0;
+        for (UsableItem usableItem: this.getUsableItems().values()){
+            if (usableItem.getName().equals(itemName))
+                i++;
+        }
+        return i;
+    }
+
+    public String idGenerator(UsableItem item) {
+        return Account.getCurrentAccount().getName() + "_" + item.getName() + "_" + this.numOfItem(item.getName());
+    }
+
+    public String idGenerator(Card card) {
+        return Account.getCurrentAccount().getName() + "_" + card.getName() + "_" + this.numOfCard(card.getName());
+    }
+
     public HashMap<String, Deck> getDecks() {
         return decks;
     }
@@ -68,19 +102,19 @@ public class Collection {
                 if (this.getDecks().get(deckName).isHaveHero())
                     throw new HeroAvailableInDeckException(deckName);
                 this.getDecks().get(deckName).addCard(this.getAllCards().get(thingID));
-                View.showAddThingToDeckMessage(thingID , deckName);
+                View.showAddThingToDeckMessage(thingID, deckName);
                 break;
             case ITEM:
                 if (this.getDecks().get(deckName).getItem() != null)
                     throw new ItemAvailableInDeckException(thingID, deckName);
                 this.getDecks().get(deckName).setItem(this.getUsableItems().get(thingID));
-                View.showAddThingToDeckMessage(thingID , deckName);
+                View.showAddThingToDeckMessage(thingID, deckName);
                 break;
             case NONHERO:
                 if (this.getDecks().get(deckName).getCards().get(thingID) != null)
                     throw new CardAvailableInDeckException(thingID, deckName);
                 this.getDecks().get(deckName).addCard(this.getAllCards().get(thingID));
-                View.showAddThingToDeckMessage(thingID , deckName);
+                View.showAddThingToDeckMessage(thingID, deckName);
                 break;
         }
     }
@@ -100,14 +134,14 @@ public class Collection {
     //For sell Command
     public void removeThingFromAllDecks(String thingID) throws Exception {
         for (Deck deck : this.getDecks().values())
-            deck.removeThingWithID(thingID , false);
+            deck.removeThingWithID(thingID, false);
     }
 
     public void removeCard(String thingID, String deckName) throws DeckNotAvailabilityException, IDNotAvailableInDeckException {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
-        this.getDecks().get(deckName).removeThingWithID(thingID , true);
-        View.showRemovalCardMessage(thingID , deckName);
+        this.getDecks().get(deckName).removeThingWithID(thingID, true);
+        View.showRemovalCardMessage(thingID, deckName);
     }
 
     public ArrayList<Card> searchCard(String string) {

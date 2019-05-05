@@ -1,6 +1,7 @@
 package model;
 
 import resources.Resources;
+import views.Exceptions.*;
 
 import java.util.ArrayList;
 
@@ -26,4 +27,30 @@ public class Shop {
         return usableItems;
     }
 
+    public static void buyThing(String thingName) throws Exception {
+        if (Resources.getSpeceficCard(thingName) == null & Resources.getSpeceficItem(thingName) == null)
+            throw new CardAndItemNotAvailabilityException(thingName);
+        if (Resources.getSpeceficItem(thingName) != null) {
+            UsableItem usableItem = Resources.getSpeceficItem(thingName);
+            if (Account.getCurrentAccount().getDrack() <= usableItem.getPrice())
+                throw new MoneyIsNotEnoughException();
+            buyItem(usableItem);
+            return;
+        }
+        if (Resources.getSpeceficCard(thingName) != null) {
+            Card card = Resources.getSpeceficCard(thingName);
+            if (Account.getCurrentAccount().getDrack() <= card.getPrice())
+                throw new MoneyIsNotEnoughException();
+            buyCard(card);
+        }
+    }
+
+    public static void buyItem(UsableItem item) {
+
+    }
+
+    public static void buyCard(Card card) {
+        Account.getCurrentAccount().changeMoney(-card.getPrice());
+        //Account.getCurrentAccount().getCollection();
+    }
 }

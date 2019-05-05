@@ -35,6 +35,16 @@ public class Exceptions {
         public CardAndItemNotAvailabilityException() {
             super("No Card or Item found!");
         }
+
+        public CardAndItemNotAvailabilityException(String thingName) {
+            super("No Card or Item with name " + thingName + " found!");
+        }
+    }
+
+    public static class MoneyIsNotEnoughException extends Exception {
+        public MoneyIsNotEnoughException(){
+            super("Your Money is not enough!");
+        }
     }
 
     public static class IDNotAvailableInDeckException extends Exception {
@@ -75,7 +85,7 @@ public class Exceptions {
     }
 
     public static class DeckFullException extends Exception {
-        public DeckFullException (String deckName){
+        public DeckFullException(String deckName) {
             super("The deck " + deckName + " is full!");
         }
     }

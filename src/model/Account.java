@@ -13,7 +13,7 @@ public class Account {
     private static Account currentAccount = null;
     private String name;
     private String password;
-    private int Drack;
+    private int drack;
     private ArrayList<Match> matchHistory;
     private Collection collection;
     private Deck selectedDeck;
@@ -21,7 +21,7 @@ public class Account {
     public Account(String name, String password) {
         this.name = name;
         this.password = password;
-        this.Drack = 0;
+        this.drack = 0;
         this.matchHistory = new ArrayList<>();
         this.collection = new Collection();
         this.selectedDeck = null;
@@ -36,8 +36,10 @@ public class Account {
     }
 
     public int getDrack() {
-        return this.Drack;
+        return this.drack;
     }
+
+    public void changeDrack(int change){this.drack += change;}
 
     public ArrayList<Match> getMatchHistory() {
         return matchHistory;
@@ -142,7 +144,7 @@ public class Account {
     }
 
     public void changeMoney(int change) {
-        this.Drack += change;
+        this.drack += change;
     }
 
     public void showMatchHistory() {
