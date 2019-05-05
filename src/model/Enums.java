@@ -10,7 +10,7 @@ public class Enums {
     }
 
     public enum Menus {
-        ACCOUNT, MAIN, BATTLE, SHOP, COLLECTION
+        ACCOUNT, MAIN, BATTLE, SHOP, COLLECTION , GRAVEYARD
     }
 
     public enum SoldierType {

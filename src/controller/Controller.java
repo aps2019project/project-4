@@ -23,6 +23,7 @@ public class Controller {
     private final static ArrayList<Pattern> patternsOfCollectionMenu = new ArrayList<>();
     private final static ArrayList<Pattern> patternsOfShopMenu = new ArrayList<>();
     private final static ArrayList<Pattern> patternsOfBattleMenu = new ArrayList<>();
+    private final static ArrayList<Pattern> patternsOfGraveyard‬‬Menu = new ArrayList<>();
 
     public static void setPatterns() {
         patternsOfAccountMenu.add(Pattern.compile("create account (\\w+)", Pattern.CASE_INSENSITIVE));
@@ -36,7 +37,7 @@ public class Controller {
         patternsOfMainMenu.add(Pattern.compile("logout", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
-        patternsOfMainMenu.add(Pattern.compile("money" , Pattern.CASE_INSENSITIVE));
+        patternsOfMainMenu.add(Pattern.compile("money", Pattern.CASE_INSENSITIVE));
 
         patternsOfCollectionMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
@@ -59,7 +60,7 @@ public class Controller {
         patternsOfShopMenu.add(Pattern.compile("buy (\\w+ ?\\w*)", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("sell (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
-        patternsOfShopMenu.add(Pattern.compile("money" , Pattern.CASE_INSENSITIVE));
+        patternsOfShopMenu.add(Pattern.compile("money", Pattern.CASE_INSENSITIVE));
         patternsOfShopMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
 
         patternsOfBattleMenu.add(Pattern.compile("Game info", Pattern.CASE_INSENSITIVE));
@@ -76,12 +77,17 @@ public class Controller {
         patternsOfBattleMenu.add(Pattern.compile("Insert (\\w+) in \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("End turn", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show collectables", Pattern.CASE_INSENSITIVE));
-        //use show info for both collectable items and grave yard menu
         patternsOfBattleMenu.add(Pattern.compile("Show info", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Use location \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show next card", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Enter graveyard", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Help", Pattern.CASE_INSENSITIVE));
+
+        patternsOfGraveyard‬‬Menu.add(Pattern.compile("Show info (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfGraveyard‬‬Menu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
+        patternsOfGraveyard‬‬Menu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
+
     }
 
     public static ArrayList<Pattern> getPatterns() {
@@ -181,6 +187,8 @@ public class Controller {
                 case COLLECTION:
                     doCollectionMenuCommand(index);
                     break;
+                case GRAVEYARD:
+                    doGraveYardMenuCommand(index);
             }
         } catch (InvalidCommandException e) {
             e.showMessage();
@@ -239,11 +247,97 @@ public class Controller {
         }
     }
 
+//        patternsOfBattleMenu.add(Pattern.compile("Use location \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
+//        patternsOfBattleMenu.add(Pattern.compile("Show next card", Pattern.CASE_INSENSITIVE));
+//        patternsOfBattleMenu.add(Pattern.compile("Enter graveyard", Pattern.CASE_INSENSITIVE));
+//        patternsOfBattleMenu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
+//        patternsOfBattleMenu.add(Pattern.compile("Help", Pattern.CASE_INSENSITIVE);
+//
+//        patternsOfGraveyard‬‬Menu.add(Pattern.compile("Show info (\\w+)", Pattern.CASE_INSENSITIVE));
+//        patternsOfGraveyard‬‬Menu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
+//        patternsOfGraveyard‬‬Menu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
+
+
     public static void doBattleMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.matches();
+        switch (index) {
+            case 0:
+                //todo game info
+                break;
+            case 1:
+                //todo Show my minions
+                break;
+            case 2:
+                //todo Show opponent minions
+                break;
+            case 3:
+                //todo Show card info
+                break;
+            case 4:
+                //todo Select card
+                break;
+            case 5:
+                //todo move  card
+                break;
+            case 6:
+                //todo attack
+                break;
+            case 7:
+                //todo attack combo
+                break;
+            case 8:
+                //todo use special power
+                break;
+            case 9:
+                //todo show hand
+                break;
+            case 10:
+                //todo insert card in x ,y
+                break;
+            case 11:
+                //todo end turn
+                break;
+            case 12:
+                //todo show collectable items
+                break;
+            case 13:
+                //todo select collectable item
+                break;
+            case 14:
+                //todo show info of item
+                break;
+            case 15:
+                //todo use from collectable item
+                break;
+            case 16:
+                //todo show next card
+                break;
+            case 17:
+                Controller.setMenu(Enums.Menus.GRAVEYARD);
+                break;
+            case 18:
+                //todo show help
+                break;
+        }
+    }
 
+    public static void doGraveYardMenuCommand(int index) throws Exception {
+        Pattern pattern = getPatterns().get(index);
+        Matcher matcher = pattern.matcher(getCommand().trim());
+        matcher.matches();
+        switch (index) {
+            case 0:
+                //todo show info of card id
+                break;
+            case 1:
+                //todo show cards
+                break;
+            case 2:
+                Controller.setMenu(Enums.Menus.BATTLE);
+                break;
+        }
     }
 
     public static void doCollectionMenuCommand(int index) throws Exception {
@@ -297,7 +391,7 @@ public class Controller {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.matches();
-        switch (index){
+        switch (index) {
             case 0:
                 Controller.setMenu(Enums.Menus.MAIN);
                 break;
