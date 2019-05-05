@@ -27,8 +27,8 @@ public class Hero extends Minion {
         StringBuilder result = new StringBuilder();
         result.append("Name: ").append(this.getName())
                 .append(" - ID : ").append(this.getId())
-                .append(" - AP : ").append(this.getAP())
-                .append(" - HP : ").append(this.getHP())
+                .append(" - AP : ").append(this.getAttackPoint())
+                .append(" - HP : ").append(this.getHealthPoint())
                 .append(" - Class : ").append(this.getType())
                 .append(" - Special power: ").append(this.getSpecialPower().getDesc());
         return result;

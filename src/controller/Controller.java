@@ -1,12 +1,11 @@
 package controller;
 
-import model.Account;
-import model.Enums;
-import model.Shop;
+import model.*;
 import views.View;
 import views.Exceptions.*;
 import resources.Resources;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -107,12 +106,13 @@ public class Controller {
         }
     }
 
-    public static void setMenu(String menuName) {
+    public static void setMenu(String menuName) throws Exception {
         switch (menuName.toLowerCase()) {
             case "main":
                 setMenu(Enums.Menus.MAIN);
                 break;
             case "battle":
+                getBattleConditions();
                 setMenu(Enums.Menus.BATTLE);
                 break;
             case "shop":
@@ -124,6 +124,39 @@ public class Controller {
             case "account":
                 setMenu(Enums.Menus.ACCOUNT);
                 break;
+        }
+    }
+
+    public static void getBattleConditions() throws Exception {
+        if (Account.getCurrentAccount().getSelectedDeck() == null)
+            throw new NoDeckSelectedException();
+        System.out.println("Select Single Player or Multi Player:");
+        System.out.println("1. Single Player");
+        System.out.println("2. Multi Player");
+        while (true) {
+            String str = Controller.getNextLine();
+            if (str.toLowerCase().equals("single player")){
+                System.out.println("Select type of your Game");
+                System.out.println("1. Story");
+                System.out.println("2. Custom Game");
+                while (true){
+                    String command = Controller.getNextLine();
+                    if (command.equals("story")){
+                        System.out.println("");
+                        break;
+                    }
+                    if (command.toLowerCase().equals("custom game")){
+
+                        break;
+                    }
+                    System.err.println("Invalid Command");
+                }
+                break;
+            }
+            if (str.toLowerCase().equals("multi player")){
+
+            }
+            System.err.println("Invalid Command");
         }
     }
 
@@ -198,7 +231,7 @@ public class Controller {
 
     }
 
-    public static void doMainMenuCommand(int index) {
+    public static void doMainMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
         matcher.matches();
@@ -246,17 +279,6 @@ public class Controller {
                 break;
         }
     }
-
-//        patternsOfBattleMenu.add(Pattern.compile("Use location \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
-//        patternsOfBattleMenu.add(Pattern.compile("Show next card", Pattern.CASE_INSENSITIVE));
-//        patternsOfBattleMenu.add(Pattern.compile("Enter graveyard", Pattern.CASE_INSENSITIVE));
-//        patternsOfBattleMenu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
-//        patternsOfBattleMenu.add(Pattern.compile("Help", Pattern.CASE_INSENSITIVE);
-//
-//        patternsOfGraveyard‬‬Menu.add(Pattern.compile("Show info (\\w+)", Pattern.CASE_INSENSITIVE));
-//        patternsOfGraveyard‬‬Menu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
-//        patternsOfGraveyard‬‬Menu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
-
 
     public static void doBattleMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);

@@ -1,9 +1,8 @@
 package model;
 
 public class AIPlayer extends Player {
-    public AIPlayer(Deck deck) {
 
-    }
+    private Stage stage;
 
     public AIPlayer(Stage stage){
 
