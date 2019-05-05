@@ -64,10 +64,12 @@ public class View {
     private static void showShopMenuHelp() {
         System.out.println("back: Back to main menu");
         System.out.println("show collection: Show all cards and items in collection and their cost");
-        System.out.println("search collection [card name|item name]: Show card or item with special name if exists");
+        System.out.println("search [card name|item name]: Show card or item with special name if exists in shop");
+        System.out.println("search collection [card name|item name]: Show card or item with special name if exists in collection");
         System.out.println("buy [card name|item name]: buy a card or item");
         System.out.println("sell [card id | item id] : sell a card or item");
         System.out.println("show: show all card and items of shop");
+        System.out.println("money: show amount of your money");
         System.out.println("help: show help");
     }
 
@@ -120,6 +122,10 @@ public class View {
 
     public static void showStunnedCardMessage(String string) {
         System.out.printf("This card with id: %s is stuned\n", string);
+    }
+
+    public static void showSellThingMessage(String id){
+        System.out.println("The " + id + " sold successfully!");
     }
 
     public static void showCardHasMovedMessage(String string) {
@@ -204,11 +210,11 @@ public class View {
 
     public static void showAllCardsInCollection() {
         System.out.println("Heros:");
-        Account.getCurrentAccount().getCollection().getHeros().forEach((s, hero) -> System.out.println(hero.infoForDeckWithPrice()));
+        Account.getCurrentAccount().getCollection().getHeros().forEach((s, hero) -> System.out.println("            " + hero.infoForDeckWithPrice()));
         System.out.println("Items:");
-        Account.getCurrentAccount().getCollection().getUsableItems().forEach((s, item) -> System.out.println((item.infoWithPrice())));
+        Account.getCurrentAccount().getCollection().getUsableItems().forEach((s, item) -> System.out.println("            " + (item.infoWithPrice())));
         System.out.println("Cards:");
-        Account.getCurrentAccount().getCollection().getNonHeroCards().forEach((s, card) -> System.out.println(card.infoForDeckWithPrice()));
+        Account.getCurrentAccount().getCollection().getNonHeroCards().forEach((s, card) -> System.out.println("            " + card.infoForDeckWithPrice()));
     }
 
     public static void showBuyThingMessage(Object object) {
@@ -226,13 +232,13 @@ public class View {
         i = 0;
         System.out.println("Cards:");
         for (Minion minion : Resources.getAllMinions())
-            System.out.println("         " +  ++i + "- " + minion.infoForShop());
+            System.out.println("         " + ++i + "- " + minion.infoForShop());
         for (Spell spell : Resources.getAllSpells())
-            System.out.println("         " +  ++i + "- " + spell.infoForShop());
+            System.out.println("         " + ++i + "- " + spell.infoForShop());
         System.out.println("Items:");
         i = 0;
         for (UsableItem item : Resources.getAllItems())
-            System.out.println("         " +  ++i + "- " + item.infoForShop());
+            System.out.println("         " + ++i + "- " + item.infoForShop());
     }
 
     public static void showAllDecks() {

@@ -68,6 +68,7 @@ public class Shop {
             Account.getCurrentAccount().changeMoney(money);
             Account.getCurrentAccount().getCollection().getAllCards().remove(thingID);
             Account.getCurrentAccount().getCollection().removeThingFromAllDecks(thingID);
+            View.showSellThingMessage(thingID);
             return;
         }
         if (Account.getCurrentAccount().getCollection().getUsableItems().get(thingID) != null){
@@ -75,6 +76,7 @@ public class Shop {
             Account.getCurrentAccount().changeMoney(money);
             Account.getCurrentAccount().getCollection().getUsableItems().remove(thingID);
             Account.getCurrentAccount().getCollection().removeThingFromAllDecks(thingID);
+            View.showSellThingMessage(thingID);
             return;
         }
         throw new IDNotAvailableException(thingID);

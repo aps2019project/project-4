@@ -585,6 +585,5 @@ public class SpellResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 1200\n" +
                 "}");
-        //todo add other spells
     }
 }
