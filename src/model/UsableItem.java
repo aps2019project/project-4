@@ -31,6 +31,7 @@ public class UsableItem {
 
     public StringBuilder info() {
         return new StringBuilder("Name : ").append(this.getName())
+                .append(" - ID: ").append(this.getId())
                 .append(" - Desc: ").append(this.getDescription());
     }
 

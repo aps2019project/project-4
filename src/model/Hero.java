@@ -15,7 +15,7 @@ public class Hero extends Minion {
     @Override
     public StringBuilder info() {
         StringBuilder result = new StringBuilder()
-                .append("model.Hero:\n")
+                .append("Hero:\n")
                 .append("Name: ").append(name).append("\n")
                 .append("Cost: ").append(price).append("\n")
                 .append("Description: ").append(desc).append("\n");
@@ -25,8 +25,11 @@ public class Hero extends Minion {
     @Override
     public StringBuilder infoForDeck() {
         StringBuilder result = new StringBuilder();
-        result.append("Name: ").append(this.getName()).append(" - AP : ").append(this.getAP())
-                .append(" - HP : ").append(this.getHP()).append(" - Class : ").append(this.getType())
+        result.append("Name: ").append(this.getName())
+                .append(" - ID : ").append(this.getId())
+                .append(" - AP : ").append(this.getAP())
+                .append(" - HP : ").append(this.getHP())
+                .append(" - Class : ").append(this.getType())
                 .append(" - Special power: ").append(this.getSpecialPower().getDesc());
         return result;
     }

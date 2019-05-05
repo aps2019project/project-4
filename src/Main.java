@@ -1,8 +1,8 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import controller.Controller;
 import model.*;
 import model.buff.*;
+import resources.SpellResources;
 
 public class Main {
 
