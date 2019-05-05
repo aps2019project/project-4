@@ -564,11 +564,190 @@ public class MinionResources {
             "\"requiredManas\": 2,\n" +
             "\"price\": 200\n" +
             "}";
-    String swineriderDevil = "";
-    String monoeyedGiant = "";
-    String poisonousSnake = "";
-    String fieryDragon = "";
-    String predatorLion = "";
+    String swineriderDevil = "{\n" +
+            "\"healthPoint\": 16,\n" +
+            "\"attackPoint\": 8,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"NONE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"swinerider devil\",\n" +
+            "\"requiredManas\": 6,\n" +
+            "\"price\": 300\n" +
+            "}";
+    String monoeyedGiant = "{\n" +
+            "\"healthPoint\": 12,\n" +
+            "\"attackPoint\": 11,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 3,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"HYBRID\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY\",\n" +
+            "\"cellsType\": \"ALL_MINIONS_AROUND\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"NONE\",\n" +
+            "\"buffs\": [\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 0,\n" +
+            "\"changeHp\": -2,\n" +
+            "\"apShield\": 0,\n" +
+            "\"changeAp\": 0,\n" +
+            "\"numberOfTurns\": 1,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": false,\n" +
+            "\"isPositive\": false,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "}\n" +
+            "],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"monoeyed giant spell\",\n" +
+            "\"requiredManas\": 7,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"ON_DEATH\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"monoeyed giant\",\n" +
+            "\"requiredManas\": 7,\n" +
+            "\"price\": 500\n" +
+            "}";
+    String poisonousSnake = "{\n" +
+            "\"healthPoint\": 5,\n" +
+            "\"attackPoint\": 6,\n" +
+            "\"startRange\": 2,\n" +
+            "\"endRange\": 4,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"RANGED\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY\",\n" +
+            "\"cellsType\": \"MONO_CELL\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"NONE\",\n" +
+            "\"buffs\": [\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 3,\n" +
+            "\"changeHp\": -1,\n" +
+            "\"apShield\": 0,\n" +
+            "\"changeAp\": 0,\n" +
+            "\"numberOfTurns\": 3,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": false,\n" +
+            "\"isPositive\": false,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "}\n" +
+            "],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"poisonous snake spell\",\n" +
+            "\"requiredManas\": 4,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"ON_ATTACK\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"poisonous snake\",\n" +
+            "\"requiredManas\": 4,\n" +
+            "\"price\": 300\n" +
+            "}";
+    String fieryDragon = "{\n" +
+            "\"healthPoint\": 9,\n" +
+            "\"attackPoint\": 5,\n" +
+            "\"startRange\": 2,\n" +
+            "\"endRange\": 4,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"RANGED\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"NONE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"fiery dragon\",\n" +
+            "\"requiredManas\": 5,\n" +
+            "\"price\": 250\n" +
+            "}";
+    String predatorLion = "{\n" +
+            "\"healthPoint\": 1,\n" +
+            "\"attackPoint\": 8,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": true,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"ON_ATTACK\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"predator lion\",\n" +
+            "\"requiredManas\": 2,\n" +
+            "\"price\": 600\n" +
+            "}";
     String giantSnake = "";
     String whiteWolf = "";
     String panther = "";
