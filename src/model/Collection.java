@@ -135,6 +135,15 @@ public class Collection {
             deck.removeThingWithID(thingID, false);
     }
 
+    public HashMap<String, Deck> getValidDecks() {
+        HashMap<String, Deck> decks = new HashMap<>();
+        Account.getCurrentAccount().getCollection().getDecks().forEach((name, deck) -> {
+            if (deck.validateDeck())
+                decks.put(deck.getName(), deck);
+        });
+        return decks;
+    }
+
     public void removeCard(String thingID, String deckName) throws DeckNotAvailabilityException, IDNotAvailableException {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);

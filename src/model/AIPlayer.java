@@ -2,10 +2,8 @@ package model;
 
 public class AIPlayer extends Player {
 
-    private Stage stage;
-
-    public AIPlayer(Stage stage){
-
+    public AIPlayer(Deck deck){
+        this.setDeck(deck);
     }
 
     public void handleTurn(){
