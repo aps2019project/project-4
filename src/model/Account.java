@@ -45,6 +45,10 @@ public class Account {
         return currentBattle;
     }
 
+    public void setCurrentBattle(Battle currentBattle) {
+        this.currentBattle = currentBattle;
+    }
+
     public void changeDrack(int change){this.drack += change;}
 
     public ArrayList<Match> getMatchHistory() {

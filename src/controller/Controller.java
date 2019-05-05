@@ -135,16 +135,22 @@ public class Controller {
         while (true) {
             View.showSingleOrMultiPlayerMenu();
             String str = Controller.getNextLine();
-            if (str.toLowerCase().equals("single player")) {
-                player2 = handleSingleGameStart();
-                break;
+            try {
+                if (str.toLowerCase().equals("single player")) {
+                    player2 = handleSingleGameStart();
+                    break;
+                }
+                if (str.toLowerCase().equals("multi player")) {
+                    
+                    break;
+                }
+                throw new InvalidCommandException();
+            }catch (Exception e){
+                System.err.println(e.getMessage());
             }
-            if (str.toLowerCase().equals("multi player")) {
-
-            }
-            System.err.println("Invalid Command");
         }
-
+        Battle battle = new Battle(player1 , player2);
+        Account.getCurrentAccount().setCurrentBattle(battle);
     }
 
     private static Player handleSingleGameStart() {
