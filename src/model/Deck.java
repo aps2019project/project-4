@@ -32,8 +32,17 @@ public class Deck {
         this.item = item;
     }
 
+    public void setItemWithID(UsableItem item, String id) {
+        this.setItem(item);
+        item.setId(id);
+    }
+
     public void addCard(Card card) {
         this.getCards().put(card.getId(), card);
+    }
+
+    public void addCardWithSetID(Card card, String id) {
+        this.getCards().put(id, card);
     }
 
     public void removeThingWithID(String id, Boolean throwError) throws IDNotAvailableException, NullPointerException {

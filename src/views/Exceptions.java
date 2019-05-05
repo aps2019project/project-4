@@ -42,13 +42,13 @@ public class Exceptions {
     }
 
     public static class MoneyIsNotEnoughException extends Exception {
-        public MoneyIsNotEnoughException(){
+        public MoneyIsNotEnoughException() {
             super("Your Money is not enough!");
         }
     }
 
     public static class ThreeItemException extends Exception {
-        public ThreeItemException(){
+        public ThreeItemException() {
             super("You Have 3 Items!");
         }
     }
@@ -58,11 +58,16 @@ public class Exceptions {
             super("No thing with ID " + id + " in deck " + deckName + " found!");
         }
 
-        public IDNotAvailableException(String id){
+        public IDNotAvailableException(String id) {
             super("No thing with ID " + id + " found!");
         }
     }
 
+    public static class NoDeckSelectedException extends Exception {
+        public NoDeckSelectedException(){
+            super("Please Select a deck!");
+        }
+    }
 
     public static class NotValidDeckException extends Exception {
         public NotValidDeckException(String deckName) {
