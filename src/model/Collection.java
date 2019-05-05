@@ -131,13 +131,12 @@ public class Collection {
         return usableItems;
     }
 
-    //For sell Command
     public void removeThingFromAllDecks(String thingID) throws Exception {
         for (Deck deck : this.getDecks().values())
             deck.removeThingWithID(thingID, false);
     }
 
-    public void removeCard(String thingID, String deckName) throws DeckNotAvailabilityException, IDNotAvailableInDeckException {
+    public void removeCard(String thingID, String deckName) throws DeckNotAvailabilityException, IDNotAvailableException {
         if (!(this.getDecks().containsKey(deckName)))
             throw new DeckNotAvailabilityException(deckName);
         this.getDecks().get(deckName).removeThingWithID(thingID, true);

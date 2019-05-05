@@ -312,7 +312,7 @@ public class Controller {
                 Shop.buyThing(matcher.group(1));
                 break;
             case 5:
-                //todo sell thing
+                Shop.sellThing(matcher.group(1));
                 break;
             case 6:
                 View.showShop();
