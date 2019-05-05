@@ -3,8 +3,12 @@ package model;
 public class Hero extends Minion {
     private int coolDown;
 
-    public Hero(String name, int price, int hp, int ap, int mp, int startRange, int endRange, int coolDown) {
-        super(name, price, hp, ap, mp, startRange, endRange);
+    public Hero(String id, String name, int price, int hp, int ap, int mp, int startRange, int endRange,
+                int coolDown, boolean isAntiHolyBuff, boolean isAntiDisarm,
+                boolean isAntiPoison, boolean isImmortal, boolean isApSuperior,
+                Enums.ActivationTypes specialPowerActivationType) {
+        super(id, name, price, mp, hp, ap, startRange, endRange, isAntiHolyBuff,
+                isAntiDisarm, isAntiPoison, isImmortal, isApSuperior, specialPowerActivationType);
         this.coolDown = coolDown;
     }
 
@@ -27,8 +31,8 @@ public class Hero extends Minion {
         StringBuilder result = new StringBuilder();
         result.append("Name: ").append(this.getName())
                 .append(" - ID : ").append(this.getId())
-                .append(" - AP : ").append(this.getAP())
-                .append(" - HP : ").append(this.getHP())
+                .append(" - AP : ").append(this.getAttackPoint())
+                .append(" - HP : ").append(this.getHealthPoint())
                 .append(" - Class : ").append(this.getType())
                 .append(" - Special power: ").append(this.getSpecialPower().getDesc());
         return result;

@@ -2,7 +2,7 @@ package model;
 
 public class Enums {
     public enum ActivationTypes{
-        ON_ATTACK, COMBO, ON_DEFEND, ON_SPAWN, PASSIVE, ON_DEATH
+        NONE, ON_ATTACK, COMBO, ON_DEFEND, ON_SPAWN, PASSIVE, ON_DEATH
     }
 
     public enum GameMode{
@@ -22,7 +22,8 @@ public class Enums {
     }
 
     public enum WhichCellsType{
-        MONO_CELL, SQUARE, COLUMN, ROW, ALL, RANDOM_MINION_AROUND_HERO
+        MONO_CELL, SQUARE, COLUMN, ROW, ALL, RANDOM_MINION_AROUND_HERO, RANDOM_MINION_AROUND,
+        ALL_MINIONS_AROUND_DISTANCE_1,ALL_MINIONS_AROUND_DISTANCE_2
     }
 
     public enum OnCellOrSoldier{

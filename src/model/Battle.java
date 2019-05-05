@@ -142,5 +142,18 @@ public class Battle {
         }
         return false;
     }
+    public void moveTo(int x, int y){
+        if (whoseTurn.getSelectedCard() instanceof Spell){
+            View.showSpellsCanNotMoveMessage();
+        }
+        Minion minion = ((Minion) whoseTurn.getSelectedCard());
+        Cell cell = minion.getCellPlace();
+        if (!isMinionsBetween(cell, x, y)){
+            minion.moveTo(gameBoard.getCell(x, y));
+        }
+        else {
+            View.showMinionsBetweenMessage();
+        }
+    }
 
 }

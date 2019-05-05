@@ -11,6 +11,11 @@ public class Minion extends Card {
     private int attackPoint;
     private int startRange;
     private int endRange;
+    private boolean isAntiHolyBuff;
+    private boolean isAntiDisarm;
+    private boolean isAntiPoison;
+    private boolean isImmortal;
+    private boolean isApSuperior;
     private Enums.SoldierType type;
     private boolean hasAttackedThisTurn;
     private boolean hasMovedThisTurn;
@@ -30,12 +35,16 @@ public class Minion extends Card {
 
     private boolean hasFlag;
 
-    public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange) {
+    public Minion(String id, String name, int price, int mp, int hp, int ap,
+                  int startRange, int endRange, boolean isAntiHolyBuff, boolean isAntiDisarm,
+                  boolean isAntiPoison, boolean isImmortal, boolean isApSuperior,
+                  Enums.ActivationTypes specialPowerActivationType) {
+        this.id = id;
         this.name = name;
         this.price = price;
-        this.requiredManas = mp;
         this.healthPoint = hp;
         this.attackPoint = ap;
+        this.requiredManas = mp;
         this.startRange = startRange;
         this.endRange = endRange;
         if (startRange == 1 && endRange == 1)
@@ -44,6 +53,16 @@ public class Minion extends Card {
             type = Enums.SoldierType.RANGED;
         if (startRange == 1 && endRange > 1)
             type = Enums.SoldierType.HYBRID;
+        this.isAntiHolyBuff = isAntiHolyBuff;
+        this.isAntiDisarm = isAntiDisarm;
+        this.isAntiPoison = isAntiPoison;
+        this.isImmortal = isImmortal;
+        this.isApSuperior = isApSuperior;
+        this.specialPowerActivationType = specialPowerActivationType;
+    }
+
+    public void setSpecialPower(Spell specialPower) {
+        this.specialPower = specialPower;
     }
 
     public Enums.SoldierType getType() {
@@ -133,8 +152,7 @@ public class Minion extends Card {
             View.showStunnedCardMessage(this.id);
             return;
         }
-        if (cell.getMinion() != null ||
-                cellPlace.getDistance(cell.getX(), cell.getY()) > endRange ||
+        if (cellPlace.getDistance(cell.getX(), cell.getY()) > endRange ||
                 cellPlace.getDistance(cell.getX(), cell.getY()) < startRange) {
             View.showInvalidTargetMessage();
             return;

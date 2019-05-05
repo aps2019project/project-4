@@ -8,12 +8,26 @@ import resources.SpellResources;
 public class Main {
 
     public static void main(String[] args) {
-        Controller.start();
-        Minion minion = new Minion("kasra", 500, 22, 6, 4, 1, 5);
-        Buff buff = new DisarmBuff(Integer.MAX_VALUE, 0);
-        minion.getNegativeBuffs().add(buff);
-        minion.applyBuff(buff);
-        System.out.println(minion.getIsDisarmed());
-        System.out.println(minion.getNumberOfTurnsOfDisarm());
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+        Minion minion = new Minion("", "persian champion", 600, 9, 24, 6,
+                1, 1, false, false, false,
+                false, false, Enums.ActivationTypes.ON_ATTACK);
+        Spell spell;
+        spell = new Spell("", "persian swordsman spell", minion.getRequiredManas(),
+                0, Enums.OnCellOrSoldier.SOLDIER, Enums.FriendOrEnemy.ENEMY,
+                Enums.WhichCellsType.MONO_CELL, Enums.BuffNutralizer.NONE, 0);
+
+        Buff stunBuff = new StunBuff(1, 0, Enums.OnCellOrSoldier.SOLDIER);
+        Buff powerBuff = new PowerBuff(0, 5, Integer.MAX_VALUE, 0, Enums.OnCellOrSoldier.SOLDIER);
+
+        //spell.addBuff(stunBuff);
+        spell.addBuff(powerBuff);
+
+        minion.setSpecialPower(spell);
+        String string = gson.toJson(minion);
+        string = string.replaceAll("  ", "");
+        System.out.println(string);
     }
 }
