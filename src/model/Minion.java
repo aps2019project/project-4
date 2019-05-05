@@ -22,8 +22,14 @@ public class Minion extends Card {
     private Cell cellPlace;
     private Spell specialPower;
     private Enums.ActivationTypes specialPowerActivationType;
-    private ArrayList<Buff> positiveBuffs;
-    private ArrayList<Buff> negativeBuffs;
+    private ArrayList<Buff> positiveBuffs = new ArrayList<>();
+    private ArrayList<Buff> negativeBuffs = new ArrayList<>();
+
+    public boolean isHasFlag() {
+        return hasFlag;
+    }
+
+    private boolean hasFlag;
 
     public Minion(String name, int price, int hp, int ap, int mp, int startRange, int endRange) {
         this.name = name;
@@ -55,6 +61,50 @@ public class Minion extends Card {
 
     public Spell getSpecialPower() {
         return specialPower;
+    }
+
+    public int getHealthPoint() {
+        return healthPoint;
+    }
+
+    public int getAttackPoint() {
+        return attackPoint;
+    }
+
+    public int getStartRange() {
+        return startRange;
+    }
+
+    public int getEndRange() {
+        return endRange;
+    }
+
+    public boolean isHasAttackedThisTurn() {
+        return hasAttackedThisTurn;
+    }
+
+    public boolean isHasMovedThisTurn() {
+        return hasMovedThisTurn;
+    }
+
+    public boolean getIsDisarmed() {
+        return isDisarmed;
+    }
+
+    public boolean getIsStunned() {
+        return isStunned;
+    }
+
+    public int getNumberOfTurnsOfDisarm() {
+        return numberOfTurnsOfDisarm;
+    }
+
+    public int getNumberOfTurnsOfStun() {
+        return numberOfTurnsOfStun;
+    }
+
+    public Cell getCellPlace() {
+        return cellPlace;
     }
 
     public void lockMovement() {
@@ -247,6 +297,14 @@ public class Minion extends Card {
             }
         }
         return null;
+    }
+    public void catchFlag(){
+        this.hasFlag = true;
+    }
+
+    public void withdrawFlag(){
+        this.hasFlag = false;
+        this.cellPlace.addFlag();
     }
 }
 

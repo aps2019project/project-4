@@ -54,7 +54,7 @@ public class SpellResources {
                 "\"requiredManas\": 0,\n" +
                 "\"price\": 1000\n" +
                 "}");
-        getSpellResource().put("area dispell", "{\n" +
+        getSpellResource().put("area dispel", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"BOTH\",\n" +
                 "\"cellsType\": \"SQUARE\",\n" +
@@ -157,7 +157,7 @@ public class SpellResources {
                 "\"buffs\": [\n" +
                 "{\n" +
                 "\"onCellOrSoldier\": \"CELL\",\n" +
-                "\"numberOfTurnsOnTarget\": 0,\n" +
+                "\"numberOfTurnsOnTarget\": 1,\n" +
                 "\"changeHp\": -2,\n" +
                 "\"apShield\": 0,\n" +
                 "\"changeAp\": 0,\n" +

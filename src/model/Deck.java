@@ -78,4 +78,11 @@ public class Deck {
             return true;
         return false;
     }
+    public Minion whoHasFlag(){
+        for (Card card : cards.values())
+            if (card instanceof Minion && ((Minion) card).isHasFlag())
+                return (Minion)card;
+        return null;
+    }
 }
+

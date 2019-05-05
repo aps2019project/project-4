@@ -6,7 +6,7 @@ public class Enums {
     }
 
     public enum GameMode{
-        SINGLE_PLAYER, MULTI_PLAYER, STORY, CUSTOM_GAME
+        SINGLE_PLAYER, MULTI_PLAYER, STORY, CUSTOM_GAME, MONO_FLAG, MULTIPLE_FLAG
     }
 
     public enum Menus {
