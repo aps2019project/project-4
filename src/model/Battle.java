@@ -1,5 +1,7 @@
 package model;
 
+import views.View;
+
 public class Battle {
     private Player player1;
     private Player player2;
@@ -88,4 +90,57 @@ public class Battle {
         }
         return stringBuilder;
     }
+    public StringBuilder showOpponentMinions() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Card card : whoseNext.getDeck().getCards().values()) {
+            if (!(card instanceof Spell)) {
+                Minion m = (Minion) card;
+                stringBuilder.append(card.getId() + ": ").append(card.getName() + ", health: ").append(m.getHealthPoint());
+                stringBuilder.append(", location : (").append(m.getCellPlace().getX()).append(", ").append(m.getCellPlace().getY()).append("), ");
+                stringBuilder.append("power: ").append(m.getAttackPoint()).append("\n");
+            }
+        }
+        return stringBuilder;
+    }
+
+    public boolean isMinionsBetween(Cell cell, int x, int y) {
+        if (cell.getX() == x) {
+            if (cell.getY() > y) {
+                for (int i = y; i < cell.getY(); i++) {
+                    if (this.gameBoard.getCell(x, i).getMinion() != null) {
+                        View.showInvalidTargetMessage();
+                        return true;
+                    }
+                }
+            }
+            if (cell.getY() < y) {
+                for (int i = y; i > cell.getY(); i--) {
+                    if (this.gameBoard.getCell(x, i).getMinion() != null) {
+                        View.showInvalidTargetMessage();
+                        return true;
+                    }
+                }
+            }
+        }
+        if (cell.getY() == y) {
+            if (cell.getX() > x) {
+                for (int i = x; i < cell.getX(); i++) {
+                    if (this.gameBoard.getCell(i, y).getMinion() != null) {
+                        View.showInvalidTargetMessage();
+                        return true;
+                    }
+                }
+            }
+            if (cell.getX() < x) {
+                for (int i = x; i > cell.getX(); i--) {
+                    if (this.gameBoard.getCell(i, y).getMinion() != null) {
+                        View.showInvalidTargetMessage();
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 }

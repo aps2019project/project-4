@@ -43,7 +43,12 @@ public class Player {
     public void replaceCard(Card cardInHand) {
     }
 
-    public void selectCard(String id) {
+    public Card getSelectedCard() {
+        return selectedCard;
+    }
+
+    public Card selectCard(String id) {
+        return selectedDeck.getCards().get(id);
     }
 
     public void moveSelectedCard(int x, int y) {

@@ -18,7 +18,6 @@ public class Minion extends Card {
     private boolean isStunned;
     private int numberOfTurnsOfDisarm;
     private int numberOfTurnsOfStun;
-    private GameBoard gameBoard;
     private Cell cellPlace;
     private Spell specialPower;
     private Enums.ActivationTypes specialPowerActivationType;
@@ -151,46 +150,6 @@ public class Minion extends Card {
         this.attackPoint += number;
     }
 
-    public boolean isMinionsBetween(int x, int y) {
-        if (this.cellPlace.getX() == x) {
-            if (this.cellPlace.getY() > y) {
-                for (int i = y; i < cellPlace.getY(); i++) {
-                    if (this.gameBoard.getCell(x, i).getMinion() != null) {
-                        View.showInvalidTargetMessage();
-                        return true;
-                    }
-                }
-            }
-            if (this.cellPlace.getY() < y) {
-                for (int i = y; i < cellPlace.getY(); i--) {
-                    if (this.gameBoard.getCell(x, i).getMinion() != null) {
-                        View.showInvalidTargetMessage();
-                        return true;
-                    }
-                }
-            }
-        }
-        if (this.cellPlace.getY() == y) {
-            if (this.cellPlace.getX() > x) {
-                for (int i = x; i < cellPlace.getX(); i++) {
-                    if (this.gameBoard.getCell(i, y).getMinion() != null) {
-                        View.showInvalidTargetMessage();
-                        return true;
-                    }
-                }
-            }
-            if (this.cellPlace.getX() < x) {
-                for (int i = x; i < cellPlace.getX(); i--) {
-                    if (this.gameBoard.getCell(i, y).getMinion() != null) {
-                        View.showInvalidTargetMessage();
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
     @Override
     public void insert(Cell cell) {
         if (cell.getMinion() != null) {
@@ -302,7 +261,7 @@ public class Minion extends Card {
         this.hasFlag = true;
     }
 
-    public void withdrawFlag() {
+    public void dropFlag() {
         this.hasFlag = false;
         this.cellPlace.addFlag();
     }
