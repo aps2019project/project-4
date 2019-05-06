@@ -231,6 +231,22 @@ public class View {
         View.showDeck(deck);
     }
 
+    public static void showGameInfo(){
+        System.out.println(Account.getCurrentAccount().getCurrentBattle().gameInfo());
+    }
+
+    public static void showMyMinions(){
+        System.out.println(Account.getCurrentAccount().getCurrentBattle().myMinionsInfo());
+    }
+
+    public static void showOpponentMinions(){
+        System.out.println(Account.getCurrentAccount().getCurrentBattle().opponentMinionsInfo());
+    }
+
+    public static void showCardInfo(String cardID){
+
+    }
+
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {
         if (!Account.getCurrentAccount().getCollection().getDecks().containsKey(deckName))
             throw new DeckNotAvailabilityException(deckName);

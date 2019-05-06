@@ -118,7 +118,7 @@ public class Battle {
         return stringBuilder;
     }
 
-    public StringBuilder showMyMinions() {
+    public StringBuilder myMinionsInfo() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Card card : whoseTurn.getDeck().getCards().values()) {
             if (!(card instanceof Spell)) {
@@ -131,7 +131,7 @@ public class Battle {
         return stringBuilder;
     }
 
-    public StringBuilder showOpponentMinions() {
+    public StringBuilder opponentMinionsInfo() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Card card : whoseNext.getDeck().getCards().values()) {
             if (!(card instanceof Spell)) {
