@@ -135,6 +135,14 @@ public class Minion extends Card {
         this.hasAttackedThisTurn = true;
     }
 
+    public void setCellPlace(Cell cellPlace) {
+        this.cellPlace = cellPlace;
+    }
+
+    public Enums.ActivationTypes getSpecialPowerActivationType() {
+        return specialPowerActivationType;
+    }
+
     public void attack(Minion minion) {
         if (this.isStunned) {
             View.showStunnedCardMessage(this.id);

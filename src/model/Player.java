@@ -19,6 +19,11 @@ public class Player {
     public Player(String name, Deck mainDeck) {
         this.name = name;
         this.deck = mainDeck;
+        this.mutableDeck = mainDeck.clone();
+    }
+
+    public Deck getMutableDeck() {
+        return mutableDeck;
     }
 
     public Player() { }
@@ -53,7 +58,7 @@ public class Player {
     }
 
     public Card selectCard(String id) {
-        return deck.getCards().get(id);
+        return mutableDeck.getCards().get(id);
     }
 
     public void moveSelectedCard(int x, int y) {

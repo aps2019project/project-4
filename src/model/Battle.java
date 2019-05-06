@@ -186,10 +186,22 @@ public class Battle {
 
     public void insert(String cardId, int x, int y) {
         Card card = whoseTurn.getDeck().getCards().get(cardId);
-        if (card instanceof Spell)
+        if (card instanceof Spell) {
             insertSpell((Spell) card, x, y);
+            try{
+                whoseTurn.getMutableDeck().removeCard(cardId);
+            }
+            catch (Exception e){}
+        }
         if (card instanceof Minion){
-            //todo ya hosein
+            Minion minion = (Minion) card;
+            Cell cell = gameBoard.getCell(x, y);
+            cell.setMinion(minion);
+            minion.setCellPlace(cell);
+            if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN){
+                insertSpell(minion.getSpecialPower(), x, y);
+            }
+            whoseTurn.getMutableDeck().removeCard(cardId);
         }
     }
 
@@ -297,7 +309,15 @@ public class Battle {
             }
         }
     }
-
+//    public void insertSpellRandomly(Spell spell, int x, int y){
+//        ArrayList<Cell> targets = gameBoard.cellTargets(spell.getCellsType(), x, y, spell.getLengthOfSideOfSquare());
+//        if (spell.getCellsType() == Enums.WhichCellsType.RANDOM_MINION_OF_ALL){
+//            if (!isEmpty(targets)){
+//                Cell cell = getRandomCell(targets);
+//
+//            }
+//        }
+//    }
     public void moveTo(int x, int y) {
         if (whoseTurn.getSelectedCard() instanceof Spell) {
             View.showSpellsCanNotMoveMessage();
