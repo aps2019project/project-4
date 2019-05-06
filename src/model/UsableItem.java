@@ -7,6 +7,14 @@ public class UsableItem {
     private String id;
 
     public UsableItem(String name, int price) {
+
+    }
+
+    public UsableItem(UsableItem other) {
+        this.price = other.price;
+        this.name = other.name;
+        this.description = other.description;
+        this.id = other.id;
     }
 
     public int getPrice() {

@@ -31,6 +31,8 @@ public abstract class Card {
         this.id = id;
     }
 
+    public abstract Card clone();
+
     public abstract StringBuilder info();
 
     public abstract StringBuilder infoForDeck();

@@ -79,6 +79,12 @@ public class Exceptions {
         }
     }
 
+    public static class UserDeckInvalidException extends Exception {
+        public UserDeckInvalidException(String userName){
+            super("Selected deck of " + userName + " is invalid.");
+        }
+    }
+
     public static class NotValidDeckException extends Exception {
         public NotValidDeckException(String deckName) {
             super("The deck with name " + deckName + " is not valid!");
