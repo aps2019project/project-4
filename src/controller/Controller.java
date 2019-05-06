@@ -149,8 +149,8 @@ public class Controller {
                 System.err.println(e.getMessage());
             }
         }
-        Battle battle = new Battle(player1 , player2);
-        Account.getCurrentAccount().setCurrentBattle(battle);
+        //Battle battle = new Battle(player1 , player2);
+        //Account.getCurrentAccount().setCurrentBattle(battle);
     }
 
     private static Player handleSingleGameStart() {
@@ -198,15 +198,12 @@ public class Controller {
             try {
                 if (stage.toLowerCase().equals("stage 1")) {
                     return new AIPlayer(Stage.getStage(0).getDeck());
-                    break;
                 }
                 if (stage.toLowerCase().equals("stage 2")) {
                     return new AIPlayer(Stage.getStage(1).getDeck());
-                    break;
                 }
                 if (stage.toLowerCase().equals("stage 3")) {
                     return new AIPlayer(Stage.getStage(2).getDeck());
-                    break;
                 }
                 throw new InvalidCommandException();
             } catch (InvalidCommandException e) {

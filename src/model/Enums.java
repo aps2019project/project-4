@@ -2,7 +2,7 @@ package model;
 
 public class Enums {
     public enum ActivationTypes{
-        NONE, ON_ATTACK, COMBO, ON_DEFEND, ON_SPAWN, PASSIVE, ON_DEATH
+        NONE, ON_ATTACK, COMBO, ON_DEFEND, ON_SPAWN, PASSIVE, ON_DEATH, ON_COMMAND
     }
 
     public enum GameMode{
