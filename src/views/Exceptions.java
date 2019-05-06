@@ -67,6 +67,12 @@ public class Exceptions {
         }
     }
 
+    public static class InvalidCardIdException extends Exception {
+        public InvalidCardIdException(String cardId) {
+            super(cardId + " is invalid card id");
+        }
+    }
+
     public static class NoDeckSelectedException extends Exception {
         public NoDeckSelectedException() {
             super("Please Select a deck!");
@@ -74,7 +80,7 @@ public class Exceptions {
     }
 
     public static class UserDeckInvalidException extends Exception {
-        public UserDeckInvalidException(String userName){
+        public UserDeckInvalidException(String userName) {
             super("Selected deck of " + userName + " is invalid.");
         }
     }
@@ -86,7 +92,7 @@ public class Exceptions {
     }
 
     public static class SelectedDeckInvalidException extends Exception {
-        public SelectedDeckInvalidException(){
+        public SelectedDeckInvalidException() {
             super("Your Selected deck is invalid!");
         }
     }

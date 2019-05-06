@@ -166,7 +166,8 @@ public class View {
     public static void showAddDeckMessage(String deckName) {
         System.out.println("The deck with name " + deckName + " created successfully!");
     }
-    public static void showChooseYourWarriorMessage(){
+
+    public static void showChooseYourWarriorMessage() {
         System.err.println("You should choose one of your warriors");
     }
 
@@ -228,32 +229,34 @@ public class View {
         System.out.println("Start game [deck name] [mode] [number of flags]");
     }
 
-    public static void showDeckWithName(Deck deck){
+    public static void showDeckWithName(Deck deck) {
         System.out.println(deck.getName() + " : ");
         View.showDeck(deck);
     }
 
-    public static void showGameInfo(){
+    public static void showGameInfo() {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().gameInfo());
     }
 
-    public static void showMyMinions(){
+    public static void showMyMinions() {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().myMinionsInfo());
     }
 
-    public static void showOpponentMinions(){
+    public static void showOpponentMinions() {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().opponentMinionsInfo());
     }
 
-    public static void showCardInfo(String cardID) throws Exception{
-        HashMap<String , Card> cards = new HashMap<>(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getMutableDeck().getCards());
+    public static void showCardInfo(String cardID) throws Exception {
+        HashMap<String, Card> cards = new HashMap<>(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getMutableDeck().getCards());
         cards.putAll(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getHand());
         cards.putAll(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getCardsInGameBoard());
-        if (cards.get(cardID) == null){
+        if (cards.get(cardID) == null)
             throw new IDNotAvailableException(cardID);
-        } else {
-            System.out.println(cards.get(cardID).info());
-        }
+        System.out.println(cards.get(cardID).info());
+    }
+
+    public static void showSelectCardMessage(String cardId){
+        System.out.println("The card with id " + cardId + " selected!");
     }
 
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {

@@ -454,7 +454,7 @@ public class Controller {
                 View.showCardInfo(matcher.group(1));
                 break;
             case 4:
-                //todo Select card
+                Account.getCurrentAccount().getCurrentBattle().getPlayer1().selectCard(matcher.group(1));
                 break;
             case 5:
                 //todo move  card

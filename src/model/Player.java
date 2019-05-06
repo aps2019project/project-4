@@ -1,5 +1,8 @@
 package model;
 
+import views.Exceptions.*;
+import views.View;
+
 import java.util.HashMap;
 
 public class Player {
@@ -77,8 +80,15 @@ public class Player {
         return selectedCard;
     }
 
-    public Card selectCard(String id) {
-        return deck.getCards().get(id);
+    public void setSelectedCard(Card selectedCard) {
+        this.selectedCard = selectedCard;
+    }
+
+    public void selectCard(String cardId)throws Exception {
+        if (this.getCardsInGameBoard().get(cardId) == null)
+            throw new InvalidCardIdException(cardId);
+        this.setSelectedCard(this.getCardsInGameBoard().get(cardId));
+        View.showSelectCardMessage(cardId);
     }
 
     public void moveSelectedCard(int x, int y) {
