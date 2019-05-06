@@ -1,6 +1,10 @@
 package model;
 
+import model.buff.Buff;
 import views.View;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Battle {
     private Player player1;
@@ -126,6 +130,7 @@ public class Battle {
         }
         return stringBuilder;
     }
+
     public StringBuilder showOpponentMinions() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Card card : whoseNext.getDeck().getCards().values()) {
@@ -178,30 +183,56 @@ public class Battle {
         }
         return false;
     }
-    public void insert(String cardId, int x, int y){
+
+    public void insert(String cardId, int x, int y) {
 
     }
 
-    public void insertSpell(Spell spell, int x, int y){
-        if (spell.getCellOrSoldier() == Enums.OnCellOrSoldier.CEll){
-//            if (spell.getCellsType() == )
-        }
-        else{
+    public void insertSpell(Spell spell, int x, int y) {
+        Cell cell = gameBoard.getCell(x, y);
+        if (spell.getCellOrSoldier() == Enums.OnCellOrSoldier.CEll) {
+            if (spell.getCellsType() == Enums.WhichCellsType.SQUARE) {
+                for (Buff buff : spell.getBuffs()) {
+                    gameBoard.putBuffInSquare(buff, x, y, spell.getLengthOfSideOfSquare());
+                }
+            }
+        } else {
+            if (spell.getTarget() == Enums.FriendOrEnemy.Friend) {
+                if (!whoseTurn.getDeck().getCards().containsValue(cell.getMinion()))
+                    View.showChooseYourWarriorMessage();
+                else{
 
+                }
+            }
         }
     }
-    public void moveTo(int x, int y){
-        if (whoseTurn.getSelectedCard() instanceof Spell){
+
+    public void moveTo(int x, int y) {
+        if (whoseTurn.getSelectedCard() instanceof Spell) {
             View.showSpellsCanNotMoveMessage();
         }
         Minion minion = ((Minion) whoseTurn.getSelectedCard());
         Cell cell = minion.getCellPlace();
-        if (!isMinionsBetween(cell, x, y)){
+        if (!isMinionsBetween(cell, x, y)) {
             minion.moveTo(gameBoard.getCell(x, y));
-        }
-        else {
+        } else {
             View.showMinionsBetweenMessage();
         }
+    }
+    public boolean isEmpty(ArrayList<Cell> cells){
+        for (Cell cell : cells){
+            if (cell.getMinion() != null)
+                return false;
+        }
+        return true;
+    }
+    public Cell getRandomCell(ArrayList<Cell> cells){
+        int size = cells.size();
+        Random random = new Random();
+        int rand = random.nextInt(size);
+        while (cells.get(rand).getMinion() == null)
+            rand = random.nextInt(size);
+        return cells.get(rand);
     }
 
 }
