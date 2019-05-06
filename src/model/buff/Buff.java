@@ -2,9 +2,8 @@ package model.buff;
 
 import model.Cell;
 import model.Enums;
-import model.Minion;
 
-public class Buff {
+public abstract class Buff {
     protected int numberOfTurnsOnTarget;
     protected int changeHp;
     protected int apShield;
@@ -15,9 +14,25 @@ public class Buff {
     protected boolean isStunner;
     protected boolean isPositive;
     protected Enums.OnCellOrSoldier onCellOrSoldier;
-    protected Minion minion;
     protected Cell cell;
     protected boolean isActive;
+
+    public Buff clone(){
+            Buff buff = new Buff(){};
+            buff.numberOfTurnsOnTarget = this.numberOfTurnsOnTarget;
+            buff.changeHp = this.changeHp;
+            buff.apShield = this.apShield;
+            buff.changeAp = this.changeAp;
+            buff.numberOfTurns = this.numberOfTurns;
+            buff.delay = this.delay;
+            buff.isDisarmer = this.isDisarmer;
+            buff.isStunner = this.isStunner;
+            buff.isPositive = this.isPositive;
+            buff.onCellOrSoldier = this.onCellOrSoldier;
+            buff.cell = null;
+            buff.isActive = this.isActive;
+            return buff;
+    }
 
     public int getChangeAp() {
         return changeAp;
@@ -81,10 +96,6 @@ public class Buff {
 
     public Enums.OnCellOrSoldier getOnCellOrSoldier() {
         return onCellOrSoldier;
-    }
-
-    public Minion getMinion() {
-        return minion;
     }
 
     public boolean isActive() {

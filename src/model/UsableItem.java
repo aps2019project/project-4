@@ -5,16 +5,19 @@ public class UsableItem {
     private String name;
     private String description;
     private String id;
+    private Spell spell;
 
     public UsableItem(String name, int price) {
-
+        this.name = name;
+        this.price = price;
     }
 
-    public UsableItem(UsableItem other) {
-        this.price = other.price;
-        this.name = other.name;
-        this.description = other.description;
-        this.id = other.id;
+    public UsableItem clone() {
+        UsableItem usableItem = new UsableItem(this.name , this.price) ;
+        usableItem.description = this.description;
+        usableItem.id = this.id;
+        usableItem.spell = this.spell.clone();
+        return usableItem;
     }
 
     public int getPrice() {

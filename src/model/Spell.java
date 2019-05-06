@@ -26,6 +26,16 @@ public class Spell extends Card {
         this.buffNutralizer = buffNutralizer;
         this.lengthOfSideOfSquare = lengthOfSideOfSquare;
     }
+
+    public Spell clone(){
+        Spell spell = new Spell(this.id , this.name , this.requiredManas , this.price , this.cellOrSoldier
+        , this.target , this.cellsType , this.buffNutralizer , this.lengthOfSideOfSquare);
+        ArrayList <Buff> buffs = new ArrayList<>();
+        this.getBuffs().forEach(buff -> buffs.add(buff.clone()));
+        spell.buffs = buffs;
+        return spell;
+    }
+
     public void addBuff(Buff buff){
         buffs.add(buff);
     }
@@ -46,7 +56,7 @@ public class Spell extends Card {
                 .append("Name: ").append(name).append("\n")
                 .append("MP: ").append(requiredManas).append("\n")
                 .append("Cost: ").append(price).append("\n")
-                .append("Desc: ").append(desc).append("\n");
+                .append("Desc: ").append(description).append("\n");
         return result;
     }
 
@@ -56,7 +66,7 @@ public class Spell extends Card {
         result.append("Type : Spell - Name : ").append(this.getName())
                 .append(" - ID : ").append(this.getId())
                 .append(" - MP : ").append(this.getRequiredManas())
-                .append(" - Desc : ").append(this.getDesc());
+                .append(" - Desc : ").append(this.getDescription());
         return result;
     }
 

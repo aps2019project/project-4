@@ -14,4 +14,5 @@ public class PowerBuff extends Buff {
         this.delay = delay;
         this.onCellOrSoldier = onCellOrSoldier;
     }
+
 }

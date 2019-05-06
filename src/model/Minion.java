@@ -194,7 +194,7 @@ public class Minion extends Card {
         }
         result.append("Combo Ability: ").append(specialPowerActivationType).append("\n")
                 .append("Cost: ").append(price).append("\n")
-                .append("Description: ").append(desc).append("\n");
+                .append("Description: ").append(description).append("\n");
         return result;
     }
 
@@ -208,7 +208,7 @@ public class Minion extends Card {
                 .append(" - HP : ").append(this.getHealthPoint())
                 .append(" - MP : ").append(this.getRequiredManas());
         if (this.getSpecialPower() != null)
-            result.append(" -Special power: ").append(this.getSpecialPower().getDesc());
+            result.append(" -Special power: ").append(this.getSpecialPower().getDescription());
         return result;
     }
 

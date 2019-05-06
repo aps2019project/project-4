@@ -5,7 +5,7 @@ public abstract class Card {
     protected String name;
     protected int requiredManas;
     protected int price;
-    protected String desc;
+    protected String description;
 
     public String getId() {
         return id;
@@ -23,8 +23,8 @@ public abstract class Card {
         return price;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
     public void setId(String id) {

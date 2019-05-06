@@ -22,7 +22,7 @@ public class Hero extends Minion {
                 .append("Hero:\n")
                 .append("Name: ").append(name).append("\n")
                 .append("Cost: ").append(price).append("\n")
-                .append("Description: ").append(desc).append("\n");
+                .append("Description: ").append(description).append("\n");
         return result;
     }
 
@@ -34,7 +34,7 @@ public class Hero extends Minion {
                 .append(" - AP : ").append(this.getAttackPoint())
                 .append(" - HP : ").append(this.getHealthPoint())
                 .append(" - Class : ").append(this.getType())
-                .append(" - Special power: ").append(this.getSpecialPower().getDesc());
+                .append(" - Special power: ").append(this.getSpecialPower().getDescription());
         return result;
     }
 
