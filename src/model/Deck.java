@@ -72,7 +72,7 @@ public class Deck {
     }
 
     public int getNumOfOtherHeroCards() {
-        int i = 0;
+        int i = 1;
         for (Card card : this.getCards().values())
             if (!(card instanceof Hero))
                 i++;

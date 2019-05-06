@@ -44,11 +44,11 @@ public class Collection {
     }
 
     public String idGenerator(UsableItem item) {
-        return Account.getCurrentAccount().getName() + "_" + item.getName() + "_" + (this.numOfItem(item.getName()) + 1);
+        return Account.getCurrentAccount().getName() + "_" + item.getName().replaceAll("\\s", "") + "_" + (this.numOfItem(item.getName()) + 1);
     }
 
     public String idGenerator(Card card) {
-        return Account.getCurrentAccount().getName() + "_" + card.getName() + "_" + (this.numOfCard(card.getName()) + 1);
+        return Account.getCurrentAccount().getName() + "_" + card.getName().replaceAll("\\s", "") + "_" + (this.numOfCard(card.getName()) + 1);
     }
 
     public HashMap<String, Deck> getDecks() {
@@ -93,8 +93,6 @@ public class Collection {
     public void addThingToDeck(String thingID, String deckName) throws Exception {
         if (this.getDecks().get(deckName) == null)
             throw new DeckNotAvailabilityException(deckName);
-        if (this.getDecks().get(deckName).getCards().size() == 20)
-            throw new DeckFullException(deckName);
         Enums.TypeOfThing typeOfThing = typeOfThing(thingID);
         switch (typeOfThing) {
             case HERO:
@@ -112,6 +110,8 @@ public class Collection {
             case NONHERO:
                 if (this.getDecks().get(deckName).getCards().get(thingID) != null)
                     throw new CardAvailableInDeckException(thingID, deckName);
+                if (this.getDecks().get(deckName).getNumOfOtherHeroCards() >= 20)
+                    throw new DeckFullException(deckName);
                 this.getDecks().get(deckName).addCard(this.getAllCards().get(thingID));
                 View.showAddThingToDeckMessage(thingID, deckName);
                 break;

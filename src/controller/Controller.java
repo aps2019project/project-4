@@ -130,6 +130,8 @@ public class Controller {
     public static void getBattleConditions() throws Exception {
         if (Account.getCurrentAccount().getSelectedDeck() == null)
             throw new NoDeckSelectedException();
+        if (!Account.getCurrentAccount().getSelectedDeck().validateDeck())
+            throw new SelectedDeckInvalidException();
         Player player1 = new Player(Account.getCurrentAccount().getName(), Account.getCurrentAccount().getSelectedDeck());
         Battle battle = new Battle(player1);
         Account.getCurrentAccount().setCurrentBattle(battle);
@@ -156,7 +158,7 @@ public class Controller {
     }
 
     private static void handleMultiPlayerGameStart() {
-        Pattern pattern = Pattern.compile("Select user (\\w+)");
+        Pattern pattern = Pattern.compile("Select user (\\w+)" , Pattern.CASE_INSENSITIVE);
         Matcher matcher;
         while (true) {
             View.showAllUsers();
@@ -200,7 +202,7 @@ public class Controller {
     }
 
     private static void handleCustomGameStart() {
-        Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3]) ([1-9]?)");
+            Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3])( ?[1-9]?)" , Pattern.CASE_INSENSITIVE);
         Matcher matcher;
         while (true) {
             View.showSelectDeckMethod();
