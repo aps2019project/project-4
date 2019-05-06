@@ -211,7 +211,7 @@ public class View {
         System.out.println("Please select a mode and enter number of your flags if you want to play in mode3.");
         System.out.println("Mode 1: Hero VS Hero , Mode 2: Mono flag , Mode 3 : Multiple flag");
         System.out.println("Then Start Game with command: ");
-        System.out.println("Start multi-player game [deck name] [mode] [number of flags]");
+        System.out.println("Start multi-player game [mode] [number of flags]");
     }
 
     public static void showSelectDeckMethod() {
