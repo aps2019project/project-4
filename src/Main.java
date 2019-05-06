@@ -1,11 +1,13 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controller.Controller;
 import model.*;
 import model.buff.*;
 
 public class Main {
 
     public static void main(String[] args) {
+        Controller.start();
         System.out.println(Integer.MAX_VALUE);
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();

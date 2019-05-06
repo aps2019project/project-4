@@ -11,9 +11,10 @@ public class Resources {
         MinionResources.setMinionResource();
         HeroResources.setHeroResource();
         ItemResources.setItemResource();
+        StageResources.setStageResource();
     }
 
-    public static Card getSpeceficCard(String cardName) {
+    public static Card getSpecificCard(String cardName) {
         if (HeroResources.getSpecificHero(cardName) != null)
             return HeroResources.getSpecificHero(cardName);
         if (SpellResources.getSpecificSpell(cardName) != null)
@@ -23,7 +24,7 @@ public class Resources {
         return null;
     }
 
-    public static UsableItem getSpeceficItem(String itemName) {
+    public static UsableItem getSpecificItem(String itemName) {
         return ItemResources.getSpecificItem(itemName);
     }
 

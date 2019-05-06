@@ -31,7 +31,7 @@ public class Minion extends Card {
     private ArrayList<Buff> negativeBuffs = new ArrayList<>();
 
     public Minion clone() {
-        return (Minion) Resources.getSpeceficCard(this.getName());
+        return (Minion) Resources.getSpecificCard(this.getName());
     }
 
     public boolean isHasFlag() {
@@ -213,7 +213,7 @@ public class Minion extends Card {
                 .append(" - HP : ").append(this.getHealthPoint())
                 .append(" - MP : ").append(this.getRequiredManas());
         if (this.getSpecialPower() != null)
-            result.append(" -Special power: ").append(this.getSpecialPower().getDescription());
+            result.append(" - Special power: ").append(this.getSpecialPower().getDescription());
         return result;
     }
 

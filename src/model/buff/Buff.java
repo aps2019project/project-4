@@ -3,7 +3,7 @@ package model.buff;
 import model.Cell;
 import model.Enums;
 
-public abstract class Buff {
+public class Buff {
     protected int numberOfTurnsOnTarget;
     protected int changeHp;
     protected int apShield;

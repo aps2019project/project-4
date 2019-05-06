@@ -29,15 +29,15 @@ public class Shop {
     }
 
     public static void buyThing(String thingName) throws Exception {
-        if (Resources.getSpeceficItem(thingName) != null) {
-            UsableItem usableItem = Resources.getSpeceficItem(thingName);
+        if (Resources.getSpecificItem(thingName) != null) {
+            UsableItem usableItem = Resources.getSpecificItem(thingName);
             if (Account.getCurrentAccount().getDrack() <= usableItem.getPrice())
                 throw new MoneyIsNotEnoughException();
             buyItem(usableItem);
             return;
         }
-        if (Resources.getSpeceficCard(thingName) != null) {
-            Card card = Resources.getSpeceficCard(thingName);
+        if (Resources.getSpecificCard(thingName) != null) {
+            Card card = Resources.getSpecificCard(thingName);
             if (Account.getCurrentAccount().getDrack() <= card.getPrice())
                 throw new MoneyIsNotEnoughException();
             buyCard(card);

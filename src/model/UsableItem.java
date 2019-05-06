@@ -15,7 +15,7 @@ public class UsableItem {
     }
 
     public UsableItem clone() {
-        return Resources.getSpeceficItem(this.getName());
+        return Resources.getSpecificItem(this.getName());
     }
 
     public int getPrice() {

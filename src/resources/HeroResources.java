@@ -34,7 +34,7 @@ public class HeroResources {
     }
 
     public static void setHeroResource() {
-        heroResource.put("whiteDeeve", "{\n" +
+        heroResource.put("white deeve", "{\n" +
                 "\"coolDown\": 2,\n" +
                 "\"healthPoint\": 50,\n" +
                 "\"attackPoint\": 4,\n" +
@@ -142,7 +142,7 @@ public class HeroResources {
                 "\"requiredManas\": 5,\n" +
                 "\"price\": 9000\n" +
                 "}");
-        heroResource.put("sevenheadedDragon", "{\n" +
+        heroResource.put("sevenheaded dragon", "{\n" +
                 "\"coolDown\": 1,\n" +
                 "\"healthPoint\": 50,\n" +
                 "\"attackPoint\": 4,\n" +
@@ -300,7 +300,7 @@ public class HeroResources {
                 "\"negativeBuffs\": [],\n" +
                 "\"hasFlag\": false,\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"kaveh\",\n" +
+                "\"name\": \"zahhak\",\n" +
                 "\"requiredManas\": 0,\n" +
                 "\"price\": 10000\n" +
                 "}");
