@@ -20,7 +20,7 @@ public class Deck {
         if (this.getItem() != null)
             deck.item = this.getItem().clone();
         for (Card card : this.getCards().values())
-            deck.addCard(card.clone());
+            deck.addCardWithSetID(card.clone() , card.getId());
         return deck;
     }
 

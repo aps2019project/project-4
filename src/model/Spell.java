@@ -29,7 +29,11 @@ public class Spell extends Card {
     }
 
     public Spell clone(){
-        return (Spell) Resources.getSpecificCard(this.getName());
+        Spell spell = (Spell) Resources.getSpecificCard(this.getName());
+        if (spell == null)
+            return null;
+        spell.setId(this.getId());
+        return spell;
     }
 
     public void addBuff(Buff buff){

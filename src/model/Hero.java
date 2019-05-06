@@ -15,7 +15,11 @@ public class Hero extends Minion {
     }
 
     public Hero clone(){
-        return (Hero) Resources.getSpecificCard(this.getName());
+        Hero hero = (Hero) Resources.getSpecificCard(this.getName());
+        if (hero == null)
+            return null;
+        hero.setId(this.getId());
+        return hero;
     }
 
     public int getCoolDown() {

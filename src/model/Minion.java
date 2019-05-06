@@ -32,7 +32,11 @@ public class Minion extends Card {
     private ArrayList<Buff> negativeBuffs = new ArrayList<>();
 
     public Minion clone() {
-        return (Minion) Resources.getSpecificCard(this.getName());
+        Minion minion = (Minion) Resources.getSpecificCard(this.getName());
+        if (minion == null)
+            return null;
+        minion.setId(this.getId());
+        return minion;
     }
 
     public boolean isHasFlag() {
