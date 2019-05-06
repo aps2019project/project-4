@@ -1,5 +1,7 @@
 package model;
 
+import resources.Resources;
+
 public class UsableItem {
     private int price;
     private String name;
@@ -13,11 +15,7 @@ public class UsableItem {
     }
 
     public UsableItem clone() {
-        UsableItem usableItem = new UsableItem(this.name , this.price) ;
-        usableItem.description = this.description;
-        usableItem.id = this.id;
-        usableItem.spell = this.spell.clone();
-        return usableItem;
+        return Resources.getSpeceficItem(this.getName());
     }
 
     public int getPrice() {

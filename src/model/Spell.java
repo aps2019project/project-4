@@ -1,6 +1,7 @@
 package model;
 
 import model.buff.Buff;
+import resources.Resources;
 
 import java.util.ArrayList;
 
@@ -28,12 +29,7 @@ public class Spell extends Card {
     }
 
     public Spell clone(){
-        Spell spell = new Spell(this.id , this.name , this.requiredManas , this.price , this.cellOrSoldier
-        , this.target , this.cellsType , this.buffNutralizer , this.lengthOfSideOfSquare);
-        ArrayList <Buff> buffs = new ArrayList<>();
-        this.getBuffs().forEach(buff -> buffs.add(buff.clone()));
-        spell.buffs = buffs;
-        return spell;
+        return (Spell) Resources.getSpeceficCard(this.getName());
     }
 
     public void addBuff(Buff buff){

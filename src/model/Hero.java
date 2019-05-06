@@ -1,5 +1,7 @@
 package model;
 
+import resources.Resources;
+
 public class Hero extends Minion {
     private int coolDown;
 
@@ -10,6 +12,10 @@ public class Hero extends Minion {
         super(id, name, price, mp, hp, ap, startRange, endRange, isAntiHolyBuff,
                 isAntiDisarm, isAntiPoison, isImmortal, isApSuperior, specialPowerActivationType);
         this.coolDown = coolDown;
+    }
+
+    public Hero clone(){
+        return (Hero) Resources.getSpeceficCard(this.getName());
     }
 
     public int getCoolDown() {

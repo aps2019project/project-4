@@ -1,6 +1,7 @@
 package model;
 
 import model.buff.Buff;
+import resources.Resources;
 import views.View;
 
 import java.util.ArrayList;
@@ -28,6 +29,10 @@ public class Minion extends Card {
     private Enums.ActivationTypes specialPowerActivationType;
     private ArrayList<Buff> positiveBuffs = new ArrayList<>();
     private ArrayList<Buff> negativeBuffs = new ArrayList<>();
+
+    public Minion clone() {
+        return (Minion) Resources.getSpeceficCard(this.getName());
+    }
 
     public boolean isHasFlag() {
         return hasFlag;

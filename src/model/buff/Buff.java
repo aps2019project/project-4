@@ -17,23 +17,6 @@ public abstract class Buff {
     protected Cell cell;
     protected boolean isActive;
 
-    public Buff clone(){
-            Buff buff = new Buff(){};
-            buff.numberOfTurnsOnTarget = this.numberOfTurnsOnTarget;
-            buff.changeHp = this.changeHp;
-            buff.apShield = this.apShield;
-            buff.changeAp = this.changeAp;
-            buff.numberOfTurns = this.numberOfTurns;
-            buff.delay = this.delay;
-            buff.isDisarmer = this.isDisarmer;
-            buff.isStunner = this.isStunner;
-            buff.isPositive = this.isPositive;
-            buff.onCellOrSoldier = this.onCellOrSoldier;
-            buff.cell = null;
-            buff.isActive = this.isActive;
-            return buff;
-    }
-
     public int getChangeAp() {
         return changeAp;
     }
