@@ -10,6 +10,7 @@ public class Buff {
     protected int changeAp;
     protected int numberOfTurns;
     protected int delay;
+    protected boolean isPoison;
     protected boolean isDisarmer;
     protected boolean isStunner;
     protected boolean isPositive;
@@ -19,6 +20,10 @@ public class Buff {
 
     public int getChangeAp() {
         return changeAp;
+    }
+
+    public boolean isPoison() {
+        return isPoison;
     }
 
     public int getChangeHp() {

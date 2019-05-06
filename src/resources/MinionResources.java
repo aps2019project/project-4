@@ -366,6 +366,7 @@ public class MinionResources {
                 "\"changeAp\": 0,\n" +
                 "\"numberOfTurns\": 4,\n" +
                 "\"delay\": 0,\n" +
+                "\"isPoison\": true,\n" +
                 "\"isDisarmer\": false,\n" +
                 "\"isStunner\": false,\n" +
                 "\"isPositive\": false,\n" +
@@ -655,6 +656,7 @@ public class MinionResources {
                 "\"changeAp\": 0,\n" +
                 "\"numberOfTurns\": 3,\n" +
                 "\"delay\": 0,\n" +
+                "\"isPoison\": true,\n" +
                 "\"isDisarmer\": false,\n" +
                 "\"isStunner\": false,\n" +
                 "\"isPositive\": false,\n" +

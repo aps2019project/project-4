@@ -225,6 +225,7 @@ public class SpellResources {
                 "\"changeAp\": 0,\n" +
                 "\"numberOfTurns\": 1,\n" +
                 "\"delay\": 0,\n" +
+                "\"isPoison\": true,\n" +
                 "\"isDisarmer\": false,\n" +
                 "\"isStunner\": false,\n" +
                 "\"isPositive\": false,\n" +
@@ -319,6 +320,7 @@ public class SpellResources {
                 "\"changeAp\": 0,\n" +
                 "\"numberOfTurns\": 1,\n" +
                 "\"delay\": 0,\n" +
+                "\"isPoison\": true,\n" +
                 "\"isDisarmer\": false,\n" +
                 "\"isStunner\": false,\n" +
                 "\"isPositive\": false,\n" +
