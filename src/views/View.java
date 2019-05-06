@@ -7,6 +7,8 @@ import resources.StageResources;
 import views.Exceptions.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class View {
     public static void showHelp() {
@@ -243,8 +245,15 @@ public class View {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().opponentMinionsInfo());
     }
 
-    public static void showCardInfo(String cardID){
-
+    public static void showCardInfo(String cardID) throws Exception{
+        HashMap<String , Card> cards = new HashMap<>(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getMutableDeck().getCards());
+        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getHand());
+        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getCardsInGameBoard());
+        if (cards.get(cardID) == null){
+            throw new IDNotAvailableException(cardID);
+        } else {
+            System.out.println(cards.get(cardID).info());
+        }
     }
 
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {

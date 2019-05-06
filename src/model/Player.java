@@ -14,11 +14,16 @@ public class Player {
     private Item selectedItem;
     private HashMap<String, Item> collectableItems;
     private HashMap<String, Card> graveYard;
+    private HashMap<String, Card> cardsInGameBoard;
     private int mana;
 
     public Player(String name, Deck mainDeck) {
         this.name = name;
         this.deck = mainDeck;
+        this.mutableDeck = mainDeck.clone();
+        this.collectableItems = new HashMap<>();
+        this.graveYard = new HashMap<>();
+        this.cardsInGameBoard = new HashMap<>();
     }
 
     public Player() { }
@@ -33,6 +38,26 @@ public class Player {
 
     public void setDeck(Deck deck) {
         this.deck = deck;
+    }
+
+    public HashMap<String, Card> getHand() {
+        return hand;
+    }
+
+    public Deck getMutableDeck() {
+        return mutableDeck;
+    }
+
+    public HashMap<String, Card> getGraveYard() {
+        return graveYard;
+    }
+
+    public HashMap<String, Item> getCollectableItems() {
+        return collectableItems;
+    }
+
+    public HashMap<String, Card> getCardsInGameBoard() {
+        return cardsInGameBoard;
     }
 
     public void putCardInGraveYard(Card card) {
