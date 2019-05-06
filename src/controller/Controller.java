@@ -22,7 +22,7 @@ public class Controller {
     private final static ArrayList<Pattern> patternsOfCollectionMenu = new ArrayList<>();
     private final static ArrayList<Pattern> patternsOfShopMenu = new ArrayList<>();
     private final static ArrayList<Pattern> patternsOfBattleMenu = new ArrayList<>();
-    private final static ArrayList<Pattern> patternsOfGraveyard‬‬Menu = new ArrayList<>();
+    private final static ArrayList<Pattern> patternsOfGraveyardMenu = new ArrayList<>();
 
     public static void setPatterns() {
         patternsOfAccountMenu.add(Pattern.compile("create account (\\w+)", Pattern.CASE_INSENSITIVE));
@@ -83,9 +83,9 @@ public class Controller {
         patternsOfBattleMenu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Help", Pattern.CASE_INSENSITIVE));
 
-        patternsOfGraveyard‬‬Menu.add(Pattern.compile("Show info (\\w+)", Pattern.CASE_INSENSITIVE));
-        patternsOfGraveyard‬‬Menu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
-        patternsOfGraveyard‬‬Menu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
+        patternsOfGraveyardMenu.add(Pattern.compile("Show info (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfGraveyardMenu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
+        patternsOfGraveyardMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
 
     }
 
@@ -141,16 +141,26 @@ public class Controller {
                     break;
                 }
                 if (str.toLowerCase().equals("multi player")) {
-                    
+                    View.showAllUsers();
+                    String userName = Controller.getNextLine();
+                    try {
+                        Account account = Account.getAccounts().get(userName);
+                        if (account == null)
+                            throw new InvalidUserNameException();
+                        if (account.getSelectedDeck() == null)
+                            throw new UserDeckInvalidException(account.getName());
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                    }
                     break;
                 }
                 throw new InvalidCommandException();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }
-        //Battle battle = new Battle(player1 , player2);
-        //Account.getCurrentAccount().setCurrentBattle(battle);
+        Battle battle = new Battle(player1, player2);
+        Account.getCurrentAccount().setCurrentBattle(battle);
     }
 
     private static Player handleSingleGameStart() {
@@ -197,7 +207,7 @@ public class Controller {
             String stage = Controller.getNextLine();
             try {
                 if (stage.toLowerCase().equals("stage 1")) {
-                    return new AIPlayer(Stage.getStage(0).getDeck());
+                    return new AIPlayer(Stage.getStage(0).getDeck().clone());
                 }
                 if (stage.toLowerCase().equals("stage 2")) {
                     return new AIPlayer(Stage.getStage(1).getDeck());

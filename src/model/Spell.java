@@ -1,6 +1,7 @@
 package model;
 
 import model.buff.Buff;
+import resources.Resources;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,11 @@ public class Spell extends Card {
         this.buffNutralizer = buffNutralizer;
         this.lengthOfSideOfSquare = lengthOfSideOfSquare;
     }
+
+    public Spell clone(){
+        return (Spell) Resources.getSpeceficCard(this.getName());
+    }
+
     public void addBuff(Buff buff){
         buffs.add(buff);
     }
@@ -46,7 +52,7 @@ public class Spell extends Card {
                 .append("Name: ").append(name).append("\n")
                 .append("MP: ").append(requiredManas).append("\n")
                 .append("Cost: ").append(price).append("\n")
-                .append("Desc: ").append(desc).append("\n");
+                .append("Desc: ").append(description).append("\n");
         return result;
     }
 
@@ -56,7 +62,7 @@ public class Spell extends Card {
         result.append("Type : Spell - Name : ").append(this.getName())
                 .append(" - ID : ").append(this.getId())
                 .append(" - MP : ").append(this.getRequiredManas())
-                .append(" - Desc : ").append(this.getDesc());
+                .append(" - Desc : ").append(this.getDescription());
         return result;
     }
 

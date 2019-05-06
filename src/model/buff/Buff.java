@@ -2,9 +2,8 @@ package model.buff;
 
 import model.Cell;
 import model.Enums;
-import model.Minion;
 
-public class Buff {
+public abstract class Buff {
     protected int numberOfTurnsOnTarget;
     protected int changeHp;
     protected int apShield;
@@ -15,7 +14,6 @@ public class Buff {
     protected boolean isStunner;
     protected boolean isPositive;
     protected Enums.OnCellOrSoldier onCellOrSoldier;
-    protected Minion minion;
     protected Cell cell;
     protected boolean isActive;
 
@@ -81,10 +79,6 @@ public class Buff {
 
     public Enums.OnCellOrSoldier getOnCellOrSoldier() {
         return onCellOrSoldier;
-    }
-
-    public Minion getMinion() {
-        return minion;
     }
 
     public boolean isActive() {

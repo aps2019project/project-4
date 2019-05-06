@@ -124,7 +124,7 @@ public class View {
         System.err.printf("This card with id: %s is stuned\n", string);
     }
 
-    public static void showMinionsBetweenMessage(){
+    public static void showMinionsBetweenMessage() {
         System.err.println("Cannot move to the selected cell, minions in the path");
     }
 
@@ -156,7 +156,7 @@ public class View {
         System.err.println("Invalid target");
     }
 
-    public static void showSpellsCanNotMoveMessage(){
+    public static void showSpellsCanNotMoveMessage() {
         System.err.println("Spells can not move, select a minion");
     }
 
@@ -206,7 +206,7 @@ public class View {
         System.out.println("3. Stage 3");
     }
 
-    public static void showSelectDeckMethod(){
+    public static void showSelectDeckMethod() {
         Account.getCurrentAccount().getCollection().getValidDecks().values().forEach(View::showDeck);
         System.out.println("Please select a deck:");
     }
@@ -219,6 +219,15 @@ public class View {
         } else {
             System.out.println("The " + deckName + " deck is not valid!!");
         }
+    }
+
+    public static void showAllUsers() {
+        System.out.println("Select a user to play with it:");
+        ArrayList<Account> accounts = new ArrayList<>(Account.getAccounts().values());
+        accounts.forEach(account -> {
+            if (!(account == Account.getCurrentAccount()))
+                System.out.println("        " + account.getName());
+        });
     }
 
     public static void showNameOfMenu() {

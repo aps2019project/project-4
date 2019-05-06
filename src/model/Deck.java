@@ -7,13 +7,20 @@ import java.util.HashMap;
 public class Deck {
     private String name;
     private HashMap<String, Card> cards;
-    //String is ID
     private UsableItem item;
 
     public Deck(String name) {
         this.name = name;
         this.cards = new HashMap<>();
         this.item = null;
+    }
+
+    public Deck clone() {
+        Deck deck = new Deck(this.getName());
+        deck.item = this.getItem().clone();
+        for (Card card : this.getCards().values())
+            deck.addCard(card.clone());
+        return deck;
     }
 
     public UsableItem getItem() {

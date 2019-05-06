@@ -1,6 +1,7 @@
 package model;
 
 import model.buff.Buff;
+import resources.Resources;
 import views.View;
 
 import java.util.ArrayList;
@@ -28,6 +29,10 @@ public class Minion extends Card {
     private Enums.ActivationTypes specialPowerActivationType;
     private ArrayList<Buff> positiveBuffs = new ArrayList<>();
     private ArrayList<Buff> negativeBuffs = new ArrayList<>();
+
+    public Minion clone() {
+        return (Minion) Resources.getSpeceficCard(this.getName());
+    }
 
     public boolean isHasFlag() {
         return hasFlag;
@@ -194,7 +199,7 @@ public class Minion extends Card {
         }
         result.append("Combo Ability: ").append(specialPowerActivationType).append("\n")
                 .append("Cost: ").append(price).append("\n")
-                .append("Description: ").append(desc).append("\n");
+                .append("Description: ").append(description).append("\n");
         return result;
     }
 
@@ -208,7 +213,7 @@ public class Minion extends Card {
                 .append(" - HP : ").append(this.getHealthPoint())
                 .append(" - MP : ").append(this.getRequiredManas());
         if (this.getSpecialPower() != null)
-            result.append(" -Special power: ").append(this.getSpecialPower().getDesc());
+            result.append(" -Special power: ").append(this.getSpecialPower().getDescription());
         return result;
     }
 
