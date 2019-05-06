@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import resources.StageResources;
 import views.View;
 import views.Exceptions.*;
 import resources.Resources;
@@ -152,22 +153,29 @@ public class Controller {
                 System.err.println(e.getMessage());
             }
         }
-
     }
 
-    private static Player handleMultiPlayerGameStart() {
-        View.showAllUsers();
-        String userName = Controller.getNextLine();
-        try {
-            Account account = Account.getAccounts().get(userName);
-            if (account == null)
-                throw new InvalidUserNameException();
-            if (account.getSelectedDeck() == null)
-                throw new UserDeckInvalidException(account.getName());
-            Player player2 = new Player(account.getName(), account.getSelectedDeck());
-
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+    private static void handleMultiPlayerGameStart() {
+        Pattern pattern = Pattern.compile("Select user (\\w+)");
+        Matcher matcher;
+        while (true) {
+            View.showAllUsers();
+            String command = Controller.getNextLine();
+            matcher = pattern.matcher(command);
+            try {
+                if (!matcher.matches())
+                    throw new InvalidCommandException();
+                Account account = Account.getAccounts().get(matcher.group(1));
+                if (account == null)
+                    throw new InvalidUserNameException();
+                if (account.getSelectedDeck() == null)
+                    throw new UserDeckInvalidException(account.getName());
+                Account.getCurrentAccount().getCurrentBattle().setPlayer2(new Player(account.getName(), account.getSelectedDeck()));
+                handleMultiPlayerSelectMode();
+                break;
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
         }
     }
 
@@ -192,12 +200,13 @@ public class Controller {
     }
 
     private static void handleCustomGameStart() {
+        Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3]) ([1-9]?)");
+        Matcher matcher;
         while (true) {
             View.showSelectDeckMethod();
             String startGameCommand = Controller.getNextLine();
             try {
-                Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3]) ([1-9]?)");
-                Matcher matcher = pattern.matcher(startGameCommand);
+                matcher = pattern.matcher(startGameCommand);
                 if (!matcher.find())
                     throw new InvalidCommandException();
                 if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)) == null)
@@ -232,24 +241,57 @@ public class Controller {
             String stage = Controller.getNextLine();
             try {
                 if (stage.toLowerCase().equals("stage 1")) {
-                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(Stage.getStage(0).getDeck().clone()));
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(StageResources.getStage(0).getDeck().clone()));
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
                     Account.getCurrentAccount().getCurrentBattle().setReward(500);
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 2")) {
-                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(Stage.getStage(1).getDeck().clone()));
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(StageResources.getStage(1).getDeck().clone()));
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 3")) {
-                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(Stage.getStage(2).getDeck().clone()));
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(StageResources.getStage(2).getDeck().clone()));
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
                     Account.getCurrentAccount().getCurrentBattle().setReward(1500);
                     return;
                 }
                 throw new InvalidCommandException();
             } catch (InvalidCommandException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    public static void handleMultiPlayerSelectMode() {
+        Pattern pattern = Pattern.compile("Start multi-player game ([1-3]) ([1-9]?)");
+        Matcher matcher;
+        while (true) {
+            View.showMultiPlayerSelectModeCommand();
+            String command = Controller.getNextLine();
+            matcher = pattern.matcher(command);
+            try {
+                if (!matcher.find())
+                    throw new InvalidCommandException();
+                switch (matcher.group(1)) {
+                    case "1":
+                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
+                        break;
+                    case "2":
+                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
+                        break;
+                    case "3":
+                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
+                        if (matcher.group(2).equals("")) {
+                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(7);
+                        } else {
+                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher.group(2)));
+                        }
+                        break;
+                }
+                break;
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }

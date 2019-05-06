@@ -3,6 +3,7 @@ package views;
 import controller.Controller;
 import model.*;
 import resources.Resources;
+import resources.StageResources;
 import views.Exceptions.*;
 
 import java.util.ArrayList;
@@ -200,10 +201,17 @@ public class View {
 
     public static void showSelectStageMenu() {
         System.out.println("Please select an stage to play:");
-        Stage.showStages();
+        StageResources.showStages();
         System.out.println("1. Stage 1");
         System.out.println("2. Stage 2");
         System.out.println("3. Stage 3");
+    }
+
+    public static void showMultiPlayerSelectModeCommand() {
+        System.out.println("Please select a mode and enter number of your flags if you want to play in mode3.");
+        System.out.println("Mode 1: Hero VS Hero , Mode 2: Mono flag , Mode 3 : Multiple flag");
+        System.out.println("Then Start Game with command: ");
+        System.out.println("Start multi-player game [deck name] [mode] [number of flags]");
     }
 
     public static void showSelectDeckMethod() {
@@ -231,6 +239,7 @@ public class View {
             if (!(account == Account.getCurrentAccount()))
                 System.out.println("        " + account.getName());
         });
+        System.out.println("Then enter command Select user [user name]");
     }
 
     public static void showNameOfMenu() {
