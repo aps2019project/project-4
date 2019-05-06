@@ -103,4 +103,10 @@ public class Spell extends Card {
     public StringBuilder infoForShop(){
         return this.infoForDeck().append(" - Buy Cost : ").append(this.getPrice());
     }
+    public boolean isPoisonous(){
+        for (Buff buff : buffs)
+            if (buff.isPoison())
+                return true;
+        return false;
+    }
 }

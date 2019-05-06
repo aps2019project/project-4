@@ -1,5 +1,8 @@
 package model;
 
+import model.buff.Buff;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GameBoard {
@@ -54,5 +57,79 @@ public class GameBoard {
         }
         return false;
     }
+
+    public void putBuffInSquare(Buff buff, int x, int y, int length) {
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
+                try {
+                    this.getCell(x + i, y - j).addBuff(buff);
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    public ArrayList<Cell> cellTargets(Enums.WhichCellsType cellsType, int x, int y, int length) {
+        ArrayList<Cell> targets = new ArrayList<>();
+        switch (cellsType) {
+            case MONO_CELL:
+                try {
+                    targets.add(cells[x][y]);
+                } catch (Exception e) {
+                }
+                return targets;
+            case SQUARE:
+                for (int i = 0; i < length; i++) {
+                    for (int j = 0; j < length; j++) {
+                        try {
+                            targets.add(cells[x + i][y - j]);
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+                return targets;
+            case COLUMN:
+                for (int i = 0; i < 5; i++)
+                    targets.add(cells[i][y]);
+                return targets;
+            case ROW:
+                for (int j = 0; j < 0; j++)
+                    targets.add(cells[x][j]);
+                return targets;
+            case ALL:
+            case RANDOM_MINION_OF_ALL:
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 9; j++) {
+                        targets.add(cells[i][j]);
+                    }
+                }
+                return targets;
+            case ALL_MINIONS_AROUND:
+            case RANDOM_MINION_AROUND_HERO:
+            case RANDOM_MINION_AROUND:
+                int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
+                int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
+                for (int i = 0; i < dx.length; i++) {
+                    if (x + dx[i] >= 0 && x + dx[i] < 9 && y + dy[i] >= 0 && y + dy[i] < 9)
+                        targets.add(cells[x + dx[i]][y + dy[i]]);
+                }
+                return targets;
+            case ALL_MINIONS_AROUND_DISTANCE_2:
+                targets = cellTargets(Enums.WhichCellsType.ALL_MINIONS_AROUND, x, y, 0);
+                int[] dx2 = {-2, 0, 0, 2};
+                int[] dy2 = {0, -2, 2, 0};
+                for (int i = 0; i < dx2.length; i++) {
+                    if (x + dx2[i] < 9 && x + dx2[i] >= 0 && y + dy2[i] >= 0 && y + dy2[i] < 9)
+                        targets.add(cells[x + dx2[i]][y + dy2[i]]);
+                }
+                return targets;
+            case ALL_MINIONS_AROUND_AND_ITSELF:
+                targets = cellTargets(Enums.WhichCellsType.ALL_MINIONS_AROUND, x, y, 0);
+                targets.add(cells[x][y]);
+                return targets;
+        }
+        return null;
+    }
+
 }
 

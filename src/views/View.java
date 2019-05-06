@@ -164,6 +164,9 @@ public class View {
     public static void showAddDeckMessage(String deckName) {
         System.out.println("The deck with name " + deckName + " created successfully!");
     }
+    public static void showChooseYourWarriorMessage(){
+        System.err.println("You should choose one of your warriors");
+    }
 
     public static void showRemovalDeckMessage(String deckName) {
         System.out.println("The " + deckName + " deck removed successfully!");
