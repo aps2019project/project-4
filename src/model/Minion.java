@@ -135,6 +135,14 @@ public class Minion extends Card {
         this.hasAttackedThisTurn = true;
     }
 
+    public void setCellPlace(Cell cellPlace) {
+        this.cellPlace = cellPlace;
+    }
+
+    public Enums.ActivationTypes getSpecialPowerActivationType() {
+        return specialPowerActivationType;
+    }
+
     public void attack(Minion minion) {
         if (this.isStunned) {
             View.showStunnedCardMessage(this.id);
@@ -299,14 +307,37 @@ public class Minion extends Card {
     public void hurtMinion(Minion minion) {
         int finalAttackPoints = this.attackPoint + this.moreAttackPoints() + this.lessAttackPoints();
         if (minion.isApSuperior) {
-            if (this.getAttackPoint() > minion.getAttackPoint())
+            if (this.getAttackPoint() > minion.getAttackPoint()) {
                 minion.changeHp(-finalAttackPoints + minion.apSheildOfHolyBuffs());
+                return;
+            }
         }
         if (minion.isAntiHolyBuff) {
             minion.changeHp(-finalAttackPoints);
+            return;
         }
+        if (minion.isAntiPoison){
+            minion.changeHp((-finalAttackPoints - poisonHurts()));
+            return;
+        }
+        minion.changeHp(-finalAttackPoints + minion.holyApShields());
     }
-
+    public int poisonHurts(){
+        int result = 0;
+        for (Buff buff : negativeBuffs){
+            if (buff.isPoison()){
+                result += buff.getChangeAp();
+            }
+        }
+        return result;
+    }
+    public int holyApShields(){
+        int result = 0;
+        for (Buff buff : positiveBuffs){
+            result += buff.getApShield();
+        }
+        return result;
+    }
     public int moreAttackPoints() {
         int result = 0;
         for (Buff buff : positiveBuffs)
