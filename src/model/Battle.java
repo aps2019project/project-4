@@ -11,6 +11,7 @@ public class Battle {
     private int seconds;
     private GameBoard gameBoard;
     private Enums.GameMode gameMode;
+    private Enums.SingleOrMulti opponent;
     private int numOfFlags;
     private int numOfAllFlags;
 
@@ -18,14 +19,25 @@ public class Battle {
         return whoseTurn;
     }
 
-    public Battle(Player player1, Player player2) {
+    public Battle(Player player1) {
         this.player1 = player1;
+    }
+
+    public void setPlayer2(Player player2) {
         this.player2 = player2;
+    }
+
+    public void setGameMode(Enums.GameMode gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public void setOpponent(Enums.SingleOrMulti opponent) {
+        this.opponent = opponent;
     }
 
     public StringBuilder gameInfo() {
         StringBuilder stringBuilder = new StringBuilder();
-        if (gameMode == Enums.GameMode.MULTI_PLAYER) {
+        if (opponent == Enums.SingleOrMulti.MULTI_PLAYER) {
             stringBuilder.append("player 1's hero health: ").append(player1.getDeck().getHero().getHealthPoint()).append("\n");
             stringBuilder.append("player 2's hero health: ").append(player2.getDeck().getHero().getHealthPoint()).append("\n");
         }

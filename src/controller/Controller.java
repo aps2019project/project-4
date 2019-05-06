@@ -1,7 +1,6 @@
 package controller;
 
 import model.*;
-import views.Exceptions;
 import views.View;
 import views.Exceptions.*;
 import resources.Resources;
@@ -132,26 +131,31 @@ public class Controller {
             throw new NoDeckSelectedException();
         Player player1 = new Player(Account.getCurrentAccount().getName(), Account.getCurrentAccount().getSelectedDeck());
         Player player2;
+        Enums.GameMode gameMode;
         while (true) {
             View.showSingleOrMultiPlayerMenu();
             String str = Controller.getNextLine();
             try {
                 if (str.toLowerCase().equals("single player")) {
-                    player2 = handleSingleGameStart();
+                    while (true) {
+                        try {
+                            View.showSelectTypeOfGameMenu();
+                            String command = Controller.getNextLine();
+                            if (command.equals("story")) {
+                                player2 = handleStageSelecting();
+                            }
+                            if (command.toLowerCase().equals("custom game")) {
+                                player2 = handleCustomGameStart();
+                            }
+                            throw new InvalidCommandException();
+                        } catch (Exception e) {
+                            System.err.println(e.getMessage());
+                        }
+                    }
                     break;
                 }
                 if (str.toLowerCase().equals("multi player")) {
-                    View.showAllUsers();
-                    String userName = Controller.getNextLine();
-                    try {
-                        Account account = Account.getAccounts().get(userName);
-                        if (account == null)
-                            throw new InvalidUserNameException();
-                        if (account.getSelectedDeck() == null)
-                            throw new UserDeckInvalidException(account.getName());
-                    } catch (Exception e) {
-                        System.err.println(e.getMessage());
-                    }
+                    player2 = handleMultiPlayerGameStart();
                     break;
                 }
                 throw new InvalidCommandException();
@@ -163,22 +167,24 @@ public class Controller {
         Account.getCurrentAccount().setCurrentBattle(battle);
     }
 
-    private static Player handleSingleGameStart() {
-        while (true) {
-            try {
-                View.showSelectTypeOfGameMenu();
-                String command = Controller.getNextLine();
-                if (command.equals("story")) {
-                    return handleStageSellecting();
-                }
-                if (command.toLowerCase().equals("custom game")) {
-                    return handleCustomGameStart();
-                }
-                throw new InvalidCommandException();
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
-            }
+    private static Player handleMultiPlayerGameStart() {
+        View.showAllUsers();
+        String userName = Controller.getNextLine();
+        try {
+            Account account = Account.getAccounts().get(userName);
+            if (account == null)
+                throw new InvalidUserNameException();
+            if (account.getSelectedDeck() == null)
+                throw new UserDeckInvalidException(account.getName());
+            Player player2 = new Player(account.getName(), account.getSelectedDeck());
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
+    }
+
+    private static Player handleSinglePlayerGameStart() {
+
     }
 
     private static Player handleCustomGameStart() {
@@ -194,14 +200,14 @@ public class Controller {
                     throw new DeckNotAvailabilityException(matcher.group(1), true);
                 if ((matcher.group(2).equals("3") && matcher.group(3).equals("")))
                     throw new NumOfFlagsNotFoundException();
-                return new AIPlayer(Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)));
+                return new AIPlayer(Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)).clone());
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }
     }
 
-    private static Player handleStageSellecting() {
+    private static Player handleStageSelecting() {
         while (true) {
             View.showSelectStageMenu();
             String stage = Controller.getNextLine();
@@ -210,10 +216,10 @@ public class Controller {
                     return new AIPlayer(Stage.getStage(0).getDeck().clone());
                 }
                 if (stage.toLowerCase().equals("stage 2")) {
-                    return new AIPlayer(Stage.getStage(1).getDeck());
+                    return new AIPlayer(Stage.getStage(1).getDeck().clone());
                 }
                 if (stage.toLowerCase().equals("stage 3")) {
-                    return new AIPlayer(Stage.getStage(2).getDeck());
+                    return new AIPlayer(Stage.getStage(2).getDeck().clone());
                 }
                 throw new InvalidCommandException();
             } catch (InvalidCommandException e) {
