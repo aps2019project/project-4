@@ -1236,11 +1236,176 @@ public class MinionResources {
             "\"requiredManas\": 4,\n" +
             "\"price\": 450\n" +
             "}";
-    String bahman = "";
-    String ashkboos = "";
-    String iraj = "";
-    String bigGiant = "";
-    String twoHeadedGiant = "";
+    String bahman = "{\n" +
+            "\"healthPoint\": 16,\n" +
+            "\"attackPoint\": 9,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY\",\n" +
+            "\"cellsType\": \"RANDOM_MINION_OF_ALL\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"NONE\",\n" +
+            "\"buffs\": [\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 0,\n" +
+            "\"changeHp\": -16,\n" +
+            "\"apShield\": 0,\n" +
+            "\"changeAp\": 0,\n" +
+            "\"numberOfTurns\": 1,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": false,\n" +
+            "\"isPositive\": false,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "}\n" +
+            "],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"bahman spell\",\n" +
+            "\"requiredManas\": 8,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"ON_SPAWN\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"bahman\",\n" +
+            "\"requiredManas\": 8,\n" +
+            "\"price\": 450\n" +
+            "}";
+    String ashkboos = "{\n" +
+            "\"healthPoint\": 14,\n" +
+            "\"attackPoint\": 8,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": true,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"ON_DEFEND\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"ashkboos\",\n" +
+            "\"requiredManas\": 7,\n" +
+            "\"price\": 400\n" +
+            "}";
+    String iraj = "{\n" +
+            "\"healthPoint\": 6,\n" +
+            "\"attackPoint\": 20,\n" +
+            "\"startRange\": 2,\n" +
+            "\"endRange\": 3,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"RANGED\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"NONE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"iraj\",\n" +
+            "\"requiredManas\": 4,\n" +
+            "\"price\": 500\n" +
+            "}";
+    String bigGiant = "{\n" +
+            "\"healthPoint\": 30,\n" +
+            "\"attackPoint\": 8,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 2,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"HYBRID\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"NONE\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"big giant\",\n" +
+            "\"requiredManas\": 9,\n" +
+            "\"price\": 600\n" +
+            "}";
+    String twoHeadedGiant = "{\n" +
+            "\"healthPoint\": 10,\n" +
+            "\"attackPoint\": 4,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY\",\n" +
+            "\"cellsType\": \"RANDOM_MINION_OF_ALL\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"POSITIVE\",\n" +
+            "\"buffs\": [],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"twoheaded giant spell\",\n" +
+            "\"requiredManas\": 4,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"ON_ATTACK\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"twoheaded giant\",\n" +
+            "\"requiredManas\": 4,\n" +
+            "\"price\": 550\n" +
+            "}";
     String queenOfWinter = "";
     String steelArmored = "";
     String siavash = "";
