@@ -17,9 +17,10 @@ public class Deck {
 
     public Deck clone() {
         Deck deck = new Deck(this.getName());
-        deck.item = this.getItem().clone();
+        if (this.getItem() != null)
+            deck.item = this.getItem().clone();
         for (Card card : this.getCards().values())
-            deck.addCard(card.clone());
+            deck.addCardWithSetID(card.clone() , card.getId());
         return deck;
     }
 
@@ -72,7 +73,7 @@ public class Deck {
     }
 
     public int getNumOfOtherHeroCards() {
-        int i = 0;
+        int i = 1;
         for (Card card : this.getCards().values())
             if (!(card instanceof Hero))
                 i++;

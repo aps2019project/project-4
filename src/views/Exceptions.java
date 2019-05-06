@@ -85,6 +85,12 @@ public class Exceptions {
         }
     }
 
+    public static class SelectedDeckInvalidException extends Exception {
+        public SelectedDeckInvalidException(){
+            super("Your Selected deck is invalid!");
+        }
+    }
+
     public static class ThingNotAvailableInCollectionException extends Exception {
         public ThingNotAvailableInCollectionException(String thingID) {
             super("No thing with id " + thingID + " found!");

@@ -150,7 +150,7 @@ public class View {
     }
 
     public static void showSelectionDeckMessage(String deckName) {
-        System.out.println("The deck " + deckName + "selected!");
+        System.out.println("The deck " + deckName + " selected!");
     }
 
     public static void showInvalidTargetMessage() {
@@ -218,11 +218,17 @@ public class View {
     }
 
     public static void showSelectDeckMethod() {
-        Account.getCurrentAccount().getCollection().getValidDecks().values().forEach(View::showDeck);
+        System.out.println("Decks to play with it:");
+        Account.getCurrentAccount().getCollection().getValidDecks().values().forEach(View::showDeckWithName);
         System.out.println("Please select a deck and mode and enter number of your flags if you want to play in mode3.");
         System.out.println("Mode 1: Hero VS Hero , Mode 2: Mono flag , Mode 3 : Multiple flag");
         System.out.println("Then Start Game with command: ");
         System.out.println("Start game [deck name] [mode] [number of flags]");
+    }
+
+    public static void showDeckWithName(Deck deck){
+        System.out.println(deck.getName() + " : ");
+        View.showDeck(deck);
     }
 
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {
@@ -262,6 +268,8 @@ public class View {
             case BATTLE:
                 System.out.println("BattleMenu>>");
                 break;
+            case GRAVEYARD:
+                System.out.println("GraveYard>>");
         }
     }
 

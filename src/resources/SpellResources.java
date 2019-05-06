@@ -35,7 +35,7 @@ public class SpellResources {
 
 
     public static void setSpellResource() {
-        getSpellResource().put("TotalDisarm", "{\n" +
+        getSpellResource().put("Total Disarm", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -58,11 +58,11 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"TotalDisarm\",\n" +
+                "\"name\": \"Total Disarm\",\n" +
                 "\"requiredManas\": 0,\n" +
                 "\"price\": 1000\n" +
                 "}");
-        getSpellResource().put("AreaDispel", "{\n" +
+        getSpellResource().put("Area Dispel", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"BOTH\",\n" +
                 "\"cellsType\": \"SQUARE\",\n" +
@@ -71,7 +71,7 @@ public class SpellResources {
                 "\"buffs\": [],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"AreaDispel\",\n" +
+                "\"name\": \"Area Dispel\",\n" +
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 1500\n" +
                 "}");
@@ -102,7 +102,7 @@ public class SpellResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 250\n" +
                 "}");
-        getSpellResource().put("FireBall", "{\n" +
+        getSpellResource().put("Fire Ball", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -125,11 +125,11 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"FireBall\",\n" +
+                "\"name\": \"Fire Ball\",\n" +
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 400\n" +
                 "}");
-        getSpellResource().put("GodStrength", "{\n" +
+        getSpellResource().put("God Strength", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"FRIEND_HERO\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -152,11 +152,11 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"GodStrength\",\n" +
+                "\"name\": \"God Strength\",\n" +
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 450\n" +
                 "}");
-        getSpellResource().put("HellFire", "{\n" +
+        getSpellResource().put("Hell Fire", "{\n" +
                 "\"cellOrSoldier\": \"CELL\",\n" +
                 "\"target\": \"BOTH\",\n" +
                 "\"cellsType\": \"SQUARE\",\n" +
@@ -179,11 +179,11 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"HellFire\",\n" +
+                "\"name\": \"Hell Fire\",\n" +
                 "\"requiredManas\": 3,\n" +
                 "\"price\": 600\n" +
                 "}");
-        getSpellResource().put("LightningBolt", "{\n" +
+        getSpellResource().put("Lightning Bolt", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY_HERO\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -206,11 +206,11 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"LightningBolt\",\n" +
+                "\"name\": \"Lightning Bolt\",\n" +
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 1250\n" +
                 "}");
-        getSpellResource().put("PoisonLake", "{\n" +
+        getSpellResource().put("Poison Lake", "{\n" +
                 "\"cellOrSoldier\": \"CELL\",\n" +
                 "\"target\": \"BOTH\",\n" +
                 "\"cellsType\": \"SQUARE\",\n" +
@@ -234,7 +234,7 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"PoinsonLake\",\n" +
+                "\"name\": \"Poinson Lake\",\n" +
                 "\"requiredManas\": 5,\n" +
                 "\"price\": 900\n" +
                 "}");
@@ -278,7 +278,7 @@ public class SpellResources {
                 "\"requiredManas\": 0,\n" +
                 "\"price\": 650\n" +
                 "}");
-        getSpellResource().put("AllDisarm", "{\n" +
+        getSpellResource().put("All Disarm", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"ALL\",\n" +
@@ -301,11 +301,11 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"AllDisarm\",\n" +
+                "\"name\": \"All Disarm\",\n" +
                 "\"requiredManas\": 9,\n" +
                 "\"price\": 2000\n" +
                 "}");
-        getSpellResource().put("AllPoison", "{\n" +
+        getSpellResource().put("All Poison", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"ALL\",\n" +
@@ -329,7 +329,7 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"AllPoison\",\n" +
+                "\"name\": \"All Poison\",\n" +
                 "\"requiredManas\": 8,\n" +
                 "\"price\": 1500\n" +
                 "}");
@@ -413,7 +413,7 @@ public class SpellResources {
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 2500\n" +
                 "}");
-        getSpellResource().put("AllPower", "{\n" +
+        getSpellResource().put("All Power", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"Friend\",\n" +
                 "\"cellsType\": \"ALL\",\n" +
@@ -436,11 +436,11 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"AllPower\",\n" +
+                "\"name\": \"All Power\",\n" +
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 2000\n" +
                 "}");
-        getSpellResource().put("AllAttack", "{\n" +
+        getSpellResource().put("All Attack", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"COLUMN\",\n" +
@@ -463,7 +463,7 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"AllAttack\",\n" +
+                "\"name\": \"All Attack\",\n" +
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 1500\n" +
                 "}");
@@ -533,7 +533,7 @@ public class SpellResources {
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 1600\n" +
                 "}");
-        getSpellResource().put("KingsGuard", "{\n" +
+        getSpellResource().put("Kings Guard", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY_MINION\",\n" +
                 "\"cellsType\": \"RANDOM_MINION_AROUND_HERO\",\n" +
@@ -556,7 +556,7 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"KingsGuard\",\n" +
+                "\"name\": \"Kings Guard\",\n" +
                 "\"requiredManas\": 9,\n" +
                 "\"price\": 1750\n" +
                 "}");
