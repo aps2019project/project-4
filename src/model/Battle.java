@@ -299,9 +299,8 @@ public class Battle {
     }
 
     public void moveTo(int x, int y) throws Exception {
-        if (whoseTurn.getSelectedCard() instanceof Spell) {
+        if (whoseTurn.getSelectedCard() instanceof Spell)
             throw new SpellsCanNotMoveException();
-        }
         Minion minion = ((Minion) whoseTurn.getSelectedCard());
         Cell cell = minion.getCellPlace();
         if (!isMinionsBetween(cell, x, y)) {

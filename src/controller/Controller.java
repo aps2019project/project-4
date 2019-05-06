@@ -451,10 +451,10 @@ public class Controller {
                 View.showOpponentMinions();
                 break;
             case 3:
-                View.showCardInfo(matcher.group(1));
+                View.showCardInfo(matcher.group(1));//todo right
                 break;
             case 4:
-                Account.getCurrentAccount().getCurrentBattle().getPlayer1().selectCard(matcher.group(1));
+                Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().selectCard(matcher.group(1));
                 break;
             case 5:
                 Account.getCurrentAccount().getCurrentBattle().moveTo(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
@@ -507,10 +507,10 @@ public class Controller {
         matcher.matches();
         switch (index) {
             case 0:
-                //todo show info of card id
+                View.searchInGraveyard(matcher.group(1));
                 break;
             case 1:
-                //todo show cards
+                View.showGraveyard();
                 break;
             case 2:
                 Controller.setMenu(Enums.Menus.BATTLE);

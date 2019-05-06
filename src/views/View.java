@@ -167,6 +167,17 @@ public class View {
         System.err.println("You should choose one of your warriors");
     }
 
+    public static void showGraveyard() {
+        Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getGraveYard().forEach((s, card) ->
+                System.out.println(card.info()));
+    }
+
+    public static void searchInGraveyard(String id) throws Exception{
+         if(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getGraveYard().get(id) == null)
+             throw new InvalidCardIdException(id);
+        System.out.println(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getGraveYard().get(id).info());
+    }
+
     public static void showRemovalDeckMessage(String deckName) {
         System.out.println("The " + deckName + " deck removed successfully!");
     }
@@ -243,15 +254,15 @@ public class View {
     }
 
     public static void showCardInfo(String cardID) throws Exception {
-        HashMap<String, Card> cards = new HashMap<>(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getMutableDeck().getCards());
-        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getHand());
-        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getPlayer1().getCardsInGameBoard());
+        HashMap<String, Card> cards = new HashMap<>(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getMutableDeck().getCards());
+        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand());
+        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getCardsInGameBoard());
         if (cards.get(cardID) == null)
             throw new IDNotAvailableException(cardID);
         System.out.println(cards.get(cardID).info());
     }
 
-    public static void showSelectCardMessage(String cardId){
+    public static void showSelectCardMessage(String cardId) {
         System.out.println("The card with id " + cardId + " selected!");
     }
 
