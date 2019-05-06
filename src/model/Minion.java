@@ -1,6 +1,7 @@
 package model;
 
 import model.buff.Buff;
+import model.buff.PoisonBuff;
 import resources.Resources;
 import views.View;
 
@@ -144,8 +145,8 @@ public class Minion extends Card {
             View.showOutOfDistanceMessage();
             return;
         }
-        minion.changeHp(-this.attackPoint);
-        this.lockAttack();
+        this.hurtMinion(minion);
+        //todo on attack special power
     }
 
     public void moveTo(Cell cell) {
@@ -166,7 +167,8 @@ public class Minion extends Card {
 
 
     public void changeHp(int number) {
-        this.healthPoint += number;
+        if (!this.isImmortal)
+            this.healthPoint += number;
     }
 
     public void changeAp(int number) {
@@ -237,15 +239,15 @@ public class Minion extends Card {
 
     public void applyBuff(Buff buff) {
         if (buff.getDelay() == 0) {
-            if (buff.isDisarmer()) {
+            if (buff.isDisarmer() && !this.isAntiDisarm) {
                 int numberOfTurnsOfDisarm = buff.getNumberOfTurns();
                 this.isDisarmed = true;
-                Iterator<Buff> iter = new ArrayList<Buff>().iterator();
+                Iterator<Buff> iter = negativeBuffs.iterator();
                 while (iter.hasNext()) {
                     Buff b = iter.next();
                     if (b.isDisarmer()) {
                         if (b.getNumberOfTurns() < numberOfTurnsOfDisarm)
-                            negativeBuffs.remove(b);
+                            iter.remove();
                         else
                             numberOfTurnsOfDisarm = b.getNumberOfTurns();
                     }
@@ -266,8 +268,9 @@ public class Minion extends Card {
                     }
                 }
             }
-            this.healthPoint += buff.getChangeHp();
-            this.attackPoint += buff.getChangeAp();
+            if (!this.isAntiPoison || !(buff instanceof PoisonBuff))
+                this.changeHp(buff.getChangeHp());
+
         }
     }
 
@@ -287,6 +290,54 @@ public class Minion extends Card {
     public void dropFlag() {
         this.hasFlag = false;
         this.cellPlace.addFlag();
+    }
+
+    public void hurtMinion(Minion minion) {
+        int finalAttackPoints = this.attackPoint + this.moreAttackPoints() + this.lessAttackPoints();
+        if (minion.isApSuperior) {
+            if (this.getAttackPoint() > minion.getAttackPoint())
+                minion.changeHp(-finalAttackPoints + minion.apSheildOfHolyBuffs());
+        }
+        if (minion.isAntiHolyBuff) {
+            minion.changeHp(-finalAttackPoints);
+        }
+    }
+
+    public int moreAttackPoints() {
+        int result = 0;
+        for (Buff buff : positiveBuffs)
+            result += buff.getChangeAp();
+        return result;
+    }
+
+    public int lessAttackPoints() {
+        int result = 0;
+        for (Buff buff : negativeBuffs)
+            result += buff.getChangeAp();
+        return result;
+    }
+
+    public int apSheildOfHolyBuffs() {
+        int result = 0;
+        for (Buff buff : positiveBuffs)
+            result += buff.getApShield();
+        for (Buff buff : negativeBuffs)
+            result += buff.getApShield();
+        return result;
+    }
+    public void removeAllPositiveBuffs(){
+        Iterator<Buff> iterator = positiveBuffs.iterator();
+        while (iterator.hasNext()){
+            iterator.next();
+            iterator.remove();
+        }
+    }
+    public void removeAllNegativeBuffs(){
+        Iterator<Buff> iterator = negativeBuffs.iterator();
+        while (iterator.hasNext()){
+            iterator.next();
+            iterator.remove();
+        }
     }
 }
 
