@@ -3,13 +3,14 @@ package model.buff;
 import model.Cell;
 import model.Enums;
 
-public abstract class Buff {
+public class Buff {
     protected int numberOfTurnsOnTarget;
     protected int changeHp;
     protected int apShield;
     protected int changeAp;
     protected int numberOfTurns;
     protected int delay;
+    protected boolean isPoison;
     protected boolean isDisarmer;
     protected boolean isStunner;
     protected boolean isPositive;
@@ -19,6 +20,10 @@ public abstract class Buff {
 
     public int getChangeAp() {
         return changeAp;
+    }
+
+    public boolean isPoison() {
+        return isPoison;
     }
 
     public int getChangeHp() {

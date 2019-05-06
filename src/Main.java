@@ -2,7 +2,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.*;
 import model.buff.*;
+import resources.HeroResources;
 import resources.MinionResources;
+import resources.Resources;
 
 public class Main {
 
@@ -11,9 +13,12 @@ public class Main {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-
-        Minion minion = MinionResources.getSpecificMinion("persianChampion");
-        System.out.println(minion.getSpecialPower().getBuffs().get(0).getChangeAp());
+        Resources.setResources();
+        Minion minion = HeroResources.getSpecificHero("zahhak");
+        System.out.println(minion instanceof Hero);
+        System.out.println(((Hero) minion).getCoolDown());
+        System.out.println(((Hero) minion).getName());
+        System.out.println(((Hero)minion).getSpecialPower().getBuffs().get(0).isPoison());
 //        Hero hero = new Hero("", "rostam", 8000, 55, 7, 0,
 //                1, 3, 0, false, false,
 //                false, false, false, Enums.ActivationTypes.NONE);

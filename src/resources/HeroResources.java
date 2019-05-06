@@ -283,6 +283,7 @@ public class HeroResources {
                 "\"numberOfTurns\": 3,\n" +
                 "\"delay\": 0,\n" +
                 "\"isDisarmer\": false,\n" +
+                "\"isPoison\": true,\n" +
                 "\"isStunner\": false,\n" +
                 "\"isPositive\": false,\n" +
                 "\"onCellOrSoldier\": \"SOLDIER\",\n" +
@@ -300,7 +301,7 @@ public class HeroResources {
                 "\"negativeBuffs\": [],\n" +
                 "\"hasFlag\": false,\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"kaveh\",\n" +
+                "\"name\": \"zahhak\",\n" +
                 "\"requiredManas\": 0,\n" +
                 "\"price\": 10000\n" +
                 "}");
