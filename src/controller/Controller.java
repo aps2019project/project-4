@@ -451,10 +451,10 @@ public class Controller {
                 View.showOpponentMinions();
                 break;
             case 3:
-                //todo Show card info
+                View.showCardInfo(matcher.group(1));
                 break;
             case 4:
-                //todo Select card
+                Account.getCurrentAccount().getCurrentBattle().getPlayer1().selectCard(matcher.group(1));
                 break;
             case 5:
                 //todo move  card

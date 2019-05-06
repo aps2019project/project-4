@@ -1,5 +1,8 @@
 package model;
 
+import views.Exceptions.*;
+import views.View;
+
 import java.util.HashMap;
 
 public class Player {
@@ -14,16 +17,16 @@ public class Player {
     private Item selectedItem;
     private HashMap<String, Item> collectableItems;
     private HashMap<String, Card> graveYard;
+    private HashMap<String, Card> cardsInGameBoard;
     private int mana;
 
     public Player(String name, Deck mainDeck) {
         this.name = name;
         this.deck = mainDeck;
         this.mutableDeck = mainDeck.clone();
-    }
-
-    public Deck getMutableDeck() {
-        return mutableDeck;
+        this.collectableItems = new HashMap<>();
+        this.graveYard = new HashMap<>();
+        this.cardsInGameBoard = new HashMap<>();
     }
 
     public Player() { }
@@ -38,6 +41,26 @@ public class Player {
 
     public void setDeck(Deck deck) {
         this.deck = deck;
+    }
+
+    public HashMap<String, Card> getHand() {
+        return hand;
+    }
+
+    public Deck getMutableDeck() {
+        return mutableDeck;
+    }
+
+    public HashMap<String, Card> getGraveYard() {
+        return graveYard;
+    }
+
+    public HashMap<String, Item> getCollectableItems() {
+        return collectableItems;
+    }
+
+    public HashMap<String, Card> getCardsInGameBoard() {
+        return cardsInGameBoard;
     }
 
     public void putCardInGraveYard(Card card) {
@@ -57,8 +80,15 @@ public class Player {
         return selectedCard;
     }
 
-    public Card selectCard(String id) {
-        return mutableDeck.getCards().get(id);
+    public void setSelectedCard(Card selectedCard) {
+        this.selectedCard = selectedCard;
+    }
+
+    public void selectCard(String cardId)throws Exception {
+        if (this.getCardsInGameBoard().get(cardId) == null)
+            throw new InvalidCardIdException(cardId);
+        this.setSelectedCard(this.getCardsInGameBoard().get(cardId));
+        View.showSelectCardMessage(cardId);
     }
 
     public void moveSelectedCard(int x, int y) {
