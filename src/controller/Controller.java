@@ -130,32 +130,21 @@ public class Controller {
         if (Account.getCurrentAccount().getSelectedDeck() == null)
             throw new NoDeckSelectedException();
         Player player1 = new Player(Account.getCurrentAccount().getName(), Account.getCurrentAccount().getSelectedDeck());
-        Player player2;
-        Enums.GameMode gameMode;
+        Battle battle = new Battle(player1);
+        Account.getCurrentAccount().setCurrentBattle(battle);
+        Account.getCurrentAccount().getCurrentBattle().setReward(1000);
         while (true) {
             View.showSingleOrMultiPlayerMenu();
             String str = Controller.getNextLine();
             try {
                 if (str.toLowerCase().equals("single player")) {
-                    while (true) {
-                        try {
-                            View.showSelectTypeOfGameMenu();
-                            String command = Controller.getNextLine();
-                            if (command.equals("story")) {
-                                player2 = handleStageSelecting();
-                            }
-                            if (command.toLowerCase().equals("custom game")) {
-                                player2 = handleCustomGameStart();
-                            }
-                            throw new InvalidCommandException();
-                        } catch (Exception e) {
-                            System.err.println(e.getMessage());
-                        }
-                    }
+                    Account.getCurrentAccount().getCurrentBattle().setOpponent(Enums.SingleOrMulti.SINGLE_PLAYER);
+                    handleSinglePlayerGameStart();
                     break;
                 }
                 if (str.toLowerCase().equals("multi player")) {
-                    player2 = handleMultiPlayerGameStart();
+                    Account.getCurrentAccount().getCurrentBattle().setOpponent(Enums.SingleOrMulti.MULTI_PLAYER);
+                    handleMultiPlayerGameStart();
                     break;
                 }
                 throw new InvalidCommandException();
@@ -163,8 +152,7 @@ public class Controller {
                 System.err.println(e.getMessage());
             }
         }
-        Battle battle = new Battle(player1, player2);
-        Account.getCurrentAccount().setCurrentBattle(battle);
+
     }
 
     private static Player handleMultiPlayerGameStart() {
@@ -183,43 +171,82 @@ public class Controller {
         }
     }
 
-    private static Player handleSinglePlayerGameStart() {
-
-    }
-
-    private static Player handleCustomGameStart() {
+    private static void handleSinglePlayerGameStart() {
         while (true) {
             try {
-                View.showSelectDeckMethod();
-                String startGameCommand = Controller.getNextLine();
-                Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3]) ([1-9]?)");
-                Matcher matcher = pattern.matcher(startGameCommand);
-                if (!matcher.find())
-                    throw new InvalidCommandException();
-                if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)) == null)
-                    throw new DeckNotAvailabilityException(matcher.group(1), true);
-                if ((matcher.group(2).equals("3") && matcher.group(3).equals("")))
-                    throw new NumOfFlagsNotFoundException();
-                return new AIPlayer(Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)).clone());
+                View.showSelectTypeOfGameMenu();
+                String command = Controller.getNextLine();
+                if (command.equals("story")) {
+                    handleStageSelecting();
+                    break;
+                }
+                if (command.toLowerCase().equals("custom game")) {
+                    handleCustomGameStart();
+                    break;
+                }
+                throw new InvalidCommandException();
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }
     }
 
-    private static Player handleStageSelecting() {
+    private static void handleCustomGameStart() {
+        while (true) {
+            View.showSelectDeckMethod();
+            String startGameCommand = Controller.getNextLine();
+            try {
+                Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3]) ([1-9]?)");
+                Matcher matcher = pattern.matcher(startGameCommand);
+                if (!matcher.find())
+                    throw new InvalidCommandException();
+                if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)) == null)
+                    throw new DeckNotAvailabilityException(matcher.group(1), true);
+                Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)).clone()));
+                switch (matcher.group(2)) {
+                    case "1":
+                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
+                        break;
+                    case "2":
+                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
+                        break;
+                    case "3":
+                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
+                        if (matcher.group(3).equals("")) {
+                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(7);
+                        } else {
+                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher.group(3)));
+                        }
+                        break;
+                }
+                break;
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void handleStageSelecting() {
         while (true) {
             View.showSelectStageMenu();
             String stage = Controller.getNextLine();
             try {
                 if (stage.toLowerCase().equals("stage 1")) {
-                    return new AIPlayer(Stage.getStage(0).getDeck().clone());
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(Stage.getStage(0).getDeck().clone()));
+                    Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
+                    Account.getCurrentAccount().getCurrentBattle().setReward(500);
+                    return;
                 }
                 if (stage.toLowerCase().equals("stage 2")) {
-                    return new AIPlayer(Stage.getStage(1).getDeck().clone());
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(Stage.getStage(1).getDeck().clone()));
+                    Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
+                    return;
                 }
                 if (stage.toLowerCase().equals("stage 3")) {
-                    return new AIPlayer(Stage.getStage(2).getDeck().clone());
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(Stage.getStage(2).getDeck().clone()));
+                    Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
+                    Account.getCurrentAccount().getCurrentBattle().setReward(1500);
+                    return;
                 }
                 throw new InvalidCommandException();
             } catch (InvalidCommandException e) {

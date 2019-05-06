@@ -208,7 +208,10 @@ public class View {
 
     public static void showSelectDeckMethod() {
         Account.getCurrentAccount().getCollection().getValidDecks().values().forEach(View::showDeck);
-        System.out.println("Please select a deck:");
+        System.out.println("Please select a deck and mode and enter number of your flags if you want to play in mode3.");
+        System.out.println("Mode 1: Hero VS Hero , Mode 2: Mono flag , Mode 3 : Multiple flag");
+        System.out.println("Then Start Game with command: ");
+        System.out.println("Start game [deck name] [mode] [number of flags]");
     }
 
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {
