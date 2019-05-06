@@ -156,8 +156,7 @@ public class Controller {
                 }
                 throw new InvalidCommandException();
             } catch (Exception e) {
-                //System.err.println(e.getMessage());
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
     }
@@ -201,45 +200,7 @@ public class Controller {
                 }
                 throw new InvalidCommandException();
             } catch (Exception e) {
-                //System.err.println(e.getMessage());
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private static void handleCustomGameStart() {
-        Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3])( ?[1-9]?)", Pattern.CASE_INSENSITIVE);
-        Matcher matcher;
-        while (true) {
-            View.showSelectDeckMethod();
-            String startGameCommand = Controller.getNextLine();
-            try {
-                matcher = pattern.matcher(startGameCommand);
-                if (!matcher.find())
-                    throw new InvalidCommandException();
-                if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)) == null)
-                    throw new DeckNotAvailabilityException(matcher.group(1), true);
-                Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)).clone()));
-                switch (matcher.group(2)) {
-                    case "1":
-                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
-                        break;
-                    case "2":
-                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
-                        break;
-                    case "3":
-                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
-                        if (matcher.group(3).equals("")) {
-                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(7);
-                        } else {
-                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher.group(3)));
-                        }
-                        break;
-                }
-                break;
-            } catch (Exception e) {
-                //System.err.println(e.getMessage());
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
     }
@@ -273,37 +234,86 @@ public class Controller {
         }
     }
 
-    public static void handleMultiPlayerSelectMode() {
-        Pattern pattern = Pattern.compile("Start multi-player game ([1-3])( ?[1-9]?)");
-        Matcher matcher;
+    private static void handleCustomGameStart() {
+        Pattern pattern1 = Pattern.compile("Start game (\\w+) 3 ([2-9])", Pattern.CASE_INSENSITIVE);
+        Pattern pattern2 = Pattern.compile("Start game (\\w+) ([1-3])", Pattern.CASE_INSENSITIVE);
+        Matcher matcher1;
+        Matcher matcher2;
         while (true) {
-            View.showMultiPlayerSelectModeCommand();
-            String command = Controller.getNextLine();
-            matcher = pattern.matcher(command);
+            View.showSelectDeckMethod();
+            String startGameCommand = Controller.getNextLine().toLowerCase();
             try {
-                if (!matcher.find())
+                matcher1 = pattern1.matcher(startGameCommand);
+                matcher2 = pattern2.matcher(startGameCommand);
+                if (!matcher1.find() && !matcher2.find())
                     throw new InvalidCommandException();
-                switch (matcher.group(1)) {
-                    case "1":
-                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
-                        break;
-                    case "2":
-                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
-                        break;
-                    case "3":
-                        Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
-                        if (matcher.group(2).equals("")) {
-                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(7);
-                        } else {
-                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher.group(2)));
-                        }
-                        break;
+                if (matcher1.matches()) {
+                    if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher1.group(1)) == null)
+                        throw new DeckNotAvailabilityException(matcher1.group(1), true);
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(
+                            Account.getCurrentAccount().getCollection().getValidDecks().get(matcher1.group(1)).clone()));
+                    Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
+                    Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher1.group(2).trim()));
+                    break;
                 }
-                break;
+                if (matcher2.matches()) {
+                    if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher2.group(1)) == null)
+                        throw new DeckNotAvailabilityException(matcher2.group(1), true);
+                    switch (matcher2.group(2)) {
+                        case "1":
+                            Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
+                            break;
+                        case "2":
+                            Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
+                            break;
+                        case "3":
+                            Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
+                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(7);
+                    }
+                }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }
+    }
+
+    public static void handleMultiPlayerSelectMode() {
+        Pattern pattern1 = Pattern.compile("Start multi-player game 3 ([2-9])", Pattern.CASE_INSENSITIVE);
+        Pattern pattern2 = Pattern.compile("Start multi-player game ([1-3])", Pattern.CASE_INSENSITIVE);
+        Matcher matcher1;
+        Matcher matcher2;
+        while (true) {
+            View.showMultiPlayerSelectModeCommand();
+            String command = Controller.getNextLine();
+            matcher1 = pattern1.matcher(command);
+            matcher2 = pattern2.matcher(command);
+            try {
+                if (matcher1.matches()) {
+                    switch (matcher1.group(1)) {
+                        case "1":
+                            Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
+                            break;
+                        case "2":
+                            Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
+                            break;
+                        case "3":
+                            Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
+                            Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(7);
+                            break;
+                    }
+                    break;
+                }
+                if (matcher2.matches()) {
+                    Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
+                    Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher2.group(1).trim()));
+                    break;
+                }
+                throw new InvalidCommandException();
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
     }
 
     public static void start() {
@@ -372,8 +382,7 @@ public class Controller {
         } catch (InvalidCommandException e) {
             e.showMessage();
         } catch (Exception e) {
-            //System.err.println(e.getMessage());
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
 
     }

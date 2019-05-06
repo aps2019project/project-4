@@ -102,7 +102,7 @@ public class SpellResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 250\n" +
                 "}");
-        getSpellResource().put("Fire Ball", "{\n" +
+        getSpellResource().put("FireBall", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
@@ -125,7 +125,7 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"Fire Ball\",\n" +
+                "\"name\": \"FireBall\",\n" +
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 400\n" +
                 "}");
