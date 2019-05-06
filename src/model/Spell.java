@@ -29,7 +29,7 @@ public class Spell extends Card {
     }
 
     public Spell clone(){
-        return (Spell) Resources.getSpeceficCard(this.getName());
+        return (Spell) Resources.getSpecificCard(this.getName());
     }
 
     public void addBuff(Buff buff){
@@ -86,7 +86,7 @@ public class Spell extends Card {
         result.append("Type : Spell - Name : ").append(this.getName())
                 .append(" - ID : ").append(this.getId())
                 .append(" - MP : ").append(this.getRequiredManas())
-                .append(" - Desc : ").append(this.getDescription());
+                .append(" - Description : ").append(this.getDescription());
         return result;
     }
 

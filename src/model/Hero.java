@@ -15,7 +15,7 @@ public class Hero extends Minion {
     }
 
     public Hero clone(){
-        return (Hero) Resources.getSpeceficCard(this.getName());
+        return (Hero) Resources.getSpecificCard(this.getName());
     }
 
     public int getCoolDown() {
@@ -27,8 +27,9 @@ public class Hero extends Minion {
         StringBuilder result = new StringBuilder()
                 .append("Hero:\n")
                 .append("Name: ").append(name).append("\n")
-                .append("Cost: ").append(price).append("\n")
-                .append("Description: ").append(description).append("\n");
+                .append("Cost: ").append(price).append("\n");
+        if (!(this.getDescription() == null))
+                result.append("Description: ").append(description).append("\n");
         return result;
     }
 
@@ -39,8 +40,9 @@ public class Hero extends Minion {
                 .append(" - ID : ").append(this.getId())
                 .append(" - AP : ").append(this.getAttackPoint())
                 .append(" - HP : ").append(this.getHealthPoint())
-                .append(" - Class : ").append(this.getType())
-                .append(" - Special power: ").append(this.getSpecialPower().getDescription());
+                .append(" - Class : ").append(this.getType());
+        if (!(this.getDescription() == null))
+                result.append(" - Special power: ").append(this.getSpecialPower().getDescription());
         return result;
     }
 

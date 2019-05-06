@@ -34,7 +34,7 @@ public class MinionResources {
     }
 
     public static void setMinionResource() {
-        getMinionResource().put("persianArcher", "{\n" +
+        getMinionResource().put("persian archer", "{\n" +
                 "\"healthPoint\": 6,\n" +
                 "\"attackPoint\": 4,\n" +
                 "\"startRange\": 2,\n" +
@@ -60,7 +60,7 @@ public class MinionResources {
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 300\n" +
                 "}");
-        getMinionResource().put("persianSwordsman", "{\n" +
+        getMinionResource().put("persian swordsman", "{\n" +
                 "\"healthPoint\": 6,\n" +
                 "\"attackPoint\": 4,\n" +
                 "\"startRange\": 1,\n" +
@@ -113,7 +113,7 @@ public class MinionResources {
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 400\n" +
                 "}");
-        getMinionResource().put("persianSpearsman", "{\n" +
+        getMinionResource().put("persian spearsman", "{\n" +
                 "\"healthPoint\": 5,\n" +
                 "\"attackPoint\": 3,\n" +
                 "\"startRange\": 1,\n" +
@@ -139,7 +139,7 @@ public class MinionResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 500\n" +
                 "}");
-        getMinionResource().put("persianHorseman", "{\n" +
+        getMinionResource().put("persian horseman", "{\n" +
                 "\"healthPoint\": 10,\n" +
                 "\"attackPoint\": 6,\n" +
                 "\"startRange\": 1,\n" +
@@ -165,7 +165,7 @@ public class MinionResources {
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 200\n" +
                 "}");
-        getMinionResource().put("persianChampion", "{\n" +
+        getMinionResource().put("persian champion", "{\n" +
                 "\"healthPoint\": 24,\n" +
                 "\"attackPoint\": 6,\n" +
                 "\"startRange\": 1,\n" +
@@ -218,7 +218,7 @@ public class MinionResources {
                 "\"requiredManas\": 9,\n" +
                 "\"price\": 600\n" +
                 "}");
-        getMinionResource().put("persianCommander", "{\n" +
+        getMinionResource().put("persian commander", "{\n" +
                 "\"healthPoint\": 12,\n" +
                 "\"attackPoint\": 4,\n" +
                 "\"startRange\": 1,\n" +
@@ -244,7 +244,7 @@ public class MinionResources {
                 "\"requiredManas\": 7,\n" +
                 "\"price\": 800\n" +
                 "}");
-        getMinionResource().put("transoxanianArcher", "{\n" +
+        getMinionResource().put("transoxanian archer", "{\n" +
                 "\"healthPoint\": 3,\n" +
                 "\"attackPoint\": 4,\n" +
                 "\"startRange\": 2,\n" +
@@ -270,7 +270,7 @@ public class MinionResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 500\n" +
                 "}");
-        getMinionResource().put("transoxanianSlingman", "{\n" +
+        getMinionResource().put("transoxanian slingman", "{\n" +
                 "\"healthPoint\": 4,\n" +
                 "\"attackPoint\": 2,\n" +
                 "\"startRange\": 2,\n" +
@@ -296,7 +296,7 @@ public class MinionResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 600\n" +
                 "}");
-        getMinionResource().put("transoxaninaSpearsman", "{\n" +
+        getMinionResource().put("transoxaninan spearsman", "{\n" +
                 "\"healthPoint\": 4,\n" +
                 "\"attackPoint\": 4,\n" +
                 "\"startRange\": 1,\n" +
@@ -322,7 +322,7 @@ public class MinionResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 600\n" +
                 "}");
-        getMinionResource().put("transoxanianSpy", "{\n" +
+        getMinionResource().put("transoxanian spy", "{\n" +
                 "\"healthPoint\": 6,\n" +
                 "\"attackPoint\": 6,\n" +
                 "\"startRange\": 1,\n" +
@@ -389,7 +389,7 @@ public class MinionResources {
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 700\n" +
                 "}");
-        getMinionResource().put("transoxanianMaceman", "{\n" +
+        getMinionResource().put("transoxanian maceman", "{\n" +
                 "\"healthPoint\": 3,\n" +
                 "\"attackPoint\": 10,\n" +
                 "\"startRange\": 1,\n" +
@@ -415,7 +415,7 @@ public class MinionResources {
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 450\n" +
                 "}");
-        getMinionResource().put("transoxanianPrince", "{\n" +
+        getMinionResource().put("transoxanian prince", "{\n" +
                 "\"healthPoint\": 6,\n" +
                 "\"attackPoint\": 10,\n" +
                 "\"startRange\": 1,\n" +
@@ -441,7 +441,7 @@ public class MinionResources {
                 "\"requiredManas\": 6,\n" +
                 "\"price\": 800\n" +
                 "}");
-        getMinionResource().put("blackDevil", "{\n" +
+        getMinionResource().put("black devil", "{\n" +
                 "\"healthPoint\": 14,\n" +
                 "\"attackPoint\": 10,\n" +
                 "\"startRange\": 1,\n" +
@@ -467,7 +467,7 @@ public class MinionResources {
                 "\"requiredManas\": 9,\n" +
                 "\"price\": 300\n" +
                 "}");
-        getMinionResource().put("stonemanGiant", "{\n" +
+        getMinionResource().put("stoneman giant", "{\n" +
                 "\"healthPoint\": 12,\n" +
                 "\"attackPoint\": 12,\n" +
                 "\"startRange\": 2,\n" +
@@ -546,7 +546,7 @@ public class MinionResources {
                 "\"requiredManas\": 2,\n" +
                 "\"price\": 200\n" +
                 "}");
-        getMinionResource().put("swineriderDevil", "{\n" +
+        getMinionResource().put("swinerider devil", "{\n" +
                 "\"healthPoint\": 16,\n" +
                 "\"attackPoint\": 8,\n" +
                 "\"startRange\": 1,\n" +
@@ -572,7 +572,7 @@ public class MinionResources {
                 "\"requiredManas\": 6,\n" +
                 "\"price\": 300\n" +
                 "}");
-        getMinionResource().put("monoeyedGiant", "{\n" +
+        getMinionResource().put("monoeyed giant", "{\n" +
                 "\"healthPoint\": 12,\n" +
                 "\"attackPoint\": 11,\n" +
                 "\"startRange\": 1,\n" +
@@ -625,7 +625,7 @@ public class MinionResources {
                 "\"requiredManas\": 7,\n" +
                 "\"price\": 500\n" +
                 "}");
-        getMinionResource().put("poisonousSnake", "{\n" +
+        getMinionResource().put("poisonous snake", "{\n" +
                 "\"healthPoint\": 5,\n" +
                 "\"attackPoint\": 6,\n" +
                 "\"startRange\": 2,\n" +
@@ -679,7 +679,7 @@ public class MinionResources {
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 300\n" +
                 "}");
-        getMinionResource().put("fieryDragon", "{\n" +
+        getMinionResource().put("fiery dragon", "{\n" +
                 "\"healthPoint\": 9,\n" +
                 "\"attackPoint\": 5,\n" +
                 "\"startRange\": 2,\n" +
@@ -705,7 +705,7 @@ public class MinionResources {
                 "\"requiredManas\": 5,\n" +
                 "\"price\": 250\n" +
                 "}");
-        getMinionResource().put("predatorLion", "{\n" +
+        getMinionResource().put("predator lion", "{\n" +
                 "\"healthPoint\": 1,\n" +
                 "\"attackPoint\": 8,\n" +
                 "\"startRange\": 1,\n" +
@@ -732,7 +732,7 @@ public class MinionResources {
                 "\"price\": 600\n" +
                 "}");
 
-        getMinionResource().put("giantSnake", "{\n" +
+        getMinionResource().put("giant snake", "{\n" +
                 "\"healthPoint\": 14,\n" +
                 "\"attackPoint\": 7,\n" +
                 "\"startRange\": 2,\n" +
@@ -785,7 +785,7 @@ public class MinionResources {
                 "\"requiredManas\": 8,\n" +
                 "\"price\": 500\n" +
                 "}");
-        getMinionResource().put("whiteWolf", "{\n" +
+        getMinionResource().put("white wolf", "{\n" +
                 "\"healthPoint\": 8,\n" +
                 "\"attackPoint\": 2,\n" +
                 "\"startRange\": 1,\n" +
@@ -1023,7 +1023,7 @@ public class MinionResources {
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 550\n" +
                 "}");
-        getMinionResource().put("grandWitch", "{\n" +
+        getMinionResource().put("grand witch", "{\n" +
                 "\"healthPoint\": 6,\n" +
                 "\"attackPoint\": 6,\n" +
                 "\"startRange\": 2,\n" +
@@ -1142,7 +1142,7 @@ public class MinionResources {
                 "\"requiredManas\": 5,\n" +
                 "\"price\": 500\n" +
                 "}");
-        getMinionResource().put("wildSwine", "{\n" +
+        getMinionResource().put("wild swine", "{\n" +
                 "\"healthPoint\": 10,\n" +
                 "\"attackPoint\": 14,\n" +
                 "\"startRange\": 1,\n" +
@@ -1325,7 +1325,7 @@ public class MinionResources {
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 500\n" +
                 "}");
-        getMinionResource().put("bigGiant", "{\n" +
+        getMinionResource().put("big giant", "{\n" +
                 "\"healthPoint\": 30,\n" +
                 "\"attackPoint\": 8,\n" +
                 "\"startRange\": 1,\n" +
@@ -1351,7 +1351,7 @@ public class MinionResources {
                 "\"requiredManas\": 9,\n" +
                 "\"price\": 600\n" +
                 "}");
-        getMinionResource().put("twoHeadedGiant", "{\n" +
+        getMinionResource().put("twoheaded giant", "{\n" +
                 "\"healthPoint\": 10,\n" +
                 "\"attackPoint\": 4,\n" +
                 "\"startRange\": 1,\n" +
@@ -1390,7 +1390,7 @@ public class MinionResources {
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 550\n" +
                 "}");
-        getMinionResource().put("queenOfWinter", "{\n" +
+        getMinionResource().put("queen of winter", "{\n" +
                 "\"healthPoint\": 3,\n" +
                 "\"attackPoint\": 4,\n" +
                 "\"startRange\": 2,\n" +
@@ -1443,7 +1443,7 @@ public class MinionResources {
                 "\"requiredManas\": 3,\n" +
                 "\"price\": 500\n" +
                 "}");
-        getMinionResource().put("steelArmored", "{\n" +
+        getMinionResource().put("steel armored", "{\n" +
                 "\"healthPoint\": 1,\n" +
                 "\"attackPoint\": 1,\n" +
                 "\"startRange\": 1,\n" +
@@ -1549,7 +1549,7 @@ public class MinionResources {
                 "\"requiredManas\": 4,\n" +
                 "\"price\": 350\n" +
                 "}");
-        getMinionResource().put("giantKing", "{\n" +
+        getMinionResource().put("giant king", "{\n" +
                 "\"healthPoint\": 10,\n" +
                 "\"attackPoint\": 4,\n" +
                 "\"startRange\": 1,\n" +
@@ -1575,7 +1575,7 @@ public class MinionResources {
                 "\"requiredManas\": 5,\n" +
                 "\"price\": 600\n" +
                 "}");
-        getMinionResource().put("arzhangDeeve", "{\n" +
+        getMinionResource().put("arzhang deeve", "{\n" +
                 "\"healthPoint\": 6,\n" +
                 "\"attackPoint\": 6,\n" +
                 "\"startRange\": 1,\n" +
@@ -1602,34 +1602,4 @@ public class MinionResources {
                 "\"price\": 600\n" +
                 "}");
     }
-
-
-
-
-    String arzhangDeeve = "{\n" +
-            "\"healthPoint\": 6,\n" +
-            "\"attackPoint\": 6,\n" +
-            "\"startRange\": 1,\n" +
-            "\"endRange\": 1,\n" +
-            "\"isAntiHolyBuff\": false,\n" +
-            "\"isAntiDisarm\": false,\n" +
-            "\"isAntiPoison\": false,\n" +
-            "\"isImmortal\": false,\n" +
-            "\"isApSuperior\": false,\n" +
-            "\"type\": \"MELEE\",\n" +
-            "\"hasAttackedThisTurn\": false,\n" +
-            "\"hasMovedThisTurn\": false,\n" +
-            "\"isDisarmed\": false,\n" +
-            "\"isStunned\": false,\n" +
-            "\"numberOfTurnsOfDisarm\": 0,\n" +
-            "\"numberOfTurnsOfStun\": 0,\n" +
-            "\"specialPowerActivationType\": \"COMBO\",\n" +
-            "\"positiveBuffs\": [],\n" +
-            "\"negativeBuffs\": [],\n" +
-            "\"hasFlag\": false,\n" +
-            "\"id\": \"\",\n" +
-            "\"name\": \"arzhang deeve\",\n" +
-            "\"requiredManas\": 3,\n" +
-            "\"price\": 600\n" +
-            "}";
 }
