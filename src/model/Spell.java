@@ -28,7 +28,7 @@ public class Spell extends Card {
         this.lengthOfSideOfSquare = lengthOfSideOfSquare;
     }
 
-    public Spell clone(){
+    public Spell clone() {
         Spell spell = (Spell) Resources.getSpecificCard(this.getName());
         if (spell == null)
             return null;
@@ -36,7 +36,7 @@ public class Spell extends Card {
         return spell;
     }
 
-    public void addBuff(Buff buff){
+    public void addBuff(Buff buff) {
         buffs.add(buff);
     }
 
@@ -69,10 +69,11 @@ public class Spell extends Card {
     }
 
     @Override
-    public void insert(Cell cell){
+    public void insert(Cell cell) {
         for (Buff buff : this.buffs)
             buff.stickBuffTo(cell);
     }
+
     @Override
     public StringBuilder info() {
         StringBuilder result = new StringBuilder()
@@ -100,10 +101,11 @@ public class Spell extends Card {
     }
 
     @Override
-    public StringBuilder infoForShop(){
+    public StringBuilder infoForShop() {
         return this.infoForDeck().append(" - Buy Cost : ").append(this.getPrice());
     }
-    public boolean isPoisonous(){
+
+    public boolean isPoisonous() {
         for (Buff buff : buffs)
             if (buff.isPoison())
                 return true;

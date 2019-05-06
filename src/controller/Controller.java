@@ -442,13 +442,13 @@ public class Controller {
         matcher.matches();
         switch (index) {
             case 0:
-                //todo game info
+                View.showGameInfo();
                 break;
             case 1:
-                //todo Show my minions
+                View.showMyMinions();
                 break;
             case 2:
-                //todo Show opponent minions
+                View.showOpponentMinions();
                 break;
             case 3:
                 //todo Show card info
