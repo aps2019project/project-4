@@ -36,6 +36,10 @@ public class Stage {
 
     }
 
+    public static Stage getStage(int number){
+        return stages.get(number);
+    }
+
     public static void setStageResource() {
         Deck deck1 = new Deck("1");
         deck1.addCardWithSetID(Resources.getSpeceficCard("persianArcher"), "stage1");

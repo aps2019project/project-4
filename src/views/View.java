@@ -186,6 +186,31 @@ public class View {
         }
     }
 
+    public static void showSingleOrMultiPlayerMenu() {
+        System.out.println("Select Single Player or Multi Player:");
+        System.out.println("1. Single Player");
+        System.out.println("2. Multi Player");
+    }
+
+    public static void showSelectTypeOfGameMenu() {
+        System.out.println("Select type of your Game");
+        System.out.println("1. Story");
+        System.out.println("2. Custom Game");
+    }
+
+    public static void showSelectStageMenu() {
+        System.out.println("Please select an stage to play:");
+        Stage.showStages();
+        System.out.println("1. Stage 1");
+        System.out.println("2. Stage 2");
+        System.out.println("3. Stage 3");
+    }
+
+    public static void showSelectDeckMethod(){
+        Account.getCurrentAccount().getCollection().getValidDecks().values().forEach(View::showDeck);
+        System.out.println("Please select a deck:");
+    }
+
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {
         if (!Account.getCurrentAccount().getCollection().getDecks().containsKey(deckName))
             throw new DeckNotAvailabilityException(deckName);

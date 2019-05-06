@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Player {
     private String name;
-    private Deck selectedDeck;
+    private Deck deck;
     private HashMap<String, Card> hand;
     private int numOfFlags;
     private int numOfTurnsHeldFlag;
@@ -16,18 +16,22 @@ public class Player {
     private int mana;
 
     public Player(String name, Deck mainDeck) {
-        Constants instance = Constants.getInstance();
         this.name = name;
-        this.selectedDeck = mainDeck;
-
+        this.deck = mainDeck;
     }
 
-    public Player() {
+    public Player() { }
 
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Deck getDeck() {
-        return this.selectedDeck;
+        return this.deck;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 
     public void putCardInGraveYard(Card card) {
@@ -48,7 +52,7 @@ public class Player {
     }
 
     public Card selectCard(String id) {
-        return selectedDeck.getCards().get(id);
+        return deck.getCards().get(id);
     }
 
     public void moveSelectedCard(int x, int y) {

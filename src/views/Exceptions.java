@@ -29,6 +29,16 @@ public class Exceptions {
         public DeckNotAvailabilityException(String deckName) {
             super("The deck with name " + deckName + " is not available");
         }
+
+        public DeckNotAvailabilityException(String deckName, Boolean isInValids) {
+            super("The deck with name " + deckName + " is not available in valid decks");
+        }
+    }
+
+    public static class NumOfFlagsNotFoundException extends Exception {
+        public NumOfFlagsNotFoundException() {
+            super("Enter number of flags if you want to play in mode 3!");
+        }
     }
 
     public static class CardAndItemNotAvailabilityException extends Exception {
@@ -64,7 +74,7 @@ public class Exceptions {
     }
 
     public static class NoDeckSelectedException extends Exception {
-        public NoDeckSelectedException(){
+        public NoDeckSelectedException() {
             super("Please Select a deck!");
         }
     }

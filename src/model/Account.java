@@ -17,6 +17,7 @@ public class Account {
     private ArrayList<Match> matchHistory;
     private Collection collection;
     private Deck selectedDeck;
+    private Battle currentBattle;
 
     public Account(String name, String password) {
         this.name = name;
@@ -25,6 +26,7 @@ public class Account {
         this.matchHistory = new ArrayList<>();
         this.collection = new Collection();
         this.selectedDeck = null;
+        this.currentBattle = null;
     }
 
     public String getName() {
@@ -37,6 +39,14 @@ public class Account {
 
     public int getDrack() {
         return this.drack;
+    }
+
+    public Battle getCurrentBattle() {
+        return currentBattle;
+    }
+
+    public void setCurrentBattle(Battle currentBattle) {
+        this.currentBattle = currentBattle;
     }
 
     public void changeDrack(int change){this.drack += change;}

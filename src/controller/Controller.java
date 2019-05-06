@@ -1,11 +1,11 @@
 package controller;
 
 import model.*;
+import views.Exceptions;
 import views.View;
 import views.Exceptions.*;
 import resources.Resources;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -130,33 +130,88 @@ public class Controller {
     public static void getBattleConditions() throws Exception {
         if (Account.getCurrentAccount().getSelectedDeck() == null)
             throw new NoDeckSelectedException();
-        System.out.println("Select Single Player or Multi Player:");
-        System.out.println("1. Single Player");
-        System.out.println("2. Multi Player");
+        Player player1 = new Player(Account.getCurrentAccount().getName(), Account.getCurrentAccount().getSelectedDeck());
+        Player player2;
         while (true) {
+            View.showSingleOrMultiPlayerMenu();
             String str = Controller.getNextLine();
-            if (str.toLowerCase().equals("single player")){
-                System.out.println("Select type of your Game");
-                System.out.println("1. Story");
-                System.out.println("2. Custom Game");
-                while (true){
-                    String command = Controller.getNextLine();
-                    if (command.equals("story")){
-                        System.out.println("");
-                        break;
-                    }
-                    if (command.toLowerCase().equals("custom game")){
-
-                        break;
-                    }
-                    System.err.println("Invalid Command");
+            try {
+                if (str.toLowerCase().equals("single player")) {
+                    player2 = handleSingleGameStart();
+                    break;
                 }
-                break;
+                if (str.toLowerCase().equals("multi player")) {
+                    
+                    break;
+                }
+                throw new InvalidCommandException();
+            }catch (Exception e){
+                System.err.println(e.getMessage());
             }
-            if (str.toLowerCase().equals("multi player")){
+        }
+        Battle battle = new Battle(player1 , player2);
+        Account.getCurrentAccount().setCurrentBattle(battle);
+    }
 
+    private static Player handleSingleGameStart() {
+        while (true) {
+            try {
+                View.showSelectTypeOfGameMenu();
+                String command = Controller.getNextLine();
+                if (command.equals("story")) {
+                    return handleStageSellecting();
+                }
+                if (command.toLowerCase().equals("custom game")) {
+                    return handleCustomGameStart();
+                }
+                throw new InvalidCommandException();
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
             }
-            System.err.println("Invalid Command");
+        }
+    }
+
+    private static Player handleCustomGameStart() {
+        while (true) {
+            try {
+                View.showSelectDeckMethod();
+                String startGameCommand = Controller.getNextLine();
+                Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3]) ([1-9]?)");
+                Matcher matcher = pattern.matcher(startGameCommand);
+                if (!matcher.find())
+                    throw new InvalidCommandException();
+                if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)) == null)
+                    throw new DeckNotAvailabilityException(matcher.group(1), true);
+                if ((matcher.group(2).equals("3") && matcher.group(3).equals("")))
+                    throw new NumOfFlagsNotFoundException();
+                return new AIPlayer(Account.getCurrentAccount().getCollection().getValidDecks().get(matcher.group(1)));
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    private static Player handleStageSellecting() {
+        while (true) {
+            View.showSelectStageMenu();
+            String stage = Controller.getNextLine();
+            try {
+                if (stage.toLowerCase().equals("stage 1")) {
+                    return new AIPlayer(Stage.getStage(0).getDeck());
+                    break;
+                }
+                if (stage.toLowerCase().equals("stage 2")) {
+                    return new AIPlayer(Stage.getStage(1).getDeck());
+                    break;
+                }
+                if (stage.toLowerCase().equals("stage 3")) {
+                    return new AIPlayer(Stage.getStage(2).getDeck());
+                    break;
+                }
+                throw new InvalidCommandException();
+            } catch (InvalidCommandException e) {
+                System.err.println(e.getMessage());
+            }
         }
     }
 
