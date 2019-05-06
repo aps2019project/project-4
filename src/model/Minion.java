@@ -266,15 +266,15 @@ public class Minion extends Card {
                     Buff b = iter.next();
                     if (b.isStunner()) {
                         if (b.getNumberOfTurns() < numberOfTurnsOfStun)
-                            negativeBuffs.remove(b);
+                            iter.remove();
                         else
                             numberOfTurnsOfStun = b.getNumberOfTurns();
                     }
                 }
+                this.numberOfTurnsOfStun = numberOfTurnsOfStun;
             }
-            if (!this.isAntiPoison || !(buff instanceof PoisonBuff))
+            if (!this.isAntiPoison || !(buff.isPoison()))
                 this.changeHp(buff.getChangeHp());
-
         }
     }
 
@@ -342,6 +342,13 @@ public class Minion extends Card {
             iterator.next();
             iterator.remove();
         }
+    }
+
+    public void nutralizeBuff(boolean isOnEnemy){
+        if (isOnEnemy)
+            this.removeAllPositiveBuffs();
+        else
+            this.removeAllNegativeBuffs();
     }
 }
 

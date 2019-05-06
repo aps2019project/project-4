@@ -109,4 +109,5 @@ public class Spell extends Card {
                 return true;
         return false;
     }
+
 }

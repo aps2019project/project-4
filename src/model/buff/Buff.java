@@ -50,8 +50,10 @@ public class Buff {
         this.numberOfTurnsOnTarget = numberOfTurnsOnTarget;
     }
 
-    public void nutralize(){
-
+    public void nutralize(Enums.BuffNutralizer buffNutralizer){
+        switch (buffNutralizer){
+            case POSITIVE:
+        }
     }
 
     public void stickBuffTo(Cell cell){
