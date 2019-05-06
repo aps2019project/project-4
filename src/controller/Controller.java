@@ -457,7 +457,7 @@ public class Controller {
                 Account.getCurrentAccount().getCurrentBattle().getPlayer1().selectCard(matcher.group(1));
                 break;
             case 5:
-                //todo move  card
+                Account.getCurrentAccount().getCurrentBattle().moveTo(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
                 break;
             case 6:
                 //todo attack

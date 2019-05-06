@@ -1,5 +1,7 @@
 package views;
 
+import model.Enums;
+
 public class Exceptions {
     public static class InvalidUserNameException extends Exception {
         public InvalidUserNameException() {
@@ -70,6 +72,12 @@ public class Exceptions {
     public static class InvalidCardIdException extends Exception {
         public InvalidCardIdException(String cardId) {
             super(cardId + " is invalid card id");
+        }
+    }
+
+    public static class SpellsCanNotMoveException extends Exception {
+        public SpellsCanNotMoveException(){
+            super("Spells can not move, select a minion");
         }
     }
 

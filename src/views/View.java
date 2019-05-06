@@ -159,10 +159,6 @@ public class View {
         System.err.println("Invalid target");
     }
 
-    public static void showSpellsCanNotMoveMessage() {
-        System.err.println("Spells can not move, select a minion");
-    }
-
     public static void showAddDeckMessage(String deckName) {
         System.out.println("The deck with name " + deckName + " created successfully!");
     }

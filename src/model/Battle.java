@@ -1,6 +1,7 @@
 package model;
 
 import model.buff.Buff;
+import views.Exceptions.*;
 import views.View;
 
 import java.util.ArrayList;
@@ -297,9 +298,9 @@ public class Battle {
         }
     }
 
-    public void moveTo(int x, int y) {
+    public void moveTo(int x, int y) throws Exception {
         if (whoseTurn.getSelectedCard() instanceof Spell) {
-            View.showSpellsCanNotMoveMessage();
+            throw new SpellsCanNotMoveException();
         }
         Minion minion = ((Minion) whoseTurn.getSelectedCard());
         Cell cell = minion.getCellPlace();
