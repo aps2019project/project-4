@@ -17,7 +17,8 @@ public class Deck {
 
     public Deck clone() {
         Deck deck = new Deck(this.getName());
-        deck.item = this.getItem().clone();
+        if (this.getItem() != null)
+            deck.item = this.getItem().clone();
         for (Card card : this.getCards().values())
             deck.addCard(card.clone());
         return deck;

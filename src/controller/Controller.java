@@ -101,6 +101,8 @@ public class Controller {
                 return patternsOfAccountMenu;
             case COLLECTION:
                 return patternsOfCollectionMenu;
+            case GRAVEYARD:
+                return patternsOfGraveyardMenu;
             default:
                 return patternsOfAccountMenu;
         }
@@ -124,6 +126,8 @@ public class Controller {
             case "account":
                 setMenu(Enums.Menus.ACCOUNT);
                 break;
+            case "graveyard":
+                setMenu(Enums.Menus.GRAVEYARD);
         }
     }
 
@@ -152,13 +156,14 @@ public class Controller {
                 }
                 throw new InvalidCommandException();
             } catch (Exception e) {
-                System.err.println(e.getMessage());
+                //System.err.println(e.getMessage());
+                e.printStackTrace();
             }
         }
     }
 
     private static void handleMultiPlayerGameStart() {
-        Pattern pattern = Pattern.compile("Select user (\\w+)" , Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("Select user (\\w+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher;
         while (true) {
             View.showAllUsers();
@@ -196,13 +201,14 @@ public class Controller {
                 }
                 throw new InvalidCommandException();
             } catch (Exception e) {
-                System.err.println(e.getMessage());
+                //System.err.println(e.getMessage());
+                e.printStackTrace();
             }
         }
     }
 
     private static void handleCustomGameStart() {
-            Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3])( ?[1-9]?)" , Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("Start game (\\w+) ([1-3])( ?[1-9]?)", Pattern.CASE_INSENSITIVE);
         Matcher matcher;
         while (true) {
             View.showSelectDeckMethod();
@@ -232,7 +238,8 @@ public class Controller {
                 }
                 break;
             } catch (Exception e) {
-                System.err.println(e.getMessage());
+                //System.err.println(e.getMessage());
+                e.printStackTrace();
             }
         }
     }
@@ -267,7 +274,7 @@ public class Controller {
     }
 
     public static void handleMultiPlayerSelectMode() {
-        Pattern pattern = Pattern.compile("Start multi-player game ([1-3]) ([1-9]?)");
+        Pattern pattern = Pattern.compile("Start multi-player game ([1-3])( ?[1-9]?)");
         Matcher matcher;
         while (true) {
             View.showMultiPlayerSelectModeCommand();

@@ -1439,7 +1439,7 @@ public class MinionResources {
                 "\"negativeBuffs\": [],\n" +
                 "\"hasFlag\": false,\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"queen of winter\",\n" +
+                "\"name\": \"queen Of Winter\",\n" +
                 "\"requiredManas\": 3,\n" +
                 "\"price\": 500\n" +
                 "}");
