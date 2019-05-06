@@ -1406,11 +1406,217 @@ public class MinionResources {
             "\"requiredManas\": 4,\n" +
             "\"price\": 550\n" +
             "}";
-    String queenOfWinter = "";
-    String steelArmored = "";
-    String siavash = "";
-    String giantKing = "";
-    String arzhangDeeve = "";
+    String queenOfWinter = "{\n" +
+            "\"healthPoint\": 3,\n" +
+            "\"attackPoint\": 4,\n" +
+            "\"startRange\": 2,\n" +
+            "\"endRange\": 5,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"RANGED\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY\",\n" +
+            "\"cellsType\": \"ALL_MINIONS_AROUND\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"NONE\",\n" +
+            "\"buffs\": [\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 0,\n" +
+            "\"changeHp\": 0,\n" +
+            "\"apShield\": 0,\n" +
+            "\"changeAp\": 0,\n" +
+            "\"numberOfTurns\": 1,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": true,\n" +
+            "\"isPositive\": false,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "}\n" +
+            "],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"queen of winter spell\",\n" +
+            "\"requiredManas\": 3,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"ON_SPAWN\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"queen of winter\",\n" +
+            "\"requiredManas\": 3,\n" +
+            "\"price\": 500\n" +
+            "}";
+    String steelArmored = "{\n" +
+            "\"healthPoint\": 1,\n" +
+            "\"attackPoint\": 1,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY\",\n" +
+            "\"cellsType\": \"ALL_MINIONS_AROUND\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"NONE\",\n" +
+            "\"buffs\": [\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 0,\n" +
+            "\"changeHp\": 0,\n" +
+            "\"apShield\": 12,\n" +
+            "\"changeAp\": 0,\n" +
+            "\"numberOfTurns\": 2147483647,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": false,\n" +
+            "\"isPositive\": true,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "}\n" +
+            "],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"steel armored spell\",\n" +
+            "\"requiredManas\": 3,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"ON_SPAWN\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"steel armored\",\n" +
+            "\"requiredManas\": 3,\n" +
+            "\"price\": 650\n" +
+            "}";
+    String siavash = "{\n" +
+            "\"healthPoint\": 8,\n" +
+            "\"attackPoint\": 5,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPower\": {\n" +
+            "\"cellOrSoldier\": \"SOLDIER\",\n" +
+            "\"target\": \"ENEMY_HERO\",\n" +
+            "\"cellsType\": \"MONO_CELL\",\n" +
+            "\"lengthOfSideOfSquare\": 0,\n" +
+            "\"buffNutralizer\": \"NONE\",\n" +
+            "\"buffs\": [\n" +
+            "{\n" +
+            "\"numberOfTurnsOnTarget\": 0,\n" +
+            "\"changeHp\": -6,\n" +
+            "\"apShield\": 0,\n" +
+            "\"changeAp\": 0,\n" +
+            "\"numberOfTurns\": 1,\n" +
+            "\"delay\": 0,\n" +
+            "\"isDisarmer\": false,\n" +
+            "\"isStunner\": false,\n" +
+            "\"isPositive\": false,\n" +
+            "\"onCellOrSoldier\": \"SOLDIER\",\n" +
+            "\"isActive\": false\n" +
+            "}\n" +
+            "],\n" +
+            "\"cells\": [],\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"siavash spell\",\n" +
+            "\"requiredManas\": 4,\n" +
+            "\"price\": 0\n" +
+            "},\n" +
+            "\"specialPowerActivationType\": \"ON_DEATH\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"siavash\",\n" +
+            "\"requiredManas\": 4,\n" +
+            "\"price\": 350\n" +
+            "}";
+    String giantKing = "{\n" +
+            "\"healthPoint\": 10,\n" +
+            "\"attackPoint\": 4,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"COMBO\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"giant king\",\n" +
+            "\"requiredManas\": 5,\n" +
+            "\"price\": 600\n" +
+            "}";
+    String arzhangDeeve = "{\n" +
+            "\"healthPoint\": 6,\n" +
+            "\"attackPoint\": 6,\n" +
+            "\"startRange\": 1,\n" +
+            "\"endRange\": 1,\n" +
+            "\"isAntiHolyBuff\": false,\n" +
+            "\"isAntiDisarm\": false,\n" +
+            "\"isAntiPoison\": false,\n" +
+            "\"isImmortal\": false,\n" +
+            "\"isApSuperior\": false,\n" +
+            "\"type\": \"MELEE\",\n" +
+            "\"hasAttackedThisTurn\": false,\n" +
+            "\"hasMovedThisTurn\": false,\n" +
+            "\"isDisarmed\": false,\n" +
+            "\"isStunned\": false,\n" +
+            "\"numberOfTurnsOfDisarm\": 0,\n" +
+            "\"numberOfTurnsOfStun\": 0,\n" +
+            "\"specialPowerActivationType\": \"COMBO\",\n" +
+            "\"positiveBuffs\": [],\n" +
+            "\"negativeBuffs\": [],\n" +
+            "\"hasFlag\": false,\n" +
+            "\"id\": \"\",\n" +
+            "\"name\": \"arzhang deeve\",\n" +
+            "\"requiredManas\": 3,\n" +
+            "\"price\": 600\n" +
+            "}";
 
 
 }
