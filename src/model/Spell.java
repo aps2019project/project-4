@@ -40,6 +40,30 @@ public class Spell extends Card {
         return buffs;
     }
 
+    public Enums.OnCellOrSoldier getCellOrSoldier() {
+        return cellOrSoldier;
+    }
+
+    public Enums.FriendOrEnemy getTarget() {
+        return target;
+    }
+
+    public Enums.WhichCellsType getCellsType() {
+        return cellsType;
+    }
+
+    public int getLengthOfSideOfSquare() {
+        return lengthOfSideOfSquare;
+    }
+
+    public Enums.BuffNutralizer getBuffNutralizer() {
+        return buffNutralizer;
+    }
+
+    public ArrayList<Cell> getCells() {
+        return cells;
+    }
+
     @Override
     public void insert(Cell cell){
         for (Buff buff : this.buffs)

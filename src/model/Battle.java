@@ -154,6 +154,18 @@ public class Battle {
         }
         return false;
     }
+    public void insert(String cardId, int x, int y){
+
+    }
+
+    public void insertSpell(Spell spell, int x, int y){
+        if (spell.getCellOrSoldier() == Enums.OnCellOrSoldier.CEll){
+//            if (spell.getCellsType() == )
+        }
+        else{
+
+        }
+    }
     public void moveTo(int x, int y){
         if (whoseTurn.getSelectedCard() instanceof Spell){
             View.showSpellsCanNotMoveMessage();
