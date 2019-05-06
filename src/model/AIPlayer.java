@@ -3,7 +3,7 @@ package model;
 public class AIPlayer extends Player {
 
     public AIPlayer(Deck deck) {
-        this.setMutableDeck(deck);
+        this.setDeck(deck);
     }
 
     public void handleTurn() {
