@@ -35,12 +35,6 @@ public class Exceptions {
         }
     }
 
-    public static class NumOfFlagsNotFoundException extends Exception {
-        public NumOfFlagsNotFoundException() {
-            super("Enter number of flags if you want to play in mode 3!");
-        }
-    }
-
     public static class CardAndItemNotAvailabilityException extends Exception {
         public CardAndItemNotAvailabilityException() {
             super("No Card or Item found!");

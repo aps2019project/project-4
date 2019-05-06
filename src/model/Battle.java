@@ -12,8 +12,8 @@ public class Battle {
     private GameBoard gameBoard;
     private Enums.GameMode gameMode;
     private Enums.SingleOrMulti opponent;
-    private int numOfFlags;
     private int numOfAllFlags;
+    private int reward;
 
     public Player getWhoseTurn() {
         return whoseTurn;
@@ -31,8 +31,32 @@ public class Battle {
         this.gameMode = gameMode;
     }
 
+    public void setNumOfAllFlags(int numOfAllFlags) {
+        this.numOfAllFlags = numOfAllFlags;
+    }
+
+    public void setReward(int reward) {
+        this.reward = reward;
+    }
+
     public void setOpponent(Enums.SingleOrMulti opponent) {
         this.opponent = opponent;
+    }
+
+    public Enums.GameMode getGameMode() {
+        return gameMode;
+    }
+
+    public Enums.SingleOrMulti getOpponent() {
+        return opponent;
+    }
+
+    public int getNumOfAllFlags() {
+        return numOfAllFlags;
+    }
+
+    public int getReward() {
+        return reward;
     }
 
     public StringBuilder gameInfo() {

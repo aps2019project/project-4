@@ -1,16 +1,16 @@
-package model;
+package resources;
 
-import resources.Resources;
+import model.Deck;
 
 import java.util.ArrayList;
 
-public class Stage {
-    public static ArrayList<Stage> stages = new ArrayList<>();
+public class StageResources {
+    public static ArrayList<StageResources> stageResources = new ArrayList<>();
     private int mode;
     private int gift;
     private Deck deck;
 
-    public Stage(int mode, int gift, Deck deck) {
+    public StageResources(int mode, int gift, Deck deck) {
         this.mode = mode;
         this.gift = gift;
         this.deck = deck;
@@ -36,8 +36,8 @@ public class Stage {
 
     }
 
-    public static Stage getStage(int number){
-        return stages.get(number);
+    public static StageResources getStage(int number){
+        return stageResources.get(number);
     }
 
     public static void setStageResource() {
@@ -63,7 +63,7 @@ public class Stage {
         deck1.addCardWithSetID(Resources.getSpeceficCard("11"), "stage1");
         deck1.addCardWithSetID(Resources.getSpeceficCard(""), "stage1");
         deck1.setItemWithID(Resources.getSpeceficItem(""), "stage1");
-        stages.add(new Stage(1, 500, deck1));
+        stageResources.add(new StageResources(1, 500, deck1));
         Deck deck2 = new Deck("2");
         deck2.addCardWithSetID(Resources.getSpeceficCard(""), "stage2");
         deck2.addCardWithSetID(Resources.getSpeceficCard(""), "stage2");
@@ -90,7 +90,7 @@ public class Stage {
         deck2.addCardWithSetID(Resources.getSpeceficCard(""), "stage2");
         deck2.addCardWithSetID(Resources.getSpeceficCard(""),"stage2" );
         deck2.setItemWithID(Resources.getSpeceficItem(""), "stage2");
-        stages.add(new Stage(2, 1000, deck1));
+        stageResources.add(new StageResources(2, 1000, deck1));
         Deck deck3 = new Deck("1");
         deck3.addCardWithSetID(Resources.getSpeceficCard(""), "stage3" );
         deck3.addCardWithSetID(Resources.getSpeceficCard(""), "stage3");
@@ -116,7 +116,7 @@ public class Stage {
         deck3.addCardWithSetID(Resources.getSpeceficCard(""), "stage3");
         deck3.addCardWithSetID(Resources.getSpeceficCard(""), "stage3");
         deck3.setItemWithID(Resources.getSpeceficItem(""),"stage3" );
-        stages.add(new Stage(3, 1500, deck1));
+        stageResources.add(new StageResources(3, 1500, deck1));
     }
 }
 
