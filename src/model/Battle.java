@@ -185,7 +185,12 @@ public class Battle {
     }
 
     public void insert(String cardId, int x, int y) {
-
+        Card card = whoseTurn.getDeck().getCards().get(cardId);
+        if (card instanceof Spell)
+            insertSpell((Spell) card, x, y);
+        if (card instanceof Minion){
+            //todo ya hosein
+        }
     }
 
     public void insertSpell(Spell spell, int x, int y) {
@@ -194,7 +199,7 @@ public class Battle {
             if (spell.getCellsType() == Enums.WhichCellsType.SQUARE) {
                 for (Buff buff : spell.getBuffs()) {
                     gameBoard.putBuffInSquare(buff, x, y, spell.getLengthOfSideOfSquare());
-                }
+                }//todo random
             }
         } else {
             ArrayList<Cell> targets = gameBoard.cellTargets(spell.getCellsType(), x, y, spell.getLengthOfSideOfSquare());
