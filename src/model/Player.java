@@ -4,7 +4,8 @@ import java.util.HashMap;
 
 public class Player {
     private String name;
-    private Deck deck;
+    private Deck mutableDeck;
+    private Deck dDeck;
     private HashMap<String, Card> hand;
     private int numOfFlags;
     private int numOfTurnsHeldFlag;
@@ -17,7 +18,7 @@ public class Player {
 
     public Player(String name, Deck mainDeck) {
         this.name = name;
-        this.deck = mainDeck;
+        this.mutableDeck = mainDeck;
     }
 
     public Player() { }
@@ -26,12 +27,12 @@ public class Player {
         this.name = name;
     }
 
-    public Deck getDeck() {
-        return this.deck;
+    public Deck getMutableDeck() {
+        return this.mutableDeck;
     }
 
-    public void setDeck(Deck deck) {
-        this.deck = deck;
+    public void setMutableDeck(Deck mutableDeck) {
+        this.mutableDeck = mutableDeck;
     }
 
     public void putCardInGraveYard(Card card) {
@@ -52,7 +53,7 @@ public class Player {
     }
 
     public Card selectCard(String id) {
-        return deck.getCards().get(id);
+        return mutableDeck.getCards().get(id);
     }
 
     public void moveSelectedCard(int x, int y) {
