@@ -227,6 +227,22 @@ public class Battle {
         return false;
     }
 
+    public void attack(String cardId, int x, int y){
+        Cell cell = gameBoard.getCell(x, y);
+        Card card = whoseTurn.getCardsInGameBoard().getCards().get(cardId);
+        if (card instanceof Minion){
+            Minion minion = (Minion) card;
+            minion.attack(cell.getMinion());
+            moveDeadsToGraveyard();
+            if (cell.getMinion().getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEFEND)
+                insertSpell(cell.getMinion().getSpecialPower(), minion.getCellPlace().getX(), minion.getCellPlace().getX());
+            moveDeadsToGraveyard();
+            if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN)
+                insertSpell(minion.getSpecialPower(), x, y);
+            moveDeadsToGraveyard();
+        }
+    }
+
     public void insert(String cardId, int x, int y) {
         Card card = whoseTurn.getHand().getCard(cardId);
         if (card == null) {
@@ -451,5 +467,25 @@ public class Battle {
             return true;
         }
         return false;
+    }
+    public void moveDeadsToGraveyard(){
+        for (int i = 0; i < 5; i++){
+            for (int j = 0; j < 9; j++){
+                Cell cell = gameBoard.getCell(i, j);
+                Minion minion = cell.getMinion();
+                if (minion.isDead()){
+                    if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEATH)
+                        insertSpell(minion.getSpecialPower(), cell.getX(), cell.getY());
+                    cell.setMinion(null);
+                    minion.setCellPlace(null);
+                    if (minion.isHasFlag())
+                        minion.dropFlag();
+                    if (player1.getDeck().getCards().values().contains(minion))
+                        player1.getGraveYard().put(minion.getId(), minion);
+                    if (player1.getDeck().getCards().values().contains(minion))
+                        player1.getGraveYard().put(minion.getId(), minion);
+                }
+            }
+        }
     }
 }
