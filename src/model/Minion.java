@@ -158,9 +158,6 @@ public class Minion extends Card {
             return;
         }
         this.hurtMinion(minion);
-        if (this.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_ATTACK) {
-            //todo attack special power
-        }
     }
 
     public void moveTo(Cell cell) {
@@ -387,6 +384,12 @@ public class Minion extends Card {
             this.removeAllPositiveBuffs();
         else
             this.removeAllNegativeBuffs();
+    }
+
+    public boolean isDead(){
+        if (this.getHealthPoint() <= 0)
+            return true;
+        return false;
     }
 }
 
