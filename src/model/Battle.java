@@ -190,13 +190,14 @@ public class Battle {
     }
 
     public void insert(String cardId, int x, int y) {
-        Card card = whoseTurn.getDeck().getCards().get(cardId);
+        Card card = whoseTurn.getHand().getCard(cardId);
+        if (card == null){
+            View.showCardNotInHandMessage();
+            return;
+        }
+
         if (card instanceof Spell) {
             insertSpell((Spell) card, x, y);
-            try{
-                whoseTurn.getMutableDeck().removeCard(cardId);
-            }
-            catch (Exception e){}
         }
         if (card instanceof Minion){
             Minion minion = (Minion) card;
@@ -206,7 +207,9 @@ public class Battle {
             if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN){
                 insertSpell(minion.getSpecialPower(), x, y);
             }
-            whoseTurn.getMutableDeck().removeCard(cardId);
+            whoseTurn.getHand().removeCard(card);
+            whoseTurn.getHand().moveNextCardToHand(whoseTurn.getMutableDeck());
+            whoseTurn.getHand().changeNextCard(whoseTurn.getMutableDeck());
         }
     }
 

@@ -255,13 +255,15 @@ public class View {
 
     public static void showCardInfo(String cardID) throws Exception {
         HashMap<String, Card> cards = new HashMap<>(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getMutableDeck().getCards());
-        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand());
+        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getCards());
         cards.putAll(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getCardsInGameBoard());
         if (cards.get(cardID) == null)
             throw new IDNotAvailableException(cardID);
         System.out.println(cards.get(cardID).info());
     }
-
+    public static void showCardNotInHandMessage(){
+        System.out.println("Choose a card from your hand");
+    }
     public static void showSelectCardMessage(String cardId) {
         System.out.println("The card with id " + cardId + " selected!");
     }
@@ -365,7 +367,6 @@ public class View {
         View.showCards(Account.getCurrentAccount().getCollection().searchCard(string));
         View.showItems(Account.getCurrentAccount().getCollection().searchItem(string));
     }
-
     public static void showSearchResultsInShop(String string) throws CardAndItemNotAvailabilityException {
         if (Shop.searchCard(string).size() == 0 &
                 Shop.searchItem(string).size() == 0) {

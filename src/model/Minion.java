@@ -158,7 +158,9 @@ public class Minion extends Card {
             return;
         }
         this.hurtMinion(minion);
-        //todo on attack special power
+        if (this.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_ATTACK){
+        //todo attack special power
+        }
     }
 
     public void moveTo(Cell cell) {
