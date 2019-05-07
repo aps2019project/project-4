@@ -261,6 +261,18 @@ public class View {
         System.out.println(cards.get(cardID).info());
     }
 
+    public static void showHand() {
+        System.out.println("Hand:");
+        ArrayList<Card> hand = new ArrayList<>(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getCards().values());
+        hand.forEach(card -> System.out.println(card.info()));
+        View.showNextCard();
+    }
+
+    public static void showNextCard(){
+        System.out.println("Next Card:");
+        System.out.println((Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getNextCard()));
+    }
+
     public static void showCardNotInHandMessage() {
         System.out.println("Choose a card from your hand");
     }

@@ -498,7 +498,7 @@ public class Controller {
                 //todo use special power
                 break;
             case 9:
-                //todo show hand
+                View.showHand();
                 break;
             case 10:
                 Account.getCurrentAccount().getCurrentBattle().insert(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)));
@@ -516,7 +516,7 @@ public class Controller {
                 //todo use from collectable item
                 break;
             case 16:
-                //todo show next card
+                View.showNextCard();
                 break;
             case 17:
                 Controller.setMenu(Enums.Menus.GRAVEYARD);
