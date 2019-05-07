@@ -80,12 +80,13 @@ public class Controller {
         patternsOfBattleMenu.add(Pattern.compile("Use location \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show next card", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Enter graveyard", Pattern.CASE_INSENSITIVE));
-        patternsOfBattleMenu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("show Help", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Help", Pattern.CASE_INSENSITIVE));
 
         patternsOfGraveyardMenu.add(Pattern.compile("Show info (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfGraveyardMenu.add(Pattern.compile("Show cards", Pattern.CASE_INSENSITIVE));
         patternsOfGraveyardMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
+        patternsOfGraveyardMenu.add(Pattern.compile("show Help", Pattern.CASE_INSENSITIVE));
 
     }
 
@@ -522,8 +523,10 @@ public class Controller {
                 Controller.setMenu(Enums.Menus.GRAVEYARD);
                 break;
             case 18:
-                //todo show help
+                View.showHelp();
                 break;
+            case 19:
+                //todo Help
         }
     }
 
@@ -541,6 +544,8 @@ public class Controller {
             case 2:
                 Controller.setMenu(Enums.Menus.BATTLE);
                 break;
+            case 3:
+                View.showHelp();
         }
     }
 
