@@ -68,16 +68,16 @@ public class Controller {
         patternsOfBattleMenu.add(Pattern.compile("Show card info (\\w+)", Pattern.CASE_INSENSITIVE));
         //use select for both cards and collectable items
         patternsOfBattleMenu.add(Pattern.compile("Select (\\w+)", Pattern.CASE_INSENSITIVE));
-        patternsOfBattleMenu.add(Pattern.compile("Move to \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Move to (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Attack (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Attack combo (\\w+) ([\\w\\s]+)", Pattern.CASE_INSENSITIVE));
-        patternsOfBattleMenu.add(Pattern.compile("Use special power \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Use special power (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show hand", Pattern.CASE_INSENSITIVE));
-        patternsOfBattleMenu.add(Pattern.compile("Insert (\\w+) in \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Insert (\\w+) in (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("End turn", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show collectables", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show info", Pattern.CASE_INSENSITIVE));
-        patternsOfBattleMenu.add(Pattern.compile("Use location \\((\\d+),\\s+(\\d+)\\)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Use location (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show next card", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Enter graveyard", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("show Help", Pattern.CASE_INSENSITIVE));

@@ -31,6 +31,7 @@ public class Hero extends Minion {
         StringBuilder result = new StringBuilder()
                 .append("Hero:\n")
                 .append("Name: ").append(name).append("\n")
+                .append(" - ID : ").append(this.getId())
                 .append("Cost: ").append(price).append("\n");
         if (!(this.getDescription() == null))
             result.append("Description: ").append(description).append("\n");
