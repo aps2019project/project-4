@@ -26,10 +26,13 @@ public class Battle {
 
     public Battle(Player player1) {
         this.player1 = player1;
+        this.whoseTurn = player1;
+        this.gameBoard = new GameBoard();
     }
 
     public void setPlayer2(Player player2) {
         this.player2 = player2;
+        this.whoseNext = player2;
     }
 
     public Player getPlayer1() {
@@ -125,11 +128,14 @@ public class Battle {
 
     public StringBuilder myMinionsInfo() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Card card : whoseTurn.getDeck().getCards().values()) {
+        for (Card card : whoseTurn.getCardsInGameBoard().values()) {
             if (!(card instanceof Spell)) {
                 Minion m = (Minion) card;
                 stringBuilder.append(card.getId() + ": ").append(card.getName() + ", health: ").append(m.getHealthPoint());
-                stringBuilder.append(", location: (").append(m.getCellPlace().getX()).append(", ").append(m.getCellPlace().getY()).append("), ");
+                stringBuilder.append(", location: (").
+                        append(m.getCellPlace().getX()).
+                        append(", ").
+                        append(m.getCellPlace().getY()).append("), ");
                 stringBuilder.append("power: ").append(m.getAttackPoint()).append("\n");
             }
         }

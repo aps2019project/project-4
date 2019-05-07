@@ -12,6 +12,11 @@ public class Cell {
     private Minion minion;
     private boolean isFlag;
 
+    public Cell(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
     public int getX() {
         return x;
     }
