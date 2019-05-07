@@ -79,6 +79,7 @@ public class Spell extends Card {
         StringBuilder result = new StringBuilder()
                 .append("Spell:\n")
                 .append("Name: ").append(name).append("\n")
+                .append(" - ID : ").append(this.getId())
                 .append("MP: ").append(requiredManas).append("\n")
                 .append("Cost: ").append(price).append("\n")
                 .append("Desc: ").append(description).append("\n");

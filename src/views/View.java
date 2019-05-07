@@ -84,16 +84,16 @@ public class View {
         System.out.println("Show opponent minions: Show opponent minions in gameboard info");
         System.out.println("Show card info [cardID] : show info of specific card");
         System.out.println("Select [cardId | collectable Item id] ; select a card or item.");
-        System.out.println("Move to ([x], [y]) : move a cell");
+        System.out.println("Move to x y : move a cell");
         System.out.println("Attack [opponent cardID] : attack to a card");
         System.out.println("Attack combo [opponent card id][my card id][my card id] ... : to combo attack ");
-        System.out.println("Use special power (x, y) : to use special power of select card.");
+        System.out.println("Use special power x y : to use special power of select card.");
         System.out.println("Show hand : to show hand and next card.");
-        System.out.println("Insert [card id] in (x, y) : to insert a card in Game board.");
+        System.out.println("Insert [card id] in x y : to insert a card in Game board.");
         System.out.println("End turn : to end turn!");
         System.out.println("Show collectables : show collectable items you collected.");
         System.out.println("Show info: show of selected item");
-        System.out.println("Use location (x, y) : Use selected item in a cell.");
+        System.out.println("Use location x y : Use selected item in a cell.");
         System.out.println("Show next card : show next card.");
         System.out.println("Enter graveyard : to enter graveyard");
         System.out.println("show Help : to show help");
@@ -298,7 +298,7 @@ public class View {
 
     public static void showNextCard() {
         System.out.println("Next Card:");
-        System.out.println((Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getNextCard()));
+        System.out.println((Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getNextCard().info()));
     }
 
     public static void showCardNotInHandMessage() {
