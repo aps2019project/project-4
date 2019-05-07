@@ -1,7 +1,6 @@
 package model;
 
 import model.buff.Buff;
-import model.buff.PoisonBuff;
 import resources.Resources;
 import views.View;
 
@@ -23,6 +22,7 @@ public class Minion extends Card {
     private boolean hasMovedThisTurn;
     private boolean isDisarmed;
     private boolean isStunned;
+    private boolean hasFlag;
     private int numberOfTurnsOfDisarm;
     private int numberOfTurnsOfStun;
     private Cell cellPlace;
@@ -42,8 +42,6 @@ public class Minion extends Card {
     public boolean isHasFlag() {
         return hasFlag;
     }
-
-    private boolean hasFlag;
 
     public Minion(String id, String name, int price, int mp, int hp, int ap,
                   int startRange, int endRange, boolean isAntiHolyBuff, boolean isAntiDisarm,

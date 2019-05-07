@@ -32,6 +32,7 @@ public class Battle {
         this.gameBoard = new GameBoard();
         Account.getCurrentAccount().setCurrentBattle(this);
         Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2, 0).setMinion(player1.getDeck().getHero());
+        Account.getCurrentAccount().getCurrentBattle().getPlayer1().getCardsInGameBoard().addCard(player1.getDeck().getHero());
         player1.getDeck().getHero().setCellPlace(Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2, 0));
     }
 
@@ -39,6 +40,7 @@ public class Battle {
         this.player2 = player2;
         this.whoseNext = player2;
         Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2, 8).setMinion(player2.getDeck().getHero());
+        Account.getCurrentAccount().getCurrentBattle().getPlayer2().getCardsInGameBoard().addCard(player2.getDeck().getHero());
         player2.getDeck().getHero().setCellPlace(Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2, 8));
     }
 
@@ -112,34 +114,34 @@ public class Battle {
             stringBuilder.append("player 2's hero health: ").append(player2.getDeck().getHero().getHealthPoint()).append("\n");
         }
         if (gameMode == Enums.GameMode.MONO_FLAG) {
-            Minion m1 = player1.getDeck().whoHasFlag();
+            Minion m1 = player1.getCardsInGameBoard().whoHasFlag();
             if (m1 != null)
-            stringBuilder.append("minion: ").append(m1.getName()).append(" of player1 in cell ").
-                    append(m1.getCellPlace().getX()).append(" and ").append(m1.getCellPlace().getY()).
-                    append("has flag\n");
+            stringBuilder.append("Minion ").append(m1.getId()).append(" of player1 in cell ").
+                    append(m1.getCellPlace().getX()).append(", ").append(m1.getCellPlace().getY()).
+                    append(" has flag\n");
 
-            Minion m2 = player2.getDeck().whoHasFlag();
+            Minion m2 = player2.getCardsInGameBoard().whoHasFlag();
             if (m2 != null)
-                stringBuilder.append("minion: ").append(m2.getName()).append(" of player2 in cell ").
-                        append(m2.getCellPlace().getX()).append(" and ").append(m2.getCellPlace().getY()).
-                        append("has flag\n");
+                stringBuilder.append("Minion ").append(m2.getId()).append(" of player2 in cell ").
+                        append(m2.getCellPlace().getX()).append(", ").append(m2.getCellPlace().getY()).
+                        append(" has flag\n");
             if (m1 == null && m2 == null) {
                 Cell cell = gameBoard.withFlagCell();
-                stringBuilder.append("cell with ").append(cell.getX()).append(" and ").
-                        append(cell.getY()).append(" has flag and no one has it\n");
+                stringBuilder.append("Cell with ").append(cell.getX()).append(" and ").
+                        append(cell.getY()).append(" has flag and no one get it!\n");
             }
         }
         if (gameMode == Enums.GameMode.MULTIPLE_FLAG) {
-            for (Card card : player1.getDeck().getCards().values()) {
+            for (Card card : player1.getCardsInGameBoard().getCards().values()) {
                 if (card instanceof Minion && ((Minion) card).isHasFlag()) {
-                    stringBuilder.append("card of player1 with name ").append(card.getName()).append(" in ")
+                    stringBuilder.append("Card of player1 with id ").append(card.getId()).append(" in ")
                             .append(((Minion) card).getCellPlace().getX()).append(" ")
                             .append(((Minion) card).getCellPlace().getY()).append("\n");
                 }
             }
-            for (Card card : player2.getDeck().getCards().values()) {
+            for (Card card : player2.getCardsInGameBoard().getCards().values()) {
                 if (card instanceof Minion && ((Minion) card).isHasFlag()) {
-                    stringBuilder.append("card of player2 with name ").append(card.getName()).append(" in ")
+                    stringBuilder.append("card of player2 with id ").append(card.getId()).append(" in ")
                             .append(((Minion) card).getCellPlace().getX()).append(" ")
                             .append(((Minion) card).getCellPlace().getY()).append("\n");
                 }
@@ -265,6 +267,10 @@ public class Battle {
             whoseTurn.getHand().moveNextCardToHand(whoseTurn.getMutableDeck());
             whoseTurn.getHand().changeNextCard(whoseTurn.getMutableDeck());
             whoseTurn.getCardsInGameBoard().addCard(card);
+            if (cell.getIsFlag()) {
+                cell.setFlag(false);
+                minion.catchFlag();
+            }
         }
         if (whoseTurn == player1)
             View.showGameBoardInfo(this.gameBoard, 1);

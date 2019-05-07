@@ -189,9 +189,23 @@ public class GameBoard {
     public void distributingFlags(int numOfFlags) {
         Random random = new Random();
         int n = numOfFlags;
+        boolean checked28 = false;
+        boolean checked20 = false;
         while (n > 0) {
             int x = random.nextInt(5);
             int y = random.nextInt(9);
+            if (x == 2 & y == 0 & !checked20) {
+                Account.getCurrentAccount().getCurrentBattle().getPlayer1().getCardsInGameBoard().getHero().catchFlag();
+                n--;
+                checked20 = true;
+                continue;
+            }
+            if (x == 2 & y == 8 & !checked28) {
+                Account.getCurrentAccount().getCurrentBattle().getPlayer1().getCardsInGameBoard().getHero().catchFlag();
+                n--;
+                checked28 = true;
+                continue;
+            }
             if (!this.getCell(x, y).getIsFlag()) {
                 this.getCell(x, y).setFlag(true);
                 n--;
