@@ -29,19 +29,29 @@ public class Battle {
         this.player1 = player1;
         this.whoseTurn = player1;
         this.gameBoard = new GameBoard();
+        insert(player1.getDeck().getHero().getId(), 2, 0);
     }
 
     public void setPlayer2(Player player2) {
         this.player2 = player2;
         this.whoseNext = player2;
+        insert(player2.getDeck().getHero().getId(), 2, 8);
     }
 
     public Player getPlayer1() {
         return player1;
     }
 
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
+
     public Player getPlayer2() {
         return player2;
+    }
+
+    public Player getWhoseNext() {
+        return whoseNext;
     }
 
     public Player getWinner() {
@@ -163,11 +173,13 @@ public class Battle {
 
     public StringBuilder opponentMinionsInfo() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Card card : whoseNext.getDeck().getCards().values()) {
+        for (Card card : whoseNext.getCardsInGameBoard().getCards().values()) {
             if (!(card instanceof Spell)) {
                 Minion m = (Minion) card;
                 stringBuilder.append(card.getId() + ": ").append(card.getName() + ", health: ").append(m.getHealthPoint());
-                stringBuilder.append(", location : (").append(m.getCellPlace().getX()).append(", ").append(m.getCellPlace().getY()).append("), ");
+                stringBuilder.append(", location : (").
+                        append(m.getCellPlace().getX()).append(", ").
+                        append(m.getCellPlace().getY()).append("), ");
                 stringBuilder.append("power: ").append(m.getAttackPoint()).append("\n");
             }
         }
@@ -223,10 +235,6 @@ public class Battle {
 
         if (card instanceof Spell) {
             insertSpell((Spell) card, x, y);
-            try {
-                whoseTurn.getMutableDeck().removeCard(cardId);
-            } catch (Exception e) {
-            }
         }
         if (card instanceof Minion) {
             Minion minion = (Minion) card;
@@ -239,7 +247,12 @@ public class Battle {
             whoseTurn.getHand().removeCard(card);
             whoseTurn.getHand().moveNextCardToHand(whoseTurn.getMutableDeck());
             whoseTurn.getHand().changeNextCard(whoseTurn.getMutableDeck());
+            whoseTurn.getCardsInGameBoard().addCard(card);
         }
+        if (whoseTurn == player1)
+            View.showGameBoardInfo(this.gameBoard, 1);
+        else
+            View.showGameBoardInfo(this.gameBoard, 2);
     }
 
     public void insertSpell(Spell spell, int x, int y) {
