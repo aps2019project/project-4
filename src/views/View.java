@@ -276,7 +276,7 @@ public class View {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().myMinionsInfo());
     }
     public static void showGameBoardInfo(GameBoard gameBoard, int a){
-        System.out.println(gameBoard.gameBoardInfo(a));
+        System.out.println(gameBoard.gameBoardInfo());
     }
     public static void showOpponentMinions() {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().opponentMinionsInfo());

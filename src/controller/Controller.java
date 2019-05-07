@@ -139,7 +139,6 @@ public class Controller {
             throw new SelectedDeckInvalidException();
         Player player1 = new Player(Account.getCurrentAccount().getName(), Account.getCurrentAccount().getSelectedDeck());
         Battle battle = new Battle(player1);
-        Account.getCurrentAccount().setCurrentBattle(battle);
         Account.getCurrentAccount().getCurrentBattle().setReward(1000);
         while (true) {
             View.showSingleOrMultiPlayerMenu();

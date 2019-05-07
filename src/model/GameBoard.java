@@ -51,23 +51,44 @@ public class GameBoard {
         return null;
     }
 
-    public StringBuilder gameBoardInfo(int a) {
+    public StringBuilder gameBoardInfo() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
                 if (cells[i][j].getMinion() == null && !cells[i][j].getIsFlag()) {
                     stringBuilder.append("__ ");
-                } else if (cells[i][j].getMinion() == null && cells[i][j].getIsFlag()) {
+                    continue;
+                }
+                if (cells[i][j].getMinion() == null && cells[i][j].getIsFlag()) {
                     stringBuilder.append("f_ ");
-                } else if (cells[i][j].getMinion() instanceof Hero) {
-                    stringBuilder.append("H").append(a);
+                    continue;
+                }
+                if (cells[i][j].getMinion() instanceof Hero
+                        && Account.getCurrentAccount().getCurrentBattle().getPlayer1().getDeck().getHero() == cells[i][j].getMinion()) {
+                    stringBuilder.append("H").append(1);
                     if (cells[i][j].getIsFlag()) {
                         stringBuilder.append("f");
                     } else {
                         stringBuilder.append(" ");
                     }
-                } else if (cells[i][j].getMinion() != null)
-                    stringBuilder.append("M").append(a);
+                    continue;
+                }
+                if (cells[i][j].getMinion() instanceof Hero
+                        && Account.getCurrentAccount().getCurrentBattle().getPlayer2().getDeck().getHero() == cells[i][j].getMinion()) {
+                    stringBuilder.append("H").append(2);
+                    if (cells[i][j].getIsFlag()) {
+                        stringBuilder.append("f");
+                    } else {
+                        stringBuilder.append(" ");
+                    }
+                    continue;
+                }
+                if (cells[i][j].getMinion() != null
+                        && Account.getCurrentAccount().getCurrentBattle().getPlayer1().getDeck().getCards().get(cells[i][j].getMinion().getId()) != null)
+                    stringBuilder.append("M").append(1);
+                if (cells[i][j].getMinion() != null
+                        && Account.getCurrentAccount().getCurrentBattle().getPlayer2().getDeck().getCards().get(cells[i][j].getMinion().getId()) != null)
+                    stringBuilder.append("M").append(2);
                 if (cells[i][j].getIsFlag()) {
                     stringBuilder.append("f");
                 } else {
