@@ -224,6 +224,7 @@ public class Controller {
                     player.setStage(2);
                     Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
+                    Account.getCurrentAccount().getCurrentBattle().getGameBoard().setOneFlag();
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 3")) {
@@ -272,6 +273,7 @@ public class Controller {
                             break;
                         case "2":
                             Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
+                            Account.getCurrentAccount().getCurrentBattle().getGameBoard().setOneFlag();
                             break;
                         case "3":
                             Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
@@ -291,17 +293,18 @@ public class Controller {
         Matcher matcher2;
         while (true) {
             View.showMultiPlayerSelectModeCommand();
-            String command = Controller.getNextLine();
+            String command = Controller.getNextLine().trim();
             matcher1 = pattern1.matcher(command);
             matcher2 = pattern2.matcher(command);
             try {
-                if (matcher1.matches()) {
-                    switch (matcher1.group(1)) {
+                if (matcher2.matches()) {
+                    switch (matcher2.group(1)) {
                         case "1":
                             Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
                             break;
                         case "2":
                             Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
+                            Account.getCurrentAccount().getCurrentBattle().getGameBoard().setOneFlag();
                             break;
                         case "3":
                             Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
@@ -310,13 +313,14 @@ public class Controller {
                     }
                     break;
                 }
-                if (matcher2.matches()) {
+                if (matcher1.matches()) {
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
-                    Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher2.group(1).trim()));
+                    Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher1.group(1).trim()));
                     break;
                 }
                 throw new InvalidCommandException();
             } catch (Exception e) {
+                e.printStackTrace();
                 System.err.println(e.getMessage());
             }
         }

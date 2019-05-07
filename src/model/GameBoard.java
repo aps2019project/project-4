@@ -55,13 +55,24 @@ public class GameBoard {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
-                if (cells[i][j].getMinion() == null){
+                if (cells[i][j].getMinion() == null && !cells[i][j].getIsFlag()) {
                     stringBuilder.append("__ ");
+                } else if (cells[i][j].getMinion() == null && cells[i][j].getIsFlag()) {
+                    stringBuilder.append("f_ ");
+                } else if (cells[i][j].getMinion() instanceof Hero) {
+                    stringBuilder.append("H").append(a);
+                    if (cells[i][j].getIsFlag()) {
+                        stringBuilder.append("f");
+                    } else {
+                        stringBuilder.append(" ");
+                    }
+                } else if (cells[i][j].getMinion() != null)
+                    stringBuilder.append("M").append(a);
+                if (cells[i][j].getIsFlag()) {
+                    stringBuilder.append("f");
+                } else {
+                    stringBuilder.append(" ");
                 }
-                else if (cells[i][j].getMinion() instanceof Hero)
-                    stringBuilder.append("H").append(a).append(" ");
-                else if (cells[i][j].getMinion() != null)
-                    stringBuilder.append("M ").append(a).append(" ");
             }
             stringBuilder.append("\n");
         }
@@ -151,6 +162,26 @@ public class GameBoard {
                 return targets;
         }
         return null;
+    }
+
+    public void distributingFlags(int numOfFlags) {
+        Random random = new Random();
+        int n = numOfFlags;
+        while (n > 0) {
+            int x = random.nextInt(5);
+            int y = random.nextInt(9);
+            if (!this.getCell(x, y).getIsFlag()) {
+                this.getCell(x, y).setFlag(true);
+                n--;
+            }
+        }
+    }
+
+    public void setOneFlag() {
+        Random random = new Random();
+        int y = 3 + random.nextInt(5);
+        int x = 2 + random.nextInt(2);
+        this.getCell(x, y).setFlag(true);
     }
 
 }

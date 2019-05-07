@@ -304,7 +304,7 @@ public class View {
     }
 
     public static void showCardNotInHandMessage() {
-        System.out.println("Choose a card from your hand");
+        System.err.println("Choose a card from your hand");
     }
 
     public static void showSelectCardMessage(String cardId) {

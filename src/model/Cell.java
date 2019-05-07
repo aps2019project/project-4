@@ -37,6 +37,10 @@ public class Cell {
         this.minion = minion;
     }
 
+    public void setFlag(boolean flag) {
+        isFlag = flag;
+    }
+
     public int getDistance(int x, int y) {
         return Math.abs(x - this.x) + Math.abs(y - this.y);
     }

@@ -74,6 +74,7 @@ public class Battle {
 
     public void setNumOfAllFlags(int numOfAllFlags) {
         this.numOfAllFlags = numOfAllFlags;
+        this.getGameBoard().distributingFlags(numOfAllFlags);
     }
 
     public void setReward(int reward) {
@@ -102,7 +103,7 @@ public class Battle {
 
     public StringBuilder gameInfo() {
         StringBuilder stringBuilder = new StringBuilder();
-        if (opponent == Enums.SingleOrMulti.MULTI_PLAYER) {
+        if (gameMode == Enums.GameMode.HERO_VS_HERO) {
             stringBuilder.append("player 1's hero health: ").append(player1.getDeck().getHero().getHealthPoint()).append("\n");
             stringBuilder.append("player 2's hero health: ").append(player2.getDeck().getHero().getHealthPoint()).append("\n");
         }
@@ -125,7 +126,7 @@ public class Battle {
                 Cell cell = gameBoard.withFlagCell();
                 try {
                     stringBuilder.append("cell with ").append(cell.getX()).append(" and ").
-                            append(cell.getY()).append(" has flag");
+                            append(cell.getY()).append(" has flag\n");
                 } catch (Exception e) {
                 }
             }
@@ -148,7 +149,7 @@ public class Battle {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
                     if (gameBoard.getCell(i, j).getIsFlag())
-                        stringBuilder.append("cell with coordinates ").append(i).append(" ").append(j).append(" has flag");
+                        stringBuilder.append("cell with coordinates ").append(i).append(" ").append(j).append(" has flag\n");
                 }
             }
         }
