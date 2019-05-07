@@ -27,6 +27,9 @@ public class View {
             case BATTLE:
                 showBattleMenuHelp();
                 break;
+            case GRAVEYARD:
+                showGraveYardMenuHelp();
+                break;
         }
     }
 
@@ -76,7 +79,32 @@ public class View {
     }
 
     private static void showBattleMenuHelp() {
+        System.out.println("Game info : show game info");
+        System.out.println("Show my minions: show your minions in gameboard info");
+        System.out.println("Show opponent minions: Show opponent minions in gameboard info");
+        System.out.println("Show card info [cardID] : show info of specific card");
+        System.out.println("Select [cardId | collectable Item id] ; select a card or item.");
+        System.out.println("Move to ([x], [y]) : move a cell");
+        System.out.println("Attack [opponent cardID] : attack to a card");
+        System.out.println("Attack combo [opponent card id][my card id][my card id] ... : to combo attack ");
+        System.out.println("Use special power (x, y) : to use special power of select card.");
+        System.out.println("Show hand : to show hand and next card.");
+        System.out.println("Insert [card id] in (x, y) : to insert a card in Game board.");
+        System.out.println("End turn : to end turn!");
+        System.out.println("Show collectables : show collectable items you collected.");
+        System.out.println("Show info: show of selected item");
+        System.out.println("Use location (x, y) : Use selected item in a cell.");
+        System.out.println("Show next card : show next card.");
+        System.out.println("Enter graveyard : to enter graveyard");
+        System.out.println("show Help : to show help");
+        System.out.println("Help: show Choices that you can do it.");
+    }
 
+    private static void showGraveYardMenuHelp(){
+        System.out.println("Show info [card id] : show info of a card in grave-yard");
+        System.out.println("Show cards : show all cards of grave-yard");
+        System.out.println("back : back to battle menu.");
+        System.out.println("show Help : show help.");
     }
 
     public static void showMenu() {
@@ -261,6 +289,18 @@ public class View {
         if (cards.get(cardID) == null)
             throw new IDNotAvailableException(cardID);
         System.out.println(cards.get(cardID).info());
+    }
+
+    public static void showHand() {
+        System.out.println("Hand:");
+        ArrayList<Card> hand = new ArrayList<>(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getCards().values());
+        hand.forEach(card -> System.out.println(card.info()));
+        View.showNextCard();
+    }
+
+    public static void showNextCard() {
+        System.out.println("Next Card:");
+        System.out.println((Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getNextCard()));
     }
 
     public static void showCardNotInHandMessage() {

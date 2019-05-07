@@ -19,6 +19,10 @@ public class Hand {
         }
     }
 
+    public Card getNextCard() {
+        return nextCard;
+    }
+
     public void addCard(Card card) {
         this.cards.put(card.getId(), card);
     }
