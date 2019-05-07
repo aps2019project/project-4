@@ -20,16 +20,16 @@ public class HeroResources {
         Gson gson = builder.create();
         if (getSpecificHeroGson(heroName) != null)
             return gson.fromJson(getHeroResource().get(heroName), Hero.class);
-        return  null;
+        return null;
     }
 
     private static String getSpecificHeroGson(String heroName) {
         return getHeroResource().get(heroName);
     }
 
-    public static ArrayList<Hero> getAllHeros(){
-        ArrayList <Hero> heroes = new ArrayList<>();
-        getHeroResource().forEach((name , gson) -> heroes.add(getSpecificHero(name)));
+    public static ArrayList<Hero> getAllHeros() {
+        ArrayList<Hero> heroes = new ArrayList<>();
+        getHeroResource().forEach((name, gson) -> heroes.add(getSpecificHero(name)));
         return heroes;
     }
 

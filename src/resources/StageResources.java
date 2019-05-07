@@ -34,7 +34,7 @@ public class StageResources {
         stageResources.get(2).showStage();
     }
 
-    public static StageResources getStage(int number){
+    public static StageResources getStage(int number) {
         return stageResources.get(number);
     }
 
@@ -82,13 +82,13 @@ public class StageResources {
         deck2.addCardWithSetID(Resources.getSpecificCard("panther"), "ai_panther_1");
         deck2.addCardWithSetID(Resources.getSpecificCard("genii"), "ai_genii_1");
         deck2.addCardWithSetID(Resources.getSpecificCard("geeve"), "ai_geeve_1");
-        deck2.addCardWithSetID(Resources.getSpecificCard("iraj"),"ai_iraj_1" );
-        deck2.addCardWithSetID(Resources.getSpecificCard("giant king"),"ai_giantking_1" );
+        deck2.addCardWithSetID(Resources.getSpecificCard("iraj"), "ai_iraj_1");
+        deck2.addCardWithSetID(Resources.getSpecificCard("giant king"), "ai_giantking_1");
         deck2.addCardWithSetID(Resources.getSpecificCard("zahhak"), "ai_zahhak_1");
 //        deck2.setItemWithID(Resources.getSpecificItem(""), "stage2");//todo add item 18
         stageResources.add(new StageResources(2, 1000, deck1));
         Deck deck3 = new Deck("stage3");
-        deck3.addCardWithSetID(Resources.getSpecificCard("arash"), "ai_arash_1" );
+        deck3.addCardWithSetID(Resources.getSpecificCard("arash"), "ai_arash_1");
         deck3.addCardWithSetID(Resources.getSpecificCard("persian commander"), "ai_persiancommander_1");
         deck3.addCardWithSetID(Resources.getSpecificCard("transoxanian archer"), "ai_transoxanianarcher_1");
         deck3.addCardWithSetID(Resources.getSpecificCard("transoxanian spy"), "ai_transoxanianspy_1");
@@ -109,7 +109,7 @@ public class StageResources {
         deck3.addCardWithSetID(Resources.getSpecificCard("All Power"), "ai_AllPower_1");
         deck3.addCardWithSetID(Resources.getSpecificCard("All Attack"), "ai_AllAttack_1");
         deck3.addCardWithSetID(Resources.getSpecificCard("Weakening"), "ai_Weakening_1");
-  //      deck3.setItemWithID(Resources.getSpecificItem(""),"stage3" );//todo add item 12
+        //      deck3.setItemWithID(Resources.getSpecificItem(""),"stage3" );//todo add item 12
         stageResources.add(new StageResources(3, 1500, deck1));
     }
 }

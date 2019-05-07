@@ -27,9 +27,9 @@ public class SpellResources {
         return getSpellResource().get(spellName);
     }
 
-    public static ArrayList<Spell> getAllSpells(){
-        ArrayList <Spell> spells = new ArrayList<>();
-        getSpellResource().forEach((name , gson) -> spells.add(getSpecificSpell(name)));
+    public static ArrayList<Spell> getAllSpells() {
+        ArrayList<Spell> spells = new ArrayList<>();
+        getSpellResource().forEach((name, gson) -> spells.add(getSpecificSpell(name)));
         return spells;
     }
 

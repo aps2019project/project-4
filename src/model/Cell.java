@@ -12,7 +12,7 @@ public class Cell {
     private Minion minion;
     private boolean isFlag;
 
-    public Cell(int x, int y){
+    public Cell(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -37,10 +37,11 @@ public class Cell {
         this.minion = minion;
     }
 
-    public int getDistance(int x, int y){
+    public int getDistance(int x, int y) {
         return Math.abs(x - this.x) + Math.abs(y - this.y);
     }
-    public void addBuff(Buff buff){
+
+    public void addBuff(Buff buff) {
         buffs.add(buff);
     }
 
@@ -48,7 +49,7 @@ public class Cell {
         return buffs;
     }
 
-    public void applyBuff(Buff buff){
+    public void applyBuff(Buff buff) {
 
     }
 

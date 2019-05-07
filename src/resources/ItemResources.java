@@ -20,16 +20,16 @@ public class ItemResources {
         Gson gson = builder.create();
         if (getSpecificItemGson(itemName) != null)
             return gson.fromJson(getItemResource().get(itemName), UsableItem.class);
-        return  null;
+        return null;
     }
 
     private static String getSpecificItemGson(String itemName) {
         return getItemResource().get(itemName);
     }
 
-    public static ArrayList<UsableItem> getAllItems(){
-        ArrayList <UsableItem> minions = new ArrayList<>();
-        getItemResource().forEach((name , gson) -> minions.add(getSpecificItem(name)));
+    public static ArrayList<UsableItem> getAllItems() {
+        ArrayList<UsableItem> minions = new ArrayList<>();
+        getItemResource().forEach((name, gson) -> minions.add(getSpecificItem(name)));
         return minions;
     }
 

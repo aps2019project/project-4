@@ -43,8 +43,7 @@ public class Hand {
             int randomIndex = random.nextInt(mutableDeck.getCards().size());
             nextCard = new ArrayList<Card>(mutableDeck.getCards().values()).get(randomIndex);
             mutableDeck.getCards().remove(nextCard.getId());
-        }
-        else
+        } else
             nextCard = null;
     }
 

@@ -158,8 +158,8 @@ public class Minion extends Card {
             return;
         }
         this.hurtMinion(minion);
-        if (this.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_ATTACK){
-        //todo attack special power
+        if (this.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_ATTACK) {
+            //todo attack special power
         }
     }
 
@@ -318,28 +318,31 @@ public class Minion extends Card {
             minion.changeHp(-finalAttackPoints);
             return;
         }
-        if (minion.isAntiPoison){
+        if (minion.isAntiPoison) {
             minion.changeHp((-finalAttackPoints - poisonHurts()));
             return;
         }
         minion.changeHp(-finalAttackPoints + minion.holyApShields());
     }
-    public int poisonHurts(){
+
+    public int poisonHurts() {
         int result = 0;
-        for (Buff buff : negativeBuffs){
-            if (buff.isPoison()){
+        for (Buff buff : negativeBuffs) {
+            if (buff.isPoison()) {
                 result += buff.getChangeAp();
             }
         }
         return result;
     }
-    public int holyApShields(){
+
+    public int holyApShields() {
         int result = 0;
-        for (Buff buff : positiveBuffs){
+        for (Buff buff : positiveBuffs) {
             result += buff.getApShield();
         }
         return result;
     }
+
     public int moreAttackPoints() {
         int result = 0;
         for (Buff buff : positiveBuffs)
@@ -362,22 +365,24 @@ public class Minion extends Card {
             result += buff.getApShield();
         return result;
     }
-    public void removeAllPositiveBuffs(){
+
+    public void removeAllPositiveBuffs() {
         Iterator<Buff> iterator = positiveBuffs.iterator();
-        while (iterator.hasNext()){
-            iterator.next();
-            iterator.remove();
-        }
-    }
-    public void removeAllNegativeBuffs(){
-        Iterator<Buff> iterator = negativeBuffs.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             iterator.next();
             iterator.remove();
         }
     }
 
-    public void nutralizeBuff(boolean isOnEnemy){
+    public void removeAllNegativeBuffs() {
+        Iterator<Buff> iterator = negativeBuffs.iterator();
+        while (iterator.hasNext()) {
+            iterator.next();
+            iterator.remove();
+        }
+    }
+
+    public void nutralizeBuff(boolean isOnEnemy) {
         if (isOnEnemy)
             this.removeAllPositiveBuffs();
         else

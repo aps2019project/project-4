@@ -8,7 +8,7 @@ public class AIPlayer extends Player {
         this.stage = -1;
     }
 
-    public void setStage(int stage){
+    public void setStage(int stage) {
         this.stage = stage;
     }
 

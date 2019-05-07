@@ -62,7 +62,7 @@ public class Shop {
         View.showBuyThingMessage(card);
     }
 
-    public static void sellThing(String thingID) throws Exception{
+    public static void sellThing(String thingID) throws Exception {
         if (Account.getCurrentAccount().getCollection().getAllCards().get(thingID) != null) {
             int money = Account.getCurrentAccount().getCollection().getAllCards().get(thingID).getPrice();
             Account.getCurrentAccount().changeMoney(money);
@@ -71,7 +71,7 @@ public class Shop {
             View.showSellThingMessage(thingID);
             return;
         }
-        if (Account.getCurrentAccount().getCollection().getUsableItems().get(thingID) != null){
+        if (Account.getCurrentAccount().getCollection().getUsableItems().get(thingID) != null) {
             int money = Account.getCurrentAccount().getCollection().getUsableItems().get(thingID).getPrice();
             Account.getCurrentAccount().changeMoney(money);
             Account.getCurrentAccount().getCollection().getUsableItems().remove(thingID);

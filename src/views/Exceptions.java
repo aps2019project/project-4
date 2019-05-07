@@ -76,7 +76,7 @@ public class Exceptions {
     }
 
     public static class SpellsCanNotMoveException extends Exception {
-        public SpellsCanNotMoveException(){
+        public SpellsCanNotMoveException() {
             super("Spells can not move, select a minion");
         }
     }

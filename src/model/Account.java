@@ -49,7 +49,9 @@ public class Account {
         this.currentBattle = currentBattle;
     }
 
-    public void changeDrack(int change){this.drack += change;}
+    public void changeDrack(int change) {
+        this.drack += change;
+    }
 
     public ArrayList<Match> getMatchHistory() {
         return matchHistory;

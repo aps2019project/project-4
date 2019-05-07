@@ -14,7 +14,7 @@ public class Hero extends Minion {
         this.coolDown = coolDown;
     }
 
-    public Hero clone(){
+    public Hero clone() {
         Hero hero = (Hero) Resources.getSpecificCard(this.getName());
         if (hero == null)
             return null;
@@ -33,7 +33,7 @@ public class Hero extends Minion {
                 .append("Name: ").append(name).append("\n")
                 .append("Cost: ").append(price).append("\n");
         if (!(this.getDescription() == null))
-                result.append("Description: ").append(description).append("\n");
+            result.append("Description: ").append(description).append("\n");
         return result;
     }
 
@@ -46,7 +46,7 @@ public class Hero extends Minion {
                 .append(" - HP : ").append(this.getHealthPoint())
                 .append(" - Class : ").append(this.getType());
         if (!(this.getDescription() == null))
-                result.append(" - Special power: ").append(this.getSpecialPower().getDescription());
+            result.append(" - Special power: ").append(this.getSpecialPower().getDescription());
         return result;
     }
 

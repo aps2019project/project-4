@@ -28,23 +28,23 @@ public class Resources {
         return ItemResources.getSpecificItem(itemName);
     }
 
-    public static ArrayList<UsableItem> getAllItems(){
+    public static ArrayList<UsableItem> getAllItems() {
         return ItemResources.getAllItems();
     }
 
-    public static ArrayList<Hero> getAllHero(){
+    public static ArrayList<Hero> getAllHero() {
         return HeroResources.getAllHeros();
     }
 
-    public static ArrayList<Minion> getAllMinions(){
+    public static ArrayList<Minion> getAllMinions() {
         return MinionResources.getAllMinions();
     }
 
-    public static ArrayList<Spell> getAllSpells(){
+    public static ArrayList<Spell> getAllSpells() {
         return SpellResources.getAllSpells();
     }
 
-    public static ArrayList<Card> getAllCards(){
+    public static ArrayList<Card> getAllCards() {
         ArrayList<Card> cards = new ArrayList<>(getAllSpells());
         cards.addAll(getAllHero());
         cards.addAll(getAllMinions());

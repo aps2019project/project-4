@@ -9,10 +9,11 @@ public class GameBoard {
     private Cell[][] cells;
 
 
-    public GameBoard(){
+    public GameBoard() {
         cells = new Cell[5][9];
         initializeGameBoard();
     }
+
     public Cell getCell(int x, int y) {
         if (x < 5 && y < 9 && x > 0 && y > 0)
             return cells[x][y];

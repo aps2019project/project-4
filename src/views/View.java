@@ -260,9 +260,11 @@ public class View {
             throw new IDNotAvailableException(cardID);
         System.out.println(cards.get(cardID).info());
     }
-    public static void showCardNotInHandMessage(){
+
+    public static void showCardNotInHandMessage() {
         System.out.println("Choose a card from your hand");
     }
+
     public static void showSelectCardMessage(String cardId) {
         System.out.println("The card with id " + cardId + " selected!");
     }
@@ -366,6 +368,7 @@ public class View {
         View.showCards(Account.getCurrentAccount().getCollection().searchCard(string));
         View.showItems(Account.getCurrentAccount().getCollection().searchItem(string));
     }
+
     public static void showSearchResultsInShop(String string) throws CardAndItemNotAvailabilityException {
         if (Shop.searchCard(string).size() == 0 &
                 Shop.searchItem(string).size() == 0) {
@@ -446,7 +449,7 @@ public class View {
                 }
             }
         }
-        if (battle.getOpponent() == Enums.SingleOrMulti.MULTI_PLAYER){
+        if (battle.getOpponent() == Enums.SingleOrMulti.MULTI_PLAYER) {
             System.out.println("Player " + battle.getWinner().getName() + " wons!");
             System.out.println("Player " + battle.getLoser().getName() + " losses!");
         }
