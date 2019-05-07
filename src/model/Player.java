@@ -17,7 +17,7 @@ public class Player {
     private HashMap<String, Item> collectableItems;
     private HashMap<String, Card> graveYard;
     private Deck cardsInGameBoard;
-    private int mana;
+    private int mana = 0;
 
     public Player(String name, Deck mainDeck) {
         this.name = name;

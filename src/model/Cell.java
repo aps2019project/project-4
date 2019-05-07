@@ -3,6 +3,7 @@ package model;
 import model.buff.Buff;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Cell {
@@ -67,5 +68,14 @@ public class Cell {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public void removeExpiredBuffs(){
+        Iterator<Buff> iterator = buffs.iterator();
+        while (iterator.hasNext()){
+            Buff buff = iterator.next();
+            if (buff.getNumberOfTurns() <= 0)
+                iterator.remove();
+        }
     }
 }

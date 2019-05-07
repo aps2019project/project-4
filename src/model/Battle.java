@@ -20,6 +20,7 @@ public class Battle {
     private Enums.SingleOrMulti opponent;
     private int numOfAllFlags;
     private int reward;
+    private int numberOfTurns = 0;
 
     public Player getWhoseTurn() {
         return whoseTurn;
@@ -244,7 +245,7 @@ public class Battle {
         if (!((x < 5 && y < 9 && x >= 0 && y >= 0)))
             throw new InvalidCellException();
         Card card = whoseTurn.getHand().getCard(cardId);
-        if (card == null) {
+        if (card == null && whoseTurn.getDeck().getHero().getId() != cardId && whoseNext.getDeck().getHero().getId() != cardId) {
             View.showCardNotInHandMessage();
             return;
         }
@@ -445,11 +446,11 @@ public class Battle {
     }
 
     public boolean isEndedMonoFlagGame() {
-        if (this.getPlayer1().getNumOfTurnsHeldFlag() == 6){
+        if (this.getPlayer1().getNumOfTurnsHeldFlag() == 6) {
             this.setWinner(player1);
             return true;
         }
-        if (this.getPlayer2().getNumOfTurnsHeldFlag() == 6){
+        if (this.getPlayer2().getNumOfTurnsHeldFlag() == 6) {
             this.setWinner(player2);
             return true;
         }
@@ -488,4 +489,15 @@ public class Battle {
             }
         }
     }
+
+    public void nextTurn() {
+        for (int i = 0; i < 5; i++){
+            for (int j = 0; j < 9 ; j++){
+                for (Buff buff : gameBoard.getCell(i, j).getBuffs()){
+
+                }
+            }
+        }
+    }
+
 }
