@@ -404,12 +404,26 @@ public class Battle {
     }
 
     public boolean isEndedMultipleFlagGame() {
-
+        if (this.getPlayer1().getNumOfFlags() >= (this.getNumOfAllFlags()/2)){
+            this.setWinner(player1);
+            return true;
+        }
+        if (this.getPlayer2().getNumOfFlags() >= (this.getNumOfAllFlags()/2)){
+            this.setWinner(player2);
+            return true;
+        }
         return false;
     }
 
     public boolean isEndedMonoFlagGame() {
-        //todo
+        if (this.getPlayer1().getNumOfTurnsHeldFlag() == 6){
+            this.setWinner(player1);
+            return true;
+        }
+        if (this.getPlayer2().getNumOfTurnsHeldFlag() == 6){
+            this.setWinner(player2);
+            return true;
+        }
         return false;
     }
 
