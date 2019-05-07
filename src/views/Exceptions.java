@@ -81,6 +81,12 @@ public class Exceptions {
         }
     }
 
+    public static class InvalidCellException extends Exception {
+        public InvalidCellException(){
+            super("The coordinates of cell is invalid!");
+        }
+    }
+
     public static class NoDeckSelectedException extends Exception {
         public NoDeckSelectedException() {
             super("Please Select a deck!");
