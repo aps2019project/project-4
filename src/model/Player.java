@@ -9,10 +9,9 @@ public class Player {
     private String name;
     private Deck deck;//first deck
     private Deck mutableDeck;//mutable deck
-    private HashMap<String, Card> hand;
+    private Hand hand;
     private int numOfFlags;
     private int numOfTurnsHeldFlag;
-    private Card nextCard;
     private Card selectedCard;
     private Item selectedItem;
     private HashMap<String, Item> collectableItems;
@@ -27,6 +26,8 @@ public class Player {
         this.collectableItems = new HashMap<>();
         this.graveYard = new HashMap<>();
         this.cardsInGameBoard = new HashMap<>();
+        Deck mutableDeck = mainDeck.clone();
+        hand = new Hand(mutableDeck);
     }
 
     public Player() { }
@@ -43,7 +44,7 @@ public class Player {
         this.deck = deck;
     }
 
-    public HashMap<String, Card> getHand() {
+    public Hand getHand() {
         return hand;
     }
 

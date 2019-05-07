@@ -7,7 +7,6 @@ import views.View;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.regex.Pattern;
 
 public class Battle {
     private Player player1;
@@ -46,7 +45,7 @@ public class Battle {
         return winner;
     }
 
-    public Player getLosser(){
+    public Player getLosser() {
         if (this.getWinner() == this.getPlayer1())
             return this.getPlayer2();
         return this.getPlayer1();
@@ -210,7 +209,12 @@ public class Battle {
     }
 
     public void insert(String cardId, int x, int y) {
-        Card card = whoseTurn.getDeck().getCards().get(cardId);
+        Card card = whoseTurn.getHand().getCard(cardId);
+        if (card == null) {
+            View.showCardNotInHandMessage();
+            return;
+        }
+
         if (card instanceof Spell) {
             insertSpell((Spell) card, x, y);
             try {
@@ -226,7 +230,9 @@ public class Battle {
             if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN) {
                 insertSpell(minion.getSpecialPower(), x, y);
             }
-            whoseTurn.getMutableDeck().removeCard(cardId);
+            whoseTurn.getHand().removeCard(card);
+            whoseTurn.getHand().moveNextCardToHand(whoseTurn.getMutableDeck());
+            whoseTurn.getHand().changeNextCard(whoseTurn.getMutableDeck());
         }
     }
 
