@@ -172,9 +172,9 @@ public class View {
                 System.out.println(card.info()));
     }
 
-    public static void searchInGraveyard(String id) throws Exception{
-         if(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getGraveYard().get(id) == null)
-             throw new InvalidCardIdException(id);
+    public static void searchInGraveyard(String id) throws Exception {
+        if (Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getGraveYard().get(id) == null)
+            throw new InvalidCardIdException(id);
         System.out.println(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getGraveYard().get(id).info());
     }
 
@@ -396,6 +396,59 @@ public class View {
         for (Card card : cards) {
             i++;
             System.out.println(i + ": " + card.infoForShop());
+        }
+    }
+
+    public static void showDrawBattleMenu(Battle battle) {
+        if (battle.getOpponent() == Enums.SingleOrMulti.MULTI_PLAYER) {
+            StringBuilder stringBuilder = new StringBuilder("The game between player ");
+            stringBuilder.append(battle.getPlayer1().getName())
+                    .append(" and ")
+                    .append(battle.getPlayer2().getName())
+                    .append(" in  mode ")
+                    .append(battle.getGameMode().toString().toLowerCase())
+                    .append(" ended with draw result!");
+            System.out.println(stringBuilder);
+            System.out.println("Enter End Game Command to back to main menu!");
+        }
+        if (battle.getOpponent() == Enums.SingleOrMulti.SINGLE_PLAYER) {
+            if (((AIPlayer) battle.getPlayer2()).getStage() != -1) {
+                System.out.println("Stage " + ((AIPlayer) battle.getPlayer2()).getStage() + " ended with draw result!");
+            } else {
+                System.out.println("Custom game ended with draw result!");
+            }
+        }
+    }
+
+    public static void showEndBattleMenu(Battle battle) {
+        if (battle.getOpponent() == Enums.SingleOrMulti.SINGLE_PLAYER) {
+            if (((AIPlayer) battle.getPlayer2()).getStage() != -1) {
+                if (battle.getWinner() == battle.getPlayer1()) {
+                    System.out.println("You win a custom game and get 1000 dracks!");
+                } else {
+                    System.out.println("You loss a custome game!");
+                }
+            } else {
+                if (battle.getWinner() == battle.getPlayer1()) {
+                    switch (((AIPlayer) battle.getPlayer2()).getStage()) {
+                        case 1:
+                            System.out.println("You win stage 1 and get 500 dracks!");
+                            break;
+                        case 2:
+                            System.out.println("You win stage 2 and get 1000 dracks!");
+                            break;
+                        case 3:
+                            System.out.println("You win stage 3 and get 1500 dracks!");
+                            break;
+                    }
+                } else {
+                    System.out.println("You loss stage " + (((AIPlayer) battle.getPlayer2()).getStage()) + " !");
+                }
+            }
+        }
+        if (battle.getOpponent() == Enums.SingleOrMulti.MULTI_PLAYER){
+            System.out.println("Player " + battle.getWinner().getName() + " wons!");
+            System.out.println("Player " + battle.getLosser().getName() + " losses!");
         }
     }
 

@@ -1,6 +1,7 @@
 package resources;
 
 import model.Deck;
+import views.View;
 
 import java.util.ArrayList;
 
@@ -16,24 +17,21 @@ public class StageResources {
         this.deck = deck;
     }
 
-    public int getMode() {
-        return mode;
-    }
-
     public Deck getDeck() {
         return deck;
     }
 
-    public int getGift() {
-        return gift;
-    }
-
     public void showStage() {
-
+        View.showDeck(this.getDeck());
     }
 
     public static void showStages() {
-
+        System.out.println("Stage 1:");
+        stageResources.get(0).showStage();
+        System.out.println("Stage 2:");
+        stageResources.get(1).showStage();
+        System.out.println("Stage 3:");
+        stageResources.get(2).showStage();
     }
 
     public static StageResources getStage(int number){

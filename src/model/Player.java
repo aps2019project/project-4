@@ -47,6 +47,10 @@ public class Player {
         return hand;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Deck getMutableDeck() {
         return mutableDeck;
     }

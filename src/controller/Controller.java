@@ -211,18 +211,24 @@ public class Controller {
             String stage = Controller.getNextLine();
             try {
                 if (stage.toLowerCase().equals("stage 1")) {
-                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(StageResources.getStage(0).getDeck().clone()));
+                    AIPlayer player = new AIPlayer(StageResources.getStage(0).getDeck().clone());
+                    player.setStage(1);
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
                     Account.getCurrentAccount().getCurrentBattle().setReward(500);
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 2")) {
-                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(StageResources.getStage(1).getDeck().clone()));
+                    AIPlayer player = new AIPlayer(StageResources.getStage(1).getDeck().clone());
+                    player.setStage(2);
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 3")) {
-                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(StageResources.getStage(2).getDeck().clone()));
+                    AIPlayer player = new AIPlayer(StageResources.getStage(2).getDeck().clone());
+                    player.setStage(3);
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
                     Account.getCurrentAccount().getCurrentBattle().setReward(1500);
                     return;
@@ -436,6 +442,27 @@ public class Controller {
         }
     }
 
+    public static void enterEndBattleMenu(Battle battle) {
+        if (battle.getWinner() == null)
+            View.showDrawBattleMenu(battle);
+        else
+            View.showEndBattleMenu(battle);
+        while (true) {
+            System.out.println("Enter end game to back to main menu:");
+            try {
+                String command = Controller.getNextLine();
+                if (command.toLowerCase().equals("end game")) {
+                    Controller.setMenu(Enums.Menus.MAIN);
+                    break;
+                } else {
+                    throw new InvalidCommandException();
+                }
+            } catch (InvalidCommandException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
     public static void doBattleMenuCommand(int index) throws Exception {
         Pattern pattern = getPatterns().get(index);
         Matcher matcher = pattern.matcher(getCommand().trim());
@@ -451,10 +478,10 @@ public class Controller {
                 View.showOpponentMinions();
                 break;
             case 3:
-                View.showCardInfo(matcher.group(1));//todo right
+                View.showCardInfo(matcher.group(1));
                 break;
             case 4:
-                Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().selectCard(matcher.group(1));
+                Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().selectCard(matcher.group(1));//TODO  add select Item
                 break;
             case 5:
                 Account.getCurrentAccount().getCurrentBattle().moveTo(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
@@ -472,16 +499,13 @@ public class Controller {
                 //todo show hand
                 break;
             case 10:
-                //todo insert card in x ,y
+                Account.getCurrentAccount().getCurrentBattle().insert(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)));
                 break;
             case 11:
                 //todo end turn
                 break;
             case 12:
                 //todo show collectable items
-                break;
-            case 13:
-                //todo select collectable item
                 break;
             case 14:
                 //todo show info of item
