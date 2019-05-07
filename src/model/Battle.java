@@ -20,6 +20,7 @@ public class Battle {
     private Enums.SingleOrMulti opponent;
     private int numOfAllFlags;
     private int reward;
+    private int numberOfTurns = 0;
 
     public Player getWhoseTurn() {
         return whoseTurn;
@@ -227,10 +228,10 @@ public class Battle {
         return false;
     }
 
-    public void attack(String cardId, int x, int y){
+    public void attack(String cardId, int x, int y) {
         Cell cell = gameBoard.getCell(x, y);
         Card card = whoseTurn.getCardsInGameBoard().getCards().get(cardId);
-        if (card instanceof Minion){
+        if (card instanceof Minion) {
             Minion minion = (Minion) card;
             minion.attack(cell.getMinion());
             moveDeadsToGraveyard();
@@ -245,7 +246,7 @@ public class Battle {
 
     public void insert(String cardId, int x, int y) {
         Card card = whoseTurn.getHand().getCard(cardId);
-        if (card == null) {
+        if (card == null && whoseTurn.getDeck().getHero().getId() != cardId && whoseNext.getDeck().getHero().getId() != cardId) {
             View.showCardNotInHandMessage();
             return;
         }
@@ -434,11 +435,11 @@ public class Battle {
     }
 
     public boolean isEndedMultipleFlagGame() {
-        if (this.getPlayer1().getNumOfFlags() >= (this.getNumOfAllFlags()/2)){
+        if (this.getPlayer1().getNumOfFlags() >= (this.getNumOfAllFlags() / 2)) {
             this.setWinner(player1);
             return true;
         }
-        if (this.getPlayer2().getNumOfFlags() >= (this.getNumOfAllFlags()/2)){
+        if (this.getPlayer2().getNumOfFlags() >= (this.getNumOfAllFlags() / 2)) {
             this.setWinner(player2);
             return true;
         }
@@ -446,11 +447,11 @@ public class Battle {
     }
 
     public boolean isEndedMonoFlagGame() {
-        if (this.getPlayer1().getNumOfTurnsHeldFlag() == 6){
+        if (this.getPlayer1().getNumOfTurnsHeldFlag() == 6) {
             this.setWinner(player1);
             return true;
         }
-        if (this.getPlayer2().getNumOfTurnsHeldFlag() == 6){
+        if (this.getPlayer2().getNumOfTurnsHeldFlag() == 6) {
             this.setWinner(player2);
             return true;
         }
@@ -468,12 +469,13 @@ public class Battle {
         }
         return false;
     }
-    public void moveDeadsToGraveyard(){
-        for (int i = 0; i < 5; i++){
-            for (int j = 0; j < 9; j++){
+
+    public void moveDeadsToGraveyard() {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
                 Cell cell = gameBoard.getCell(i, j);
                 Minion minion = cell.getMinion();
-                if (minion.isDead()){
+                if (minion.isDead()) {
                     if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEATH)
                         insertSpell(minion.getSpecialPower(), cell.getX(), cell.getY());
                     cell.setMinion(null);
@@ -488,4 +490,15 @@ public class Battle {
             }
         }
     }
+
+    public void nextTurn() {
+        for (int i = 0; i < 5; i++){
+            for (int j = 0; j < 9 ; j++){
+                for (Buff buff : gameBoard.getCell(i, j).getBuffs()){
+
+                }
+            }
+        }
+    }
+
 }

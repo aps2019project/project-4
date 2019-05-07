@@ -53,6 +53,7 @@ public class GameBoard {
 
     public StringBuilder gameBoardInfo(int a) {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n");
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
                 if (cells[i][j].getMinion() == null && !cells[i][j].getIsFlag()) {
@@ -64,7 +65,7 @@ public class GameBoard {
                     if (cells[i][j].getIsFlag()) {
                         stringBuilder.append("f");
                     } else {
-                        stringBuilder.append(" ");
+                        stringBuilder.append("_");
                     }
                 } else if (cells[i][j].getMinion() != null)
                     stringBuilder.append("M").append(a);

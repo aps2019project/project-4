@@ -174,6 +174,13 @@ public class Minion extends Card {
             View.showInvalidTargetMessage();
             return;
         }
+        this.getCellPlace().setMinion(null);
+        this.setCellPlace(cell);
+        cell.setMinion(this);
+        if (cell.getIsFlag()){
+            cell.setFlag(false);
+            this.catchFlag();
+        }
     }
 
 
@@ -391,6 +398,23 @@ public class Minion extends Card {
         if (this.getHealthPoint() <= 0)
             return true;
         return false;
+    }
+
+    public void removeExpiredBuffs(){
+        Iterator<Buff> iterator = negativeBuffs.iterator();
+        while (iterator.hasNext()){
+            Buff buff = iterator.next();
+            if (buff.getNumberOfTurns() == 0){
+                iterator.remove();
+            }
+        }
+        iterator = positiveBuffs.iterator();
+        while (iterator.hasNext()){
+            Buff buff = iterator.next();
+            if (buff.getNumberOfTurns() == 0){
+                iterator.remove();
+            }
+        }
     }
 }
 
