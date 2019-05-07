@@ -30,13 +30,16 @@ public class Battle {
         this.player1 = player1;
         this.whoseTurn = player1;
         this.gameBoard = new GameBoard();
-        insert(player1.getDeck().getHero().getId(), 2, 0);
+        Account.getCurrentAccount().setCurrentBattle(this);
+        Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2 , 0).setMinion(player1.getDeck().getHero());
+        player1.getDeck().getHero().setCellPlace(Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2 , 0));
     }
 
     public void setPlayer2(Player player2) {
         this.player2 = player2;
         this.whoseNext = player2;
-        insert(player2.getDeck().getHero().getId(), 2, 8);
+        Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2 , 8).setMinion(player2.getDeck().getHero());
+        player2.getDeck().getHero().setCellPlace(Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2 , 8));
     }
 
     public Player getPlayer1() {
