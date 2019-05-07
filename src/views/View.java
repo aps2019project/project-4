@@ -256,7 +256,7 @@ public class View {
     public static void showCardInfo(String cardID) throws Exception {
         HashMap<String, Card> cards = new HashMap<>(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getMutableDeck().getCards());
         cards.putAll(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getCards());
-        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getCardsInGameBoard());
+        cards.putAll(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getCardsInGameBoard().getCards());
         if (cards.get(cardID) == null)
             throw new IDNotAvailableException(cardID);
         System.out.println(cards.get(cardID).info());

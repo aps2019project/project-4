@@ -16,7 +16,7 @@ public class Player {
     private Item selectedItem;
     private HashMap<String, Item> collectableItems;
     private HashMap<String, Card> graveYard;
-    private HashMap<String, Card> cardsInGameBoard;
+    private Deck cardsInGameBoard;
     private int mana;
 
     public Player(String name, Deck mainDeck) {
@@ -25,7 +25,7 @@ public class Player {
         this.mutableDeck = mainDeck.clone();
         this.collectableItems = new HashMap<>();
         this.graveYard = new HashMap<>();
-        this.cardsInGameBoard = new HashMap<>();
+        this.cardsInGameBoard = new Deck("");
         Deck mutableDeck = mainDeck.clone();
         hand = new Hand(mutableDeck);
     }
@@ -64,7 +64,7 @@ public class Player {
         return collectableItems;
     }
 
-    public HashMap<String, Card> getCardsInGameBoard() {
+    public Deck getCardsInGameBoard() {
         return cardsInGameBoard;
     }
 
@@ -90,9 +90,9 @@ public class Player {
     }
 
     public void selectCard(String cardId)throws Exception {
-        if (this.getCardsInGameBoard().get(cardId) == null)
+        if (this.getCardsInGameBoard().getCards().get(cardId) == null)
             throw new InvalidCardIdException(cardId);
-        this.setSelectedCard(this.getCardsInGameBoard().get(cardId));
+        this.setSelectedCard(this.getCardsInGameBoard().getCards().get(cardId));
         View.showSelectCardMessage(cardId);
     }
 

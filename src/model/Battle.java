@@ -398,7 +398,7 @@ public class Battle {
     }
 
     public boolean isEndedMultipleFlagGame() {
-        //todo
+
         return false;
     }
 
@@ -408,11 +408,11 @@ public class Battle {
     }
 
     public boolean isEndedHeroVsHeroGame() {
-        if (!this.getPlayer1().getMutableDeck().isHaveHero() && this.getPlayer2().getMutableDeck().isHaveHero()) {
+        if (!this.getPlayer1().getCardsInGameBoard().isHaveHero() && this.getPlayer2().getMutableDeck().isHaveHero()) {
             this.setWinner(player2);
             return true;
         }
-        if (this.getPlayer1().getMutableDeck().isHaveHero() && !this.getPlayer2().getMutableDeck().isHaveHero()) {
+        if (this.getPlayer1().getCardsInGameBoard().isHaveHero() && !this.getPlayer2().getMutableDeck().isHaveHero()) {
             this.setWinner(player1);
             return true;
         }
