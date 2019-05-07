@@ -15,7 +15,7 @@ public class GameBoard {
     }
 
     public Cell getCell(int x, int y) {
-        if (x < 5 && y < 9 && x > 0 && y > 0)
+        if (x < 5 && y < 9 && x >= 0 && y >= 0)
             return cells[x][y];
         return null;
     }
@@ -49,6 +49,23 @@ public class GameBoard {
             return cells[cell.getX() + dx][cell.getY() + dy];
         }
         return null;
+    }
+
+    public StringBuilder gameBoardInfo(int a) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (cells[i][j].getMinion() == null){
+                    stringBuilder.append("__ ");
+                }
+                else if (cells[i][j].getMinion() instanceof Hero)
+                    stringBuilder.append("H").append(a).append(" ");
+                else if (cells[i][j].getMinion() != null)
+                    stringBuilder.append("M ").append(a).append(" ");
+            }
+            stringBuilder.append("\n");
+        }
+        return stringBuilder;
     }
 
     public boolean checkIfMinionExitsAround(Cell cell) {
