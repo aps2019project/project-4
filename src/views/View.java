@@ -8,7 +8,6 @@ import views.Exceptions.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
 public class View {
     public static void showHelp() {
@@ -449,7 +448,7 @@ public class View {
         }
         if (battle.getOpponent() == Enums.SingleOrMulti.MULTI_PLAYER){
             System.out.println("Player " + battle.getWinner().getName() + " wons!");
-            System.out.println("Player " + battle.getLosser().getName() + " losses!");
+            System.out.println("Player " + battle.getLoser().getName() + " losses!");
         }
     }
 

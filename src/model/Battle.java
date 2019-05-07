@@ -48,7 +48,7 @@ public class Battle {
         return winner;
     }
 
-    public Player getLosser() {
+    public Player getLoser() {
         if (this.getWinner() == this.getPlayer1())
             return this.getPlayer2();
         return this.getPlayer1();
@@ -147,7 +147,7 @@ public class Battle {
 
     public StringBuilder myMinionsInfo() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Card card : whoseTurn.getCardsInGameBoard().values()) {
+        for (Card card : whoseTurn.getCardsInGameBoard().getCards().values()) {
             if (!(card instanceof Spell)) {
                 Minion m = (Minion) card;
                 stringBuilder.append(card.getId() + ": ").append(card.getName() + ", health: ").append(m.getHealthPoint());

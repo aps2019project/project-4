@@ -52,6 +52,14 @@ public class Player {
         return name;
     }
 
+    public int getNumOfTurnsHeldFlag() {
+        return numOfTurnsHeldFlag;
+    }
+
+    public int getNumOfFlags() {
+        return numOfFlags;
+    }
+
     public Deck getMutableDeck() {
         return mutableDeck;
     }
@@ -71,8 +79,23 @@ public class Player {
     public void putCardInGraveYard(Card card) {
     }
 
-    public void changeMana(int mana) {
+    public void changeMana(int change) {
+        this.mana += change;
     }
+
+    public void addNumOfTurnsHeldFlag(){
+        this.numOfTurnsHeldFlag++;
+    }
+
+    public void zeroNumOfTurnsHeldFlag(){
+        this.numOfTurnsHeldFlag = 0;
+    }
+
+    public void changeNumberOfFlag(int change){
+        this.numOfFlags += change;
+    }
+
+    //public
 
     public int getMana() {
         return mana;
