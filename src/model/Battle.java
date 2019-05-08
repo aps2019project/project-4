@@ -497,9 +497,9 @@ public class Battle {
     public void nextTurn() {
         for (int i = 0; i < 5; i++){
             for (int j = 0; j < 9 ; j++){
-                for (Buff buff : gameBoard.getCell(i, j).getBuffs()){
 
-                }
+                gameBoard.getCell(i, j).removeExpiredBuffs();
+                gameBoard.getCell(i, j).getMinion().removeExpiredBuffs();
             }
         }
     }

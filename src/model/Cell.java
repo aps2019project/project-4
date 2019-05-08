@@ -54,8 +54,9 @@ public class Cell {
         return buffs;
     }
 
-    public void applyBuff(Buff buff) {
-
+    public void aplyBuffs() {
+        for (Buff buff : buffs){
+        }
     }
 
     public void addFlag() {
