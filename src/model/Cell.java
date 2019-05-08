@@ -54,9 +54,14 @@ public class Cell {
         return buffs;
     }
 
-    public void aplyBuffs() {
+    public void applyBuffs() {
         for (Buff buff : buffs){
+            minion.applyBuff(buff);
         }
+        for (Buff buff : minion.getNegativeBuffs())
+            minion.applyBuff(buff);
+        for (Buff buff : minion.getPositiveBuffs())
+            minion.applyBuff(buff);
     }
 
     public void addFlag() {

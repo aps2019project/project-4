@@ -295,6 +295,7 @@ public class Battle {
                                 cell1.getMinion().removeAllPositiveBuffs();
                             for (Buff buff : spell.getBuffs()) {
                                 buff.stickBuffTo(cell1);
+                                cell1.getMinion().applyBuff(buff);
                             }
                         }
                     }
@@ -307,6 +308,7 @@ public class Battle {
                                 cell1.getMinion().removeAllNegativeBuffs();
                             for (Buff buff : spell.getBuffs()) {
                                 buff.stickBuffTo(cell1);
+                                cell1.getMinion().applyBuff(buff);
                             }
                         }
                     }
@@ -322,6 +324,7 @@ public class Battle {
                             }
                             for (Buff buff : spell.getBuffs()) {
                                 buff.stickBuffTo(cell1);
+                                cell1.getMinion().applyBuff(buff);
                             }
                         }
                     }
@@ -334,6 +337,7 @@ public class Battle {
                                 cell1.getMinion().removeAllPositiveBuffs();
                             for (Buff buff : spell.getBuffs()) {
                                 buff.stickBuffTo(cell1);
+                                cell1.getMinion().applyBuff(buff);
                                 return;
                             }
                         }
@@ -346,6 +350,7 @@ public class Battle {
                                 cell1.getMinion().removeAllNegativeBuffs();
                             for (Buff buff : spell.getBuffs()) {
                                 buff.stickBuffTo(cell1);
+                                cell1.getMinion().applyBuff(buff);
                                 return;
                             }
                         }
@@ -360,6 +365,7 @@ public class Battle {
                                 cell1.getMinion().removeAllPositiveBuffs();
                             for (Buff buff : spell.getBuffs()) {
                                 buff.stickBuffTo(cell1);
+                                cell1.getMinion().applyBuff(buff);
                             }
                         }
                     }
@@ -373,6 +379,7 @@ public class Battle {
                                 cell1.getMinion().removeAllNegativeBuffs();
                             for (Buff buff : spell.getBuffs()) {
                                 buff.stickBuffTo(cell1);
+                                cell1.getMinion().applyBuff(buff);
                             }
                         }
                     }
