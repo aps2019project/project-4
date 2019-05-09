@@ -62,6 +62,7 @@ public class Buff {
                 cell.getMinion().getPositiveBuffs().add(this);
             else
                 cell.getMinion().getNegativeBuffs().add(this);
+            cell.getMinion().applyBuff(this);
         }
         else{
             cell.addBuff(this);

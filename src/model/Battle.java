@@ -492,13 +492,13 @@ public class Battle {
                 if (minion.isDead()) {
                     if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEATH)
                         insertSpell(minion.getSpecialPower(), cell.getX(), cell.getY());
-                    cell.setMinion(null);
-                    minion.setCellPlace(null);
                     if (minion.isHasFlag())
                         minion.dropFlag();
-                    if (player1.getMutableDeck().getCards().values().contains(minion))
+                    cell.setMinion(null);
+                    minion.setCellPlace(null);
+                    if (player1.getCardsInGameBoard().getCards().values().contains(minion))
                         player1.getGraveYard().put(minion.getId(), minion);
-                    if (player1.getMutableDeck().getCards().values().contains(minion))
+                    if (player1.getCardsInGameBoard().getCards().values().contains(minion))
                         player1.getGraveYard().put(minion.getId(), minion);
                 }
             }
@@ -508,9 +508,8 @@ public class Battle {
     public void nextTurn() {
         for (int i = 0; i < 5; i++){
             for (int j = 0; j < 9 ; j++){
-                for (Buff buff : gameBoard.getCell(i, j).getBuffs()){
-
-                }
+                gameBoard.getCell(i, j).removeExpiredBuffs();
+                gameBoard.getCell(i, j).getMinion().removeExpiredBuffs();
             }
         }
     }
