@@ -1,5 +1,6 @@
 package model;
 
+import resources.Resources;
 import views.Exceptions.*;
 
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class Deck {
         if (this.getItem() != null)
             deck.item = this.getItem().clone();
         for (Card card : this.getCards().values())
-            deck.addCardWithSetID(card.clone(), card.getId());
+            deck.addCardWithSetID(Resources.getSpecificCard(card.getName()) , card.getId() );
         return deck;
     }
 
@@ -50,6 +51,7 @@ public class Deck {
     }
 
     public void addCardWithSetID(Card card, String id) {
+        card.setId(id);
         this.getCards().put(id, card);
     }
 

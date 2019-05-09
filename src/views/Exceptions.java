@@ -82,8 +82,20 @@ public class Exceptions {
     }
 
     public static class InvalidCellException extends Exception {
-        public InvalidCellException(){
+        public InvalidCellException() {
             super("The coordinates of cell is invalid!");
+        }
+    }
+
+    public static class CellIsFullException extends Exception {
+        public CellIsFullException(int x , int y){
+            super("The cell with coordination of " + x + " , " + y + " is full.");
+        }
+    }
+
+    public static class CardNotInHandMessage extends Exception {
+        public CardNotInHandMessage(){
+            super("Choose a card from your hand");
         }
     }
 

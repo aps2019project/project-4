@@ -7,16 +7,16 @@ import java.util.HashMap;
 
 public class Player {
     private String name;
-    private Deck deck;//first deck
-    private Deck mutableDeck;//mutable deck
-    private Hand hand;
+    protected Deck deck;//first deck
+    protected Deck mutableDeck;//mutable deck
+    protected Hand hand;
     private int numOfFlags;
     private int numOfTurnsHeldFlag;
     private Card selectedCard;
     private Item selectedItem;
-    private HashMap<String, Item> collectableItems;
-    private HashMap<String, Card> graveYard;
-    private Deck cardsInGameBoard;
+    protected HashMap<String, Item> collectableItems;
+    protected HashMap<String, Card> graveYard;
+    protected Deck cardsInGameBoard;
     private int mana = 0;
 
     public Player(String name, Deck mainDeck) {
@@ -26,7 +26,7 @@ public class Player {
         this.collectableItems = new HashMap<>();
         this.graveYard = new HashMap<>();
         this.cardsInGameBoard = new Deck("");
-        Deck mutableDeck = mainDeck.clone();
+        this.mutableDeck.removeCard(this.getDeck().getHero().getId());
         hand = new Hand(mutableDeck);
     }
 
@@ -63,6 +63,10 @@ public class Player {
 
     public Deck getMutableDeck() {
         return mutableDeck;
+    }
+
+    public void setMutableDeck(Deck mutableDeck) {
+        this.mutableDeck = mutableDeck;
     }
 
     public HashMap<String, Card> getGraveYard() {

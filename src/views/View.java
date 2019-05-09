@@ -100,7 +100,7 @@ public class View {
         System.out.println("Help: show Choices that you can do it.");
     }
 
-    private static void showGraveYardMenuHelp(){
+    private static void showGraveYardMenuHelp() {
         System.out.println("Show info [card id] : show info of a card in grave-yard");
         System.out.println("Show cards : show all cards of grave-yard");
         System.out.println("back : back to battle menu.");

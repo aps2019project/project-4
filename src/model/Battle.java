@@ -32,6 +32,7 @@ public class Battle {
         this.gameBoard = new GameBoard();
         Account.getCurrentAccount().setCurrentBattle(this);
         Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2, 0).setMinion(player1.getDeck().getHero());
+        Account.getCurrentAccount().getCurrentBattle().getPlayer1().getMutableDeck().removeCard(player1.getDeck().getHero().getId());
         Account.getCurrentAccount().getCurrentBattle().getPlayer1().getCardsInGameBoard().addCard(player1.getDeck().getHero());
         player1.getDeck().getHero().setCellPlace(Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2, 0));
     }
@@ -40,6 +41,7 @@ public class Battle {
         this.player2 = player2;
         this.whoseNext = player2;
         Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2, 8).setMinion(player2.getDeck().getHero());
+        Account.getCurrentAccount().getCurrentBattle().getPlayer2().getMutableDeck().removeCard(player2.getDeck().getHero().getId());
         Account.getCurrentAccount().getCurrentBattle().getPlayer2().getCardsInGameBoard().addCard(player2.getDeck().getHero());
         player2.getDeck().getHero().setCellPlace(Account.getCurrentAccount().getCurrentBattle().getGameBoard().getCell(2, 8));
     }
@@ -170,6 +172,24 @@ public class Battle {
             }
         }
         return stringBuilder;
+    }
+
+    public ArrayList<Minion> getMinions(){
+        ArrayList <Minion> minions = new ArrayList<>();
+        for (Card card : this.getWhoseTurn().getCardsInGameBoard().getCards().values()){
+            if (card instanceof Minion)
+                minions.add((Minion) card);
+        }
+        return minions;
+    }
+
+    public ArrayList<Minion> getOppMinions(){
+        ArrayList <Minion> minions = new ArrayList<>();
+        for (Card card : this.getWhoseNext().getCardsInGameBoard().getCards().values()){
+            if (card instanceof Minion)
+                minions.add((Minion) card);
+        }
+        return minions;
     }
 
     public StringBuilder opponentMinionsInfo() {
@@ -431,9 +451,12 @@ public class Battle {
             throw new SpellsCanNotMoveException();
         Minion minion = ((Minion) whoseTurn.getSelectedCard());
         Cell cell = minion.getCellPlace();
-        if (!isMinionsBetween(cell, x, y)) {
+        if (!isMinionsBetween(cell, x, y) && !(this.getWhoseTurn() instanceof  AIPlayer)) {
             minion.moveTo(gameBoard.getCell(x, y));
+        }else  if (!isMinionsBetween(cell, x, y) && (this.getWhoseTurn() instanceof  AIPlayer)) {
+            minion.moveToNoMessageShow(gameBoard.getCell(x, y));
         } else {
+            if (!(this.getWhoseTurn() instanceof  AIPlayer))
             View.showMinionsBetweenMessage();
         }
     }
@@ -517,13 +540,13 @@ public class Battle {
                 if (minion.isDead()) {
                     if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEATH)
                         insertSpell(minion.getSpecialPower(), cell.getX(), cell.getY());
-                    cell.setMinion(null);
-                    minion.setCellPlace(null);
                     if (minion.isHasFlag())
                         minion.dropFlag();
-                    if (player1.getDeck().getCards().values().contains(minion))
+                    cell.setMinion(null);
+                    minion.setCellPlace(null);
+                    if (player1.getCardsInGameBoard().getCards().values().contains(minion))
                         player1.getGraveYard().put(minion.getId(), minion);
-                    if (player1.getDeck().getCards().values().contains(minion))
+                    if (player1.getCardsInGameBoard().getCards().values().contains(minion))
                         player1.getGraveYard().put(minion.getId(), minion);
                 }
             }

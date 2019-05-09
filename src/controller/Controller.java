@@ -211,7 +211,7 @@ public class Controller {
             String stage = Controller.getNextLine();
             try {
                 if (stage.toLowerCase().equals("stage 1")) {
-                    AIPlayer player = new AIPlayer(StageResources.getStage(0).getDeck().clone());
+                    AIPlayer player = new AIPlayer(StageResources.getStage(0).getDeck());
                     player.setStage(1);
                     Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
@@ -219,7 +219,7 @@ public class Controller {
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 2")) {
-                    AIPlayer player = new AIPlayer(StageResources.getStage(1).getDeck().clone());
+                    AIPlayer player = new AIPlayer(StageResources.getStage(1).getDeck());
                     player.setStage(2);
                     Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
@@ -227,7 +227,7 @@ public class Controller {
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 3")) {
-                    AIPlayer player = new AIPlayer(StageResources.getStage(2).getDeck().clone());
+                    AIPlayer player = new AIPlayer(StageResources.getStage(2).getDeck());
                     player.setStage(3);
                     Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
@@ -319,7 +319,6 @@ public class Controller {
                 }
                 throw new InvalidCommandException();
             } catch (Exception e) {
-                e.printStackTrace();
                 System.err.println(e.getMessage());
             }
         }
@@ -391,10 +390,8 @@ public class Controller {
             }
         } catch (InvalidCommandException e) {
             e.showMessage();
-            e.printStackTrace();
         } catch (Exception e) {
             System.err.println(e.getMessage());
-            e.printStackTrace();
         }
 
     }
@@ -513,22 +510,22 @@ public class Controller {
             case 12:
                 //todo show collectable items
                 break;
-            case 14:
+            case 13:
                 //todo show info of item
                 break;
-            case 15:
+            case 14:
                 //todo use from collectable item
                 break;
-            case 16:
+            case 15:
                 View.showNextCard();
                 break;
-            case 17:
+            case 16:
                 Controller.setMenu(Enums.Menus.GRAVEYARD);
                 break;
-            case 18:
+            case 17:
                 View.showHelp();
                 break;
-            case 19:
+            case 18:
                 //todo Help
         }
     }
@@ -659,6 +656,8 @@ public class Controller {
         View.showConfirmationExitMessage();
         if (Controller.getYesOrNo()) {
             Controller.isEndedGame = true;
+        } else {
+            System.out.println("Abort");
         }
     }
 
