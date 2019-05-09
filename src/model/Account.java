@@ -139,6 +139,8 @@ public class Account {
                 currentAccount = null;
                 Controller.setMenu(Enums.Menus.ACCOUNT);
                 View.showMenu();
+            } else {
+                System.out.println("Abort");
             }
         }
     }

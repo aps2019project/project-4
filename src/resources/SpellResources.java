@@ -240,7 +240,7 @@ public class SpellResources {
                 "}");
         getSpellResource().put("Madness", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
-                "\"target\": \"Friend\",\n" +
+                "\"target\": \"FRIEND\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
                 "\"lengthOfSideOfSquare\": 0,\n" +
                 "\"buffNutralizer\": \"NONE\",\n" +
@@ -348,7 +348,7 @@ public class SpellResources {
                 "}");
         getSpellResource().put("HealthWithProfit", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
-                "\"target\": \"Friend\",\n" +
+                "\"target\": \"FRIEND\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
                 "\"lengthOfSideOfSquare\": 0,\n" +
                 "\"buffNutralizer\": \"NONE\",\n" +
@@ -388,7 +388,7 @@ public class SpellResources {
                 "}");
         getSpellResource().put("PowerUp", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
-                "\"target\": \"Friend\",\n" +
+                "\"target\": \"FRIEND\",\n" +
                 "\"cellsType\": \"MONO_CELL\",\n" +
                 "\"lengthOfSideOfSquare\": 0,\n" +
                 "\"buffNutralizer\": \"NONE\",\n" +
@@ -415,7 +415,7 @@ public class SpellResources {
                 "}");
         getSpellResource().put("All Power", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
-                "\"target\": \"Friend\",\n" +
+                "\"target\": \"FRIEND\",\n" +
                 "\"cellsType\": \"ALL\",\n" +
                 "\"lengthOfSideOfSquare\": 0,\n" +
                 "\"buffNutralizer\": \"NONE\",\n" +

@@ -58,10 +58,10 @@ public class Buff {
 
     public void stickBuffTo(Cell cell){
         if (onCellOrSoldier == Enums.OnCellOrSoldier.SOLDIER){
-            if (isPositive == true)
+            if (isPositive)
                 cell.getMinion().getPositiveBuffs().add(this);
             else
-                cell.getMinion().getPositiveBuffs().add(this);
+                cell.getMinion().getNegativeBuffs().add(this);
         }
         else{
             cell.addBuff(this);

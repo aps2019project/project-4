@@ -1,5 +1,8 @@
 package model;
 
+
+//todo full hand with new cards
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;

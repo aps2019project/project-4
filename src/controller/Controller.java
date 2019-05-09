@@ -513,22 +513,22 @@ public class Controller {
             case 12:
                 //todo show collectable items
                 break;
-            case 14:
+            case 13:
                 //todo show info of item
                 break;
-            case 15:
+            case 14:
                 //todo use from collectable item
                 break;
-            case 16:
+            case 15:
                 View.showNextCard();
                 break;
-            case 17:
+            case 16:
                 Controller.setMenu(Enums.Menus.GRAVEYARD);
                 break;
-            case 18:
+            case 17:
                 View.showHelp();
                 break;
-            case 19:
+            case 18:
                 //todo Help
         }
     }
@@ -659,6 +659,8 @@ public class Controller {
         View.showConfirmationExitMessage();
         if (Controller.getYesOrNo()) {
             Controller.isEndedGame = true;
+        } else {
+            System.out.println("Abort");
         }
     }
 

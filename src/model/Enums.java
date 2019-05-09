@@ -22,7 +22,7 @@ public class Enums {
     }
 
     public enum FriendOrEnemy {
-        Friend, ENEMY, BOTH, ENEMY_HERO, FRIEND_HERO, FRIEND_MINION, ENEMY_MINION
+        FRIEND, ENEMY, BOTH, ENEMY_HERO, FRIEND_HERO, FRIEND_MINION, ENEMY_MINION
     }
 
     public enum WhichCellsType {
