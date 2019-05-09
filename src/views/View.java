@@ -153,12 +153,14 @@ public class View {
     }
 
     public static void showHurting(Minion minion, int numberOfHurt){
-        System.out.printf("minion %s with id %s got hurt by %d points", minion.getName(), minion.getId(), numberOfHurt);
+        System.out.printf("minion %s with id %s got hurt by %d points\n", minion.getName(), minion.getId(), numberOfHurt);
     }
     public static void showConfirmationLogoutMessage() {
         System.out.println("Are you sure to logout?[Y/N]");
     }
-
+    public static void showInvalidAttackMessage(){
+        System.err.println("Selected target for attacking is invalid");
+    }
     public static void showConfirmationExitMessage() {
         System.out.println("Are you sure to exit?[Y/N]");
     }

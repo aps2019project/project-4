@@ -166,8 +166,8 @@ public class Minion extends Card {
 
     public void counterAttack(Minion minion) {
         if (!this.isDisarmed || this.isAntiDisarm){
-            if (cellPlace.getDistance(minion.cellPlace.getX(), minion.cellPlace.getY()) > endRange ||
-                    cellPlace.getDistance(minion.cellPlace.getX(), minion.cellPlace.getY()) < startRange){
+            if (cellPlace.getDistance(minion.cellPlace.getX(), minion.cellPlace.getY()) <= endRange &&
+                    cellPlace.getDistance(minion.cellPlace.getX(), minion.cellPlace.getY()) >= startRange){
                 hurtMinion(minion);
             }
         }

@@ -499,7 +499,9 @@ public class Controller {
                 //todo attack combo
                 break;
             case 8:
-                //todo use special power
+                Battle battle2 = Account.getCurrentAccount().getCurrentBattle();
+                Spell spell = battle2.getWhoseTurn().getDeck().getHero().getSpecialPower();
+                battle2.insertSpell(spell, Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
                 break;
             case 9:
                 View.showHand();

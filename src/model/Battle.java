@@ -256,6 +256,10 @@ public class Battle {
 
     public void attack(int x, int y) {
         Cell cell = gameBoard.getCell(x, y);
+        if (!whoseNext.getDeck().getCards().containsKey(cell.getMinion().getId())){
+            View.showInvalidAttackMessage();
+            return;
+        }
         Card card = whoseTurn.getSelectedCard();
         if (card == null) {
             View.showCardHasNotSelected();
@@ -265,10 +269,8 @@ public class Battle {
             Minion minion = (Minion) card;
             if (whoseNext.getDeck().getCards().containsKey(cell.getMinion().getId())) {
                 minion.attack(cell.getMinion());
-                moveDeadsToGraveyard();
                 if (cell.getMinion().getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEFEND)
                     insertSpell(cell.getMinion().getSpecialPower(), minion.getCellPlace().getX(), minion.getCellPlace().getX());
-                moveDeadsToGraveyard();
                 if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN)
                     insertSpell(minion.getSpecialPower(), x, y);
                 moveDeadsToGraveyard();
@@ -289,7 +291,8 @@ public class Battle {
         if (card instanceof Spell) {
             if (whoseTurn.getMana() >= card.getRequiredManas()) {
                 if (insertSpell((Spell) card, x, y)) {
-                    insertNewCardInHand(card);
+                    whoseTurn.getHand().removeCard(card);
+                    whoseTurn.getCardsInGameBoard().addCard(card);
                     whoseTurn.changeMana( -card.getRequiredManas());
                 }
             }
@@ -309,7 +312,8 @@ public class Battle {
                 if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN) {
                     insertSpell(minion.getSpecialPower(), x, y);
                 }
-                insertNewCardInHand(card);
+                whoseTurn.getHand().removeCard(card);
+                whoseTurn.getCardsInGameBoard().addCard(card);
                 if (cell.getIsFlag()) {
                     cell.setFlag(false);
                     minion.catchFlag();
@@ -321,11 +325,11 @@ public class Battle {
         boardInfo();
     }
 
-    private void insertNewCardInHand(Card card) {
-        whoseTurn.getHand().removeCard(card);
-        whoseTurn.getHand().moveNextCardToHand(whoseTurn.getMutableDeck());
-        whoseTurn.getHand().changeNextCard(whoseTurn.getMutableDeck());
-        whoseTurn.getCardsInGameBoard().addCard(card);
+    private void insertNewCardsInHand() {
+        while(whoseTurn.getHand().getCards().size() < 5 && whoseTurn.getHand().getNextCard() != null) {
+            whoseTurn.getHand().moveNextCardToHand(whoseTurn.getMutableDeck());
+            whoseTurn.getHand().changeNextCard(whoseTurn.getMutableDeck());
+        }
     }
 
 
@@ -557,7 +561,7 @@ public class Battle {
             for (int j = 0; j < 9; j++) {
                 Cell cell = gameBoard.getCell(i, j);
                 Minion minion = cell.getMinion();
-                if (minion.isDead()) {
+                if (minion != null && minion.isDead()) {
                     if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEATH)
                         insertSpell(minion.getSpecialPower(), cell.getX(), cell.getY());
                     if (minion.isHasFlag())
@@ -588,6 +592,7 @@ public class Battle {
             }
         }
         unselectCards();
+        insertNewCardsInHand();
         swapWhoseTurn();
         numberOfTurns++;
         handleManas();
