@@ -263,7 +263,7 @@ public class Battle {
         }
         if (card instanceof Minion) {
             Minion minion = (Minion) card;
-            if (whoseNext.getDeck().getCards().containsKey(minion.getId())) {
+            if (whoseNext.getDeck().getCards().containsKey(cell.getMinion().getId())) {
                 minion.attack(cell.getMinion());
                 moveDeadsToGraveyard();
                 if (cell.getMinion().getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEFEND)
