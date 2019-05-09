@@ -52,6 +52,7 @@ public class AIPlayer extends Player {
                 }
             }
             battle.attack(battle.getMinions().get(0).getId(), battle.getOppMinions().get(0).getCellPlace().getX() , battle.getOppMinions().get(0).getCellPlace().getY());
+            battle.nextTurn();
         } catch (Exception e) {
         }
     }

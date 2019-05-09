@@ -249,9 +249,9 @@ public class Battle {
 
     public void select(String cardId) {
         Card card = whoseTurn.getCardsInGameBoard().getCards().get(cardId);
-        if (card != null)
-            whoseTurn.setSelectedCard();
-        else
+        //if (card != null)
+            //whoseTurn.setSelectedCard();
+        //else
     }
 
     public void attack(String cardId, int x, int y) {
@@ -437,7 +437,7 @@ public class Battle {
         return result;
     }
 
-    //    public void insertSpellRandomly(Spell spell, int x, int y){
+//    public void insertSpellRandomly(Spell spell, int x, int y){
 //        ArrayList<Cell> targets = gameBoard.cellTargets(spell.getCellsType(), x, y, spell.getLengthOfSideOfSquare());
 //        if (spell.getCellsType() == Enums.WhichCellsType.RANDOM_MINION_OF_ALL){
 //            if (!isEmpty(targets)){
@@ -446,6 +446,7 @@ public class Battle {
 //            }
 //        }
 //    }
+
     public void moveTo(int x, int y) throws Exception {
         if (whoseTurn.getSelectedCard() instanceof Spell)
             throw new SpellsCanNotMoveException();
