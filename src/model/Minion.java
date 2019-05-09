@@ -181,6 +181,27 @@ public class Minion extends Card {
         }
     }
 
+    public void moveToNoMessageShow(Cell cell) {
+        if (this.hasMovedThisTurn) {
+            return;
+        }
+        if (this.isStunned) {
+            return;
+        }
+        if (cellPlace.getDistance(cell.getX(), cell.getY()) > endRange ||
+                cellPlace.getDistance(cell.getX(), cell.getY()) < startRange) {
+            return;
+        }
+        if (cell.getIsFlag()){
+            cell.setFlag(false);
+            this.catchFlag();
+        }
+        this.getCellPlace().setMinion(null);
+        this.setCellPlace(cell);
+        cell.setMinion(this);
+    }
+
+
 
     public void changeHp(int number) {
         if (!this.isImmortal)

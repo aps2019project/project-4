@@ -174,6 +174,24 @@ public class Battle {
         return stringBuilder;
     }
 
+    public ArrayList<Minion> getMinions(){
+        ArrayList <Minion> minions = new ArrayList<>();
+        for (Card card : this.getWhoseTurn().getCardsInGameBoard().getCards().values()){
+            if (card instanceof Minion)
+                minions.add((Minion) card);
+        }
+        return minions;
+    }
+
+    public ArrayList<Minion> getOppMinions(){
+        ArrayList <Minion> minions = new ArrayList<>();
+        for (Card card : this.getWhoseNext().getCardsInGameBoard().getCards().values()){
+            if (card instanceof Minion)
+                minions.add((Minion) card);
+        }
+        return minions;
+    }
+
     public StringBuilder opponentMinionsInfo() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Card card : whoseNext.getCardsInGameBoard().getCards().values()) {
@@ -250,8 +268,7 @@ public class Battle {
             throw new InvalidCellException();
         Card card = whoseTurn.getHand().getCard(cardId);
         if (card == null && !whoseTurn.getDeck().getHero().getId().equals(cardId) && !whoseNext.getDeck().getHero().getId().equals(cardId)) {
-            View.showCardNotInHandMessage();
-            return;
+            throw new CardNotInHandMessage();
         }
 
         if (card instanceof Spell) {
@@ -277,9 +294,9 @@ public class Battle {
             }
         }
         if (whoseTurn == player1)
-            View.showGameBoardInfo(this.gameBoard, 1);
+            View.showGameBoardInfo(this.gameBoard);
         else
-            View.showGameBoardInfo(this.gameBoard, 2);
+            View.showGameBoardInfo(this.gameBoard);
     }
 
     public void insertSpell(Spell spell, int x, int y) {
@@ -406,9 +423,12 @@ public class Battle {
             throw new SpellsCanNotMoveException();
         Minion minion = ((Minion) whoseTurn.getSelectedCard());
         Cell cell = minion.getCellPlace();
-        if (!isMinionsBetween(cell, x, y)) {
+        if (!isMinionsBetween(cell, x, y) && !(this.getWhoseTurn() instanceof  AIPlayer)) {
             minion.moveTo(gameBoard.getCell(x, y));
+        }else  if (!isMinionsBetween(cell, x, y) && (this.getWhoseTurn() instanceof  AIPlayer)) {
+            minion.moveToNoMessageShow(gameBoard.getCell(x, y));
         } else {
+            if (!(this.getWhoseTurn() instanceof  AIPlayer))
             View.showMinionsBetweenMessage();
         }
     }

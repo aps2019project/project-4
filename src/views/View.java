@@ -275,7 +275,7 @@ public class View {
     public static void showMyMinions() {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().myMinionsInfo());
     }
-    public static void showGameBoardInfo(GameBoard gameBoard, int a){
+    public static void showGameBoardInfo(GameBoard gameBoard){
         System.out.println(gameBoard.gameBoardInfo());
     }
     public static void showOpponentMinions() {
@@ -301,10 +301,6 @@ public class View {
     public static void showNextCard() {
         System.out.println("Next Card:");
         System.out.println((Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getNextCard().info()));
-    }
-
-    public static void showCardNotInHandMessage() {
-        System.err.println("Choose a card from your hand");
     }
 
     public static void showSelectCardMessage(String cardId) {

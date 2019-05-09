@@ -93,6 +93,12 @@ public class Exceptions {
         }
     }
 
+    public static class CardNotInHandMessage extends Exception {
+        public CardNotInHandMessage(){
+            super("Choose a card from your hand");
+        }
+    }
+
     public static class NoDeckSelectedException extends Exception {
         public NoDeckSelectedException() {
             super("Please Select a deck!");
