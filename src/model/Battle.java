@@ -579,9 +579,11 @@ public class Battle {
                 Cell cell = gameBoard.getCell(i, j);
                 Minion minion = cell.getMinion();
                 cell.removeExpiredBuffs();
-                minion.removeExpiredBuffs();
-                minion.unlockAttack();
-                minion.unlockMovement();
+                try {
+                    minion.removeExpiredBuffs();
+                    minion.unlockAttack();
+                    minion.unlockMovement();
+                } catch (NullPointerException e){ }
                 cell.applyBuffs();
             }
         }
