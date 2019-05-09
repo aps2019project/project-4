@@ -116,9 +116,9 @@ public class Battle {
         if (gameMode == Enums.GameMode.MONO_FLAG) {
             Minion m1 = player1.getCardsInGameBoard().whoHasFlag();
             if (m1 != null)
-            stringBuilder.append("Minion ").append(m1.getId()).append(" of player1 in cell ").
-                    append(m1.getCellPlace().getX()).append(", ").append(m1.getCellPlace().getY()).
-                    append(" has flag\n");
+                stringBuilder.append("Minion ").append(m1.getId()).append(" of player1 in cell ").
+                        append(m1.getCellPlace().getX()).append(", ").append(m1.getCellPlace().getY()).
+                        append(" has flag\n");
 
             Minion m2 = player2.getCardsInGameBoard().whoHasFlag();
             if (m2 != null)
@@ -166,7 +166,7 @@ public class Battle {
                         append(m.getCellPlace().getX()).
                         append(", ").
                         append(m.getCellPlace().getY()).append("), ");
-                stringBuilder.append("power: ").append(m.getAttackPoint()).append("\n");
+                stringBuilder.append("power: ").append(m.getAttackPoint() + m.moreAttackPoints() + m.lessAttackPoints()).append("\n");
             }
         }
         return stringBuilder;
@@ -227,6 +227,13 @@ public class Battle {
         return false;
     }
 
+    public void select(String cardId) {
+        Card card = whoseTurn.getCardsInGameBoard().getCards().get(cardId);
+        if (card != null)
+            whoseTurn.setSelectedCard();
+        else
+    }
+
     public void attack(String cardId, int x, int y) {
         Cell cell = gameBoard.getCell(x, y);
         Card card = whoseTurn.getCardsInGameBoard().getCards().get(cardId);
@@ -253,20 +260,22 @@ public class Battle {
         }
 
         if (card instanceof Spell) {
-            insertSpell((Spell) card, x, y);
-        }
-        if (card instanceof Minion) {
+            if (insertSpell((Spell) card, x, y)) {
+                insertNewCardInHand(card);
+            }
+        } else if (card instanceof Minion) {
             Minion minion = (Minion) card;
             Cell cell = gameBoard.getCell(x, y);
+            if (!cell.isEmpty()) {
+                View.showCellIsCurrentlyFullMessage();
+                return;
+            }
             cell.setMinion(minion);
             minion.setCellPlace(cell);
             if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN) {
                 insertSpell(minion.getSpecialPower(), x, y);
             }
-            whoseTurn.getHand().removeCard(card);
-            whoseTurn.getHand().moveNextCardToHand(whoseTurn.getMutableDeck());
-            whoseTurn.getHand().changeNextCard(whoseTurn.getMutableDeck());
-            whoseTurn.getCardsInGameBoard().addCard(card);
+            insertNewCardInHand(card);
             if (cell.getIsFlag()) {
                 cell.setFlag(false);
                 minion.catchFlag();
@@ -278,8 +287,17 @@ public class Battle {
             View.showGameBoardInfo(this.gameBoard, 2);
     }
 
-    public void insertSpell(Spell spell, int x, int y) {
+    private void insertNewCardInHand(Card card) {
+        whoseTurn.getHand().removeCard(card);
+        whoseTurn.getHand().moveNextCardToHand(whoseTurn.getMutableDeck());
+        whoseTurn.getHand().changeNextCard(whoseTurn.getMutableDeck());
+        whoseTurn.getCardsInGameBoard().addCard(card);
+    }
+
+
+    public boolean insertSpell(Spell spell, int x, int y) {
         Cell cell = gameBoard.getCell(x, y);
+        boolean result = false;
         if (spell.getCellOrSoldier() == Enums.OnCellOrSoldier.CEll) {
             if (spell.getCellsType() == Enums.WhichCellsType.SQUARE) {
                 for (Buff buff : spell.getBuffs()) {
@@ -291,7 +309,8 @@ public class Battle {
             switch (spell.getTarget()) {
                 case ENEMY:
                     for (Cell cell1 : targets) {
-                        if (whoseNext.getDeck().getCards().containsValue(cell1.getMinion())) {
+                        if (whoseNext.getDeck().getCards().containsKey(cell1.getMinion().getId())) {
+                            result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.POSITIVE ||
                                     spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
                                 cell1.getMinion().removeAllPositiveBuffs();
@@ -301,10 +320,11 @@ public class Battle {
                             }
                         }
                     }
-                    return;
-                case Friend:
+                    return result;
+                case FRIEND:
                     for (Cell cell1 : targets) {
-                        if (whoseTurn.getDeck().getCards().containsValue(cell1.getMinion())) {
+                        if (whoseTurn.getDeck().getCards().containsKey(cell1.getMinion().getId())) {
+                            result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.NEGATIVE ||
                                     spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
                                 cell1.getMinion().removeAllNegativeBuffs();
@@ -314,14 +334,15 @@ public class Battle {
                             }
                         }
                     }
-                    return;
+                    return result;
                 case BOTH:
                     for (Cell cell1 : targets) {
                         if (cell1.getMinion() != null) {
+                            result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH) {
-                                if (whoseTurn.getDeck().getCards().containsValue(cell1.getMinion()))
+                                if (whoseTurn.getDeck().getCards().containsKey(cell1.getMinion().getId()))
                                     cell1.getMinion().removeAllNegativeBuffs();
-                                if (whoseNext.getDeck().getCards().containsValue(cell1.getMinion()))
+                                if (whoseNext.getDeck().getCards().containsKey(cell1.getMinion().getId()))
                                     cell1.getMinion().removeAllPositiveBuffs();
                             }
                             for (Buff buff : spell.getBuffs()) {
@@ -330,38 +351,42 @@ public class Battle {
                             }
                         }
                     }
-                    return;
+                    return result;
                 case ENEMY_HERO:
                     for (Cell cell1 : targets) {
                         if (whoseNext.getDeck().getHero() == cell1.getMinion()) {
+                            result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.POSITIVE ||
                                     spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
                                 cell1.getMinion().removeAllPositiveBuffs();
                             for (Buff buff : spell.getBuffs()) {
                                 buff.stickBuffTo(cell1);
                                 cell1.getMinion().applyBuff(buff);
-                                return;
+                                return result;
                             }
                         }
                     }
+                    return result;
                 case FRIEND_HERO:
                     for (Cell cell1 : targets) {
                         if (whoseTurn.getDeck().getHero() == cell1.getMinion()) {
+                            result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.NEGATIVE ||
                                     spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
                                 cell1.getMinion().removeAllNegativeBuffs();
                             for (Buff buff : spell.getBuffs()) {
                                 buff.stickBuffTo(cell1);
                                 cell1.getMinion().applyBuff(buff);
-                                return;
+                                return result;
                             }
                         }
                     }
-                    return;
+                    return result;
                 case ENEMY_MINION:
                     for (Cell cell1 : targets) {
-                        if (whoseNext.getDeck().getCards().containsValue(cell1.getMinion()) &&
+                        if (whoseNext.getDeck().getCards().containsKey(cell1.getMinion().getId()) &&
                                 whoseNext.getDeck().getHero() != cell1.getMinion()) {
+                            result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.POSITIVE ||
                                     spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
                                 cell1.getMinion().removeAllPositiveBuffs();
@@ -371,11 +396,12 @@ public class Battle {
                             }
                         }
                     }
-                    return;
+                    return result;
                 case FRIEND_MINION:
                     for (Cell cell1 : targets) {
-                        if (whoseTurn.getDeck().getCards().containsValue(cell1.getMinion()) &&
+                        if (whoseTurn.getDeck().getCards().containsKey(cell1.getMinion().getId()) &&
                                 whoseTurn.getDeck().getHero() != cell1.getMinion()) {
+                            result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.NEGATIVE ||
                                     spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
                                 cell1.getMinion().removeAllNegativeBuffs();
@@ -385,9 +411,10 @@ public class Battle {
                             }
                         }
                     }
-                    return;
+                    return result;
             }
         }
+        return result;
     }
 
     //    public void insertSpellRandomly(Spell spell, int x, int y){
@@ -504,8 +531,8 @@ public class Battle {
     }
 
     public void nextTurn() {
-        for (int i = 0; i < 5; i++){
-            for (int j = 0; j < 9 ; j++){
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
 
                 gameBoard.getCell(i, j).removeExpiredBuffs();
                 gameBoard.getCell(i, j).getMinion().removeExpiredBuffs();

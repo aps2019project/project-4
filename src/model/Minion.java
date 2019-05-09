@@ -209,7 +209,7 @@ public class Minion extends Card {
                 .append("Name: ").append(name).append("\n")
                 .append("ID : ").append(id).append("\n")
                 .append("HP: ").append(healthPoint).append(" ")
-                .append("AP: ").append(attackPoint).append(" ")
+                .append("AP: ").append(attackPoint + this.lessAttackPoints() + this.moreAttackPoints()).append(" ")
                 .append("MP: ").append(requiredManas).append("\n")
                 .append("Range: ").append(type).append(" ");
         if (type != Enums.SoldierType.MELEE) {

@@ -68,6 +68,12 @@ public class Cell {
         isFlag = true;
     }
 
+    public boolean isEmpty(){
+        if (minion == null)
+            return true;
+        return false;
+    }
+
     public void setX(int x) {
         this.x = x;
     }

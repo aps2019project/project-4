@@ -282,6 +282,10 @@ public class View {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().opponentMinionsInfo());
     }
 
+    public static void showInvalidSelectionMessage(){
+        System.out.println("invalid selection");
+    }
+
     public static void showCardInfo(String cardID) throws Exception {
         HashMap<String, Card> cards = new HashMap<>(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getMutableDeck().getCards());
         cards.putAll(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getCards());
@@ -305,6 +309,10 @@ public class View {
 
     public static void showCardNotInHandMessage() {
         System.err.println("Choose a card from your hand");
+    }
+
+    public static void showCellIsCurrentlyFullMessage() {
+        System.err.println("This cell is currently full");
     }
 
     public static void showSelectCardMessage(String cardId) {
