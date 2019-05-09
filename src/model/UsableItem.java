@@ -34,6 +34,14 @@ public class UsableItem {
         return id;
     }
 
+    public void setSpell(Spell spell) {
+        this.spell = spell;
+    }
+
+    public Spell getSpell() {
+        return spell;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
