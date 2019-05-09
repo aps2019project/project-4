@@ -123,4 +123,7 @@ public class Player {
         View.showSelectCardMessage(cardId);
     }
 
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
 }

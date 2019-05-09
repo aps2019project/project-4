@@ -55,20 +55,32 @@ public class Cell {
     }
 
     public void applyBuffs() {
-        for (Buff buff : buffs){
-            minion.applyBuff(buff);
+        for (Buff buff : buffs) {
+            try {
+                minion.applyBuff(buff);
+            } catch (Exception e) {
+            }
         }
-        for (Buff buff : minion.getNegativeBuffs())
-            minion.applyBuff(buff);
-        for (Buff buff : minion.getPositiveBuffs())
-            minion.applyBuff(buff);
+        for (Buff buff : minion.getNegativeBuffs()) {
+            try {
+                minion.applyBuff(buff);
+            } catch (Exception e) {
+            }
+
+        }
+        for (Buff buff : minion.getPositiveBuffs()) {
+            try {
+                minion.applyBuff(buff);
+            } catch (Exception e) {
+            }
+        }
     }
 
     public void addFlag() {
         isFlag = true;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         if (minion == null)
             return true;
         return false;
@@ -82,9 +94,9 @@ public class Cell {
         this.y = y;
     }
 
-    public void removeExpiredBuffs(){
+    public void removeExpiredBuffs() {
         Iterator<Buff> iterator = buffs.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Buff buff = iterator.next();
             if (buff.getNumberOfTurns() <= 0)
                 iterator.remove();

@@ -136,7 +136,10 @@ public class View {
     private static void showMainMenu() {
         System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n7.Money\n");
     }
+    public static void showNotEnoughManasMessage(){
+        System.out.println("You don't have enough mana");
 
+    }
     public static void showSuccessfulAccountCreationMessage(String userName) {
         System.out.println("The account with name " + userName + " created!");
     }
@@ -149,6 +152,9 @@ public class View {
         System.out.println("Enter Password");
     }
 
+    public static void showHurting(Minion minion, int numberOfHurt){
+        System.out.printf("minion %s with id %s got hurt by %d points", minion.getName(), minion.getId(), numberOfHurt);
+    }
     public static void showConfirmationLogoutMessage() {
         System.out.println("Are you sure to logout?[Y/N]");
     }

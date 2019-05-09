@@ -157,6 +157,16 @@ public class Minion extends Card {
         }
         this.hurtMinion(minion);
         this.lockAttack();
+        minion.counterAttack(this);
+    }
+
+    public void counterAttack(Minion minion) {
+        if (!this.isDisarmed || this.isAntiDisarm){
+            if (cellPlace.getDistance(minion.cellPlace.getX(), minion.cellPlace.getY()) > endRange ||
+                    cellPlace.getDistance(minion.cellPlace.getX(), minion.cellPlace.getY()) < startRange){
+                hurtMinion(minion);
+            }
+        }
     }
 
     public void moveTo(Cell cell) {
@@ -313,14 +323,6 @@ public class Minion extends Card {
         }
     }
 
-    public Buff hasDisarmedBefore() {
-        for (Buff buff : negativeBuffs) {
-            if (buff.isDisarmer()) {
-                return buff;
-            }
-        }
-        return null;
-    }
 
     public void catchFlag() {
         this.hasFlag = true;
@@ -336,18 +338,21 @@ public class Minion extends Card {
         if (minion.isApSuperior) {
             if (this.getAttackPoint() > minion.getAttackPoint()) {
                 minion.changeHp(-finalAttackPoints + minion.apSheildOfHolyBuffs());
+                View.showHurting(minion, finalAttackPoints - minion.apSheildOfHolyBuffs());
                 return;
             }
         }
         if (minion.isAntiHolyBuff) {
             minion.changeHp(-finalAttackPoints);
+            View.showHurting(minion, finalAttackPoints);
             return;
         }
         if (minion.isAntiPoison) {
-            minion.changeHp((-finalAttackPoints - poisonHurts()));
+            minion.changeHp((-finalAttackPoints - poisonHurts() + minion.apSheildOfHolyBuffs()));
             return;
         }
         minion.changeHp(-finalAttackPoints + minion.holyApShields());
+        View.showHurting(minion, finalAttackPoints - minion.apSheildOfHolyBuffs());
     }
 
     public int poisonHurts() {
