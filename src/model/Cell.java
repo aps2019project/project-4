@@ -16,6 +16,7 @@ public class Cell {
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
+        this.buffs = new ArrayList<>();
     }
 
     public int getX() {
@@ -61,19 +62,21 @@ public class Cell {
             } catch (Exception e) {
             }
         }
-        for (Buff buff : minion.getNegativeBuffs()) {
-            try {
-                minion.applyBuff(buff);
-            } catch (Exception e) {
-            }
+        try {
+            for (Buff buff : minion.getNegativeBuffs()) {
+                try {
+                    minion.applyBuff(buff);
+                } catch (Exception e) {
+                }
 
-        }
-        for (Buff buff : minion.getPositiveBuffs()) {
-            try {
-                minion.applyBuff(buff);
-            } catch (Exception e) {
             }
-        }
+            for (Buff buff : minion.getPositiveBuffs()) {
+                try {
+                    minion.applyBuff(buff);
+                } catch (Exception e) {
+                }
+            }
+        } catch (NullPointerException e) { }
     }
 
     public void addFlag() {

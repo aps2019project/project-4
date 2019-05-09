@@ -391,6 +391,7 @@ public class Controller {
         } catch (InvalidCommandException e) {
             e.showMessage();
         } catch (Exception e) {
+            e.printStackTrace();
             System.err.println(e.getMessage());
         }
 

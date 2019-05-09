@@ -36,6 +36,8 @@ public class Minion extends Card {
         if (minion == null)
             return null;
         minion.setId(this.getId());
+        this.negativeBuffs = new ArrayList<>();
+        this.positiveBuffs = new ArrayList<>();
         return minion;
     }
 
@@ -67,6 +69,8 @@ public class Minion extends Card {
         this.isImmortal = isImmortal;
         this.isApSuperior = isApSuperior;
         this.specialPowerActivationType = specialPowerActivationType;
+        this.negativeBuffs = new ArrayList<>();
+        this.positiveBuffs = new ArrayList<>();
     }
 
     public void setSpecialPower(Spell specialPower) {
