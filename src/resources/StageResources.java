@@ -85,7 +85,7 @@ public class StageResources {
         deck2.addCardWithSetID(Resources.getSpecificCard("iraj"), "ai_iraj_1");
         deck2.addCardWithSetID(Resources.getSpecificCard("giant king"), "ai_giantking_1");
         deck2.addCardWithSetID(Resources.getSpecificCard("zahhak"), "ai_zahhak_1");
-//        deck2.setItemWithID(Resources.getSpecificItem(""), "stage2");//todo add item 18
+        deck2.setItemWithID(Resources.getSpecificItem("Soul Eater"), "stage2");
         stageResources.add(new StageResources(2, 1000, deck2));
         Deck deck3 = new Deck("stage3");
         deck3.addCardWithSetID(Resources.getSpecificCard("arash"), "ai_arash_1");
@@ -109,7 +109,7 @@ public class StageResources {
         deck3.addCardWithSetID(Resources.getSpecificCard("All Power"), "ai_AllPower_1");
         deck3.addCardWithSetID(Resources.getSpecificCard("All Attack"), "ai_AllAttack_1");
         deck3.addCardWithSetID(Resources.getSpecificCard("Weakening"), "ai_Weakening_1");
-        //      deck3.setItemWithID(Resources.getSpecificItem(""),"stage3" );//todo add item 12
+        deck3.setItemWithID(Resources.getSpecificItem("Terror Hood"),"stage3" );
         stageResources.add(new StageResources(3, 1500, deck3));
     }
 }
