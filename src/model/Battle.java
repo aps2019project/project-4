@@ -263,14 +263,16 @@ public class Battle {
         }
         if (card instanceof Minion) {
             Minion minion = (Minion) card;
-            minion.attack(cell.getMinion());
-            moveDeadsToGraveyard();
-            if (cell.getMinion().getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEFEND)
-                insertSpell(cell.getMinion().getSpecialPower(), minion.getCellPlace().getX(), minion.getCellPlace().getX());
-            moveDeadsToGraveyard();
-            if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN)
-                insertSpell(minion.getSpecialPower(), x, y);
-            moveDeadsToGraveyard();
+            if (whoseNext.getDeck().getCards().containsKey(minion.getId())) {
+                minion.attack(cell.getMinion());
+                moveDeadsToGraveyard();
+                if (cell.getMinion().getSpecialPowerActivationType() == Enums.ActivationTypes.ON_DEFEND)
+                    insertSpell(cell.getMinion().getSpecialPower(), minion.getCellPlace().getX(), minion.getCellPlace().getX());
+                moveDeadsToGraveyard();
+                if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN)
+                    insertSpell(minion.getSpecialPower(), x, y);
+                moveDeadsToGraveyard();
+            }
         }
     }
 
@@ -295,7 +297,6 @@ public class Battle {
                 View.showNotEnoughManasMessage();
         } else if (card instanceof Minion) {
             if (whoseTurn.getMana() >= card.getRequiredManas()) {
-                whoseTurn.changeMana(-card.getRequiredManas());
                 Minion minion = (Minion) card;
                 Cell cell = gameBoard.getCell(x, y);
                 if (!cell.isEmpty()) {
@@ -304,6 +305,7 @@ public class Battle {
                 }
                 cell.setMinion(minion);
                 minion.setCellPlace(cell);
+                whoseTurn.changeMana(-card.getRequiredManas());
                 if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.ON_SPAWN) {
                     insertSpell(minion.getSpecialPower(), x, y);
                 }
@@ -448,7 +450,7 @@ public class Battle {
             }
         }
         if (result) {
-
+            moveDeadsToGraveyard();
         }
         return result;
     }

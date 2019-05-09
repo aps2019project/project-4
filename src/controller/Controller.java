@@ -69,7 +69,7 @@ public class Controller {
         //use select for both cards and collectable items
         patternsOfBattleMenu.add(Pattern.compile("Select (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Move to (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
-        patternsOfBattleMenu.add(Pattern.compile("Attack (\\w+)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Attack (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Attack combo (\\w+) ([\\w\\s]+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Use special power (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show hand", Pattern.CASE_INSENSITIVE));
@@ -389,8 +389,10 @@ public class Controller {
                     doGraveYardMenuCommand(index);
             }
         } catch (InvalidCommandException e) {
+            e.printStackTrace();
             e.showMessage();
         } catch (Exception e) {
+            e.printStackTrace();
             System.err.println(e.getMessage());
         }
 
@@ -490,7 +492,8 @@ public class Controller {
                 Account.getCurrentAccount().getCurrentBattle().moveTo(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
                 break;
             case 6:
-                //todo attack
+                Battle battle = Account.getCurrentAccount().getCurrentBattle();
+                battle.attack(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
                 break;
             case 7:
                 //todo attack combo
@@ -505,9 +508,9 @@ public class Controller {
                 Account.getCurrentAccount().getCurrentBattle().insert(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)));
                 break;
             case 11:
-                Battle battle = Account.getCurrentAccount().getCurrentBattle();
-                battle.nextTurn();
-                View.showNextTurnMessage(battle);
+                Battle battle1 = Account.getCurrentAccount().getCurrentBattle();
+                battle1.nextTurn();
+                View.showNextTurnMessage(battle1);
                 break;
             case 12:
                 //todo show collectable items
