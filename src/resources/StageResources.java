@@ -26,11 +26,11 @@ public class StageResources {
     }
 
     public static void showStages() {
-        System.out.println("Stage 1:");
+        System.out.println("Stage 1: 500 deck reward , mode 1");
         stageResources.get(0).showStage();
-        System.out.println("Stage 2:");
+        System.out.println("Stage 2: 1000 deck reward , mode 2");
         stageResources.get(1).showStage();
-        System.out.println("Stage 3:");
+        System.out.println("Stage 3: 1500 deck reward , mode 3");
         stageResources.get(2).showStage();
     }
 
@@ -48,7 +48,7 @@ public class StageResources {
         deck1.addCardWithSetID(Resources.getSpecificCard("Shock"), "ai_Shock_1");
         deck1.addCardWithSetID(Resources.getSpecificCard("Sacrifice"), "ai_Sacrifice_1");
         deck1.addCardWithSetID(Resources.getSpecificCard("persian archer"), "ai_persianArcher_1");
-        deck1.addCardWithSetID(Resources.getSpecificCard("transoxaninan spearsman"), "ai_transoxaninaSpearsman_1");
+        deck1.addCardWithSetID(Resources.getSpecificCard("transoxanian spearsman"), "ai_transoxaninaSpearsman_1");
         deck1.addCardWithSetID(Resources.getSpecificCard("transoxanian maceman"), "ai_transoxanianMaceman_1");
         deck1.addCardWithSetID(Resources.getSpecificCard("transoxanian maceman"), "ai_transoxanianMaceman_2");
         deck1.addCardWithSetID(Resources.getSpecificCard("black devil"), "ai_blackDevil_1");
@@ -86,7 +86,7 @@ public class StageResources {
         deck2.addCardWithSetID(Resources.getSpecificCard("giant king"), "ai_giantking_1");
         deck2.addCardWithSetID(Resources.getSpecificCard("zahhak"), "ai_zahhak_1");
 //        deck2.setItemWithID(Resources.getSpecificItem(""), "stage2");//todo add item 18
-        stageResources.add(new StageResources(2, 1000, deck1));
+        stageResources.add(new StageResources(2, 1000, deck2));
         Deck deck3 = new Deck("stage3");
         deck3.addCardWithSetID(Resources.getSpecificCard("arash"), "ai_arash_1");
         deck3.addCardWithSetID(Resources.getSpecificCard("persian commander"), "ai_persiancommander_1");
@@ -110,7 +110,7 @@ public class StageResources {
         deck3.addCardWithSetID(Resources.getSpecificCard("All Attack"), "ai_AllAttack_1");
         deck3.addCardWithSetID(Resources.getSpecificCard("Weakening"), "ai_Weakening_1");
         //      deck3.setItemWithID(Resources.getSpecificItem(""),"stage3" );//todo add item 12
-        stageResources.add(new StageResources(3, 1500, deck1));
+        stageResources.add(new StageResources(3, 1500, deck3));
     }
 }
 

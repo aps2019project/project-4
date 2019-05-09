@@ -100,7 +100,7 @@ public class View {
         System.out.println("Help: show Choices that you can do it.");
     }
 
-    private static void showGraveYardMenuHelp(){
+    private static void showGraveYardMenuHelp() {
         System.out.println("Show info [card id] : show info of a card in grave-yard");
         System.out.println("Show cards : show all cards of grave-yard");
         System.out.println("back : back to battle menu.");
@@ -275,9 +275,11 @@ public class View {
     public static void showMyMinions() {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().myMinionsInfo());
     }
-    public static void showGameBoardInfo(GameBoard gameBoard){
+
+    public static void showGameBoardInfo(GameBoard gameBoard) {
         System.out.println(gameBoard.gameBoardInfo());
     }
+
     public static void showOpponentMinions() {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().opponentMinionsInfo());
     }
@@ -513,9 +515,10 @@ public class View {
         if (deck.getCards() != null) {
             int index = 1;
             for (Card card : deck.getCards().values()) {
-                if (!(card instanceof Hero))
+                if (!(card instanceof Hero)) {
                     System.out.println("        " + index + " : " + card.infoForDeck());
-                index++;
+                    index++;
+                }
             }
         }
     }

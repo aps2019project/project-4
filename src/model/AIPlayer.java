@@ -1,14 +1,21 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class AIPlayer extends Player {
     private int stage;
 
     public AIPlayer(Deck deck) {
-        this.setDeck(deck);
+        this.deck = deck.clone();
         this.stage = -1;
+        this.mutableDeck = deck.clone();
+        this.mutableDeck.removeCard(this.getDeck().getHero().getId());
+        this.collectableItems = new HashMap<>();
+        this.graveYard = new HashMap<>();
+        this.cardsInGameBoard = new Deck("");
+        hand = new Hand(mutableDeck);
     }
 
     public void setStage(int stage) {

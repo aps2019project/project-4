@@ -13,7 +13,7 @@ public class Hand {
 
     public Hand(Deck mutableDeck) {
         for (int i = 0; i <= 5; i++) {
-            Card card = new ArrayList<Card>(mutableDeck.getCards().values()).get(0);
+            Card card = new ArrayList<Card>(mutableDeck.getCards().values()).get(i);
             if (i != 5)
                 cards.put(card.getId(), card);
             else

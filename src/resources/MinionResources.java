@@ -296,7 +296,7 @@ public class MinionResources {
                 "\"requiredManas\": 1,\n" +
                 "\"price\": 600\n" +
                 "}");
-        getMinionResource().put("transoxaninan spearsman", "{\n" +
+        getMinionResource().put("transoxanian spearsman", "{\n" +
                 "\"healthPoint\": 4,\n" +
                 "\"attackPoint\": 4,\n" +
                 "\"startRange\": 1,\n" +
