@@ -50,21 +50,20 @@ public class Buff {
         this.numberOfTurnsOnTarget = numberOfTurnsOnTarget;
     }
 
-    public void nutralize(Enums.BuffNutralizer buffNutralizer){
-        switch (buffNutralizer){
+    public void nutralize(Enums.BuffNutralizer buffNutralizer) {
+        switch (buffNutralizer) {
             case POSITIVE:
         }
     }
 
-    public void stickBuffTo(Cell cell){
-        if (onCellOrSoldier == Enums.OnCellOrSoldier.SOLDIER){
+    public void stickBuffTo(Cell cell) {
+        if (onCellOrSoldier == Enums.OnCellOrSoldier.SOLDIER) {
             if (isPositive)
                 cell.getMinion().getPositiveBuffs().add(this);
             else
                 cell.getMinion().getNegativeBuffs().add(this);
             cell.getMinion().applyBuff(this);
-        }
-        else{
+        } else {
             cell.addBuff(this);
         }
     }
@@ -95,5 +94,17 @@ public class Buff {
 
     public void setNumberOfTurns(int numberOfTurns) {
         this.numberOfTurns = numberOfTurns;
+    }
+
+    public void reduceDelay() {
+        if (delay > 0)
+            delay--;
+    }
+
+    public void reduceNumberOfTurns() {
+        if (numberOfTurns > 0)
+            numberOfTurns --;
+        if (numberOfTurnsOnTarget > 0)
+            numberOfTurnsOnTarget --;
     }
 }

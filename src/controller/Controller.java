@@ -505,7 +505,9 @@ public class Controller {
                 Account.getCurrentAccount().getCurrentBattle().insert(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)));
                 break;
             case 11:
-                //todo end turn
+                Battle battle = Account.getCurrentAccount().getCurrentBattle();
+                battle.nextTurn();
+                View.showNextTurnMessage(battle);
                 break;
             case 12:
                 //todo show collectable items
