@@ -126,6 +126,13 @@ public class View {
         System.out.print("1.Create Account\n2.Login\n3.Show Leaderboard\n4.Save\n5.Help\n6.Exit game\n");
     }
 
+    public static void showNextTurnMessage(Battle battle) {
+        if (battle.getWhoseTurn() == battle.getPlayer1())
+            System.out.println("Player1's Turn");
+        else
+            System.out.println("Player2's Turn");
+    }
+
     private static void showMainMenu() {
         System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n7.Money\n");
     }
@@ -171,7 +178,7 @@ public class View {
     }
 
     public static void showHasAttackedMessage(String string) {
-        System.out.printf("This card with id: %s has attacked this turn\n", string);
+        System.err.printf("This card with id: %s has attacked this turn\n", string);
     }
 
     public static void showInsertedMinionMessage(String name, String id, int x, int y) {
@@ -275,15 +282,21 @@ public class View {
     public static void showMyMinions() {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().myMinionsInfo());
     }
-    public static void showGameBoardInfo(GameBoard gameBoard, int a){
+
+    public static void showGameBoardInfo(GameBoard gameBoard, int a) {
         System.out.println(gameBoard.gameBoardInfo());
     }
+
     public static void showOpponentMinions() {
         System.out.println(Account.getCurrentAccount().getCurrentBattle().opponentMinionsInfo());
     }
 
-    public static void showInvalidSelectionMessage(){
-        System.out.println("invalid selection");
+    public static void showInvalidSelectionMessage() {
+        System.err.println("invalid selection");
+    }
+
+    public static void showCardHasNotSelected() {
+        System.err.println("Select a card first");
     }
 
     public static void showCardInfo(String cardID) throws Exception {

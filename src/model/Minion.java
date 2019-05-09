@@ -156,6 +156,7 @@ public class Minion extends Card {
             return;
         }
         this.hurtMinion(minion);
+        this.lockAttack();
     }
 
     public void moveTo(Cell cell) {
@@ -175,7 +176,8 @@ public class Minion extends Card {
         this.getCellPlace().setMinion(null);
         this.setCellPlace(cell);
         cell.setMinion(this);
-        if (cell.getIsFlag()){
+        lockMovement();
+        if (cell.getIsFlag()) {
             cell.setFlag(false);
             this.catchFlag();
         }
@@ -192,7 +194,7 @@ public class Minion extends Card {
                 cellPlace.getDistance(cell.getX(), cell.getY()) < startRange) {
             return;
         }
-        if (cell.getIsFlag()){
+        if (cell.getIsFlag()) {
             cell.setFlag(false);
             this.catchFlag();
         }
@@ -200,7 +202,6 @@ public class Minion extends Card {
         this.setCellPlace(cell);
         cell.setMinion(this);
     }
-
 
 
     public void changeHp(int number) {
@@ -413,26 +414,56 @@ public class Minion extends Card {
             this.removeAllNegativeBuffs();
     }
 
-    public boolean isDead(){
+    public boolean isDead() {
         if (this.getHealthPoint() <= 0)
             return true;
         return false;
     }
 
-    public void removeExpiredBuffs(){
+    public void removeExpiredBuffs() {
         Iterator<Buff> iterator = negativeBuffs.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Buff buff = iterator.next();
-            if (buff.getNumberOfTurns() == 0){
+            if (buff.getNumberOfTurns() == 0) {
                 iterator.remove();
             }
         }
         iterator = positiveBuffs.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Buff buff = iterator.next();
-            if (buff.getNumberOfTurns() == 0){
+            if (buff.getNumberOfTurns() == 0) {
                 iterator.remove();
             }
+        }
+    }
+
+    public void unlockMovement() {
+        hasMovedThisTurn = false;
+    }
+
+    public void unlockAttack() {
+        hasAttackedThisTurn = false;
+    }
+
+    public void reduceDelays() {
+        for (Buff buff : positiveBuffs) {
+            buff.reduceDelay();
+        }
+        for (Buff buff : negativeBuffs) {
+            buff.reduceDelay();
+        }
+    }
+
+    public void reduceNumberOfTurns() {
+        if (numberOfTurnsOfStun > 0)
+            this.numberOfTurnsOfStun--;
+        if (numberOfTurnsOfDisarm > 0)
+            this.numberOfTurnsOfDisarm--;
+        for (Buff buff : positiveBuffs) {
+            buff.reduceNumberOfTurns();
+        }
+        for (Buff buff : negativeBuffs) {
+            buff.reduceNumberOfTurns();
         }
     }
 }

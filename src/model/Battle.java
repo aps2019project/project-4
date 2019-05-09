@@ -247,16 +247,13 @@ public class Battle {
         return false;
     }
 
-    public void select(String cardId) {
-        Card card = whoseTurn.getCardsInGameBoard().getCards().get(cardId);
-        if (card != null)
-            whoseTurn.setSelectedCard();
-        else
-    }
-
-    public void attack(String cardId, int x, int y) {
+    public void attack(int x, int y) {
         Cell cell = gameBoard.getCell(x, y);
-        Card card = whoseTurn.getCardsInGameBoard().getCards().get(cardId);
+        Card card = whoseTurn.getSelectedCard();
+        if (card == null){
+            View.showCardHasNotSelected();
+            return;
+        }
         if (card instanceof Minion) {
             Minion minion = (Minion) card;
             minion.attack(cell.getMinion());
@@ -301,10 +298,7 @@ public class Battle {
                 minion.catchFlag();
             }
         }
-        if (whoseTurn == player1)
-            View.showGameBoardInfo(this.gameBoard, 1);
-        else
-            View.showGameBoardInfo(this.gameBoard, 2);
+        boardInfo();
     }
 
     private void insertNewCardInHand(Card card) {
@@ -459,6 +453,7 @@ public class Battle {
             if (!(this.getWhoseTurn() instanceof  AIPlayer))
             View.showMinionsBetweenMessage();
         }
+        boardInfo();
     }
 
     public boolean isEmpty(ArrayList<Cell> cells) {
@@ -556,11 +551,32 @@ public class Battle {
     public void nextTurn() {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
-
-                gameBoard.getCell(i, j).removeExpiredBuffs();
-                gameBoard.getCell(i, j).getMinion().removeExpiredBuffs();
+                Cell cell = gameBoard.getCell(i, j);
+                Minion minion = cell.getMinion();
+                cell.removeExpiredBuffs();
+                minion.removeExpiredBuffs();
+                minion.unlockAttack();
+                minion.unlockMovement();
+                unselectCards();
+                swapWhoseTurn();
             }
         }
+        //todo unlock attack and movement
+        //todo select cards should be set to null
     }
-
+    public void boardInfo(){
+        if (whoseTurn == player1)
+            View.showGameBoardInfo(this.gameBoard, 1);
+        else
+            View.showGameBoardInfo(this.gameBoard, 2);
+    }
+    public void swapWhoseTurn(){
+        Player temp = whoseNext;
+        whoseNext = whoseTurn;
+        whoseTurn = temp;
+    }
+    public void unselectCards(){
+        player1.setSelectedCard(null);
+        player2.setSelectedCard(null);
+    }
 }
