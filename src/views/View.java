@@ -331,6 +331,9 @@ public class View {
         System.out.println("Next Card:");
         System.out.println((Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getNextCard().info()));
     }
+    public static void showComboNotSupportedMessage(){
+        System.out.println("First selected card doesn't have combo ability");
+    }
 
     public static void showComboAttack(int number){
         System.out.printf("combo attack done by %d minions", number);

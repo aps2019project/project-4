@@ -289,6 +289,8 @@ public class Battle {
             }
             View.showComboAttack(getComboCandidates(strings).size());
         }
+        else
+            View.showComboNotSupportedMessage();
     }
 
     public ArrayList<Minion> getComboCandidates(ArrayList<String> strings) {
