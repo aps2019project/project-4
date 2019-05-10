@@ -17,7 +17,7 @@ public class Player {
     protected HashMap<String, Item> collectableItems;
     protected HashMap<String, Card> graveYard;
     protected Deck cardsInGameBoard;
-    private int mana = 2;
+    private int mana = 100;
 
     public Player(String name, Deck mainDeck) {
         this.name = name;

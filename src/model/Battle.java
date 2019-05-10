@@ -250,13 +250,13 @@ public class Battle {
     public void select(String cardId) {
         Card card = whoseTurn.getCardsInGameBoard().getCards().get(cardId);
         //if (card != null)
-            //whoseTurn.setSelectedCard();
+        //whoseTurn.setSelectedCard();
         //else
     }
 
     public void attack(int x, int y) {
         Cell cell = gameBoard.getCell(x, y);
-        if (!whoseNext.getDeck().getCards().containsKey(cell.getMinion().getId())){
+        if (cell.getMinion() == null || !whoseNext.getDeck().getCards().containsKey(cell.getMinion().getId())) {
             View.showInvalidAttackMessage();
             return;
         }
@@ -293,10 +293,9 @@ public class Battle {
                 if (insertSpell((Spell) card, x, y)) {
                     whoseTurn.getHand().removeCard(card);
                     whoseTurn.getCardsInGameBoard().addCard(card);
-                    whoseTurn.changeMana( -card.getRequiredManas());
+                    whoseTurn.changeMana(-card.getRequiredManas());
                 }
-            }
-            else
+            } else
                 View.showNotEnoughManasMessage();
         } else if (card instanceof Minion) {
             if (whoseTurn.getMana() >= card.getRequiredManas()) {
@@ -318,15 +317,14 @@ public class Battle {
                     cell.setFlag(false);
                     minion.catchFlag();
                 }
-            }
-            else
+            } else
                 View.showNotEnoughManasMessage();
         }
         boardInfo();
     }
 
     private void insertNewCardsInHand() {
-        while(whoseTurn.getHand().getCards().size() < 5 && whoseTurn.getHand().getNextCard() != null) {
+        while (whoseTurn.getHand().getCards().size() < 5 && whoseTurn.getHand().getNextCard() != null) {
             whoseTurn.getHand().moveNextCardToHand(whoseTurn.getMutableDeck());
             whoseTurn.getHand().changeNextCard(whoseTurn.getMutableDeck());
         }
@@ -341,14 +339,14 @@ public class Battle {
                 for (Buff buff : spell.getBuffs()) {
                     gameBoard.putBuffInSquare(buff, x, y, spell.getLengthOfSideOfSquare());
                     result = true;
-                }//todo random
+                }
             }
         } else {
             ArrayList<Cell> targets = gameBoard.cellTargets(spell.getCellsType(), x, y, spell.getLengthOfSideOfSquare());
             switch (spell.getTarget()) {
                 case ENEMY:
                     for (Cell cell1 : targets) {
-                        if (whoseNext.getDeck().getCards().containsKey(cell1.getMinion().getId())) {
+                        if (cell1.getMinion() != null && whoseNext.getDeck().getCards().containsKey(cell1.getMinion().getId())) {
                             result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.POSITIVE ||
                                     spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
@@ -362,7 +360,7 @@ public class Battle {
                     break;
                 case FRIEND:
                     for (Cell cell1 : targets) {
-                        if (whoseTurn.getDeck().getCards().containsKey(cell1.getMinion().getId())) {
+                        if (cell1.getMinion() != null && whoseTurn.getDeck().getCards().containsKey(cell1.getMinion().getId())) {
                             result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.NEGATIVE ||
                                     spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
@@ -392,38 +390,17 @@ public class Battle {
                     }
                     break;
                 case ENEMY_HERO:
-                    for (Cell cell1 : targets) {
-                        if (whoseNext.getDeck().getHero() == cell1.getMinion()) {
-                            result = true;
-                            if (spell.getBuffNutralizer() == Enums.BuffNutralizer.POSITIVE ||
-                                    spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
-                                cell1.getMinion().removeAllPositiveBuffs();
-                            for (Buff buff : spell.getBuffs()) {
-                                buff.stickBuffTo(cell1);
-                                cell1.getMinion().applyBuff(buff);
-                            }
-                            break;
-                        }
-                    }
+                    applySpellOnHero(spell, whoseNext);
+                    result = true;
                     break;
                 case FRIEND_HERO:
-                    for (Cell cell1 : targets) {
-                        if (whoseTurn.getDeck().getHero() == cell1.getMinion()) {
-                            result = true;
-                            if (spell.getBuffNutralizer() == Enums.BuffNutralizer.NEGATIVE ||
-                                    spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
-                                cell1.getMinion().removeAllNegativeBuffs();
-                            for (Buff buff : spell.getBuffs()) {
-                                buff.stickBuffTo(cell1);
-                                cell1.getMinion().applyBuff(buff);
-                            }
-                            break;
-                        }
-                    }
+                    applySpellOnHero(spell, whoseTurn);
+                    result = true;
                     break;
                 case ENEMY_MINION:
                     for (Cell cell1 : targets) {
-                        if (whoseNext.getDeck().getCards().containsKey(cell1.getMinion().getId()) &&
+                        if (cell1.getMinion() != null &&
+                                whoseNext.getDeck().getCards().containsKey(cell1.getMinion().getId()) &&
                                 whoseNext.getDeck().getHero() != cell1.getMinion()) {
                             result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.POSITIVE ||
@@ -438,7 +415,8 @@ public class Battle {
                     break;
                 case FRIEND_MINION:
                     for (Cell cell1 : targets) {
-                        if (whoseTurn.getDeck().getCards().containsKey(cell1.getMinion().getId()) &&
+                        if (cell1.getMinion() != null &&
+                                whoseTurn.getDeck().getCards().containsKey(cell1.getMinion().getId()) &&
                                 whoseTurn.getDeck().getHero() != cell1.getMinion()) {
                             result = true;
                             if (spell.getBuffNutralizer() == Enums.BuffNutralizer.NEGATIVE ||
@@ -455,8 +433,20 @@ public class Battle {
         }
         if (result) {
             moveDeadsToGraveyard();
-        }
+        } else
+            View.showInvalidTargetMessage();
         return result;
+    }
+
+    private void applySpellOnHero(Spell spell, Player player) {
+        Hero hero = player.getCardsInGameBoard().getHero();
+        if (spell.getBuffNutralizer() == Enums.BuffNutralizer.POSITIVE ||
+                spell.getBuffNutralizer() == Enums.BuffNutralizer.BOTH)
+            hero.removeAllPositiveBuffs();
+        for (Buff buff : spell.getBuffs()) {
+            buff.stickBuffTo(hero.getCellPlace());
+            hero.applyBuff(buff);
+        }
     }
 
 //    public void insertSpellRandomly(Spell spell, int x, int y){
@@ -473,6 +463,10 @@ public class Battle {
         if (whoseTurn.getSelectedCard() instanceof Spell)
             throw new SpellsCanNotMoveException();
         Minion minion = ((Minion) whoseTurn.getSelectedCard());
+        if (minion == null){
+            View.showCardHasNotSelected();
+            return;
+        }
         Cell cell = minion.getCellPlace();
         if (!isMinionsBetween(cell, x, y) && !(this.getWhoseTurn() instanceof AIPlayer)) {
             minion.moveTo(gameBoard.getCell(x, y));
@@ -568,10 +562,16 @@ public class Battle {
                         minion.dropFlag();
                     cell.setMinion(null);
                     minion.setCellPlace(null);
-                    if (player1.getCardsInGameBoard().getCards().values().contains(minion))
+                    if (player1.getCardsInGameBoard().getCards().containsKey(minion.getId())) {
                         player1.getGraveYard().put(minion.getId(), minion);
-                    if (player1.getCardsInGameBoard().getCards().values().contains(minion))
-                        player1.getGraveYard().put(minion.getId(), minion);
+                        if (player1.getSelectedCard().getId().equals(minion.getId()))
+                            player1.setSelectedCard(null);
+                    }
+                    if (player2.getCardsInGameBoard().getCards().containsKey(minion.getId())) {
+                        player2.getGraveYard().put(minion.getId(), minion);
+                        if (player2.getSelectedCard().getId().equals(minion.getId()))
+                            player2.setSelectedCard(null);
+                    }
                 }
             }
         }
@@ -587,7 +587,8 @@ public class Battle {
                     minion.removeExpiredBuffs();
                     minion.unlockAttack();
                     minion.unlockMovement();
-                } catch (NullPointerException e){ }
+                } catch (NullPointerException e) {
+                }
                 cell.applyBuffs();
             }
         }
@@ -596,8 +597,9 @@ public class Battle {
         swapWhoseTurn();
         numberOfTurns++;
         handleManas();
-        //todo unlock attack and movement
-        //todo select cards should be set to null
+        if (whoseTurn instanceof AIPlayer){
+            ((AIPlayer) whoseTurn).handleTurn();
+        }
     }
 
     public void boardInfo() {
@@ -628,11 +630,5 @@ public class Battle {
         player1.setMana(numberOfManas);
         player2.setMana(numberOfManas);
     }
-    public void applyBuffsOfCellsOfGameboard(){
-        for (int i = 0; i < 5; i++){
-            for (int j = 0; j < 9; j++){
-                gameBoard.getCell(i, j).applyBuffs();
-            }
-        }
-    }
+
 }

@@ -165,6 +165,10 @@ public class View {
         System.out.println("Are you sure to exit?[Y/N]");
     }
 
+    public static void showUnableToCounterAttackMessage(){
+        System.out.println("Disarmed minion can not do a counter attack");
+    }
+
     public static void showStunnedCardMessage(String string) {
         System.err.printf("This card with id: %s is stuned\n", string);
     }

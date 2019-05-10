@@ -486,7 +486,7 @@ public class Controller {
                 View.showCardInfo(matcher.group(1));
                 break;
             case 4:
-                Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().selectCard(matcher.group(1));//TODO  add select Item
+                Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().selectCard(matcher.group(1));
                 break;
             case 5:
                 Account.getCurrentAccount().getCurrentBattle().moveTo(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));

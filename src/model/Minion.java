@@ -171,6 +171,8 @@ public class Minion extends Card {
                 hurtMinion(minion);
             }
         }
+        else
+            System.out.println("Disarmed minion can not do a counter attack");
     }
 
     public void moveTo(Cell cell) {
@@ -291,7 +293,7 @@ public class Minion extends Card {
     }
 
     public void applyBuff(Buff buff) {
-        if (buff.getDelay() == 0) {
+        if (buff.getDelay() == 0 && buff.getNumberOfTurns() > 0) {
             if (buff.isDisarmer() && !this.isAntiDisarm) {
                 int numberOfTurnsOfDisarm = buff.getNumberOfTurns();
                 this.isDisarmed = true;
@@ -324,6 +326,7 @@ public class Minion extends Card {
             }
             if (!this.isAntiPoison || !(buff.isPoison()))
                 this.changeHp(buff.getChangeHp());
+            buff.reduceNumberOfTurns();
         }
     }
 
@@ -433,14 +436,14 @@ public class Minion extends Card {
         Iterator<Buff> iterator = negativeBuffs.iterator();
         while (iterator.hasNext()) {
             Buff buff = iterator.next();
-            if (buff.getNumberOfTurns() == 0) {
+            if (buff.getNumberOfTurns() <= 0) {
                 iterator.remove();
             }
         }
         iterator = positiveBuffs.iterator();
         while (iterator.hasNext()) {
             Buff buff = iterator.next();
-            if (buff.getNumberOfTurns() == 0) {
+            if (buff.getNumberOfTurns() <= 0) {
                 iterator.remove();
             }
         }
