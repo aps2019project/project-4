@@ -332,6 +332,9 @@ public class View {
         System.out.println((Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().getHand().getNextCard().info()));
     }
 
+    public static void showComboAttack(int number){
+        System.out.printf("combo attack done by %d minions", number);
+    }
     public static void showCardNotInHandMessage() {
         System.err.println("Choose a card from your hand");
     }

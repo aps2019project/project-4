@@ -254,7 +254,7 @@ public class Minion extends Card {
             result.append(endRange - startRange)
                     .append("\n");
         }
-        result.append("Combo Ability: ").append(specialPowerActivationType).append("\n")
+        result.append("Ability: ").append(specialPowerActivationType).append("\n")
                 .append("Cost: ").append(price).append("\n")
                 .append("Description: ").append(description).append("\n");
         return result;

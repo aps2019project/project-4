@@ -278,6 +278,30 @@ public class Battle {
         }
     }
 
+    public void attackCombo(int x, int y, ArrayList<String> strings) {
+        if (((Minion) whoseTurn.getCardsInGameBoard().getCards().get(strings)).getSpecialPowerActivationType() == Enums.ActivationTypes.COMBO) {
+            Cell cell = gameBoard.getCell(x, y);
+            if (cell != null) {
+                Minion minion = cell.getMinion();
+                for (Minion minion1 : getComboCandidates(strings)){
+                    minion1.hurtMinion(minion);
+                }
+            }
+            View.showComboAttack(getComboCandidates(strings).size());
+        }
+    }
+
+    public ArrayList<Minion> getComboCandidates(ArrayList<String> strings) {
+        ArrayList<Minion> minions = new ArrayList<>();
+        for (String string : strings) {
+            if (whoseTurn.getCardsInGameBoard().getCards().get(string) instanceof Minion) {
+                Minion minion = (Minion)whoseTurn.getCardsInGameBoard().getCards().get(string);
+                if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.COMBO)
+                    minions.add(minion);
+            }
+        }
+        return minions;
+    }
 
     public void insert(String cardId, int x, int y) throws Exception {
         if (!((x < 5 && y < 9 && x >= 0 && y >= 0)))
@@ -463,7 +487,7 @@ public class Battle {
         if (whoseTurn.getSelectedCard() instanceof Spell)
             throw new SpellsCanNotMoveException();
         Minion minion = ((Minion) whoseTurn.getSelectedCard());
-        if (minion == null){
+        if (minion == null) {
             View.showCardHasNotSelected();
             return;
         }
@@ -597,7 +621,7 @@ public class Battle {
         swapWhoseTurn();
         numberOfTurns++;
         handleManas();
-        if (whoseTurn instanceof AIPlayer){
+        if (whoseTurn instanceof AIPlayer) {
             ((AIPlayer) whoseTurn).handleTurn();
         }
     }

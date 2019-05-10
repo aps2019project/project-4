@@ -70,7 +70,7 @@ public class Controller {
         patternsOfBattleMenu.add(Pattern.compile("Select (\\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Move to (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Attack (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
-        patternsOfBattleMenu.add(Pattern.compile("Attack combo (\\w+) ([\\w\\s]+)", Pattern.CASE_INSENSITIVE));
+        patternsOfBattleMenu.add(Pattern.compile("Attack combo (\\d+),\\s+(\\d+) ([\\w+\\s]* \\w+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Use special power (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Show hand", Pattern.CASE_INSENSITIVE));
         patternsOfBattleMenu.add(Pattern.compile("Insert (\\w+) in (\\d+),\\s+(\\d+)", Pattern.CASE_INSENSITIVE));
@@ -491,17 +491,28 @@ public class Controller {
             case 5:
                 Account.getCurrentAccount().getCurrentBattle().moveTo(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
                 break;
-            case 6:
+            case 6: {
                 Battle battle = Account.getCurrentAccount().getCurrentBattle();
                 battle.attack(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
+            }
                 break;
-            case 7:
-                //todo attack combo
+            case 7: {
+                Battle battle = Account.getCurrentAccount().getCurrentBattle();
+                int x = Integer.parseInt(matcher.group(1));
+                int y = Integer.parseInt(matcher.group(2));
+                String string = matcher.group(3);
+                String[] strings = string.split(" ");
+                ArrayList<String> stringArrayList = new ArrayList<>();
+                for (String string1 : strings)
+                    stringArrayList.add(string1);
+                battle.attackCombo(x, y, stringArrayList);
+            }
                 break;
-            case 8:
-                Battle battle2 = Account.getCurrentAccount().getCurrentBattle();
-                Spell spell = battle2.getWhoseTurn().getDeck().getHero().getSpecialPower();
-                battle2.insertSpell(spell, Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
+            case 8: {
+                Battle battle = Account.getCurrentAccount().getCurrentBattle();
+                Spell spell = battle.getWhoseTurn().getDeck().getHero().getSpecialPower();
+                battle.insertSpell(spell, Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
+            }
                 break;
             case 9:
                 View.showHand();
@@ -509,10 +520,11 @@ public class Controller {
             case 10:
                 Account.getCurrentAccount().getCurrentBattle().insert(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)));
                 break;
-            case 11:
-                Battle battle1 = Account.getCurrentAccount().getCurrentBattle();
-                battle1.nextTurn();
-                View.showNextTurnMessage(battle1);
+            case 11: {
+                Battle battle = Account.getCurrentAccount().getCurrentBattle();
+                battle.nextTurn();
+                View.showNextTurnMessage(battle);
+            }
                 break;
             case 12:
                 //todo show collectable items
