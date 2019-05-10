@@ -29,6 +29,19 @@ public class Account {
         this.currentBattle = null;
     }
 
+    public void addMatchHistory(Battle battle){
+        if (battle.getWinner() == null)
+            return;
+        if (battle.getWinner().getName().equals(this.getName())){
+            Match match = new Match(battle.getLoser().getName() , true , battle.getEndTime());
+            this.getMatchHistory().add(match);
+        } else {
+            Match match = new Match(battle.getWinner().getName() , false , battle.getEndTime());
+            this.getMatchHistory().add(match);
+        }
+
+    }
+
     public String getName() {
         return this.name;
     }

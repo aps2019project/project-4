@@ -7,7 +7,8 @@ import java.util.Random;
 public class AIPlayer extends Player {
     private int stage;
 
-    public AIPlayer(Deck deck) {
+    public AIPlayer(String name, Deck deck) {
+        this.name = name;
         this.deck = deck.clone();
         this.stage = -1;
         this.mutableDeck = deck.clone();

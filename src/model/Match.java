@@ -1,17 +1,15 @@
 package model;
 
-import java.sql.Time;
-
 public class Match {
 
     private boolean isWin;
     private String opponent;
-    private Time timeOfGame;
+    private long endTimeOfGame;
 
-    public Match(String opponent, boolean isWin, Time timeOfGame) {
+    public Match(String opponent, boolean isWin, long endTimeOfGame) {
         this.opponent = opponent;
         this.isWin = isWin;
-        this.timeOfGame = timeOfGame;
+        this.endTimeOfGame = endTimeOfGame;
     }
 
     public String getOpponent() {
@@ -22,15 +20,30 @@ public class Match {
         return isWin;
     }
 
-    public Time getTimeOfGame() {
-        return timeOfGame;
+    public long getEndTimeOfGame() {
+        return endTimeOfGame;
     }
 
     @Override
     public String toString() {
-        if (isWin)
-            return opponent + "    " + "wins!" + "   " + timeOfGame + "\n";
-        else
-            return opponent + "    " + "loss!" + "   " + timeOfGame + "\n";
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Opponent or stage: ").append(getOpponent()).append("  ").append(" Result");
+        if (isWin) {
+            stringBuilder.append("Win!   ");
+        } else {
+            stringBuilder.append("Loss!  ");
+        }
+        stringBuilder.append("Time: ").append(timeAgo(getEndTimeOfGame()));
+        return stringBuilder.toString();
+    }
+
+    private String timeAgo(long endTimeOfGame) {
+        if (((System.currentTimeMillis() - endTimeOfGame) / 1000) > 3600) {
+             return ((System.currentTimeMillis() - endTimeOfGame) / 3_600_000) + " hours ago";
+        }
+        if (((System.currentTimeMillis() - endTimeOfGame) / 1000) > 60){
+            return  ((System.currentTimeMillis() - endTimeOfGame) / 60_000) + " minutes ago";
+        }
+        return  ((System.currentTimeMillis() - endTimeOfGame) / 1_000) + " second ago";
     }
 }

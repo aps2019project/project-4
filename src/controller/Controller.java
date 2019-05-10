@@ -7,6 +7,7 @@ import views.Exceptions.*;
 import resources.Resources;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,6 +38,7 @@ public class Controller {
         patternsOfMainMenu.add(Pattern.compile("exit", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("help", Pattern.CASE_INSENSITIVE));
         patternsOfMainMenu.add(Pattern.compile("money", Pattern.CASE_INSENSITIVE));
+        patternsOfMainMenu.add(Pattern.compile("show match history", Pattern.CASE_INSENSITIVE));
 
         patternsOfCollectionMenu.add(Pattern.compile("back", Pattern.CASE_INSENSITIVE));
         patternsOfCollectionMenu.add(Pattern.compile("show", Pattern.CASE_INSENSITIVE));
@@ -211,7 +213,7 @@ public class Controller {
             String stage = Controller.getNextLine();
             try {
                 if (stage.toLowerCase().equals("stage 1")) {
-                    AIPlayer player = new AIPlayer(StageResources.getStage(0).getDeck());
+                    AIPlayer player = new AIPlayer("stage 1", StageResources.getStage(0).getDeck());
                     player.setStage(1);
                     Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
@@ -219,7 +221,7 @@ public class Controller {
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 2")) {
-                    AIPlayer player = new AIPlayer(StageResources.getStage(1).getDeck());
+                    AIPlayer player = new AIPlayer("stage 2" , StageResources.getStage(1).getDeck());
                     player.setStage(2);
                     Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
@@ -227,7 +229,7 @@ public class Controller {
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 3")) {
-                    AIPlayer player = new AIPlayer(StageResources.getStage(2).getDeck());
+                    AIPlayer player = new AIPlayer( "stage 3",StageResources.getStage(2).getDeck());
                     player.setStage(3);
                     Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
@@ -257,7 +259,7 @@ public class Controller {
                 if (matcher1.matches()) {
                     if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher1.group(1)) == null)
                         throw new DeckNotAvailabilityException(matcher1.group(1), true);
-                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer(
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer("Custom game with deck " + matcher1.group(1) ,
                             Account.getCurrentAccount().getCollection().getValidDecks().get(matcher1.group(1)).clone()));
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
                     Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher1.group(2).trim()));
@@ -266,6 +268,8 @@ public class Controller {
                 if (matcher2.matches()) {
                     if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher2.group(1)) == null)
                         throw new DeckNotAvailabilityException(matcher2.group(1), true);
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer("Custom game with deck " + matcher2.group(1) ,
+                            Account.getCurrentAccount().getCollection().getValidDecks().get(matcher2.group(1)).clone()));
                     switch (matcher2.group(2)) {
                         case "1":
                             Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.HERO_VS_HERO);
@@ -363,7 +367,7 @@ public class Controller {
     }
 
     public static String getNextLine() {
-        return Controller.getScanner().nextLine();
+        return Controller.getScanner().nextLine().trim().replaceAll("\\s+", " ");
     }
 
     public static void doCommand() {
@@ -389,10 +393,8 @@ public class Controller {
                     doGraveYardMenuCommand(index);
             }
         } catch (InvalidCommandException e) {
-            e.printStackTrace();
             e.showMessage();
         } catch (Exception e) {
-            e.printStackTrace();
             System.err.println(e.getMessage());
         }
 
@@ -417,6 +419,8 @@ public class Controller {
                 break;
             case 4:
                 View.showMoney();
+            case 5:
+                View.showMacthHistory();
         }
     }
 
@@ -501,10 +505,9 @@ public class Controller {
                 int x = Integer.parseInt(matcher.group(1));
                 int y = Integer.parseInt(matcher.group(2));
                 String string = matcher.group(3);
-                String[] strings = string.split(" ");
+                String[] strings = string.split("\\s+");
                 ArrayList<String> stringArrayList = new ArrayList<>();
-                for (String string1 : strings)
-                    stringArrayList.add(string1);
+                Collections.addAll(stringArrayList, strings);
                 battle.attackCombo(x, y, stringArrayList);
             }
                 break;

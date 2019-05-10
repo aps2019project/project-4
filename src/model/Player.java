@@ -6,7 +6,7 @@ import views.View;
 import java.util.HashMap;
 
 public class Player {
-    private String name;
+    protected String name;
     protected Deck deck;//first deck
     protected Deck mutableDeck;//mutable deck
     protected Hand hand;
@@ -85,8 +85,6 @@ public class Player {
         return selectedItem;
     }
 
-    public void putCardInGraveYard(Card card) {
-    }
 
     public void changeMana(int change) {
         this.mana += change;
