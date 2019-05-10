@@ -336,7 +336,7 @@ public class View {
     }
 
     public static void showComboAttack(int number){
-        System.out.printf("combo attack done by %d minions", number);
+        System.out.printf("combo attack done by %d minions\n", number);
     }
     public static void showCardNotInHandMessage() {
         System.err.println("Choose a card from your hand");
@@ -348,6 +348,9 @@ public class View {
 
     public static void showSelectCardMessage(String cardId) {
         System.out.println("The card with id " + cardId + " selected!");
+    }
+    public static void showComboOutOfRangeMessage(){
+        System.out.println("selected target is out of range for combo attack");
     }
 
     public static void showValidateDeckMessage(String deckName) throws DeckNotAvailabilityException {

@@ -279,15 +279,21 @@ public class Battle {
     }
 
     public void attackCombo(int x, int y, ArrayList<String> strings) {
-        if (((Minion) whoseTurn.getCardsInGameBoard().getCards().get(strings)).getSpecialPowerActivationType() == Enums.ActivationTypes.COMBO) {
-            Cell cell = gameBoard.getCell(x, y);
-            if (cell != null) {
-                Minion minion = cell.getMinion();
-                for (Minion minion1 : getComboCandidates(strings)){
-                    minion1.hurtMinion(minion);
+        if (((Minion) whoseTurn.getCardsInGameBoard().getCards().get(strings.get(0))).getSpecialPowerActivationType() == Enums.ActivationTypes.COMBO) {
+            Minion m = (Minion) whoseTurn.getCardsInGameBoard().getCards().get(strings.get(0));
+            if (m.getCellPlace().getDistance(x, y) <= m.getEndRange() &&
+                    m.getCellPlace().getDistance(x, y) >= m.getStartRange()) {
+                Cell cell = gameBoard.getCell(x, y);
+                if (cell != null) {
+                    Minion minion = cell.getMinion();
+                    for (Minion minion1 : getComboCandidates(strings)) {
+                        minion1.hurtMinion(minion);
+                    }
                 }
+                View.showComboAttack(getComboCandidates(strings).size());
             }
-            View.showComboAttack(getComboCandidates(strings).size());
+            else
+                View.showComboOutOfRangeMessage();
         }
         else
             View.showComboNotSupportedMessage();

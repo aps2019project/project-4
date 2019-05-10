@@ -22,7 +22,7 @@ public class Account {
     public Account(String name, String password) {
         this.name = name;
         this.password = password;
-        this.drack = 25000;
+        this.drack = 250000;
         this.matchHistory = new ArrayList<>();
         this.collection = new Collection();
         this.selectedDeck = null;
