@@ -48,6 +48,7 @@ public class View {
         System.out.println("exit game: Exit from game");
         System.out.println("help: to show help");
         System.out.println("money: show amount of your money");
+        System.out.println("show match history: show history of your matches!");
     }
 
     private static void showCollectionMenuHelp() {
@@ -134,12 +135,20 @@ public class View {
     }
 
     private static void showMainMenu() {
-        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n7.Money\n");
+        System.out.print("1.Collection\n2.Shop\n3.Battle\n4.Logout\n5.Exit game\n6.Help\n7.Money\n8.Match history\n");
     }
+
     public static void showNotEnoughManasMessage(){
         System.out.println("You don't have enough mana");
-
     }
+
+
+    public static void showMacthHistory(){
+        Account.getCurrentAccount().getMatchHistory().forEach(match -> {
+            System.out.println(match.toString());
+        });
+    }
+
     public static void showSuccessfulAccountCreationMessage(String userName) {
         System.out.println("The account with name " + userName + " created!");
     }

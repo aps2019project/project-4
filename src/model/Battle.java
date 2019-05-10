@@ -14,7 +14,7 @@ public class Battle {
     private Player whoseTurn;
     private Player whoseNext;
     private Player winner;
-    private int seconds;
+    private long endTime;
     private GameBoard gameBoard;
     private Enums.GameMode gameMode;
     private Enums.SingleOrMulti opponent;
@@ -24,6 +24,10 @@ public class Battle {
 
     public Player getWhoseTurn() {
         return whoseTurn;
+    }
+
+    public void setEndTime() {
+        this.endTime = System.currentTimeMillis();
     }
 
     public Battle(Player player1) {
@@ -64,6 +68,10 @@ public class Battle {
 
     public Player getWinner() {
         return winner;
+    }
+
+    public long getEndTime() {
+        return endTime;
     }
 
     public Player getLoser() {
@@ -276,6 +284,8 @@ public class Battle {
                 moveDeadsToGraveyard();
             }
         }
+        if (isGameEnded())
+            endBattle();
     }
 
     public void attackCombo(int x, int y, ArrayList<String> strings) {
@@ -283,21 +293,23 @@ public class Battle {
             Cell cell = gameBoard.getCell(x, y);
             if (cell != null) {
                 Minion minion = cell.getMinion();
-                for (Minion minion1 : getComboCandidates(strings)){
+                for (Minion minion1 : getComboCandidates(strings)) {
                     minion1.hurtMinion(minion);
                 }
             }
-            View.showComboAttack(getComboCandidates(strings).size());
-        }
-        else
+            if (!(whoseTurn instanceof AIPlayer))
+                View.showComboAttack(getComboCandidates(strings).size());
+        } else if (!(whoseTurn instanceof AIPlayer))
             View.showComboNotSupportedMessage();
+        if (isGameEnded())
+            endBattle();
     }
 
     public ArrayList<Minion> getComboCandidates(ArrayList<String> strings) {
         ArrayList<Minion> minions = new ArrayList<>();
         for (String string : strings) {
             if (whoseTurn.getCardsInGameBoard().getCards().get(string) instanceof Minion) {
-                Minion minion = (Minion)whoseTurn.getCardsInGameBoard().getCards().get(string);
+                Minion minion = (Minion) whoseTurn.getCardsInGameBoard().getCards().get(string);
                 if (minion.getSpecialPowerActivationType() == Enums.ActivationTypes.COMBO)
                     minions.add(minion);
             }
@@ -343,7 +355,7 @@ public class Battle {
                     cell.setFlag(false);
                     minion.catchFlag();
                 }
-            } else
+            } else if (!(getWhoseTurn() instanceof AIPlayer))
                 View.showNotEnoughManasMessage();
         }
         boardInfo();
@@ -538,6 +550,10 @@ public class Battle {
         Account.getCurrentAccount().setCurrentBattle(null);
         Controller.enterEndBattleMenu(this);
         Account.getAccounts().get(this.getWinner().getName()).changeDrack(this.getReward());
+        setEndTime();
+        Account.getCurrentAccount().addMatchHistory(this);
+        if (!(this.getPlayer2() instanceof AIPlayer))
+            Account.getAccounts().get(player2.getName()).addMatchHistory(this);
     }
 
     public boolean isEndedMultipleFlagGame() {
@@ -565,14 +581,16 @@ public class Battle {
     }
 
     public boolean isEndedHeroVsHeroGame() {
-        if (!this.getPlayer1().getCardsInGameBoard().isHaveHero() && this.getPlayer2().getMutableDeck().isHaveHero()) {
+        if (!this.getPlayer1().getCardsInGameBoard().isHaveHero() && this.getPlayer2().getCardsInGameBoard().isHaveHero()) {
             this.setWinner(player2);
             return true;
         }
-        if (this.getPlayer1().getCardsInGameBoard().isHaveHero() && !this.getPlayer2().getMutableDeck().isHaveHero()) {
+        if (this.getPlayer1().getCardsInGameBoard().isHaveHero() && !this.getPlayer2().getCardsInGameBoard().isHaveHero()) {
             this.setWinner(player1);
             return true;
         }
+        if (!this.getPlayer1().getCardsInGameBoard().isHaveHero() && !this.getPlayer2().getCardsInGameBoard().isHaveHero())
+            return true;
         return false;
     }
 
@@ -623,6 +641,8 @@ public class Battle {
         swapWhoseTurn();
         numberOfTurns++;
         handleManas();
+        if (isGameEnded())
+            endBattle();
         if (whoseTurn instanceof AIPlayer) {
             ((AIPlayer) whoseTurn).handleTurn();
         }
