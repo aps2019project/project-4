@@ -34,7 +34,7 @@ public class AIPlayer extends Player {
         try {
             Random random = new Random();
             ArrayList<Card> cards = new ArrayList<>(hand.getCards().values());
-            for (Card card : cards){
+            for (Card card : cards) {
                 if (card instanceof Minion) {
                     battle.insert(card.getId(), random.nextInt(4), random.nextInt(9));
                     break;
