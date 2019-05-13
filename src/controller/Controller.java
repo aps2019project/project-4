@@ -221,7 +221,7 @@ public class Controller {
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 2")) {
-                    AIPlayer player = new AIPlayer("stage 2" , StageResources.getStage(1).getDeck());
+                    AIPlayer player = new AIPlayer("stage 2", StageResources.getStage(1).getDeck());
                     player.setStage(2);
                     Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MONO_FLAG);
@@ -229,7 +229,7 @@ public class Controller {
                     return;
                 }
                 if (stage.toLowerCase().equals("stage 3")) {
-                    AIPlayer player = new AIPlayer( "stage 3",StageResources.getStage(2).getDeck());
+                    AIPlayer player = new AIPlayer("stage 3", StageResources.getStage(2).getDeck());
                     player.setStage(3);
                     Account.getCurrentAccount().getCurrentBattle().setPlayer2(player);
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
@@ -259,7 +259,7 @@ public class Controller {
                 if (matcher1.matches()) {
                     if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher1.group(1)) == null)
                         throw new DeckNotAvailabilityException(matcher1.group(1), true);
-                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer("Custom game with deck " + matcher1.group(1) ,
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer("Custom game with deck " + matcher1.group(1),
                             Account.getCurrentAccount().getCollection().getValidDecks().get(matcher1.group(1)).clone()));
                     Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
                     Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(Integer.parseInt(matcher1.group(2).trim()));
@@ -268,7 +268,7 @@ public class Controller {
                 if (matcher2.matches()) {
                     if (Account.getCurrentAccount().getCollection().getValidDecks().get(matcher2.group(1)) == null)
                         throw new DeckNotAvailabilityException(matcher2.group(1), true);
-                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer("Custom game with deck " + matcher2.group(1) ,
+                    Account.getCurrentAccount().getCurrentBattle().setPlayer2(new AIPlayer("Custom game with deck " + matcher2.group(1),
                             Account.getCurrentAccount().getCollection().getValidDecks().get(matcher2.group(1)).clone()));
                     switch (matcher2.group(2)) {
                         case "1":
@@ -282,6 +282,7 @@ public class Controller {
                             Account.getCurrentAccount().getCurrentBattle().setGameMode(Enums.GameMode.MULTIPLE_FLAG);
                             Account.getCurrentAccount().getCurrentBattle().setNumOfAllFlags(7);
                     }
+                    break;
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
@@ -499,7 +500,7 @@ public class Controller {
                 Battle battle = Account.getCurrentAccount().getCurrentBattle();
                 battle.attack(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
             }
-                break;
+            break;
             case 7: {
                 Battle battle = Account.getCurrentAccount().getCurrentBattle();
                 int x = Integer.parseInt(matcher.group(1));
@@ -510,13 +511,13 @@ public class Controller {
                 Collections.addAll(stringArrayList, strings);
                 battle.attackCombo(x, y, stringArrayList);
             }
-                break;
+            break;
             case 8: {
                 Battle battle = Account.getCurrentAccount().getCurrentBattle();
                 Spell spell = battle.getWhoseTurn().getDeck().getHero().getSpecialPower();
                 battle.insertSpell(spell, Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
             }
-                break;
+            break;
             case 9:
                 View.showHand();
                 break;
@@ -526,9 +527,8 @@ public class Controller {
             case 11: {
                 Battle battle = Account.getCurrentAccount().getCurrentBattle();
                 battle.nextTurn();
-                View.showNextTurnMessage(battle);
             }
-                break;
+            break;
             case 12:
                 //todo show collectable items
                 break;

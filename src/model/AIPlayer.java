@@ -1,5 +1,7 @@
 package model;
 
+import views.View;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -53,6 +55,7 @@ public class AIPlayer extends Player {
                 }
             }
             battle.attack(battle.getOppMinions().get(0).getCellPlace().getX() , battle.getOppMinions().get(0).getCellPlace().getY());
+            View.showGameBoardInfo(Account.getCurrentAccount().getCurrentBattle().getGameBoard() , 1);
             battle.nextTurn();
         } catch (Exception e) {
         }

@@ -652,6 +652,8 @@ public class Battle {
         if (whoseTurn instanceof AIPlayer) {
             ((AIPlayer) whoseTurn).handleTurn();
         }
+        if (!(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn() instanceof AIPlayer))
+            View.showNextTurnMessage(this);
     }
 
     public void boardInfo() {

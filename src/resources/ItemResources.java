@@ -40,7 +40,7 @@ public class ItemResources {
 
 
     public static void setItemResource() {
-        getUsableItemResource().put("Crown of wisdom", "");
+        //getUsableItemResource().put("Crown of wisdom", "");
         getUsableItemResource().put("Shame Emblem"
                 , "{\n" +
                         "\"cellOrSoldier\": \"SOLDIER\",\n" +
@@ -156,7 +156,7 @@ public class ItemResources {
                 "\"requiredManas\": 0,\n" +
                 "\"price\": 5000\n" +
                 "}");
-        getUsableItemResource().put("King Wisdom", "");
+        //getUsableItemResource().put("King Wisdom", "");
         getUsableItemResource().put("Assassination Dagger", "{\n" +
                 "\"cellOrSoldier\": \"SOLDIER\",\n" +
                 "\"target\": \"ENEMY_HERO\",\n" +
