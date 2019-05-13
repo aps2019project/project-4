@@ -18,8 +18,11 @@ public class SpellResources {
     public static Spell getSpecificSpell(String spellName) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        if (getSpecificSpellGson(spellName) != null)
-            return gson.fromJson(getSpellResource().get(spellName), Spell.class);
+        if (getSpecificSpellGson(spellName) != null) {
+            Spell spell = gson.fromJson(getSpellResource().get(spellName), Spell.class);
+            spell.setName(spellName);
+            return spell;
+        }
         return null;
     }
 
@@ -234,7 +237,7 @@ public class SpellResources {
                 "],\n" +
                 "\"cells\": [],\n" +
                 "\"id\": \"\",\n" +
-                "\"name\": \"Poinson Lake\",\n" +
+                "\"name\": \"Poison Lake\",\n" +
                 "\"requiredManas\": 5,\n" +
                 "\"price\": 900\n" +
                 "}");

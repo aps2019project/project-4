@@ -18,8 +18,11 @@ public class HeroResources {
     public static Hero getSpecificHero(String heroName) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        if (getSpecificHeroGson(heroName) != null)
-            return gson.fromJson(getHeroResource().get(heroName), Hero.class);
+        if (getSpecificHeroGson(heroName) != null) {
+            Hero hero = gson.fromJson(getHeroResource().get(heroName), Hero.class);
+            hero.setName(heroName);
+            return hero;
+        }
         return null;
     }
 

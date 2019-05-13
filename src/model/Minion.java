@@ -333,11 +333,13 @@ public class Minion extends Card {
 
     public void catchFlag() {
         this.hasFlag = true;
+        Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().changeNumberOfFlag(1);
     }
 
     public void dropFlag() {
         this.hasFlag = false;
         this.cellPlace.addFlag();
+        Account.getCurrentAccount().getCurrentBattle().getWhoseTurn().changeNumberOfFlag(-1);
     }
 
     public void hurtMinion(Minion minion) {

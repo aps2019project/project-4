@@ -98,7 +98,7 @@ public class Account {
         ArrayList<Account> accounts = new ArrayList<>(getAccounts().values());
         accounts.sort(((a1, a2) -> {
             if (a1.getNumOfWins() != a2.getNumOfWins())
-                return Integer.compare(a1.getNumOfWins(), a1.getNumOfWins());
+                return -Integer.compare(a1.getNumOfWins(), a2.getNumOfWins());
             return a1.getName().compareTo(a2.getName());
         }));
         View.showAccounts(accounts);

@@ -18,12 +18,10 @@ public class Deck {
 
     public Deck clone() {
         Deck deck = new Deck(this.getName());
-        try {
-            if (this.getItem() != null)
-                deck.item = this.getItem().clone();
-        } catch (Exception e){ }
+        if (this.getItem() != null)
+            deck.item = this.getItem().clone();
         for (Card card : this.getCards().values())
-            deck.addCardWithSetID(Resources.getSpecificCard(card.getName()) , card.getId() );
+            deck.addCardWithSetID(Resources.getSpecificCard(card.getName()), card.getId());
         return deck;
     }
 

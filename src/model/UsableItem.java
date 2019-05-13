@@ -18,6 +18,10 @@ public class UsableItem {
         return Resources.getSpecificItem(this.getName());
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getPrice() {
         return price;
     }

@@ -507,7 +507,7 @@ public class Battle {
         if (whoseTurn.getSelectedCard() instanceof Spell)
             throw new SpellsCanNotMoveException();
         Minion minion = ((Minion) whoseTurn.getSelectedCard());
-        if (minion == null) {
+        if (minion == null && (!(whoseTurn instanceof AIPlayer))) {
             View.showCardHasNotSelected();
             return;
         }
@@ -563,11 +563,11 @@ public class Battle {
     }
 
     public boolean isEndedMultipleFlagGame() {
-        if (this.getPlayer1().getNumOfFlags() >= (this.getNumOfAllFlags() / 2)) {
+        if (this.getPlayer1().getNumOfFlags() > (this.getNumOfAllFlags() / 2)) {
             this.setWinner(player1);
             return true;
         }
-        if (this.getPlayer2().getNumOfFlags() >= (this.getNumOfAllFlags() / 2)) {
+        if (this.getPlayer2().getNumOfFlags() > (this.getNumOfAllFlags() / 2)) {
             this.setWinner(player2);
             return true;
         }
@@ -652,8 +652,10 @@ public class Battle {
         if (whoseTurn instanceof AIPlayer) {
             ((AIPlayer) whoseTurn).handleTurn();
         }
-        if (!(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn() instanceof AIPlayer))
-            View.showNextTurnMessage(this);
+        try {
+            if (!(Account.getCurrentAccount().getCurrentBattle().getWhoseTurn() instanceof AIPlayer))
+                View.showNextTurnMessage(this);
+        } catch (Exception e){ }
     }
 
     public void boardInfo() {

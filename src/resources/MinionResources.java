@@ -18,8 +18,11 @@ public class MinionResources {
     public static Minion getSpecificMinion(String minionName) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        if (getSpecificMinionGson(minionName) != null)
-            return gson.fromJson(getMinionResource().get(minionName), Minion.class);
+        if (getSpecificMinionGson(minionName) != null) {
+            Minion minion = gson.fromJson(getMinionResource().get(minionName), Minion.class);
+            minion.setName(minionName);
+            return minion;
+        }
         return null;
     }
 

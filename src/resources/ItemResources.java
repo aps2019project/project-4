@@ -23,6 +23,7 @@ public class ItemResources {
             Spell spell = gson.fromJson(getUsableItemResource().get(itemName), Spell.class);
             UsableItem usableItem = new UsableItem(spell.getName() , spell.getPrice());
             usableItem.setSpell(spell);
+            usableItem.setName(itemName);
             return usableItem;
         }
         return null;

@@ -30,11 +30,20 @@ public class AIPlayer extends Player {
     }
 
     public void handleTurn() {
+        Battle battle = Account.getCurrentAccount().getCurrentBattle();
         try {
             Random random = new Random();
-            Battle battle = Account.getCurrentAccount().getCurrentBattle();
+            ArrayList<Card> cards = new ArrayList<>(hand.getCards().values());
+            for (Card card : cards){
+                if (card instanceof Minion) {
+                    battle.insert(card.getId(), random.nextInt(4), random.nextInt(9));
+                    break;
+                }
+            }
             battle.getWhoseTurn().setSelectedCard(
-                    new ArrayList<>(Account.getCurrentAccount().getCurrentBattle().getPlayer2().getCardsInGameBoard().getCards().values()).get(1));
+                    new ArrayList<>(Account.getCurrentAccount().getCurrentBattle().getPlayer2().getCardsInGameBoard().getCards().values()).get(random.nextInt(
+                            Account.getCurrentAccount().getCurrentBattle().getPlayer2().getCardsInGameBoard().getCards().size()
+                    )));
             battle.moveTo(
                     ((Minion) Account.getCurrentAccount().getCurrentBattle().getPlayer2().getSelectedCard()).getCellPlace().getX() + random.nextInt(1),
                     ((Minion) Account.getCurrentAccount().getCurrentBattle().getPlayer2().getSelectedCard()).getCellPlace().getY() - random.nextInt(1));
@@ -54,8 +63,7 @@ public class AIPlayer extends Player {
                     battle.insert(card.getId(), battle.getMinions().get(0).getCellPlace().getX(), battle.getMinions().get(0).getCellPlace().getY());
                 }
             }
-            battle.attack(battle.getOppMinions().get(0).getCellPlace().getX() , battle.getOppMinions().get(0).getCellPlace().getY());
-            View.showGameBoardInfo(Account.getCurrentAccount().getCurrentBattle().getGameBoard() , 1);
+            battle.attack(battle.getOppMinions().get(0).getCellPlace().getX(), battle.getOppMinions().get(0).getCellPlace().getY());
             battle.nextTurn();
         } catch (Exception e) {
         }

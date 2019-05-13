@@ -62,6 +62,7 @@ public class StageResources {
         deck1.addCardWithSetID(Resources.getSpecificCard("siavash"), "ai_siavash_1");
         deck1.addCardWithSetID(Resources.getSpecificCard("arzhang deeve"), "ai_arzhangDeeve_1");
         deck1.addCardWithSetID(Resources.getSpecificCard("white deeve"), "ai_whiteDeeve_1");
+        deck1.setItemWithID(Resources.getSpecificItem("Soul Eater"), "stage1");
 //        deck1.setItemWithID(Resources.getSpecificItem(/*//todo add item 1*/""), "stage1");
         stageResources.add(new StageResources(1, 500, deck1));
         Deck deck2 = new Deck("stage2");
