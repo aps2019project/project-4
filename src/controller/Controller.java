@@ -515,7 +515,12 @@ public class Controller {
             case 8: {
                 Battle battle = Account.getCurrentAccount().getCurrentBattle();
                 Spell spell = battle.getWhoseTurn().getDeck().getHero().getSpecialPower();
-                battle.insertSpell(spell, Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
+                if (battle.getWhoseTurn().getCardsInGameBoard().getHero().isSpecialPowerActive()) {
+                    battle.insertSpell(spell, Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
+                    battle.getWhoseTurn().getCardsInGameBoard().getHero().setSpecialPowerActive(false);
+                }
+                else
+                    View.showSpecialPowerUsed();
             }
             break;
             case 9:

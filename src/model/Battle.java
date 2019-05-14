@@ -209,7 +209,7 @@ public class Battle {
                 stringBuilder.append(", location : (").
                         append(m.getCellPlace().getX()).append(", ").
                         append(m.getCellPlace().getY()).append("), ");
-                stringBuilder.append("power: ").append(m.getAttackPoint()).append("\n");
+                stringBuilder.append("power: ").append(m.getAttackPoint() + m.moreAttackPoints() + m.lessAttackPoints()).append("\n");
             }
         }
         return stringBuilder;
@@ -628,6 +628,8 @@ public class Battle {
     }
 
     public void nextTurn() {
+        player1.getCardsInGameBoard().getHero().setSpecialPowerActive(true);
+        player2.getCardsInGameBoard().getHero().setSpecialPowerActive(true);
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
                 Cell cell = gameBoard.getCell(i, j);

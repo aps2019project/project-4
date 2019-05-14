@@ -197,6 +197,14 @@ public class Minion extends Card {
             cell.setFlag(false);
             this.catchFlag();
         }
+        for (Buff buff : cell.getBuffs()){
+            if (buff.isPositive()){
+                cell.getMinion().getPositiveBuffs().add(buff);
+            }
+            else {
+                cell.getMinion().getPositiveBuffs().add(buff);
+            }
+        }
     }
 
     public void moveToNoMessageShow(Cell cell) {

@@ -4,6 +4,15 @@ import resources.Resources;
 
 public class Hero extends Minion {
     private int coolDown;
+    private boolean isSpecialPowerActive = true;
+
+    public boolean isSpecialPowerActive() {
+        return isSpecialPowerActive;
+    }
+
+    public void setSpecialPowerActive(boolean specialPowerActive) {
+        isSpecialPowerActive = specialPowerActive;
+    }
 
     public Hero(String id, String name, int price, int hp, int ap, int mp, int startRange, int endRange,
                 int coolDown, boolean isAntiHolyBuff, boolean isAntiDisarm,

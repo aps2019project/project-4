@@ -92,7 +92,7 @@ public class MinionResources {
                 "\"changeHp\": 0,\n" +
                 "\"apShield\": 0,\n" +
                 "\"changeAp\": 0,\n" +
-                "\"numberOfTurns\": 1,\n" +
+                "\"numberOfTurns\": 2,\n" +
                 "\"delay\": 0,\n" +
                 "\"isDisarmer\": false,\n" +
                 "\"isStunner\": true,\n" +

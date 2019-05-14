@@ -372,6 +372,10 @@ public class View {
         }
     }
 
+    public static void showSpecialPowerUsed(){
+        System.err.println("You have used your special power this turn");
+    }
+
     public static void showAllUsers() {
         System.out.println("Select a user to play with it:");
         ArrayList<Account> accounts = new ArrayList<>(Account.getAccounts().values());
